@@ -129,3 +129,30 @@ $RECYCLE.BIN/
 .fseventsd/
 *.ffs_db
 .sync.ffs_db
+
+# ==============================================================================
+# PERFIL: FRONTEND & UI/UX (Diseño, Bundlers y Assets Pesados)
+# ==============================================================================
+# Exportaciones y fuentes pesadas de diseño (Figma / Adobe XD)
+*.fig
+*.xd
+*.sketch
+*.zip
+*.psd
+*.ai
+
+# Bundlers y compiladores web (Vite, Parcel, Next.js, Webpack)
+dist/
+out/
+build/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+
+# Dependencias Node
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
