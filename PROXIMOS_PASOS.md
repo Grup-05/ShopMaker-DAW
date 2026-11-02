@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `8765c5d — *docs(scrum): crear equipo, DoR/DoD, Product Backlog y Sprint S01*`
+- **Último commit consolidado:** `57b6d97 — *docs(spec): añadir plantillas SDD/TDD y registro de decisiones*`
 - **Fecha de última sincronización:** 2026-11-02 17:01
 
 ---
