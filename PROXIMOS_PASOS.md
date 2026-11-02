@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `17314d3 — *chore(ignore): añadir exclusiones del perfil frontend*`
+- **Último commit consolidado:** `9be239b — *chore(governance): instalar núcleo de hooks, constitución y empaquetado*`
 - **Fecha de última sincronización:** 2026-11-02 17:01
 
 ---
