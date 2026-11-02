@@ -1,0 +1,131 @@
+# ==============================================================================
+# SEGURIDAD, DATOS CONFIDENCIALES Y SECRETOS (SAS)
+# ==============================================================================
+# Datos de sesión, perfiles locales y espacio privado del desarrollador
+user_data/
+*.key
+*.pem
+*.cert
+*.crt
+*.p12
+*.jks
+*.token
+*.pat
+secrets.json
+auth.json
+
+# Claves y variables de entorno (conservando siempre la plantilla de ejemplo)
+.env
+.env.*
+!.env.example
+
+# ==============================================================================
+# ASISTENTES DE IA (AI Coding Assistants & MCP Storage)
+# ==============================================================================
+# Antigravity / Gemini CLI / Claude Code / Cursor / Cline / Copilot local storage
+.gemini/
+.claude/
+.cursor/
+.cline/
+.copilot/
+**/brain/
+**/transcripts/
+**/.system_generated/
+**/scratch/
+*mcp_config.local.json
+
+# Perfiles de navegadores automatizados o headless
+chrome_profile_*/
+firefox_profile_*/
+cookies.sqlite*
+*.cookies
+
+# ==============================================================================
+# LOGS, TEMPORALES Y CACHÉS GENÉRICAS
+# ==============================================================================
+*.log
+logs/
+*.pid
+temp/
+tmp/
+*.tmp
+*.temp
+*~
+*.bak
+*.swp
+*.swo
+
+# ==============================================================================
+# SISTEMA OPERATIVO Y ENTORNOS DE ESCRITORIO
+# ==============================================================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.directory
+.netrwhist
+
+# ==============================================================================
+# EDITORES DE CÓDIGO E IDES
+# ==============================================================================
+.vscode/
+*.code-workspace
+
+# JetBrains
+.idea/
+
+# ==============================================================================
+# PERFIL: SISTEMAS & INFRAESTRUCTURA (MkDocs, Virtualización e ISOs)
+# ==============================================================================
+# MkDocs y generadores de sitios estáticos
+site/
+.cache/
+
+# Imágenes de disco, máquinas virtuales y appliances
+*.iso
+*.vmdk
+*.vdi
+*.qcow2
+*.box
+.vagrant/
+
+# Paquetes y compilaciones locales
+*.deb
+*.rpm
+*.tar.xz
+*.tar.zst
+
+# ==============================================================================
+# PERFIL: SISTEMAS & INFRAESTRUCTURA (MkDocs, Virtualización e ISOs)
+# ==============================================================================
+# MkDocs y generadores de sitios estáticos
+site/
+.cache/
+
+# Imágenes de disco, máquinas virtuales y appliances
+*.iso
+*.vmdk
+*.vdi
+*.qcow2
+*.box
+.vagrant/
+
+# Paquetes y compilaciones locales
+*.deb
+*.rpm
+*.tar.xz
+*.tar.zst
+
+# modulos node y npm
+node_modules/
+.npmrc
+.nvmrc
+setup-node-ssd.sh
+
+# Metadatos de unidades externas y herramientas de sincronización (FreeFileSync, etc.)
+System Volume Information/
+$RECYCLE.BIN/
+.Spotlight-V100/
+.Trashes/
+.fseventsd/
+*.ffs_db
+.sync.ffs_db
