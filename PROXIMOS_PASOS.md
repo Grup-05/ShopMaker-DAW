@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `9be239b — *chore(governance): instalar núcleo de hooks, constitución y empaquetado*`
+- **Último commit consolidado:** `f671bb4 — *docs(rules): definir metodologías Scrum/TDD y perfil frontend UI/UX*`
 - **Fecha de última sincronización:** 2026-11-02 17:01
 
 ---
