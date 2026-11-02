@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `1dd0187 — *docs(global): inicializar changelog y seguimiento del proyecto*`
+- **Último commit consolidado:** `17314d3 — *chore(ignore): añadir exclusiones del perfil frontend*`
 - **Fecha de última sincronización:** 2026-11-02 17:01
 
 ---

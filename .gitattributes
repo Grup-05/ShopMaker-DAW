@@ -1,0 +1,20 @@
+# ==============================================================================
+# EXCLUSIONES DE EMPAQUETADO PARA RELEASES (git archive / GitHub Source ZIP)
+# Garantiza que los paquetes descargables (.zip / .tar.gz) de las releases
+# contengan únicamente los archivos imprescindibles para ejecutar la aplicación.
+# ==============================================================================
+.agent export-ignore
+.agent/** export-ignore
+.agents export-ignore
+.github export-ignore
+.github/** export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+.vscode export-ignore
+.vscode/** export-ignore
+PROXIMOS_PASOS.md export-ignore
+CHANGELOG.md export-ignore
+plantillas export-ignore
+plantillas/** export-ignore
+specs export-ignore
+specs/** export-ignore
