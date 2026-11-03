@@ -13,20 +13,20 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 
 ## Tabla de PBIs
 
-| ID | Título | Prioridad | Estimación | Estado | Sprint | Spec |
-|---|---|---|---|---|---|---|
-| PBI-001 | Inicializar la aplicación web y la estructura base | Alta | 36 h (30 h en S01) | En Sprint | S01 | Pendiente |
-| PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Alta | 36 h (21 h en S01) | En Sprint | S01 | Pendiente |
-| PBI-003 | Definir el contrato de API y el adaptador mock | Alta | 38 h | Refinado | S02 | Pendiente |
-| PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | 30 h (25 h en S01) | En Sprint | S01 | Pendiente |
-| PBI-005 | Registro e inicio de sesión de usuarios | Alta | — | Nuevo | — | Pendiente |
-| PBI-006 | Catálogo de módulos comprables con búsqueda y filtros | Alta | — | Nuevo | — | Pendiente |
-| PBI-007 | Detalle de módulo y compra simulada | Alta | — | Nuevo | — | Pendiente |
-| PBI-008 | Editor de webs con autoguardado y borradores | Alta | — | Nuevo | — | Pendiente |
-| PBI-009 | Previsualización aislada y segura de la web | Alta | — | Nuevo | — | Pendiente |
-| PBI-010 | Publicación de la web y panel de alojamiento | Media | — | Nuevo | — | Pendiente |
-| PBI-011 | Gestión de módulos activos y permisos | Media | — | Nuevo | — | Pendiente |
-| PBI-012 | Accesibilidad transversal y navegación por teclado | Alta | — | Nuevo | — | Pendiente |
+| ID | Título | Prioridad | Estimación | Estado | Sprint | Issue | Spec |
+|---|---|---|---|---|---|---|---|
+| PBI-001 | Inicializar la aplicación web y la estructura base | Alta | 36 h (30 h en S01) | En Sprint | S01 | `#2` | Pendiente |
+| PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Alta | 36 h (21 h en S01) | En Sprint | S01 | `#3` | Pendiente |
+| PBI-003 | Definir el contrato de API y el adaptador mock | Alta | 38 h | Refinado | S02 | `#4` | Pendiente |
+| PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | 30 h (25 h en S01) | En Sprint | S01 | `#5` | Pendiente |
+| PBI-005 | Registro e inicio de sesión de usuarios | Alta | — | Nuevo | — | — | Pendiente |
+| PBI-006 | Catálogo de módulos comprables con búsqueda y filtros | Alta | — | Nuevo | — | — | Pendiente |
+| PBI-007 | Detalle de módulo y compra simulada | Alta | — | Nuevo | — | — | Pendiente |
+| PBI-008 | Editor de webs con autoguardado y borradores | Alta | — | Nuevo | — | — | Pendiente |
+| PBI-009 | Previsualización aislada y segura de la web | Alta | — | Nuevo | — | — | Pendiente |
+| PBI-010 | Publicación de la web y panel de alojamiento | Media | — | Nuevo | — | — | Pendiente |
+| PBI-011 | Gestión de módulos activos y permisos | Media | — | Nuevo | — | — | Pendiente |
+| PBI-012 | Accesibilidad transversal y navegación por teclado | Alta | — | Nuevo | — | — | Pendiente |
 
 > Las prioridades y el orden son propuestas iniciales. El Product Owner debe confirmarlos en el refinamiento.
 

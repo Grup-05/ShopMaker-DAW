@@ -27,6 +27,25 @@ En equipos académicos reducidos los roles pueden combinarse, pero las responsab
 - Canal de comunicación y decisiones: issues y PR del repositorio.
 - El agente de IA actúa como asistente técnico de los Developers y **nunca** commitea ni publica sin aprobación humana explícita.
 
+## Gobernanza de Tokens y Rotación de Roles (`gh` CLI)
+
+Dado que todos los integrantes son administradores de `Grup-05` y rotarán entre los roles de **Product Owner**, **Scrum Master** y **Developer** a lo largo de los Sprints, cada miembro debe operar con su **propio token personal** para garantizar trazabilidad de autoría (issues, PRs, revisiones cruzadas y movimientos en el tablón) y cumplir la Constitución de Seguridad (`AGENTS.md` §7):
+
+1. **Ubicación local aislada por estación de trabajo:**
+   - Archivo: `user_data/security/gh_token.txt` (excluido por `.gitignore`, con permisos `600` forzados y protegido por el escáner SAST del hook `pre-commit`).
+2. **Permisos requeridos al generar el token en GitHub:**
+   - **Opción recomendada (Fine-grained PAT):**
+     - *Resource owner:* `Grup-05`
+     - *Repository access:* Only select repositories → `Grup-05/ShopMaker-DAW`
+     - *Repository permissions:* `Actions` (Read & write), `Contents` (Read & write), `Issues` (Read & write), `Pull requests` (Read & write), `Metadata` (Read-only).
+     - *Organization permissions:* `Projects` (**Read and write**).
+   - **Opción alternativa (Classic PAT):**
+     - Scopes: `repo`, `workflow`, `project`, `read:org`.
+3. **Validación y carga automática:**
+   - Ejecutar `bash scripts/github/gh-auth-env.sh --check` para verificar permisos (`600`), identidad (`@FSolaje`, `@Tarrant15` o `@Fernis23228`), acceso al repositorio y acceso al tablero de `Grup-05` sin exponer jamás el token en consola.
+   - Para cargar el token en la sesión actual de terminal: `source scripts/github/gh-auth-env.sh`.
+   - El script `scripts/github/setup-sprint-board.sh` lo carga automáticamente si existe.
+
 ## Enlaces
 
 - [Definition of Ready](definition-of-ready.md)
