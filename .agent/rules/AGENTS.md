@@ -224,6 +224,12 @@ Este proceso realiza automáticamente:
 - **Aislamiento Estricto de `user_data/`:**
   - El directorio `user_data/` (herramientas locales, cachés, perfiles o notas confidenciales) queda **SIEMPRE EXCLUIDO** mediante `.gitignore`.
   - Bajo ninguna circunstancia se eliminará `user_data/` del `.gitignore` ni se comitearán archivos de este directorio.
+- **Requisito Obligatorio del Entorno Local `user_data/security/`:**
+  - Cada miembro del equipo debe disponer en su estación de trabajo local del directorio `user_data/security/` (permisos restrictivos `700` y `600` en archivos).
+  - Este espacio es estrictamente privado y aloja:
+    1. `forbidden_patterns.txt`: Rutas privadas locales (`$HOME/`) y patrones confidenciales de la máquina del desarrollador que el escáner SAST utiliza para bloquear fugas antes de cada commit.
+    2. `gh_token.txt`: Token personal de GitHub para gestionar issues, PRs y tableros bajo la identidad del rol activo, sin almacenar credenciales en el repositorio.
+  - **Detección, Asistencia y Explicación Automática:** Tanto el instalador de hooks (`install-hooks.sh`) como el hook de `pre-commit` detectan automáticamente si `user_data/security/` no está configurado, explican al desarrollador el motivo y guían interactivamente su configuración (asistida por `scripts/setup/init-user-security.sh`).
 - **Gitignore Retroactivo:**
   - Si se modifica `.gitignore` para añadir nuevas exclusiones sobre archivos previamente versionados, la IA purgará la caché mediante `git rm -r --cached <ruta>` y re-indexará antes de presentar los cambios para evitar "Ghost Tracking".
 
