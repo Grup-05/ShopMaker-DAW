@@ -1,0 +1,38 @@
+[
+  {
+    "id": "PBI-001",
+    "title": "Inicializar la aplicación web y la estructura base",
+    "priority": "Alta",
+    "spec": "specs/PBI-001-aplicacion-web/",
+    "estimate": "36 h",
+    "body": "## Historia de usuario\n\n**Como** Developer, **quiero** disponer de una aplicación web mínima y de una estructura por capas, **para** construir las features del CMS sobre una base testeable y segura.\n\n**Valor:** desbloquea todo el desarrollo posterior.\n\n## Criterios de aceptación\n\n- [ ] La aplicación arranca en el navegador y muestra la pantalla base en 1280×800; el layout funciona en 1024×720 sin scroll horizontal.\n- [ ] Existe separación entre presentación, aplicación/estado, dominio e infraestructura.\n- [ ] El código del cliente no accede a Node ni al sistema de archivos; solo usa APIs del navegador.\n- [ ] La navegación básica funciona con teclado y ratón.\n- [ ] Existe una prueba de humo de arranque en navegador.\n\n## Requisitos no funcionales\n\n- WCAG 2.1 AA: foco visible, teclado y contraste.\n- Viewport mínimo 1024×720; referencia 1280×800.\n- Sin secretos en el cliente; CSP estricta en despliegue.\n- Navegadores objetivo: Chromium actual y Firefox.\n\n## Dependencias\n\n- ADR-001 (React + TypeScript + Vite) y ADR-002 (aplicación web).\n- PBI-004 para el arnés de pruebas.\n\n## Riesgos\n\n- Confundir desktop-first con una aplicación nativa.\n- Sobreconfiguración inicial.\n- Falta de fallback de SPA en el hosting.\n\n## Spec\n\n`specs/PBI-001-aplicacion-web/` (pendiente de redactar en T01–T03).",
+    "sprint": "S01"
+  },
+  {
+    "id": "PBI-002",
+    "title": "Definir tokens de diseño, tema claro/oscuro y accesibilidad base",
+    "priority": "Alta",
+    "spec": "specs/PBI-002-tokens-accesibilidad/",
+    "estimate": "36 h",
+    "body": "## Historia de usuario\n\n**Como** usuario, **quiero** una interfaz legible y accesible en tema claro y oscuro, **para** usar el CMS sin fatiga visual y con apoyos técnicos.\n\n## Criterios de aceptación\n\n- [ ] Todos los colores, espaciados, radios y tipografías usan tokens semánticos.\n- [ ] El contraste de texto cumple ≥ 4.5:1 y el de controles ≥ 3:1.\n- [ ] El foco es visible y el orden de tabulación es lógico.\n- [ ] No se transmite información únicamente mediante color.\n- [ ] El zoom al 200 % no oculta contenido ni funcionalidad.\n\n## Requisitos no funcionales\n\n- WCAG 2.1 AA.\n- Respetar `prefers-color-scheme` y `prefers-reduced-motion`.\n- Sin parpadeos ni cambios de tema no solicitados.\n\n## Dependencias\n\n- PBI-001 para el layout y la estructura de `src/`.\n\n## Riesgos\n\n- Contraste insuficiente en tema oscuro.\n- Crecimiento descontrolado de tokens.\n- Duplicar estilos fuera del sistema.\n\n## Spec\n\n`specs/PBI-002-tokens-accesibilidad/` (pendiente de redactar en T01–T03).",
+    "sprint": "S01"
+  },
+  {
+    "id": "PBI-003",
+    "title": "Definir el contrato de API y el adaptador mock",
+    "priority": "Alta",
+    "spec": "specs/PBI-003-contrato-api/",
+    "estimate": "38 h",
+    "body": "## Historia de usuario\n\n**Como** Developer, **quiero** un contrato de API documentado y un adaptador mock, **para** desarrollar el frontend sin depender del backend y probar de forma determinista.\n\n## Criterios de aceptación\n\n- [ ] El contrato define los endpoints, DTO y errores normalizados que consume el frontend.\n- [ ] Todo acceso a red pasa por un adaptador de infraestructura.\n- [ ] Existe un adaptador mock para desarrollo y pruebas.\n- [ ] La UI contempla carga, vacío, error, reintento y sin conexión.\n- [ ] Los DTO se validan en la frontera.\n\n## Requisitos no funcionales\n\n- Sin red real en pruebas.\n- Errores normalizados y trazables.\n- Sin secretos ni datos personales en fixtures.\n\n## Dependencias\n\n- PBI-001 para la estructura por capas.\n- Contrato del backend o acuerdo de contrato mock.\n\n## Riesgos\n\n- Deriva entre contrato mock y backend real.\n- Validación excesiva o prematura.\n- Acoplar la UI a detalles de red.\n\n## Spec\n\n`specs/PBI-003-contrato-api/` (pendiente de redactar en T01–T03).",
+    "sprint": "S02"
+  },
+  {
+    "id": "PBI-004",
+    "title": "Configurar el arnés de pruebas y el hook local de calidad",
+    "priority": "Alta",
+    "spec": "specs/PBI-004-arnes-pruebas/",
+    "estimate": "30 h",
+    "body": "## Historia de usuario\n\n**Como** Developer, **quiero** un entorno de pruebas reproducible y un hook local, **para** aplicar TDD y detectar regresiones antes de abrir un PR.\n\n## Criterios de aceptación\n\n- [ ] Existe un comando único para ejecutar la suite completa.\n- [ ] La suite se ejecuta de forma determinista y sin red real.\n- [ ] Existe una prueba de ejemplo que falla antes de implementar y pasa después.\n- [ ] `.agent/hooks/pre-commit-local.sh` ejecuta linters y tests del proyecto.\n- [ ] La documentación explica cómo añadir y ejecutar pruebas.\n\n## Requisitos no funcionales\n\n- Suite unitaria < 60 s; suite completa < 3 min.\n- Sin tests flaky ni dependencias de red.\n- Hook con salida clara y código de salida correcto.\n\n## Dependencias\n\n- PBI-001 para el scaffold y la estructura.\n- Resolución de la inmutabilidad de `.agent/hooks/` para `pre-commit-local.sh`.\n\n## Riesgos\n\n- Descarga de navegadores de Playwright.\n- Hook bloqueado por la protección del núcleo.\n- Suite lenta o no determinista.\n\n## Spec\n\n`specs/PBI-004-arnes-pruebas/` (pendiente de redactar en T01).",
+    "sprint": "S01"
+  }
+]

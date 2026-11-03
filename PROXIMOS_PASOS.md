@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `15e4ab8 — *docs(rules): alinear gobernanza y plantillas con la aplicación web*`
+- **Último commit consolidado:** `f283524 — *chore(ignore): permitir versionado de lockfiles para builds reproducibles*`
 - **Fecha de última sincronización:** 2026-11-03 21:53
 
 ---

@@ -1,0 +1,696 @@
+[
+  {
+    "key": "PBI-001-T01",
+    "pbi": "PBI-001",
+    "type": "Spec",
+    "title": "Redactar la spec de la aplicación web",
+    "owner": "A",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `specs/PBI-001-aplicacion-web/spec.md` con contexto, historia, RF, RNF, criterios de aceptación, estados, fuera de alcance y riesgos.",
+    "acceptance": [
+      "La spec cubre todos los criterios del PBI-001.",
+      "Cada criterio tiene un ID CA verificable.",
+      "Se referencian ADR-001 y ADR-002."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-001-T02",
+    "pbi": "PBI-001",
+    "type": "Spec",
+    "title": "Redactar el plan técnico y la matriz spec-test",
+    "owner": "A",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-001-T01"
+    ],
+    "description": "Completar `plan.md` con arquitectura por capas, estructura de `src/`, estrategia de pruebas, matriz spec-test y plan TDD.",
+    "acceptance": [
+      "La matriz cubre el 100 % de RF y CA.",
+      "La estructura de carpetas y las reglas de dependencia están definidas.",
+      "El plan cabe en el Sprint."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-001-T03",
+    "pbi": "PBI-001",
+    "type": "Spec",
+    "title": "Redactar tasks.md y la lista de tests",
+    "owner": "A",
+    "estimate": "2 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-001-T02"
+    ],
+    "description": "Completar `tasks.md` con ciclos TDD rojo → verde → refactor, nombres de tests y evidencia esperada.",
+    "acceptance": [
+      "Cada CA tiene al menos un test previsto.",
+      "Los ciclos TDD están ordenados y son ejecutables.",
+      "Las tareas no superan 8 h."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-001-T04",
+    "pbi": "PBI-001",
+    "type": "Test",
+    "title": "Test rojo: la aplicación arranca en el navegador",
+    "owner": "A",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-001-T03",
+      "PBI-004-T03"
+    ],
+    "description": "Escribir el smoke test E2E que abre la app, comprueba el título y los landmarks principales. Debe fallar antes del scaffold.",
+    "acceptance": [
+      "El test falla por ausencia de la app, no por un error de configuración.",
+      "El nombre incluye `[PBI-001][CA-01]`.",
+      "La salida deja evidencia del rojo."
+    ],
+    "tests": [
+      "[PBI-001][CA-01] app-arranque"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-001-T05",
+    "pbi": "PBI-001",
+    "type": "Código",
+    "title": "Scaffold Vite + React + TypeScript y estructura por capas",
+    "owner": "A",
+    "estimate": "8 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-001-T04"
+    ],
+    "description": "Crear el proyecto Vite con React y TypeScript estricto, alias de rutas, ESLint/Prettier y la estructura `app`, `features`, `shared`, `domain`, `application` e `infrastructure`.",
+    "acceptance": [
+      "`npm run dev` arranca la app.",
+      "TypeScript está en modo estricto.",
+      "La estructura y las reglas de dependencia están documentadas.",
+      "No se importan APIs de Node."
+    ],
+    "tests": [
+      "[PBI-001][CA-01] app-arranque",
+      "[PBI-001][RNF-03] sin-acceso-a-node"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-001-T06",
+    "pbi": "PBI-001",
+    "type": "Código",
+    "title": "Layout base con landmarks y navegación por teclado",
+    "owner": "A",
+    "estimate": "8 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-001-T05"
+    ],
+    "description": "Implementar la pantalla base con `header`, `nav`, `main`, `footer`, skip link y navegación básica con teclado y ratón.",
+    "acceptance": [
+      "La pantalla se ve correctamente en 1280×800 y 1024×720 sin scroll horizontal.",
+      "El foco es visible y el orden de tabulación es lógico.",
+      "El skip link funciona."
+    ],
+    "tests": [
+      "[PBI-001][CA-01] layout-base",
+      "[PBI-001][CA-04] navegacion-teclado"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-001-T07",
+    "pbi": "PBI-001",
+    "type": "Docs",
+    "title": "Documentar el fallback de SPA y el despliegue estático",
+    "owner": "B",
+    "estimate": "3 h",
+    "priority": "Media",
+    "depends": [
+      "PBI-001-T06"
+    ],
+    "description": "Documentar cómo servir `index.html` para rutas profundas, la configuración de Vite y las cabeceras mínimas de seguridad y caché.",
+    "acceptance": [
+      "El README explica el fallback de SPA.",
+      "Se documenta el build estático y los navegadores objetivo.",
+      "No se asume un servidor propietario."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-001-T08",
+    "pbi": "PBI-001",
+    "type": "Refactor",
+    "title": "Revisar el aislamiento del cliente y las dependencias",
+    "owner": "A",
+    "estimate": "3 h",
+    "priority": "Media",
+    "depends": [
+      "PBI-001-T07"
+    ],
+    "description": "Revisar imports, ciclos y fronteras; añadir reglas ESLint que impidan presentación → infraestructura y el uso de APIs de Node.",
+    "acceptance": [
+      "No hay imports de presentación a infraestructura.",
+      "No hay APIs de Node en el bundle del cliente.",
+      "La suite sigue en verde."
+    ],
+    "tests": [
+      "[PBI-001][RNF-03] sin-acceso-a-node",
+      "[PBI-001][CA-02] fronteras-de-capas"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-002-T01",
+    "pbi": "PBI-002",
+    "type": "Spec",
+    "title": "Redactar la spec de tokens, tema y accesibilidad",
+    "owner": "B",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `specs/PBI-002-tokens-accesibilidad/spec.md` con RF, RNF, criterios, estados y fuera de alcance.",
+    "acceptance": [
+      "La spec cubre tokens, tema claro/oscuro, contraste, foco, color y zoom.",
+      "Cada criterio tiene un ID CA verificable.",
+      "Se apoya en WCAG 2.1 AA."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-002-T02",
+    "pbi": "PBI-002",
+    "type": "Spec",
+    "title": "Redactar el plan técnico y la matriz spec-test",
+    "owner": "B",
+    "estimate": "3 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-002-T01"
+    ],
+    "description": "Definir la arquitectura de tokens, el proveedor de tema, las primitivas y la estrategia de pruebas de accesibilidad.",
+    "acceptance": [
+      "La matriz cubre todos los CA.",
+      "Se definen tokens primitivos y semánticos.",
+      "Se especifica cómo se prueba el contraste."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-002-T03",
+    "pbi": "PBI-002",
+    "type": "Spec",
+    "title": "Redactar tasks.md y la lista de tests de accesibilidad",
+    "owner": "B",
+    "estimate": "2 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-002-T02"
+    ],
+    "description": "Desglosar los ciclos TDD y los tests de tokens, contraste, foco, teclado y zoom.",
+    "acceptance": [
+      "Cada CA tiene al menos un test previsto.",
+      "Los tests se pueden ejecutar sin red.",
+      "Los ciclos están ordenados."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-002-T04",
+    "pbi": "PBI-002",
+    "type": "Test",
+    "title": "Test rojo: tokens semánticos y contraste AA",
+    "owner": "B",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-002-T03"
+    ],
+    "description": "Escribir pruebas que fallen si un color no usa tokens o si el contraste de texto/controles no cumple AA.",
+    "acceptance": [
+      "El test detecta colores literales fuera de tokens.",
+      "El test calcula contraste ≥ 4.5:1 y ≥ 3:1.",
+      "La salida identifica el token culpable."
+    ],
+    "tests": [
+      "[PBI-002][CA-01] tokens-contraste-aa",
+      "[PBI-002][CA-02] sin-color-exclusivo"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-002-T05",
+    "pbi": "PBI-002",
+    "type": "Código",
+    "title": "Implementar tokens semánticos y tema claro/oscuro",
+    "owner": "B",
+    "estimate": "8 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-002-T04"
+    ],
+    "description": "Crear tokens primitivos y semánticos, tema claro/oscuro, detección de `prefers-color-scheme`, persistencia no sensible y `data-theme`.",
+    "acceptance": [
+      "Todos los colores, espaciados, radios y tipografías salen de tokens.",
+      "El tema claro y oscuro se aplican sin parpadeo.",
+      "La preferencia se conserva entre recargas."
+    ],
+    "tests": [
+      "[PBI-002][CA-01] tokens-contraste-aa",
+      "[PBI-002][CA-03] tema-persistente"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-002-T06",
+    "pbi": "PBI-002",
+    "type": "Test",
+    "title": "Test rojo: foco visible y orden de tabulación",
+    "owner": "B",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-002-T05"
+    ],
+    "description": "Escribir pruebas de teclado y axe que fallen si el foco no es visible o el orden de tabulación es incorrecto.",
+    "acceptance": [
+      "El test recorre los controles con Tab.",
+      "El foco visible se verifica por estilo computado.",
+      "Axe no reporta violaciones críticas."
+    ],
+    "tests": [
+      "[PBI-002][CA-04] foco-visible-teclado",
+      "[PBI-002][RNF-01] axe-sin-violaciones"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-002-T07",
+    "pbi": "PBI-002",
+    "type": "Código",
+    "title": "Implementar foco, primitivas y selector de tema",
+    "owner": "B",
+    "estimate": "8 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-002-T06"
+    ],
+    "description": "Implementar estilos de foco, primitivas accesibles (botón, enlace, input) y el control de cambio de tema con etiqueta accesible.",
+    "acceptance": [
+      "El foco es visible en todos los controles.",
+      "Las primitivas funcionan con teclado y lector de pantalla.",
+      "El selector de tema anuncia su estado."
+    ],
+    "tests": [
+      "[PBI-002][CA-04] foco-visible-teclado",
+      "[PBI-002][CA-05] zoom-200"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-002-T08",
+    "pbi": "PBI-002",
+    "type": "Refactor",
+    "title": "Revisar accesibilidad, contraste y zoom al 200 %",
+    "owner": "B",
+    "estimate": "3 h",
+    "priority": "Media",
+    "depends": [
+      "PBI-002-T07"
+    ],
+    "description": "Revisión manual y automatizada de contraste, foco, teclado, zoom y reducción de movimiento; corregir hallazgos.",
+    "acceptance": [
+      "No hay violaciones críticas de axe.",
+      "El zoom al 200 % no oculta contenido.",
+      "Se respeta `prefers-reduced-motion`."
+    ],
+    "tests": [
+      "[PBI-002][CA-05] zoom-200",
+      "[PBI-002][RNF-02] reduced-motion"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T01",
+    "pbi": "PBI-003",
+    "type": "Spec",
+    "title": "Redactar la spec y el contrato de API",
+    "owner": "C",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `spec.md` y documentar endpoints, DTO, errores normalizados y adaptador mock. Si no hay backend, acordar el contrato mock.",
+    "acceptance": [
+      "El contrato define endpoints, DTO y errores.",
+      "Los DTO tienen validación en la frontera.",
+      "Se documenta el adaptador mock."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T02",
+    "pbi": "PBI-003",
+    "type": "Spec",
+    "title": "Redactar el plan técnico y la matriz spec-test",
+    "owner": "C",
+    "estimate": "3 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-003-T01"
+    ],
+    "description": "Definir puertos, adaptadores, validación, normalización de errores y estrategia de pruebas de contrato.",
+    "acceptance": [
+      "La matriz cubre todos los CA.",
+      "La frontera de red está aislada en infraestructura.",
+      "Los fixtures no contienen datos personales."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T03",
+    "pbi": "PBI-003",
+    "type": "Spec",
+    "title": "Redactar tasks.md y la lista de tests de contrato",
+    "owner": "C",
+    "estimate": "2 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-003-T02"
+    ],
+    "description": "Desglosar los ciclos TDD del puerto, adaptador mock, validación y estados de UI.",
+    "acceptance": [
+      "Cada CA tiene al menos un test previsto.",
+      "Los tests no usan red real.",
+      "Los ciclos están ordenados."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T04",
+    "pbi": "PBI-003",
+    "type": "Test",
+    "title": "Test rojo: el adaptador mock cumple el contrato",
+    "owner": "C",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-003-T03"
+    ],
+    "description": "Escribir pruebas de contrato para el puerto y el adaptador mock con fixtures representativos.",
+    "acceptance": [
+      "El test falla antes de implementar el adaptador.",
+      "Cubre respuesta válida y DTO inválido.",
+      "No realiza peticiones de red reales."
+    ],
+    "tests": [
+      "[PBI-003][CA-01] adaptador-mock-contrato",
+      "[PBI-003][CA-05] dto-invalido"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T05",
+    "pbi": "PBI-003",
+    "type": "Código",
+    "title": "Implementar puerto, adaptador mock y fixtures",
+    "owner": "C",
+    "estimate": "8 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-003-T04"
+    ],
+    "description": "Implementar el puerto de API, el adaptador mock con latencia y errores inyectables, los fixtures y la validación de DTO.",
+    "acceptance": [
+      "Todo acceso a red pasa por el adaptador.",
+      "El mock permite simular latencia, error y vacío.",
+      "Los DTO se validan en la frontera."
+    ],
+    "tests": [
+      "[PBI-003][CA-01] adaptador-mock-contrato",
+      "[PBI-003][CA-02] sin-red-directa"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T06",
+    "pbi": "PBI-003",
+    "type": "Test",
+    "title": "Test rojo: carga, vacío, error, reintento y sin conexión",
+    "owner": "C",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-003-T05"
+    ],
+    "description": "Escribir pruebas de los estados de UI y de la normalización de errores, incluido el reintento y el modo offline.",
+    "acceptance": [
+      "Cada estado tiene un test observable.",
+      "El error incluye código y mensaje normalizados.",
+      "El reintento vuelve a ejecutar la petición."
+    ],
+    "tests": [
+      "[PBI-003][CA-03] estados-carga-vacio-error",
+      "[PBI-003][CA-04] reintento-y-offline"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T07",
+    "pbi": "PBI-003",
+    "type": "Código",
+    "title": "Implementar normalización de errores y demo de estados",
+    "owner": "C",
+    "estimate": "8 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-003-T06"
+    ],
+    "description": "Implementar la normalización de errores y una pantalla de demostración que consuma el adaptador mock y muestre carga, vacío, error, reintento y offline.",
+    "acceptance": [
+      "La UI muestra los cinco estados.",
+      "El reintento funciona.",
+      "No se filtra información sensible en los errores."
+    ],
+    "tests": [
+      "[PBI-003][CA-03] estados-carga-vacio-error",
+      "[PBI-003][CA-04] reintento-y-offline"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T08",
+    "pbi": "PBI-003",
+    "type": "Refactor",
+    "title": "Revisar la frontera de red y el contrato",
+    "owner": "C",
+    "estimate": "3 h",
+    "priority": "Media",
+    "depends": [
+      "PBI-003-T07"
+    ],
+    "description": "Revisar que ningún componente importe infraestructura directamente, que los errores sean consistentes y que el contrato esté documentado.",
+    "acceptance": [
+      "La presentación solo depende de puertos.",
+      "No hay `fetch` fuera de infraestructura.",
+      "El contrato y los fixtures están actualizados."
+    ],
+    "tests": [
+      "[PBI-003][CA-02] sin-red-directa",
+      "[PBI-003][CA-05] contrato-documentado"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-004-T01",
+    "pbi": "PBI-004",
+    "type": "Spec",
+    "title": "Redactar spec, plan y tasks del arnés de pruebas",
+    "owner": "C",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar los tres documentos SDD de PBI-004 con comandos, estrategia de pruebas, matriz y criterios de aceptación.",
+    "acceptance": [
+      "Los tres documentos existen y son coherentes.",
+      "Se define el comando único de suite.",
+      "Se incluye la estrategia para el hook local."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-004-T02",
+    "pbi": "PBI-004",
+    "type": "Código",
+    "title": "Configurar Vitest, React Testing Library y scripts",
+    "owner": "C",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-004-T01"
+    ],
+    "description": "Configurar Vitest con jsdom, setup de RTL, cobertura y scripts `test`, `test:watch`, `typecheck` y `lint`.",
+    "acceptance": [
+      "`npm test` ejecuta la suite.",
+      "`npm run typecheck` y `npm run lint` funcionan.",
+      "La configuración no depende de red."
+    ],
+    "tests": [
+      "[PBI-004][CA-01] suite-ejecutable",
+      "[PBI-004][CA-02] sin-red-real"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-004-T03",
+    "pbi": "PBI-004",
+    "type": "Código",
+    "title": "Configurar Playwright y el smoke test E2E",
+    "owner": "C",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-004-T01"
+    ],
+    "description": "Configurar Playwright para Chromium y Firefox, arrancar el servidor de Vite y ejecutar el smoke test de la app.",
+    "acceptance": [
+      "`npm run test:e2e` ejecuta el flujo.",
+      "El servidor se levanta y se cierra solo.",
+      "El test falla con la app rota."
+    ],
+    "tests": [
+      "[PBI-004][CA-03] e2e-arranque"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-004-T04",
+    "pbi": "PBI-004",
+    "type": "Test",
+    "title": "Añadir el test de ejemplo rojo → verde",
+    "owner": "C",
+    "estimate": "3 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-004-T02"
+    ],
+    "description": "Crear un test unitario de ejemplo que falle antes de la implementación y pase después, documentando el ciclo TDD.",
+    "acceptance": [
+      "El commit rojo y el verde quedan registrados.",
+      "El test es determinista.",
+      "El ejemplo se documenta en tasks.md."
+    ],
+    "tests": [
+      "[PBI-004][CA-04] ejemplo-rojo-verde"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-004-T05",
+    "pbi": "PBI-004",
+    "type": "Código",
+    "title": "Crear el hook local y resolver la inmutabilidad",
+    "owner": "C",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [
+      "PBI-004-T02",
+      "PBI-004-T03"
+    ],
+    "description": "Crear `.agent/hooks/pre-commit-local.sh` con lint, typecheck y tests; resolver la protección del núcleo para permitir solo ese archivo local.",
+    "acceptance": [
+      "El hook se ejecuta desde el pre-commit universal.",
+      "Bloquea si lint o tests fallan.",
+      "El núcleo sigue protegido."
+    ],
+    "tests": [
+      "[PBI-004][CA-05] hook-local"
+    ],
+    "sprint": "S01"
+  },
+  {
+    "key": "PBI-004-T06",
+    "pbi": "PBI-004",
+    "type": "Docs",
+    "title": "Documentar el flujo de pruebas en README",
+    "owner": "C",
+    "estimate": "3 h",
+    "priority": "Media",
+    "depends": [
+      "PBI-004-T02",
+      "PBI-004-T03"
+    ],
+    "description": "Documentar cómo añadir tests, ejecutar la suite, interpretar fallos y usar el hook local.",
+    "acceptance": [
+      "El README explica los comandos.",
+      "Incluye un ejemplo de test rojo → verde.",
+      "Menciona la matriz spec-test."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-004-T07",
+    "pbi": "PBI-004",
+    "type": "Refactor",
+    "title": "Revisar el arnés y reducir el tiempo de suite",
+    "owner": "C",
+    "estimate": "2 h",
+    "priority": "Media",
+    "depends": [
+      "PBI-004-T04",
+      "PBI-004-T05",
+      "PBI-004-T06"
+    ],
+    "description": "Revisar configuración, eliminar duplicidades y medir el tiempo de la suite unitaria y completa.",
+    "acceptance": [
+      "Suite unitaria < 60 s.",
+      "Suite completa < 3 min.",
+      "No hay tests flaky conocidos."
+    ],
+    "tests": [
+      "[PBI-004][CA-01] suite-ejecutable"
+    ],
+    "sprint": "S02"
+  }
+]

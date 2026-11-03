@@ -1,0 +1,93 @@
+name: Tarea
+description: Tarea atómica del Sprint Backlog derivada de tasks.md
+title: "[PBI-###][T##] "
+labels: ["type:task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cada tarea debe ser pequeña, verificable y tener un único responsable. Si supera 6 h, divídela.
+
+  - type: input
+    id: pbi
+    attributes:
+      label: PBI
+      description: PBI al que pertenece la tarea.
+      placeholder: PBI-001
+    validations:
+      required: true
+
+  - type: input
+    id: sprint
+    attributes:
+      label: Sprint
+      placeholder: S01
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo
+      options:
+        - Spec
+        - Test
+        - Código
+        - Refactor
+        - Docs
+        - Chore
+    validations:
+      required: true
+
+  - type: input
+    id: estimacion
+    attributes:
+      label: Estimación
+      description: Horas o puntos acordados en el Planning.
+      placeholder: 4 h
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto y entregable
+      description: Qué hay que hacer y qué resultado observable se espera.
+    validations:
+      required: true
+
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Criterios de aceptación de la tarea
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: tests
+    attributes:
+      label: Pruebas asociadas
+      description: Nombres de tests o RF/CA que cubre. Si es una tarea de spec, indica "N/A".
+      placeholder: "[PBI-001][RF-01] app-arranque"
+
+  - type: input
+    id: dependencias
+    attributes:
+      label: Dependencias
+      description: Issues que deben completarse antes. Usa #número cuando existan.
+      placeholder: "#12, #15"
+
+  - type: checkboxes
+    id: dod
+    attributes:
+      label: Definition of Done
+      options:
+        - label: Criterios de aceptación cumplidos.
+        - label: Tests escritos antes de la implementación (si aplica).
+        - label: Suite en verde.
+        - label: Matriz spec-test actualizada (si aplica).
+        - label: Sin secretos ni rutas privadas.
+        - label: PR revisado y mergeado.
