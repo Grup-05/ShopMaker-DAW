@@ -52,8 +52,18 @@ if [ "$CURRENT_BRANCH" != "main" ] && [ -n "$CURRENT_BRANCH" ]; then
         ".gitattributes"
     )
 
+    # Identificar Administrador de Gobernanza si existe en docs/scrum/active_roles.env o team.md
+    GOV_ADMIN=""
+    ROLES_ENV="$REPO_ROOT/docs/scrum/active_roles.env"
+    if [ -f "$ROLES_ENV" ]; then
+        GOV_ADMIN="$(grep -E '^[[:space:]]*GOVERNANCE_ADMIN=' "$ROLES_ENV" 2>/dev/null | cut -d'=' -f2 | tr -d '\"' | tr -d "'" | tr -d '[:space:]' || true)"
+    fi
+    [ -z "$GOV_ADMIN" ] && GOV_ADMIN="FSolaje"
+
+    CURRENT_COMMITER="$(gh api user --jq '.login' 2>/dev/null || git config user.name 2>/dev/null || echo '')"
+
     for item in "${PROTECTED_CORE_ITEMS[@]}"; do
-        # Excepción: pre-commit-local.sh es el hook local del proyecto. Puede
+        # Excepción 1: pre-commit-local.sh es el hook local del proyecto. Puede
         # crearse o modificarse en ramas secundarias sin alterar el núcleo.
         mapfile -t CHANGED_PROTECTED < <(
             git diff --cached --name-only -- "$item" 2>/dev/null \
@@ -62,18 +72,36 @@ if [ "$CURRENT_BRANCH" != "main" ] && [ -n "$CURRENT_BRANCH" ]; then
         if [ "${#CHANGED_PROTECTED[@]}" -gt 0 ]; then
             DIFF_WITH_MAIN=$(git diff --cached main -- "${CHANGED_PROTECTED[@]}" 2>/dev/null || git diff --cached origin/main -- "${CHANGED_PROTECTED[@]}" 2>/dev/null || true)
             if [ -n "$DIFF_WITH_MAIN" ]; then
-                if [ "${ALLOW_GLOBAL_OVERRIDE:-false}" != "true" ]; then
+                # Excepción 2: Bypass del Administrador de Gobernanza
+                # Condición obligatoria: TODOS los archivos del staging deben ser estrictamente de gobernanza o proceso.
+                NON_GOVERNANCE_STAGED=$(git diff --cached --name-only | grep -Ev '^(\.agent/|\.github/|\.gitattributes$|docs/|PROXIMOS_PASOS\.md$|scripts/)' || true)
+                
+                if [ -n "$NON_GOVERNANCE_STAGED" ]; then
+                    echo "❌ [ERROR DE GOBERNANZA - MEZCLA PROHIBIDA]"
+                    echo "   Se intentan confirmar cambios en el núcleo de gobernanza ($item) junto con archivos ajenos:"
+                    echo "$NON_GOVERNANCE_STAGED" | sed 's/^/      - /'
+                    echo "   El bypass de gobernanza exige que el commit afecte EXCLUSIVAMENTE a activos de gobernanza."
+                    exit 1
+                fi
+
+                IS_GOV_ADMIN=false
+                if [ "$CURRENT_COMMITER" = "$GOV_ADMIN" ] || [ "${ALLOW_GLOBAL_OVERRIDE:-false}" = "true" ] || [ "${GOVERNANCE_BYPASS:-false}" = "true" ]; then
+                    IS_GOV_ADMIN=true
+                fi
+
+                if [ "$IS_GOV_ADMIN" = true ]; then
+                    echo "  🛡️  [Gobernanza] Bypass de Administrador de Gobernanza concedido para @$GOV_ADMIN."
+                    echo "     Commit compuesto al 100 % por activos de gobernanza. Se autoriza la modificación en '$CURRENT_BRANCH'."
+                else
                     echo "❌ [ERROR DE GOBERNANZA - NÚCLEO INMUTABLE]"
                     echo "   Se intentan confirmar modificaciones no autorizadas en el activo central: '$item'"
-                    echo "   Este componente transversal solo puede modificarse y evolucionar en la rama 'main'."
+                    echo "   Este componente transversal solo puede modificarse en 'main' o por el Administrador de Gobernanza (@$GOV_ADMIN)."
                     echo "   Para aplicar cambios legítimos al núcleo:"
                     echo "     1. Cambia a 'main' (git switch main)."
                     echo "     2. Aplica y justifica el cambio mediante Conventional Commits."
                     echo "     3. Sincroniza hacia tu rama (git restore --source=main -- $item)."
-                    echo "   (Para overrides excepcionales debidamente auditados: export ALLOW_GLOBAL_OVERRIDE=true)."
+                    echo "   (Para overrides excepcionales de gobernanza: export GOVERNANCE_BYPASS=true)."
                     exit 1
-                else
-                    echo "⚠️  [AVISO GOBERNANZA] Override forzado detectado para activo del núcleo: '$item'."
                 fi
             fi
         fi
