@@ -13,16 +13,16 @@
 
 ## Sprint Goal
 
-> Dejar preparado un entorno de desarrollo verificable —aplicación web base, sistema visual accesible, contrato de API con mock y arnés de pruebas— para que el primer PBI funcional del CMS pueda construirse con SDD y TDD sin bloqueos técnicos.
+> Dejar preparado el núcleo fundacional verificable —aplicación web base, tokens semánticos con tema claro/oscuro y arnés de pruebas con hook local— para que el primer incremento funcional del CMS pueda construirse con SDD y TDD sin bloqueos técnicos.
 
 ## Incremento demostrado
 
-| PBI | Resultado | Criterios aceptados | Evidencia |
-|---|---|---|---|
-| PBI-001 | Pendiente | Pendiente | Pendiente |
-| PBI-002 | Pendiente | Pendiente | Pendiente |
-| PBI-003 | Pendiente | Pendiente | Pendiente |
-| PBI-004 | Pendiente | Pendiente | Pendiente |
+| PBI | Alcance S01 | Resultado | Criterios aceptados | Evidencia |
+|---|---|---|---|---|
+| PBI-001 | `T01–T06` (30 h) | Pendiente | Pendiente | Pendiente |
+| PBI-002 | `T01–T05` (21 h) | Pendiente | Pendiente | Pendiente |
+| PBI-004 | `T01–T05` (25 h) | Pendiente | Pendiente | Pendiente |
+| PBI-003 | Pospuesto a S02 (38 h) | Fuera de alcance de S01 | — | Acordado en Sprint Planning |
 
 ## Estado de pruebas
 

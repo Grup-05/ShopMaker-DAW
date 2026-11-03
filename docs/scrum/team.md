@@ -4,12 +4,12 @@
 
 ## Composición del equipo
 
-| Integrante | Rol Scrum | Responsabilidad principal |
-|---|---|---|
-| Jesús Hernández | Scrum Master | Facilita ceremonias, elimina impedimentos y protege el marco |
-| Francisco Tomas | Product Owner | Prioriza el Product Backlog y acepta el incremento |
-| Fernando Ruescas | Developer | Especifica, prueba e implementa el incremento |
-| Javier Ibañez | Cliente / Stakeholder | Aporta feedback funcional en el Sprint Review |
+| Integrante | Usuario GitHub | Rol Scrum | Workstream de Desarrollo (S01) | Responsabilidad principal |
+|---|---|---|---|---|
+| Francisco Tomas | `@FSolaje` | Product Owner / Developer (Dev A) | Fundación y aplicación web (`PBI-001`) | Prioriza el Product Backlog, acepta el incremento y construye la base de la SPA |
+| Jesús Hernández | `@Tarrant15` | Scrum Master / Developer (Dev B) | Sistema visual y accesibilidad (`PBI-002`) | Facilita ceremonias, elimina impedimentos, protege el marco e implementa tokens/temas |
+| Fernando Ruescas | `@Fernis23228` | Developer (Dev C) | Arnés de pruebas y calidad (`PBI-004`) | Especifica, prueba e implementa el entorno de testing y el hook local |
+| Javier Ibañez | — | Cliente / Stakeholder | — | Aporta feedback funcional en el Sprint Review |
 
 En equipos académicos reducidos los roles pueden combinarse, pero las responsabilidades no se diluyen:
 

@@ -13,20 +13,20 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 
 ## Tabla de PBIs
 
-| ID | Título | Prioridad | Estado | Sprint | Spec |
-|---|---|---|---|---|---|
-| PBI-001 | Inicializar la aplicación web y la estructura base | Alta | En Sprint | S01 | Pendiente |
-| PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Alta | En Sprint | S01 | Pendiente |
-| PBI-003 | Definir el contrato de API y el adaptador mock | Alta | En Sprint | S01 | Pendiente |
-| PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | En Sprint | S01 | Pendiente |
-| PBI-005 | Registro e inicio de sesión de usuarios | Alta | Nuevo | — | Pendiente |
-| PBI-006 | Catálogo de módulos comprables con búsqueda y filtros | Alta | Nuevo | — | Pendiente |
-| PBI-007 | Detalle de módulo y compra simulada | Alta | Nuevo | — | Pendiente |
-| PBI-008 | Editor de webs con autoguardado y borradores | Alta | Nuevo | — | Pendiente |
-| PBI-009 | Previsualización aislada y segura de la web | Alta | Nuevo | — | Pendiente |
-| PBI-010 | Publicación de la web y panel de alojamiento | Media | Nuevo | — | Pendiente |
-| PBI-011 | Gestión de módulos activos y permisos | Media | Nuevo | — | Pendiente |
-| PBI-012 | Accesibilidad transversal y navegación por teclado | Alta | Nuevo | — | Pendiente |
+| ID | Título | Prioridad | Estimación | Estado | Sprint | Spec |
+|---|---|---|---|---|---|---|
+| PBI-001 | Inicializar la aplicación web y la estructura base | Alta | 36 h (30 h en S01) | En Sprint | S01 | Pendiente |
+| PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Alta | 36 h (21 h en S01) | En Sprint | S01 | Pendiente |
+| PBI-003 | Definir el contrato de API y el adaptador mock | Alta | 38 h | Refinado | S02 | Pendiente |
+| PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | 30 h (25 h en S01) | En Sprint | S01 | Pendiente |
+| PBI-005 | Registro e inicio de sesión de usuarios | Alta | — | Nuevo | — | Pendiente |
+| PBI-006 | Catálogo de módulos comprables con búsqueda y filtros | Alta | — | Nuevo | — | Pendiente |
+| PBI-007 | Detalle de módulo y compra simulada | Alta | — | Nuevo | — | Pendiente |
+| PBI-008 | Editor de webs con autoguardado y borradores | Alta | — | Nuevo | — | Pendiente |
+| PBI-009 | Previsualización aislada y segura de la web | Alta | — | Nuevo | — | Pendiente |
+| PBI-010 | Publicación de la web y panel de alojamiento | Media | — | Nuevo | — | Pendiente |
+| PBI-011 | Gestión de módulos activos y permisos | Media | — | Nuevo | — | Pendiente |
+| PBI-012 | Accesibilidad transversal y navegación por teclado | Alta | — | Nuevo | — | Pendiente |
 
 > Las prioridades y el orden son propuestas iniciales. El Product Owner debe confirmarlos en el refinamiento.
 
@@ -48,7 +48,7 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 - [ ] La navegación básica funciona con teclado y ratón.
 - [ ] Existe una prueba de humo de arranque en navegador.
 
-**Estimación:** pendiente de planning.
+**Estimación:** 36 h totales (30 h comprometidas en S01: `T01–T06`; 6 h en S02: `T07–T08`).
 **Dependencias:** ADR-001 (React + TypeScript + Vite) y ADR-002 (aplicación web).
 **Riesgos:** confundir desktop-first con una aplicación nativa; sobreconfiguración inicial; falta de fallback de SPA en el hosting.
 
@@ -66,6 +66,7 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 - [ ] No se transmite información únicamente mediante color.
 - [ ] El zoom al 200 % no oculta contenido ni funcionalidad.
 
+**Estimación:** 36 h totales (21 h comprometidas en S01: `T01–T05`; 15 h en S02: `T06–T08`).
 **Spec:** `specs/PBI-002-tokens-accesibilidad/` (pendiente).
 
 ### PBI-003 — Definir el contrato de API y el adaptador mock
@@ -80,6 +81,7 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 - [ ] La UI contempla carga, vacío, error, reintento y sin conexión.
 - [ ] Los DTO se validan en la frontera.
 
+**Estimación:** 38 h (pospuesto a Sprint S02 por ajuste de capacidad en S01).
 **Spec:** `specs/PBI-003-contrato-api/` (pendiente).
 
 ### PBI-004 — Configurar el arnés de pruebas y el hook local de calidad
@@ -94,6 +96,7 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 - [ ] `.agent/hooks/pre-commit-local.sh` ejecuta linters y tests del proyecto.
 - [ ] La documentación explica cómo añadir y ejecutar pruebas.
 
+**Estimación:** 30 h totales (25 h comprometidas en S01: `T01–T05`; 5 h en S02: `T06–T07`).
 **Spec:** `specs/PBI-004-arnes-pruebas/` (pendiente).
 
 ---
