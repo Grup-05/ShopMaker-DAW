@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `97c0cd3 — *docs(scrum): registrar tarea INFRA-01, matriz de autoridad y CODEOWNERS*`
-- **Fecha de última sincronización:** 2026-11-03 23:24
+- **Último commit consolidado:** `b5253e8 — *chore(governance): sincronizar nucleo de gobernanza desde main*`
+- **Fecha de última sincronización:** 2026-11-03 23:26
 
 ---
 
@@ -24,6 +24,7 @@
 - [x] Perfil frontend UI/UX adaptado al CMS ShopMaker.
 - [x] `.gitattributes` para empaquetado limpio de releases.
 - [x] Archivo local de seguridad en `user_data/security/forbidden_patterns.txt` (gitignored).
+- [x] Verificación mandatoria y guiado interactivo de `user_data/security/` (`scripts/setup/init-user-security.sh`, `install-hooks.sh` y `pre-commit`).
 
 ### 🧱 Stack y formato de entrega
 
@@ -82,7 +83,7 @@ PBIs del Sprint S01:
 
 ## 🎯 Próximo Paso Inmediato
 
-1. **Confirmar los commits atómicos de gobernanza de tokens (`scripts/github/`) y trazabilidad de issues (`docs/scrum/`, `PROXIMOS_PASOS.md`).**
+1. **Reunión de equipo (04-nov):** Decidir si se activan las protecciones de rama de GitHub (`INFRA-01` / issue `#22`) con `bash scripts/github/protect-branches.sh` antes de comenzar a integrar los PBIs en `develop`.
 2. **Iniciar el trabajo SDD/TDD del Sprint S01:**
    - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (`#6`–`#8`), `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
    - Aprobar las specs y confirmar `docs(spec): ...` (requiere orden humana).
