@@ -182,11 +182,17 @@ Reglas clave:
 - No se ejecuta `git commit` ni `git push` sin aprobación humana explícita.
 - Los paquetes de release excluyen activos de gobernanza mediante `.gitattributes`.
 
-Instalación y validación de hooks:
+Instalación de hooks y verificación de seguridad:
 
 ```bash
+# 1. Instalar hooks de Git y preparar entorno de seguridad:
 bash .agent/hooks/install-hooks.sh
-bash -n .agent/hooks/pre-commit
+
+# 2. Verificar o inicializar entorno local de seguridad (user_data/security/):
+bash scripts/setup/init-user-security.sh --check
+
+# 3. Configurar token personal de GitHub (si se gestionan issues/tableros):
+bash scripts/github/gh-auth-env.sh --login
 ```
 
 ---

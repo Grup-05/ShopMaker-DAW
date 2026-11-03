@@ -50,6 +50,31 @@ Dado que todos los integrantes son administradores de `Grup-05` y rotarán entre
   ```
   Esto actualiza `active_roles.env` y regenera `.github/CODEOWNERS` automáticamente.
 
+## Onboarding y Entorno de Seguridad Obligatorio (`user_data/security/`)
+
+Para garantizar que ningún desarrollador filtre accidentalmente rutas locales ni credenciales, y para posibilitar el uso de la CLI de GitHub bajo la identidad de cada miembro, **la carpeta `user_data/security/` es obligatoria en la estación de trabajo de cada integrante**.
+
+### 1. ¿Por qué es obligatoria?
+1. **Aislamiento SAS (Constitución `AGENTS.md` §7):** `user_data/` está rigurosamente ignorada en `.gitignore`. Ningún contenido ubicado aquí se versionará jamás en Git.
+2. **Prevención de fugas de rutas privadas (`forbidden_patterns.txt`):** Cada máquina tiene rutas personales absolutas (`$HOME/`). El escáner SAST de `pre-commit` bloquea cualquier commit que contenga cadenas coincidentes con este archivo para evitar exponer nombres de usuario locales o rutas de disco en commits públicos.
+3. **Autenticación personal multiusuario (`gh_token.txt`):** Cada rol que opera sobre issues, pull requests o tableros de GitHub utiliza su propio token con permisos UNIX `600`, impidiendo fugas o uso indebido de sesiones globales.
+
+### 2. Detección y Configuración Guiada
+Si un nuevo miembro clona el repositorio o cambia de equipo:
+- Los hooks `install-hooks.sh` y `pre-commit` detectan automáticamente si falta `user_data/security/` y la crean con permisos restrictivos `700` y `600`.
+- Para inicializar o verificar el entorno en cualquier momento:
+  ```bash
+  # Verificar estado:
+  bash scripts/setup/init-user-security.sh --check
+
+  # Inicializar estructura guiada:
+  bash scripts/setup/init-user-security.sh --init
+  ```
+- Para registrar o actualizar el token personal de GitHub:
+  ```bash
+  bash scripts/github/gh-auth-env.sh --login
+  ```
+
 ## Gobernanza de Tokens y Rotación de Roles (`gh` CLI)
 
 Dado que todos los integrantes son administradores de `Grup-05` y rotarán entre los roles de **Product Owner**, **Scrum Master** y **Developer** a lo largo de los Sprints, cada miembro debe operar con su **propio token personal** para garantizar trazabilidad de autoría (issues, PRs, revisiones cruzadas y movimientos en el tablón) y cumplir la Constitución de Seguridad (`AGENTS.md` §7):
