@@ -9,13 +9,13 @@
 
 ## Visión del producto
 
-ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su propia página web**, con alojamiento proporcionado por la plataforma. Este repositorio contiene **solo el frontend**, que en su primera entrega se distribuye como **aplicativo de escritorio**.
+ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su propia página web**, con alojamiento proporcionado por la plataforma. Este repositorio contiene **solo el frontend**, que en su primera entrega se ejecuta como **aplicación web desktop-first en el navegador**.
 
 ## Tabla de PBIs
 
 | ID | Título | Prioridad | Estado | Sprint | Spec |
 |---|---|---|---|---|---|
-| PBI-001 | Inicializar el shell de escritorio y la estructura base | Alta | En Sprint | S01 | Pendiente |
+| PBI-001 | Inicializar la aplicación web y la estructura base | Alta | En Sprint | S01 | Pendiente |
 | PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Alta | En Sprint | S01 | Pendiente |
 | PBI-003 | Definir el contrato de API y el adaptador mock | Alta | En Sprint | S01 | Pendiente |
 | PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | En Sprint | S01 | Pendiente |
@@ -34,25 +34,25 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 
 ## Detalle de los PBIs del Sprint S01
 
-### PBI-001 — Inicializar el shell de escritorio y la estructura base
+### PBI-001 — Inicializar la aplicación web y la estructura base
 
-**Como** Developer, **quiero** disponer de un shell de escritorio mínimo y de una estructura por capas, **para** construir las features del CMS sobre una base testeable y segura.
+**Como** Developer, **quiero** disponer de una aplicación web mínima y de una estructura por capas, **para** construir las features del CMS sobre una base testeable y segura.
 
 **Valor:** desbloquea todo el desarrollo posterior.
 
 **Criterios de aceptación**
 
-- [ ] La aplicación arranca en el sistema objetivo y muestra una ventana con tamaño mínimo definido.
+- [ ] La aplicación arranca en el navegador y muestra la pantalla base en 1280×800; el layout funciona en 1024×720 sin scroll horizontal.
 - [ ] Existe separación entre presentación, aplicación/estado, dominio e infraestructura.
-- [ ] El renderer está aislado y no tiene acceso directo a Node ni al sistema de archivos.
+- [ ] El código del cliente no accede a Node ni al sistema de archivos; solo usa APIs del navegador.
 - [ ] La navegación básica funciona con teclado y ratón.
-- [ ] Existe una prueba de humo de arranque.
+- [ ] Existe una prueba de humo de arranque en navegador.
 
 **Estimación:** pendiente de planning.
-**Dependencias:** decisión de stack (Electron, Tauri o web instalable).
-**Riesgos:** elección de shell sin justificar; sobreconfiguración inicial.
+**Dependencias:** ADR-001 (React + TypeScript + Vite) y ADR-002 (aplicación web).
+**Riesgos:** confundir desktop-first con una aplicación nativa; sobreconfiguración inicial; falta de fallback de SPA en el hosting.
 
-**Spec:** `specs/PBI-001-shell-escritorio/` (pendiente).
+**Spec:** `specs/PBI-001-aplicacion-web/` (pendiente).
 
 ### PBI-002 — Definir tokens de diseño, tema claro/oscuro y accesibilidad base
 

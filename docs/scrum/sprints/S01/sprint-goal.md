@@ -12,7 +12,9 @@
 
 ## Sprint Goal
 
-> Dejar preparado un entorno de desarrollo verificable —shell de escritorio, sistema visual accesible, contrato de API con mock y arnés de pruebas— para que el primer PBI funcional del CMS pueda construirse con SDD y TDD sin bloqueos técnicos.
+> Dejar preparado un entorno de desarrollo verificable —aplicación web base, sistema visual accesible, contrato de API con mock y arnés de pruebas— para que el primer PBI funcional del CMS pueda construirse con SDD y TDD sin bloqueos técnicos.
+
+> **Nota de aclaración (2026-11-03):** la entrega se ejecuta en navegador; se sustituye “shell de escritorio” por “aplicación web base”. El objetivo del Sprint no cambia.
 
 ## Preguntas que responde el Planning
 
@@ -23,7 +25,7 @@
 
 | PBI | Título | Estimación | Estado inicial |
 |---|---|---|---|
-| PBI-001 | Inicializar el shell de escritorio y la estructura base | Pendiente | En Sprint |
+| PBI-001 | Inicializar la aplicación web y la estructura base | Pendiente | En Sprint |
 | PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Pendiente | En Sprint |
 | PBI-003 | Definir el contrato de API y el adaptador mock | Pendiente | En Sprint |
 | PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Pendiente | En Sprint |
@@ -31,7 +33,7 @@
 ## Capacidad y riesgos
 
 - Capacidad estimada del equipo: pendiente de confirmar en el Planning.
-- Riesgo: elegir un shell de escritorio sin justificar → decisión documentada en ADR y validada por el equipo.
+- Riesgo: que el layout desktop-first no se adapte al viewport mínimo o al zoom → validación en 1024×720 y 200 %.
 - Riesgo: acoplar la UI al backend antes de definir el contrato → adaptador mock obligatorio (PBI-003).
 - Dependencia externa: disponibilidad del contrato de API del backend.
 
@@ -39,7 +41,7 @@
 
 Al final del Sprint debe ser posible:
 
-1. Arrancar el shell de escritorio en el sistema objetivo.
+1. Arrancar la aplicación web en el navegador objetivo.
 2. Ver una pantalla base con tokens y foco visible.
 3. Ejecutar la suite de pruebas con un comando único y obtener verde.
 4. Consumir datos simulados a través del adaptador mock.

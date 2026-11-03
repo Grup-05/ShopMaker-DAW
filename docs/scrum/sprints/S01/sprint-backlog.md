@@ -2,21 +2,21 @@
 
 ## Sprint Goal
 
-> Dejar preparado un entorno de desarrollo verificable —shell de escritorio, sistema visual accesible, contrato de API con mock y arnés de pruebas— para que el primer PBI funcional del CMS pueda construirse con SDD y TDD sin bloqueos técnicos.
+> Dejar preparado un entorno de desarrollo verificable —aplicación web base, sistema visual accesible, contrato de API con mock y arnés de pruebas— para que el primer PBI funcional del CMS pueda construirse con SDD y TDD sin bloqueos técnicos.
 
 ## Tareas por PBI
 
-### PBI-001 — Shell de escritorio y estructura base
+### PBI-001 — Aplicación web y estructura base
 
 | # | Tarea | Tipo | Responsable | Estimación | Estado |
 |---|---|---|---|---|---|
-| 1 | Completar `spec.md` del shell y la estructura | Spec | Developer | — | Pendiente |
+| 1 | Completar `spec.md` de la aplicación web y la estructura | Spec | Developer | — | Pendiente |
 | 2 | Completar `plan.md` y matriz spec-test | Spec | Developer | — | Pendiente |
 | 3 | Completar `tasks.md` y lista de tests | Spec | Developer | — | Pendiente |
-| 4 | Documentar la decisión de stack en ADR | Spec | Developer | — | Pendiente |
-| 5 | Test rojo: la app arranca y muestra la ventana base | Test | Developer | — | Pendiente |
-| 6 | Implementación verde del shell mínimo | Código | Developer | — | Pendiente |
-| 7 | Refactor y revisión de aislamiento del renderer | Refactor | Developer | — | Pendiente |
+| 4 | Documentar ADR-001 (React/TS) y ADR-002 (web) | Spec | Developer | — | Pendiente |
+| 5 | Test rojo: la app arranca y muestra la pantalla base en navegador | Test | Developer | — | Pendiente |
+| 6 | Implementación verde de la app web mínima | Código | Developer | — | Pendiente |
+| 7 | Refactor y revisión del aislamiento del cliente | Refactor | Developer | — | Pendiente |
 
 ### PBI-002 — Tokens, tema y accesibilidad base
 
@@ -54,8 +54,8 @@
 
 | Test | PBI | RF / Criterio | Estado |
 |---|---|---|---|
-| `shell-arranque` | PBI-001 | RF-01 | Pendiente |
-| `sin-acceso-a-node-en-renderer` | PBI-001 | RNF-01 | Pendiente |
+| `app-arranque` | PBI-001 | RF-01 | Pendiente |
+| `sin-acceso-a-node-en-cliente` | PBI-001 | RNF-01 | Pendiente |
 | `tokens-contraste-aa` | PBI-002 | RF-01 | Pendiente |
 | `foco-visible-teclado` | PBI-002 | RF-02 | Pendiente |
 | `adaptador-mock-contrato` | PBI-003 | RF-01 | Pendiente |
@@ -66,7 +66,7 @@
 
 | Fecha | Descripción | Responsable de resolución | Estado |
 |---|---|---|---|
-| — | Decisión de stack pendiente (Electron, Tauri o web instalable) | Developers + PO | Abierto |
+| 2026-11-03 | Decisión de stack: React + TypeScript + Vite (ADR-001) y aplicación web en navegador (ADR-002) | Developers + PO | Resuelto |
 
 ## Evidencia y seguimiento
 

@@ -13,7 +13,7 @@
 
 ## Sprint Goal
 
-> Dejar preparado un entorno de desarrollo verificable —shell de escritorio, sistema visual accesible, contrato de API con mock y arnés de pruebas— para que el primer PBI funcional del CMS pueda construirse con SDD y TDD sin bloqueos técnicos.
+> Dejar preparado un entorno de desarrollo verificable —aplicación web base, sistema visual accesible, contrato de API con mock y arnés de pruebas— para que el primer PBI funcional del CMS pueda construirse con SDD y TDD sin bloqueos técnicos.
 
 ## Incremento demostrado
 

@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `004a60b — *docs(global): documentar metodología y estado del proyecto en README*`
+- **Último commit consolidado:** `b3b6b5c — *docs(adr): adoptar React, TypeScript y Vite y la entrega web*`
 - **Fecha de última sincronización:** 2026-11-03 17:21
 
 ---
