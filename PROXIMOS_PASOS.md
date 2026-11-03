@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `main`
-- **Último commit consolidado:** `57b6d97 — *docs(spec): añadir plantillas SDD/TDD y registro de decisiones*`
-- **Fecha de última sincronización:** 2026-11-02 17:01
+- **Rama activa:** `develop`
+- **Último commit consolidado:** `004a60b — *docs(global): documentar metodología y estado del proyecto en README*`
+- **Fecha de última sincronización:** 2026-11-03 22:00
 
 ---
 

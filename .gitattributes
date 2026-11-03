@@ -18,3 +18,9 @@ plantillas export-ignore
 plantillas/** export-ignore
 specs export-ignore
 specs/** export-ignore
+draft-specs export-ignore
+draft-specs/** export-ignore
+docs export-ignore
+docs/** export-ignore
+scripts export-ignore
+scripts/** export-ignore

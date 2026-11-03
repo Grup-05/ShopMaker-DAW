@@ -112,7 +112,7 @@ for branch in "${ALL_BRANCHES[@]}"; do
     echo -e "👉 Evaluando rama: ${CYAN}$branch${NC}..."
 
     # Comprobar diferencias entre la rama y la fuente en el núcleo
-    DIFF_ITEMS=$(git diff --name-only "$branch" "$SOURCE_BRANCH" -- .agent/hooks/ .agent/rules/AGENTS.md .github/workflows/ .gitattributes 2>/dev/null || true)
+    DIFF_ITEMS=$(git diff --name-only "$branch" "$SOURCE_BRANCH" -- .agent/hooks/ .agent/rules/AGENTS.md .github/workflows/ .gitattributes 2>/dev/null | grep -v '^\.agent/hooks/pre-commit-local\.sh$' || true)
 
     if [ -z "$DIFF_ITEMS" ]; then
         echo -e "   ✔ ${GREEN}Al día:${NC} La rama ya tiene paridad exacta con el núcleo de '$SOURCE_BRANCH'."
@@ -137,12 +137,16 @@ for branch in "${ALL_BRANCHES[@]}"; do
         continue
     fi
 
-    git restore --source="$SOURCE_BRANCH" -- .agent/hooks/ .agent/rules/AGENTS.md .github/workflows/ .gitattributes 2>/dev/null || true
+    while IFS= read -r item; do
+        [ -n "$item" ] && git restore --source="$SOURCE_BRANCH" -- "$item" 2>/dev/null || true
+    done <<< "$DIFF_ITEMS"
     chmod +x .agent/hooks/* 2>/dev/null || true
 
-    CHANGES=$(git status --porcelain -- .agent/hooks/ .agent/rules/AGENTS.md .github/workflows/ .gitattributes)
+    CHANGES=$(git status --porcelain -- .agent/hooks/ .agent/rules/AGENTS.md .github/workflows/ .gitattributes 2>/dev/null || true)
     if [ -n "$CHANGES" ]; then
-        git add .agent/hooks/ .agent/rules/AGENTS.md .github/workflows/ .gitattributes
+        while IFS= read -r item; do
+            [ -n "$item" ] && git add "$item"
+        done <<< "$DIFF_ITEMS"
         if git commit -m "chore(governance): sincronizar nucleo de gobernanza desde $SOURCE_BRANCH" >/dev/null 2>&1; then
             echo -e "   ✔ ${GREEN}Sincronizada con éxito:${NC} Commit de sincronización consolidado."
             UPDATED=$((UPDATED + 1))
