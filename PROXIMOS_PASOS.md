@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `b41ba5f — *fix(hooks): restaurar archivos individualmente y excluir pre-commit-local.sh en sync-governance*`
-- **Fecha de última sincronización:** 2026-11-03 23:09
+- **Último commit consolidado:** `4bbe7a7 — *chore(governance): incorporar rol de administrador de gobernanza con bypass acotado*`
+- **Fecha de última sincronización:** 2026-11-03 23:23
 
 ---
 
