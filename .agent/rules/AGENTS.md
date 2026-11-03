@@ -20,6 +20,7 @@ Para garantizar la estabilidad operativa del repositorio sin restar agilidad a l
    - `.agent/rules/AGENTS.md` (Este documento constitucional).
    - `.github/workflows/` (Flujos transversales de CI/CD y publicación automatizada de releases).
    - `.gitattributes` (Reglas de empaquetado limpio `export-ignore` para excluir activos de gobernanza en los ZIP de releases).
+   - **Excepción explícita:** `.agent/hooks/pre-commit-local.sh` es un hook local del proyecto, no forma parte del núcleo protegido y puede crearse o modificarse en ramas secundarias. No puede sustituir, desactivar ni debilitar los hooks universales.
 2. **Regla de Inmutabilidad:** Queda terminantemente prohibido modificar los archivos del núcleo de gobernanza en ramas secundarias (`dev/*`, `feature/*`, `fix/*`, `ra<XX>/*`, etc.). Cualquier cambio, ajuste o evolución del marco global debe nacer, validarse y confirmarse exclusivamente en la rama `main`.
 3. **Mandato de Propagación Obligatoria desde `main`:**
    - Toda modificación o evolución del núcleo de gobernanza consolidada en `main` **debe propagarse obligatoriamente a todas las ramas activas del repositorio** antes de proseguir con tareas técnicas en ellas.
@@ -32,7 +33,7 @@ Para garantizar la estabilidad operativa del repositorio sin restar agilidad a l
    ```bash
    git restore --source=main -- .agent/hooks/ .agent/rules/AGENTS.md .github/workflows/ .gitattributes
    ```
-5. **Blindaje Estático:** El hook de `pre-commit` bloquea a nivel estático cualquier intento de confirmación en ramas distintas de `main` que presente diferencias respecto al núcleo oficial.
+5. **Blindaje Estático:** El hook de `pre-commit` bloquea a nivel estático cualquier intento de confirmación en ramas distintas de `main` que presente diferencias respecto al núcleo oficial. La única excepción es `.agent/hooks/pre-commit-local.sh`, que se valida y ejecuta como extensión local.
 
 ### 1.2. Activos Modulares y Flexibles por Proyecto o Rama
 - **Reglas Contextuales (`.agent/rules/*.md`):** Cada proyecto o rama extiende este marco incorporando especificaciones técnicas particulares (diseño visual, arquitectura de datos, topologías de red, endpoints, etc.).
@@ -98,7 +99,7 @@ El repositorio incorpora hooks de Git nativos y versionados en `.agent/hooks/`, 
 ### 4.1. Hook de Pre-commit (`.agent/hooks/pre-commit`)
 Se ejecuta de forma automática e imperativa antes de cada commit:
 1. **Live Tracking y Telemetría Git:** Si existe `PROXIMOS_PASOS.md`, actualiza de forma automática la rama activa, el último commit y la fecha/hora de sincronización, incorporándolo al staging (`git add PROXIMOS_PASOS.md`).
-2. **Blindaje de Inmutabilidad del Núcleo:** En ramas secundarias, aborta el commit si se detectan diferencias no autorizadas respecto a `main` en `.agent/hooks/` o `.agent/rules/AGENTS.md`.
+2. **Blindaje de Inmutabilidad del Núcleo:** En ramas secundarias, aborta el commit si se detectan diferencias no autorizadas respecto a `main` en `.agent/hooks/` o `.agent/rules/AGENTS.md`. Se exceptúa `.agent/hooks/pre-commit-local.sh`, que es el hook local del proyecto.
 3. **Escáner SAST de Seguridad en Staging:**
    - Bloquea cualquier archivo procedente del directorio confidencial `user_data/`.
    - Detecta y aborta ante marcadores de conflicto Git sin resolver (`<<<<<<<`, `=======`, `>>>>>>>`).
