@@ -21,13 +21,31 @@ if [ -d "$HOOKS_DIR" ]; then
     chmod +x "$HOOKS_DIR"/* 2>/dev/null || true
 fi
 
-# Inicializar archivo confidencial local de patrones prohibidos si no existe
+# Configurar y verificar entorno de seguridad local en user_data/security/
 SECURITY_DIR="$REPO_ROOT/user_data/security"
 PATTERNS_FILE="$SECURITY_DIR/forbidden_patterns.txt"
+TOKEN_FILE="$SECURITY_DIR/gh_token.txt"
 
-if [ ! -f "$PATTERNS_FILE" ]; then
+echo "🔒 Verificando entorno de seguridad local en 'user_data/security/'..."
+
+if [ ! -d "$SECURITY_DIR" ] || [ ! -f "$PATTERNS_FILE" ] || [ ! -f "$TOKEN_FILE" ]; then
+    echo "⚠️  [AVISO SAS] Entorno local de seguridad no configurado completamente."
+    echo "   ════════════════════════════════════════════════════════════════════════════════"
+    echo "   ¿POR QUÉ ES OBLIGATORIA LA CARPETA 'user_data/security/'?"
+    echo "   1. Aislamiento SAS (AGENTS.md §7): user_data/ está estrictamente ignorado"
+    echo "      en Git para que ningún secreto, token o ruta privada llegue al repositorio."
+    echo "   2. forbidden_patterns.txt: Contiene tus rutas locales (\$HOME/) y patrones"
+    echo "      privados de tu máquina para que el escáner SAST bloquee fugas accidentales."
+    echo "   3. gh_token.txt: Guarda tu token personal de GitHub (permisos 600) para"
+    echo "      gestionar issues, PRs y tableros sin exponer tus credenciales."
+    echo "   ════════════════════════════════════════════════════════════════════════════════"
+    echo "   ⚙️  Inicializando automáticamente la estructura segura con permisos 700/600..."
+
     mkdir -p "$SECURITY_DIR"
-    cat << 'EOF' > "$PATTERNS_FILE"
+    chmod 700 "$SECURITY_DIR" 2>/dev/null || true
+
+    if [ ! -f "$PATTERNS_FILE" ]; then
+        cat << 'EOF' > "$PATTERNS_FILE"
 # ==============================================================================
 # PATRONES PRIVADOS LOCALES (user_data/security/forbidden_patterns.txt)
 # ==============================================================================
@@ -39,12 +57,33 @@ if [ ! -f "$PATTERNS_FILE" ]; then
 # ==============================================================================
 
 EOF
-    # Autodetectar de forma segura la ruta HOME del desarrollador actual
-    if [ -n "${HOME:-}" ] && [ "$HOME" != "/" ]; then
-        echo "# Ruta local autodetectada de la estación de trabajo" >> "$PATTERNS_FILE"
-        echo "$HOME/" >> "$PATTERNS_FILE"
+        # Autodetectar de forma segura la ruta HOME del desarrollador actual
+        if [ -n "${HOME:-}" ] && [ "$HOME" != "/" ]; then
+            echo "# Ruta local autodetectada de la estación de trabajo" >> "$PATTERNS_FILE"
+            echo "$HOME/" >> "$PATTERNS_FILE"
+        fi
+        chmod 600 "$PATTERNS_FILE" 2>/dev/null || true
+        echo "   ✔ Archivo confidencial de patrones creado: user_data/security/forbidden_patterns.txt"
     fi
-    echo "✔ Archivo confidencial local inicializado en: user_data/security/forbidden_patterns.txt"
+
+    if [ ! -f "$TOKEN_FILE" ]; then
+        cat << 'EOF' > "$TOKEN_FILE"
+# Token personal de GitHub CLI (gh) — NO versionar
+# Para configurar interactivamente tu token:
+#   bash scripts/github/gh-auth-env.sh --login
+EOF
+        chmod 600 "$TOKEN_FILE" 2>/dev/null || true
+        echo "   ✔ Plantilla confidencial de token creada: user_data/security/gh_token.txt"
+    fi
+
+    echo "   Para configurar tu token personal de GitHub de forma interactiva:"
+    echo "     bash scripts/github/gh-auth-env.sh --login"
+    echo "   ════════════════════════════════════════════════════════════════════════════════"
+else
+    chmod 700 "$SECURITY_DIR" 2>/dev/null || true
+    chmod 600 "$PATTERNS_FILE" 2>/dev/null || true
+    chmod 600 "$TOKEN_FILE" 2>/dev/null || true
+    echo "✔ Entorno local de seguridad verificado y con permisos restrictivos (700/600)."
 fi
 
 echo "✔ Git Hooks y herramientas de gobernanza activadas con éxito:"

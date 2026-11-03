@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `3f517bb — *chore(scrum): implementar CODEOWNERS, rotacion de roles y script de proteccion de ramas*`
-- **Fecha de última sincronización:** 2026-11-03 23:15
+- **Último commit consolidado:** `97c0cd3 — *docs(scrum): registrar tarea INFRA-01, matriz de autoridad y CODEOWNERS*`
+- **Fecha de última sincronización:** 2026-11-03 23:24
 
 ---
 
