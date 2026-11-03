@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `main`
-- **Último commit consolidado:** `57b6d97 — *docs(spec): añadir plantillas SDD/TDD y registro de decisiones*`
-- **Fecha de última sincronización:** 2026-11-02 17:01
+- **Rama activa:** `feature/PBI-001-aplicacion-web`
+- **Último commit consolidado:** `004a60b — *docs(global): documentar metodología y estado del proyecto en README*`
+- **Fecha de última sincronización:** 2026-11-03 17:21
 
 ---
 
@@ -25,9 +25,15 @@
 - [x] `.gitattributes` para empaquetado limpio de releases.
 - [x] Archivo local de seguridad en `user_data/security/forbidden_patterns.txt` (gitignored).
 
+### 🧱 Stack y formato de entrega
+
+- [x] React + TypeScript + Vite como stack del frontend (ADR-001).
+- [x] Aplicación web SPA desktop-first en navegador, sin shell nativo (ADR-002).
+- [ ] Lockfile versionado y dependencias auditadas (PBI-001).
+
 ### 🏃 Sprint S01 — Sprint 0: Fundaciones
 
-**Sprint Goal:** dejar preparado un entorno verificable —shell de escritorio, sistema visual accesible, contrato de API con mock y arnés de pruebas— para construir el primer PBI funcional con SDD y TDD.
+**Sprint Goal:** dejar preparado un entorno verificable —aplicación web base, sistema visual accesible, contrato de API con mock y arnés de pruebas— para construir el primer PBI funcional con SDD y TDD.
 
 Artefactos:
 
@@ -42,7 +48,7 @@ Artefactos:
 
 PBIs del Sprint:
 
-- [ ] **PBI-001** — Shell de escritorio y estructura base.
+- [ ] **PBI-001** — Aplicación web y estructura base.
 - [ ] **PBI-002** — Tokens, tema claro/oscuro y accesibilidad base.
 - [ ] **PBI-003** — Contrato de API y adaptador mock.
 - [ ] **PBI-004** — Arnés de pruebas y hook local de calidad.
@@ -50,7 +56,7 @@ PBIs del Sprint:
 ### 🧪 Pruebas
 
 - [ ] Runner y comando único de suite definidos.
-- [ ] Test de humo del shell.
+- [ ] Test de humo de la aplicación web.
 - [ ] Matriz spec-test inicial completada.
 - [ ] Hook `.agent/hooks/pre-commit-local.sh` operativo.
 
@@ -59,16 +65,16 @@ PBIs del Sprint:
 - [x] `README.md` con metodología, roles, ramas, commits y DoD.
 - [x] `CHANGELOG.md` inicializado.
 - [ ] Especificaciones `specs/PBI-001..004/` redactadas.
-- [ ] ADR-001 de elección de stack.
+- [x] ADR-001 (React/TS/Vite) y ADR-002 (aplicación web) aceptados.
 
 ---
 
 ## 🎯 Próximo Paso Inmediato
 
-1. Confirmar el **stack del shell de escritorio** y registrarlo como ADR-001.
+1. Revisar y aprobar **ADR-001 (React/TS/Vite)** y **ADR-002 (aplicación web)**.
 2. Redactar `spec.md`, `plan.md` y `tasks.md` del **PBI-001**.
 3. Aprobar la spec y confirmar `docs(spec): ...` (requiere orden humana).
-4. Iniciar el ciclo TDD con el primer test rojo del shell.
+4. Iniciar el ciclo TDD con el primer test rojo de la aplicación web.
 
 ---
 
@@ -76,7 +82,7 @@ PBIs del Sprint:
 
 | Fecha | Bloqueo | Responsable | Estado |
 |---|---|---|---|
-| — | Decisión de stack pendiente (Electron, Tauri o web instalable) | Developers + PO | Abierto |
+| 2026-11-03 | Decisión de stack: React + TypeScript + Vite (ADR-001) y aplicación web en navegador (ADR-002) | Developers + PO | Resuelto |
 
 ---
 
