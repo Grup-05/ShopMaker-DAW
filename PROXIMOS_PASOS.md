@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `07a43a5 — *chore(scrum): añadir gestor seguro de token gh multiusuario y ajustar campo Tipo*`
-- **Fecha de última sincronización:** 2026-11-03 22:43
+- **Último commit consolidado:** `446466a — *docs(scrum): registrar issues #2-#21, tablero #1 y protocolo de tokens por rol*`
+- **Fecha de última sincronización:** 2026-11-03 23:09
 
 ---
 
