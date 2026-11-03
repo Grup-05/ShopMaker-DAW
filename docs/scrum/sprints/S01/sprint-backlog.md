@@ -60,6 +60,12 @@
 | T04 | Añadir el test de ejemplo rojo → verde | Test | Dev C (`@Fernis23228`) | 3 h | T02 | S01 | Pendiente | `#20` |
 | T05 | Crear el hook local y resolver la inmutabilidad | Código | Dev C (`@Fernis23228`) | 4 h | T02, T03 | S01 | Pendiente | `#21` |
 
+### Tareas Transversales de Infraestructura y Gobernanza (S01)
+
+| ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
+|---|---|---|---|---|---|---|---|---|
+| INFRA-01 | Protección de ramas, CODEOWNERS y activación dinámica de roles Scrum | Chore | Dev A (`@FSolaje`) | 4 h | — | S01 | En progreso | `#22` |
+
 ---
 
 ## Tareas pospuestas al Sprint S02 (15 tareas · 64 h)

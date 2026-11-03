@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `2264efb — *chore(governance): sincronizar nucleo de gobernanza desde main*`
+- **Último commit consolidado:** `3f517bb — *chore(scrum): implementar CODEOWNERS, rotacion de roles y script de proteccion de ramas*`
 - **Fecha de última sincronización:** 2026-11-03 23:15
 
 ---
@@ -51,8 +51,11 @@ Artefactos:
 - [x] ADR template en `docs/decisiones/`.
 - [x] Plantillas de GitHub Issues/PR (`.github/`) y scripts de automatización y autenticación segura (`scripts/github/`).
 - [x] 17 labels, milestone `S01` y 20 issues creados en GitHub (`#2`–`#5` PBIs; `#6`–`#21` tareas asignadas a `@FSolaje`, `@Tarrant15` y `@Fernis23228`).
-- [x] Tablero GitHub Projects v2 creado (`#1 — ShopMaker — S01`) con los 8 campos Scrum y los 20 issues vinculados.
+- [x] Tarea de infraestructura `#22` (`INFRA-01`) creada y vinculada en el Project `#1` para protección de ramas, CODEOWNERS y roles dinámicos.
+- [x] Tablero GitHub Projects v2 creado (`#1 — ShopMaker — S01`) con los 8 campos Scrum y todos los issues vinculados.
 - [x] Gobernanza de token multiusuario en `user_data/security/gh_token.txt` (permisos `600`) validada mediante `scripts/github/gh-auth-env.sh`.
+- [x] Asignación dinámica de roles en `docs/scrum/active_roles.env`, `.github/CODEOWNERS` y script `scripts/scrum/rotate-roles.sh`.
+- [x] Bypass controlado para el Administrador de Gobernanza implementado en `.agent/hooks/pre-commit` y constitucionalizado en `AGENTS.md`.
 
 PBIs del Sprint S01:
 

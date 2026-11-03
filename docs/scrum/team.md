@@ -27,6 +27,29 @@ En equipos académicos reducidos los roles pueden combinarse, pero las responsab
 - Canal de comunicación y decisiones: issues y PR del repositorio.
 - El agente de IA actúa como asistente técnico de los Developers y **nunca** commitea ni publica sin aprobación humana explícita.
 
+## Separación de Poderes y Rotación Dinámica de Roles Scrum
+
+Dado que todos los integrantes son administradores de `Grup-05` y rotarán entre los roles de **Product Owner**, **Scrum Master** y **Developer** a lo largo de los Sprints, la autoridad de decisión se formaliza dinámicamente:
+
+### 1. Matriz de Autoridad y Decisión
+- **Product Owner (PO):** Máxima autoridad sobre el valor y los requisitos. Es el único que puede alterar el Product Backlog, cambiar el alcance de un Sprint o aceptar el incremento en el Sprint Review.
+- **Scrum Master (SM):** Máxima autoridad sobre el proceso y las definiciones (DoR, DoD). Vela por el cumplimiento de Scrum, elimina impedimentos y protege la dinámica del equipo.
+- **Developers:** Máxima autoridad técnica. Estiman, diseñan la arquitectura, aplican SDD/TDD y revisan/aprueban técnicamente los Pull Requests de sus compañeros.
+- **Administrador de Gobernanza:** Custodio de la integridad de los hooks, reglas del agente y workflows de CI (`.agent/`, `.github/`). Dispone de bypass controlado en ramas de trabajo únicamente para activos de gobernanza.
+
+### 2. Activación Dinámica y CODEOWNERS
+- El estado activo de cada rol en el Sprint en curso se declara en `docs/scrum/active_roles.env`.
+- La política de aprobación obligatoria en GitHub se aplica mediante `.github/CODEOWNERS`, vinculando cada ruta al rol que tiene la toma de decisión:
+  - Requisitos y Backlog (`/docs/scrum/product-backlog.md`, `/specs/`) → Aprobación obligatoria del **Product Owner**.
+  - Proceso Scrum y Definiciones (`/docs/scrum/definition-*.md`, `/docs/scrum/sprints/`) → Aprobación obligatoria del **Scrum Master**.
+  - Gobernanza y Hooks (`/.agent/`, `/.github/`, `/.gitattributes`) → Aprobación del **Administrador de Gobernanza**.
+  - Código y Pruebas (`/src/`, `/tests/`, `/scripts/`) → Aprobación de los **Developers**.
+- Para rotar roles al inicio de cada Sprint, basta con ejecutar:
+  ```bash
+  bash scripts/scrum/rotate-roles.sh --sprint S02 --po <usuario> --sm <usuario> --gov-admin <usuario>
+  ```
+  Esto actualiza `active_roles.env` y regenera `.github/CODEOWNERS` automáticamente.
+
 ## Gobernanza de Tokens y Rotación de Roles (`gh` CLI)
 
 Dado que todos los integrantes son administradores de `Grup-05` y rotarán entre los roles de **Product Owner**, **Scrum Master** y **Developer** a lo largo de los Sprints, cada miembro debe operar con su **propio token personal** para garantizar trazabilidad de autoría (issues, PRs, revisiones cruzadas y movimientos en el tablón) y cumplir la Constitución de Seguridad (`AGENTS.md` §7):
