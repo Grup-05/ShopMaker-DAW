@@ -1,0 +1,38 @@
+# ==============================================================================
+# GitHub CODEOWNERS — Control de Aprobaciones por Responsabilidad de Rol
+# ==============================================================================
+# Este archivo define quién debe revisar y aprobar cambios en Pull Requests
+# según las rutas afectadas, garantizando la separación de poderes Scrum.
+#
+# Generado automáticamente por scripts/scrum/rotate-roles.sh
+# Roles activos actuales (Sprint S01):
+#   - Product Owner:        @FSolaje
+#   - Scrum Master:         @Tarrant15
+#   - Developers:           @FSolaje @Tarrant15 @Fernis23228
+#   - Administrador Gob.:   @FSolaje
+# ==============================================================================
+
+# Requisitos del Producto, Historias de Usuario y Backlog (Product Owner)
+/docs/scrum/product-backlog.md  @FSolaje
+/specs/                         @FSolaje
+
+# Proceso Scrum, Definiciones y Retrospectivas (Scrum Master)
+/docs/scrum/definition-*.md     @Tarrant15
+/docs/scrum/sprints/            @Tarrant15
+/docs/scrum/team.md             @Tarrant15
+/docs/scrum/active_roles.env    @Tarrant15
+
+# Núcleo de Gobernanza, Hooks y Workflows (Administrador de Gobernanza)
+/.agent/                        @FSolaje
+/.github/                       @FSolaje
+/.gitattributes                 @FSolaje
+/scripts/github/                @FSolaje
+
+# Código de Producción, UI/UX, Componentes y Pruebas (Developers)
+/src/                           @FSolaje @Tarrant15 @Fernis23228
+/tests/                         @FSolaje @Tarrant15 @Fernis23228
+/scripts/                       @FSolaje @Tarrant15 @Fernis23228
+
+# Regla global por defecto para cualquier otro archivo no listado
+*                               @FSolaje @Tarrant15 @Fernis23228
+

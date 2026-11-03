@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `446466a — *docs(scrum): registrar issues #2-#21, tablero #1 y protocolo de tokens por rol*`
-- **Fecha de última sincronización:** 2026-11-03 23:09
+- **Último commit consolidado:** `2264efb — *chore(governance): sincronizar nucleo de gobernanza desde main*`
+- **Fecha de última sincronización:** 2026-11-03 23:15
 
 ---
 
