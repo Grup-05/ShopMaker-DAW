@@ -33,6 +33,11 @@ DEV_C="${DEV_C:-Fernis23228}"
 DRY_RUN="${DRY_RUN:-false}"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+if [ -z "${GH_TOKEN:-}" ] && [ -f "$ROOT_DIR/scripts/github/gh-auth-env.sh" ]; then
+  # Carga y valida el token local de user_data/security/gh_token.txt si existe
+  # shellcheck disable=SC1091
+  source "$ROOT_DIR/scripts/github/gh-auth-env.sh" --quiet-if-missing
+fi
 PBIS_FILE="$ROOT_DIR/scripts/github/sprint-s01-pbis.json"
 TASKS_FILE="$ROOT_DIR/scripts/github/sprint-s01-tasks.json"
 TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/shopmaker-board.XXXXXX")"
@@ -41,7 +46,7 @@ trap 'rm -rf "$TMP_DIR"' EXIT
 command -v gh >/dev/null 2>&1 || { echo "❌ gh no está instalado o no está en PATH."; exit 1; }
 command -v jq >/dev/null 2>&1 || { echo "❌ jq no está instalado."; exit 1; }
 if [ "$DRY_RUN" != true ]; then
-  gh auth status >/dev/null 2>&1 || { echo "❌ gh no está autenticado. Ejecuta: gh auth login -s repo,project,read:org"; exit 1; }
+  gh auth status >/dev/null 2>&1 || { echo "❌ gh no está autenticado. Guarda tu token en user_data/security/gh_token.txt o ejecuta: bash scripts/github/gh-auth-env.sh"; exit 1; }
 fi
 [ -f "$PBIS_FILE" ] || { echo "❌ No existe $PBIS_FILE"; exit 1; }
 [ -f "$TASKS_FILE" ] || { echo "❌ No existe $TASKS_FILE"; exit 1; }
@@ -113,34 +118,40 @@ fi
 # 3. Project v2
 # ------------------------------------------------------------------------------
 log "Asegurando Project v2 '$PROJECT_TITLE'..."
-if [ -n "${PROJECT_NUMBER:-}" ]; then
-  PROJECT_JSON="$(gh project view "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json)"
+PROJECT_ENABLED=true
+if [ "$DRY_RUN" = true ]; then
+  echo "[dry-run] crear proyecto $PROJECT_TITLE"
+  PROJECT_JSON='{"number":0,"id":"PVT_dry_run"}'
+elif [ -n "${PROJECT_NUMBER:-}" ]; then
+  PROJECT_JSON="$(gh project view "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json 2>/dev/null || true)"
 else
-  PROJECT_JSON="$(gh project list --owner "$PROJECT_OWNER" --format json --jq ".projects[] | select(.title==\"$PROJECT_TITLE\")" 2>/dev/null || true)"
-  if [ -z "$PROJECT_JSON" ] || [ "$PROJECT_JSON" = "null" ]; then
-    if [ "$DRY_RUN" = true ]; then
-      echo "[dry-run] crear proyecto $PROJECT_TITLE"
-      PROJECT_JSON='{"number":0,"id":"PVT_dry_run"}'
-    else
+  if ! gh project list --owner "$PROJECT_OWNER" --format json >/dev/null 2>&1; then
+    warn "El token actual no tiene los scopes 'read:project' / 'project'. Se crearán labels, milestone e issues; tras ejecutar 'gh auth refresh -h github.com -s project,read:project', vuelve a lanzar este script para vincularlos al Project v2."
+    PROJECT_ENABLED=false
+    PROJECT_JSON='{"number":0,"id":""}'
+  else
+    PROJECT_JSON="$(gh project list --owner "$PROJECT_OWNER" --format json --jq ".projects[] | select(.title==\"$PROJECT_TITLE\")" 2>/dev/null || true)"
+    if [ -z "$PROJECT_JSON" ] || [ "$PROJECT_JSON" = "null" ]; then
       PROJECT_JSON="$(gh project create --owner "$PROJECT_OWNER" --title "$PROJECT_TITLE" --format json)"
     fi
   fi
 fi
 PROJECT_NUMBER="$(jq -r '.number' <<<"$PROJECT_JSON")"
 PROJECT_ID="$(jq -r '.id' <<<"$PROJECT_JSON")"
-log "Project: #$PROJECT_NUMBER ($PROJECT_ID)"
-
-run gh project link "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --repo "$OWNER/$REPO" >/dev/null 2>&1 || true
+if [ "$PROJECT_ENABLED" = true ]; then
+  log "Project: #$PROJECT_NUMBER ($PROJECT_ID)"
+  run gh project link "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --repo "$OWNER/$REPO" >/dev/null 2>&1 || true
+fi
 
 # ------------------------------------------------------------------------------
 # 4. Campos
 # ------------------------------------------------------------------------------
-log "Creando campos del tablero..."
 field_exists() {
   gh project field-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --format json \
     --jq "if type==\"array\" then .[] else .fields[] end | select(.name==\"$1\") | .name" 2>/dev/null | grep -q .
 }
 ensure_field() {
+  [ "$PROJECT_ENABLED" = true ] || return 0
   local name="$1" dtype="$2" options="${3:-}"
   if field_exists "$name"; then
     log "Campo existente: $name"
@@ -156,16 +167,19 @@ ensure_field() {
     gh project field-create "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --name "$name" --data-type "$dtype" >/dev/null
   fi
 }
-ensure_field "Estado Scrum" "SINGLE_SELECT" "Product Backlog,Sprint Backlog,En progreso,En revisión,Hecho"
-ensure_field "Sprint" "SINGLE_SELECT" "S01"
-ensure_field "PBI" "SINGLE_SELECT" "PBI-001,PBI-002,PBI-003,PBI-004"
-ensure_field "Type" "SINGLE_SELECT" "PBI,Spec,Test,Código,Refactor,Docs,Chore"
-ensure_field "Estimate" "TEXT"
-ensure_field "Priority" "SINGLE_SELECT" "Alta,Media,Baja"
-ensure_field "Blocked" "SINGLE_SELECT" "Sí,No"
-ensure_field "Target date" "DATE"
+if [ "$PROJECT_ENABLED" = true ]; then
+  log "Creando campos del tablero..."
+  ensure_field "Estado Scrum" "SINGLE_SELECT" "Product Backlog,Sprint Backlog,En progreso,En revisión,Hecho"
+  ensure_field "Sprint" "SINGLE_SELECT" "S01"
+  ensure_field "PBI" "SINGLE_SELECT" "PBI-001,PBI-002,PBI-003,PBI-004"
+  ensure_field "Tipo" "SINGLE_SELECT" "PBI,Spec,Test,Código,Refactor,Docs,Chore"
+  ensure_field "Estimate" "TEXT"
+  ensure_field "Priority" "SINGLE_SELECT" "Alta,Media,Baja"
+  ensure_field "Blocked" "SINGLE_SELECT" "Sí,No"
+  ensure_field "Target date" "DATE"
+fi
 
-if [ "$DRY_RUN" = true ]; then
+if [ "$DRY_RUN" = true ] || [ "$PROJECT_ENABLED" != true ]; then
   FIELDS_JSON='{"fields":[]}'
 else
   FIELDS_JSON="$(gh project field-list "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --limit 100 --format json)"
@@ -267,7 +281,7 @@ for pbi in PBI-001 PBI-002 PBI-003 PBI-004; do
       log "PBI creado: $title (#$num) [$pbi_sprint]"
     fi
   fi
-  if [ "$DRY_RUN" != true ]; then
+  if [ "$DRY_RUN" != true ] && [ "$PROJECT_ENABLED" = true ]; then
     item_id="$(add_item "$url")"
     if [ "$pbi_sprint" = "$SPRINT" ]; then
       set_field "$item_id" "Estado Scrum" "Sprint Backlog"
@@ -277,7 +291,7 @@ for pbi in PBI-001 PBI-002 PBI-003 PBI-004; do
       set_field "$item_id" "Estado Scrum" "Product Backlog"
     fi
     set_field "$item_id" "PBI" "$pbi"
-    set_field "$item_id" "Type" "PBI"
+    set_field "$item_id" "Tipo" "PBI"
     set_text "$item_id" "Estimate" "$estimate"
     set_field "$item_id" "Priority" "$priority"
     set_field "$item_id" "Blocked" "No"
@@ -354,12 +368,12 @@ while IFS= read -r task; do
       log "Tarea creada: $issue_title (#$num)"
     fi
   fi
-  if [ "$DRY_RUN" != true ]; then
+  if [ "$DRY_RUN" != true ] && [ "$PROJECT_ENABLED" = true ]; then
     item_id="$(add_item "$url")"
     set_field "$item_id" "Estado Scrum" "Sprint Backlog"
     set_field "$item_id" "Sprint" "$SPRINT"
     set_field "$item_id" "PBI" "$pbi"
-    set_field "$item_id" "Type" "$type"
+    set_field "$item_id" "Tipo" "$type"
     set_text "$item_id" "Estimate" "$estimate"
     set_field "$item_id" "Priority" "$priority"
     set_field "$item_id" "Blocked" "No"
