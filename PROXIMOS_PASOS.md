@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `23dd16a — *chore(scrum): añadir plantillas de GitHub y script de automatización del tablero*`
-- **Fecha de última sincronización:** 2026-11-03 21:54
+- **Último commit consolidado:** `b6766c8 — *docs(scrum): ajustar alcance, fechas y reparto del Sprint S01*`
+- **Fecha de última sincronización:** 2026-11-03 22:00
 
 ---
 

@@ -53,8 +53,14 @@ if [ "$CURRENT_BRANCH" != "main" ] && [ -n "$CURRENT_BRANCH" ]; then
     )
 
     for item in "${PROTECTED_CORE_ITEMS[@]}"; do
-        if git diff --cached --name-only -- "$item" 2>/dev/null | grep -q .; then
-            DIFF_WITH_MAIN=$(git diff --cached main -- "$item" 2>/dev/null || git diff --cached origin/main -- "$item" 2>/dev/null || true)
+        # Excepción: pre-commit-local.sh es el hook local del proyecto. Puede
+        # crearse o modificarse en ramas secundarias sin alterar el núcleo.
+        mapfile -t CHANGED_PROTECTED < <(
+            git diff --cached --name-only -- "$item" 2>/dev/null \
+                | grep -v '^\.agent/hooks/pre-commit-local\.sh$' || true
+        )
+        if [ "${#CHANGED_PROTECTED[@]}" -gt 0 ]; then
+            DIFF_WITH_MAIN=$(git diff --cached main -- "${CHANGED_PROTECTED[@]}" 2>/dev/null || git diff --cached origin/main -- "${CHANGED_PROTECTED[@]}" 2>/dev/null || true)
             if [ -n "$DIFF_WITH_MAIN" ]; then
                 if [ "${ALLOW_GLOBAL_OVERRIDE:-false}" != "true" ]; then
                     echo "❌ [ERROR DE GOBERNANZA - NÚCLEO INMUTABLE]"
