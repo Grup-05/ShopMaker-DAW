@@ -4,7 +4,7 @@ Frontend del **CMS ShopMaker**, una aplicación que permite a los usuarios compr
 
 Este repositorio contiene **exclusivamente el frontend**. La arquitectura del sistema es de tres capas —frontend, backend/API y base de datos— y toda la lógica de negocio, permisos, compras y datos vive en el backend.
 
-La primera entrega se distribuye como **aplicativo de escritorio**. El shell concreto (Electron, Tauri, aplicación web instalable u otro) se decidirá en el Sprint 0 y se registrará como ADR en `docs/decisiones/`.
+La primera entrega se ejecuta como **aplicación web desktop-first en el navegador**. El stack es **React + TypeScript + Vite** ([ADR-001](docs/decisiones/ADR-001-react-typescript.md)) y el formato de entrega es una **SPA** ([ADR-002](docs/decisiones/ADR-002-aplicacion-web.md)); no hay shell nativo ni instalador.
 
 ---
 
@@ -12,6 +12,8 @@ La primera entrega se distribuye como **aplicativo de escritorio**. El shell con
 
 - **Fase actual:** Sprint S01 — Sprint 0 de fundaciones.
 - **Incremento:** entorno base, sistema visual accesible, contrato de API con mock y arnés de pruebas.
+- **Stack:** React + TypeScript + Vite ([ADR-001](docs/decisiones/ADR-001-react-typescript.md)).
+- **Entrega:** aplicación web SPA, desktop-first ([ADR-002](docs/decisiones/ADR-002-aplicacion-web.md)).
 - **Versión:** `v0.1.0-alpha.1` (inicialización de gobernanza).
 - **Seguimiento:** [`PROXIMOS_PASOS.md`](PROXIMOS_PASOS.md).
 
@@ -206,7 +208,7 @@ bash -n .agent/hooks/pre-commit
 └── README.md
 ```
 
-La estructura de código (`src/`) se definirá en el `plan.md` del PBI-001 conforme al stack acordado.
+La estructura de código (`src/`) se definirá en el `plan.md` del PBI-001 conforme al stack React + TypeScript + Vite.
 
 ---
 
@@ -217,6 +219,7 @@ La estructura de código (`src/`) se definirá en el `plan.md` del PBI-001 confo
 - [Metodología Scrum](.agent/rules/methodology-scrum.md)
 - [Práctica TDD](.agent/rules/methodology-tdd.md)
 - [Especificaciones](specs/README.md)
+- [Decisiones arquitectónicas (ADR)](docs/decisiones/README.md)
 - [Registro de cambios](CHANGELOG.md)
 
 ---
