@@ -34,6 +34,14 @@ Para garantizar la estabilidad operativa del repositorio sin restar agilidad a l
    git restore --source=main -- .agent/hooks/ .agent/rules/AGENTS.md .github/workflows/ .gitattributes
    ```
 5. **Blindaje Estático:** El hook de `pre-commit` bloquea a nivel estático cualquier intento de confirmación en ramas distintas de `main` que presente diferencias respecto al núcleo oficial. La única excepción es `.agent/hooks/pre-commit-local.sh`, que se valida y ejecuta como extensión local.
+6. **Rol de Administrador de Gobernanza y Bypass Estrictamente Acotado:**
+   - Se reconoce el rol de Administrador de Gobernanza (declarado en `docs/scrum/active_roles.env` y `docs/scrum/team.md`).
+   - En ramas secundarias o de trabajo, el Administrador de Gobernanza podrá confirmar cambios que evolucionen el núcleo de gobernanza SIEMPRE Y CUANDO:
+     1. El commit afecte **única y exclusivamente** a activos de gobernanza y proceso (`.agent/`, `.github/`, `.gitattributes`, `docs/scrum/`, `docs/decisiones/`, `PROXIMOS_PASOS.md`, `scripts/`).
+     2. Queda terminantemente vetado mezclar activos de gobernanza con código fuente de la aplicación (`src/`, `package.json`, etc.) bajo pena de anulación automática del bypass.
+     3. El commit siga Conventional Commits bajo los tipos `chore(governance)`, `fix(hooks)` o `docs(...)`.
+     4. La verificación SAST de seguridad (cero secretos, credenciales o rutas privadas) se mantiene obligatoria e inviolable.
+     5. Una vez consolidado el trabajo, los cambios deben integrarse en `main` y propagarse al resto de ramas activas mediante `sync-governance.sh`.
 
 ### 1.2. Activos Modulares y Flexibles por Proyecto o Rama
 - **Reglas Contextuales (`.agent/rules/*.md`):** Cada proyecto o rama extiende este marco incorporando especificaciones técnicas particulares (diseño visual, arquitectura de datos, topologías de red, endpoints, etc.).
