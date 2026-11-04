@@ -4,7 +4,7 @@
 # ==============================================================================
 # Propósito:
 #   Aplica las directrices de Scrum y AGENTS.md §1 en GitHub:
-#     - Prohíbe push directo a main y develop.
+#     - Prohíbe push directo a main, develop y release.
 #     - Exige Pull Request con mínimo 1 aprobación ajena al autor.
 #     - Aplica revisiones obligatorias basadas en .github/CODEOWNERS.
 #     - Revoca aprobaciones previas al subir nuevos commits.
@@ -12,7 +12,7 @@
 #     - Aplica restricciones incluso a administradores de la organización.
 #
 # Uso:
-#   bash scripts/github/protect-branches.sh [--dry-run] [--branches "main develop"]
+#   bash scripts/github/protect-branches.sh [--dry-run] [--branches "main develop release"]
 # ==============================================================================
 
 set -euo pipefail
@@ -49,7 +49,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-[ -z "$BRANCHES" ] && BRANCHES="main develop"
+[ -z "$BRANCHES" ] && BRANCHES="main develop release"
 
 command -v gh >/dev/null 2>&1 || { echo "❌ gh no está instalado."; exit 1; }
 if [ "$DRY_RUN" != true ]; then

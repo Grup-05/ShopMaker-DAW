@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `main`
-- **Último commit consolidado:** `1f85568 — *chore(governance): integrar activos fundacionales, scripts y plantillas de github en main*`
-- **Fecha de última sincronización:** 2026-11-04 13:47
+- **Rama activa:** `develop`
+- **Último commit consolidado:** `ddde52c — *fix(hooks): ampliar sync-governance para sincronizar la carpeta .github completa y scripts*`
+- **Fecha de última sincronización:** 2026-11-04 22:03
 
 ---
 
@@ -65,7 +65,7 @@ PBIs del Sprint S01:
 - [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`).
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
 - [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
-- [ ] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
+- [x] **INFRA-01** (`#22`) — Protección de ramas (`main`, `develop`, `release`), CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
 - [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
 ### 🧪 Pruebas
@@ -86,7 +86,7 @@ PBIs del Sprint S01:
 
 ## 🎯 Próximo Paso Inmediato
 
-1. **Reunión de equipo (04-nov):** Decidir si se activan las protecciones de rama de GitHub (`INFRA-01` / issue `#22`) con `bash scripts/github/protect-branches.sh` antes de comenzar a integrar los PBIs en `develop`.
+1. **Protección de ramas activada (`INFRA-01` / issue `#22`):** `main`, `develop` y `release` protegidas con PR obligatorio, revisión CODEOWNERS y bloqueo a administradores.
 2. **Iniciar el trabajo SDD/TDD del Sprint S01:**
    - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (`#6`–`#8`), `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
    - Aprobar las specs y confirmar `docs(spec): ...` (requiere orden humana).
