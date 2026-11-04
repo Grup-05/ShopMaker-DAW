@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `7a6d372 — *docs(global): actualizar README con stack, roadmap de sprint y perfiles*`
+- **Último commit consolidado:** `6d3e9a2 — *chore(scrum): reasignar tareas del sprint s01 y añadir infra-01 en tareas json*`
 - **Fecha de última sincronización:** 2026-11-04 13:30
 
 ---

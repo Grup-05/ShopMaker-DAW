@@ -27,20 +27,21 @@
 
 | PBI | Título | Estimación total | Alcance S01 | Responsable | Estado inicial |
 |---|---|---|---|---|---|
-| PBI-001 | Inicializar la aplicación web y la estructura base | 36 h | 30 h (`T01–T06`) | Dev A (`@FSolaje`) | En Sprint |
-| PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | 36 h | 21 h (`T01–T05`) | Dev B (`@Tarrant15`) | En Sprint |
-| PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | 30 h | 25 h (`T01–T05`) | Dev C (`@Fernis23228`) | En Sprint |
+| PBI-001 | Inicializar la aplicación web y la estructura base | 36 h | 30 h (`T01–T06`) | Dev B (`@Tarrant15`) | En Sprint |
+| PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | 36 h | 21 h (`T01–T05`) | Dev C (`@Fernis23228`) | En Sprint |
+| PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | 30 h | 25 h (`T01–T05`) | Dev A (`@FSolaje`) | En Sprint |
+| INFRA-01 | Protección de ramas, CODEOWNERS y roles Scrum | 4 h | 4 h (`#22`) | Dev C (`@Fernis23228`) | En progreso |
 | PBI-003 | Definir el contrato de API y el adaptador mock | 38 h | 0 h (pasa a S02) | — | Product Backlog (S02) |
 
 ## Capacidad y riesgos
 
-- Capacidad estimada: 3 developers × 4 días × 7–8 h = 84–96 h brutas; **76 h planificadas en 16 tareas** + margen de ceremonias y buffer.
+- Capacidad estimada: 3 developers × 4 días × 7–8 h = 84–96 h brutas; **80 h planificadas en 17 tareas** + margen de ceremonias y buffer.
 - Reparto por workstream:
-  - **Dev A (`@FSolaje`):** `PBI-001` (`T01–T06`, 30 h).
-  - **Dev B (`@Tarrant15`):** `PBI-002` (`T01–T05`, 21 h).
-  - **Dev C (`@Fernis23228`):** `PBI-004` (`T01–T05`, 25 h).
+  - **Dev B (`@Tarrant15`):** `PBI-001` (`T01–T06`, 30 h).
+  - **Dev C (`@Fernis23228`):** `PBI-002` (`T01–T05`, 21 h) + `INFRA-01` (4 h) = 25 h.
+  - **Dev A (`@FSolaje`):** `PBI-004` (`T01–T05`, 25 h).
+- Estrategia de paralelización: Dev B lidera la fundación del scaffold de la web; Dev A y Dev C avanzan en paralelo en specs, tokens CSS y arnés de pruebas sin bloqueo mutuo.
 - Riesgo: que el layout desktop-first no se adapte al viewport mínimo → validación en 1024×720 y 1280×800.
-- Riesgo: dependencia entre el smoke test E2E de `PBI-001-T04` y la configuración de Playwright en `PBI-004-T03` → coordinar el esqueleto inicial (*walking skeleton*) entre Dev A y Dev C.
 - Deuda controlada para S02: primitivas de foco/zoom (`PBI-002 T06–T08`) y contrato de API con adaptador mock (`PBI-003`).
 
 ## Criterio de éxito

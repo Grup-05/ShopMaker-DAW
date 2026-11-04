@@ -4,7 +4,7 @@ Este directorio registra las decisiones arquitectónicas relevantes del frontend
 
 ## Cuándo crear un ADR
 
-- Elección de stack, formato de entrega o shell de escritorio.
+- Elección de stack y formato de entrega (aplicación web SPA).
 - Estrategia de estado, routing o composición de módulos.
 - Contrato de API y política de errores.
 - Estrategia de previsualización y sandbox.

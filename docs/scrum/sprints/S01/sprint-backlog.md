@@ -13,7 +13,7 @@
 | Fin | 2026-11-08 |
 | Duración | 6 días naturales / 4 días laborables efectivos (3–6 nov) |
 | Capacidad bruta | 3 developers × 4 días × 7–8 h = 84–96 h |
-| Capacidad comprometida (S01) | **76 h en 16 tareas** + margen de ceremonias y buffer |
+| Capacidad comprometida (S01) | **80 h en 17 tareas** + margen de ceremonias y buffer |
 | Trabajo pospuesto a S02 | 64 h en 15 tareas (`PBI-003` completo + cierre/pulido de `PBI-001`, `PBI-002`, `PBI-004`) |
 | Estimación | Horas (tareas de 2–8 h) |
 
@@ -21,50 +21,50 @@
 
 | Workstream | Responsable | Usuario GitHub | PBIs en S01 | Tareas S01 | Carga S01 |
 |---|---|---|---|---|---|
-| Aplicación web y estructura base | Dev A (Francisco Tomas) | `@FSolaje` | `PBI-001` (`T01–T06`) | 6 tareas | 30 h |
-| Tokens, tema y contraste AA | Dev B (Jesús Hernández) | `@Tarrant15` | `PBI-002` (`T01–T05`) | 5 tareas | 21 h |
-| Arnés de pruebas y hook local | Dev C (Fernando Ruescas) | `@Fernis23228` | `PBI-004` (`T01–T05`) | 5 tareas | 25 h |
+| Aplicación web y estructura base | Dev B (Jesús Hernández) | `@Tarrant15` | `PBI-001` (`T01–T06`) | 6 tareas | 30 h |
+| Arnés de pruebas, calidad y CI | Dev A (Francisco Tomas) | `@FSolaje` | `PBI-004` (`T01–T05`) | 5 tareas | 25 h |
+| Tokens, tema, accesibilidad y protección | Dev C (Fernando Ruescas) | `@Fernis23228` | `PBI-002` (`T01–T05`) + `INFRA-01` | 6 tareas | 25 h (21h + 4h) |
 
 > El tablero en GitHub Projects es la fuente de verdad operativa; la columna `Issue` se completa automáticamente al ejecutar `scripts/github/setup-sprint-board.sh`.
 
-## Tareas comprometidas en el Sprint S01 (16 tareas · 76 h)
+## Tareas comprometidas en el Sprint S01 (17 tareas · 80 h)
 
-### PBI-001 — Aplicación web y estructura base (`#2` · `@FSolaje` · 30 h en S01)
-
-| ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
-|---|---|---|---|---|---|---|---|---|
-| T01 | Redactar la spec de la aplicación web | Spec | Dev A (`@FSolaje`) | 4 h | — | S01 | Pendiente | `#6` |
-| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev A (`@FSolaje`) | 4 h | T01 | S01 | Pendiente | `#7` |
-| T03 | Redactar `tasks.md` y la lista de tests | Spec | Dev A (`@FSolaje`) | 2 h | T02 | S01 | Pendiente | `#8` |
-| T04 | Test rojo: la aplicación arranca en el navegador | Test | Dev A (`@FSolaje`) | 4 h | T03, PBI-004-T03 | S01 | Pendiente | `#9` |
-| T05 | Scaffold Vite + React + TypeScript y estructura por capas | Código | Dev A (`@FSolaje`) | 8 h | T04 | S01 | Pendiente | `#10` |
-| T06 | Layout base con landmarks y navegación por teclado | Código | Dev A (`@FSolaje`) | 8 h | T05 | S01 | Pendiente | `#11` |
-
-### PBI-002 — Tokens, tema y accesibilidad base (`#3` · `@Tarrant15` · 21 h en S01)
+### PBI-001 — Aplicación web y estructura base (`#2` · `@Tarrant15` · 30 h en S01)
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
 |---|---|---|---|---|---|---|---|---|
-| T01 | Redactar la spec de tokens, tema y accesibilidad | Spec | Dev B (`@Tarrant15`) | 4 h | — | S01 | Pendiente | `#12` |
-| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev B (`@Tarrant15`) | 3 h | T01 | S01 | Pendiente | `#13` |
-| T03 | Redactar `tasks.md` y la lista de tests de accesibilidad | Spec | Dev B (`@Tarrant15`) | 2 h | T02 | S01 | Pendiente | `#14` |
-| T04 | Test rojo: tokens semánticos y contraste AA | Test | Dev B (`@Tarrant15`) | 4 h | T03 | S01 | Pendiente | `#15` |
-| T05 | Implementar tokens semánticos y tema claro/oscuro | Código | Dev B (`@Tarrant15`) | 8 h | T04 | S01 | Pendiente | `#16` |
+| T01 | Redactar la spec de la aplicación web | Spec | Dev B (`@Tarrant15`) | 4 h | — | S01 | Pendiente | `#6` |
+| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev B (`@Tarrant15`) | 4 h | T01 | S01 | Pendiente | `#7` |
+| T03 | Redactar `tasks.md` y la lista de tests | Spec | Dev B (`@Tarrant15`) | 2 h | T02 | S01 | Pendiente | `#8` |
+| T04 | Test rojo: la aplicación arranca en el navegador | Test | Dev B (`@Tarrant15`) | 4 h | T03 | S01 | Pendiente | `#9` |
+| T05 | Scaffold Vite + React + TypeScript y estructura por capas | Código | Dev B (`@Tarrant15`) | 8 h | T04 | S01 | Pendiente | `#10` |
+| T06 | Layout base con landmarks y navegación por teclado | Código | Dev B (`@Tarrant15`) | 8 h | T05 | S01 | Pendiente | `#11` |
 
-### PBI-004 — Arnés de pruebas y hook local (`#5` · `@Fernis23228` · 25 h en S01)
+### PBI-002 — Tokens, tema y accesibilidad base (`#3` · `@Fernis23228` · 21 h en S01)
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
 |---|---|---|---|---|---|---|---|---|
-| T01 | Redactar spec, plan y tasks del arnés de pruebas | Spec | Dev C (`@Fernis23228`) | 6 h | — | S01 | Pendiente | `#17` |
-| T02 | Configurar Vitest, React Testing Library y scripts | Código | Dev C (`@Fernis23228`) | 6 h | T01 | S01 | Pendiente | `#18` |
-| T03 | Configurar Playwright y el smoke test E2E | Código | Dev C (`@Fernis23228`) | 6 h | T01 | S01 | Pendiente | `#19` |
-| T04 | Añadir el test de ejemplo rojo → verde | Test | Dev C (`@Fernis23228`) | 3 h | T02 | S01 | Pendiente | `#20` |
-| T05 | Crear el hook local y resolver la inmutabilidad | Código | Dev C (`@Fernis23228`) | 4 h | T02, T03 | S01 | Pendiente | `#21` |
+| T01 | Redactar la spec de tokens, tema y accesibilidad | Spec | Dev C (`@Fernis23228`) | 4 h | — | S01 | Pendiente | `#12` |
+| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev C (`@Fernis23228`) | 3 h | T01 | S01 | Pendiente | `#13` |
+| T03 | Redactar `tasks.md` y la lista de tests de accesibilidad | Spec | Dev C (`@Fernis23228`) | 2 h | T02 | S01 | Pendiente | `#14` |
+| T04 | Test rojo: tokens semánticos y contraste AA | Test | Dev C (`@Fernis23228`) | 4 h | T03 | S01 | Pendiente | `#15` |
+| T05 | Implementar tokens semánticos y tema claro/oscuro | Código | Dev C (`@Fernis23228`) | 8 h | T04 | S01 | Pendiente | `#16` |
+
+### PBI-004 — Arnés de pruebas y hook local (`#5` · `@FSolaje` · 25 h en S01)
+
+| ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
+|---|---|---|---|---|---|---|---|---|
+| T01 | Redactar spec, plan y tasks del arnés de pruebas | Spec | Dev A (`@FSolaje`) | 6 h | — | S01 | Pendiente | `#17` |
+| T02 | Configurar Vitest, React Testing Library y scripts | Código | Dev A (`@FSolaje`) | 6 h | T01 | S01 | Pendiente | `#18` |
+| T03 | Configurar Playwright y el smoke test E2E | Código | Dev A (`@FSolaje`) | 6 h | T01 | S01 | Pendiente | `#19` |
+| T04 | Añadir el test de ejemplo rojo → verde | Test | Dev A (`@FSolaje`) | 3 h | T02 | S01 | Pendiente | `#20` |
+| T05 | Crear el hook local y resolver la inmutabilidad | Código | Dev A (`@FSolaje`) | 4 h | T02, T03 | S01 | Pendiente | `#21` |
 
 ### Tareas Transversales de Infraestructura y Gobernanza (S01)
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
 |---|---|---|---|---|---|---|---|---|
-| INFRA-01 | Protección de ramas, CODEOWNERS y activación dinámica de roles Scrum | Chore | Dev A (`@FSolaje`) | 4 h | — | S01 | En progreso | `#22` |
+| INFRA-01 | Protección de ramas, CODEOWNERS y activación dinámica de roles Scrum | Chore | Dev C (`@Fernis23228`) | 4 h | — | S01 | En progreso | `#22` |
 
 ---
 

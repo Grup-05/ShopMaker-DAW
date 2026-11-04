@@ -6,9 +6,9 @@
 
 | Integrante | Usuario GitHub | Rol Scrum | Workstream de Desarrollo (S01) | Responsabilidad principal |
 |---|---|---|---|---|
-| Francisco Tomas | `@FSolaje` | Product Owner / Developer (Dev A) | Fundación y aplicación web (`PBI-001`) | Prioriza el Product Backlog, acepta el incremento y construye la base de la SPA |
-| Jesús Hernández | `@Tarrant15` | Scrum Master / Developer (Dev B) | Sistema visual y accesibilidad (`PBI-002`) | Facilita ceremonias, elimina impedimentos, protege el marco e implementa tokens/temas |
-| Fernando Ruescas | `@Fernis23228` | Developer (Dev C) | Arnés de pruebas y calidad (`PBI-004`) | Especifica, prueba e implementa el entorno de testing y el hook local |
+| Francisco Tomas | `@FSolaje` | Product Owner / Developer (Dev A) | Calidad, testing e integración (`PBI-004`) | Prioriza el Product Backlog, acepta el incremento e implementa el arnés de pruebas (Vitest/Playwright), hook local y CI |
+| Jesús Hernández | `@Tarrant15` | Scrum Master / Developer (Dev B) | Shell y aplicación web base (`PBI-001`) | Facilita ceremonias, elimina impedimentos y construye el scaffold de React + Vite + TS y layout base SPA |
+| Fernando Ruescas | `@Fernis23228` | Developer (Dev C) | Sistema visual, accesibilidad y protección (`PBI-002` + `INFRA-01`) | Especifica e implementa tokens semánticos, temas claro/oscuro, contraste WCAG AA y protección de ramas |
 | Javier Ibañez | — | Cliente / Stakeholder | — | Aporta feedback funcional en el Sprint Review |
 
 En equipos académicos reducidos los roles pueden combinarse, pero las responsabilidades no se diluyen:
