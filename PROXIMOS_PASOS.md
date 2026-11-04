@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `012fe43 — *docs(scrum): actualizar reparto de roles y concordancia de aplicacion web*`
-- **Fecha de última sincronización:** 2026-11-04 13:46
+- **Último commit consolidado:** `1f85568 — *chore(governance): integrar activos fundacionales, scripts y plantillas de github en main*`
+- **Fecha de última sincronización:** 2026-11-04 13:47
 
 ---
 
