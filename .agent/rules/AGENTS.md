@@ -224,12 +224,25 @@ Este proceso realiza automáticamente:
 - **Aislamiento Estricto de `user_data/`:**
   - El directorio `user_data/` (herramientas locales, cachés, perfiles o notas confidenciales) queda **SIEMPRE EXCLUIDO** mediante `.gitignore`.
   - Bajo ninguna circunstancia se eliminará `user_data/` del `.gitignore` ni se comitearán archivos de este directorio.
-- **Requisito Obligatorio del Entorno Local `user_data/security/`:**
-  - Cada miembro del equipo debe disponer en su estación de trabajo local del directorio `user_data/security/` (permisos restrictivos `700` y `600` en archivos).
+- **Requisito Obligatorio del Entorno Local `user_data/security/` y Perfiles de Acceso:**
+  - Cada desarrollador activo debe disponer en su estación de trabajo local del directorio `user_data/security/` (permisos restrictivos `700` y `600` en archivos).
   - Este espacio es estrictamente privado y aloja:
-    1. `forbidden_patterns.txt`: Rutas privadas locales (`$HOME/`) y patrones confidenciales de la máquina del desarrollador que el escáner SAST utiliza para bloquear fugas antes de cada commit.
-    2. `gh_token.txt`: Token personal de GitHub para gestionar issues, PRs y tableros bajo la identidad del rol activo, sin almacenar credenciales en el repositorio.
+    1. `forbidden_patterns.txt` (Obligatorio para desarrolladores): Rutas privadas locales (`$HOME/`) y patrones confidenciales de la máquina del desarrollador que el escáner SAST utiliza para bloquear fugas antes de cada commit. Se autogenera de forma transparente y sin fricción.
+    2. `gh_token.txt` (Opcional por perfil): Token personal de GitHub para gestionar issues, PRs y tableros bajo la identidad del rol activo, sin almacenar credenciales en el repositorio.
+  - **Perfiles de Acceso y Fricción Cero:**
+    - *Cliente / Evaluador:* Solo clona y ejecuta (`npm run dev` / tests). No requiere instalar hooks ni configurar `user_data/security/`.
+    - *Desarrollador Estándar:* Solo programa e integra código con Git habitual. `forbidden_patterns.txt` se autogenera; `gh_token.txt` es **completamente opcional** (no bloquea el trabajo).
+    - *Administrador / Gestor Scrum:* Utiliza `gh_token.txt` con permisos de Projects/Issues para automatizar el tablero desde terminal.
   - **Detección, Asistencia y Explicación Automática:** Tanto el instalador de hooks (`install-hooks.sh`) como el hook de `pre-commit` detectan automáticamente si `user_data/security/` no está configurado, explican al desarrollador el motivo y guían interactivamente su configuración (asistida por `scripts/setup/init-user-security.sh`).
+
+- **Arquitectura de Gobernanza Flexible en Tres Capas (Anti-Fricción y Anti-Fugas):**
+  Para conciliar la inmutabilidad de la constitución global con la libertad de innovación y personalización en cada rama de desarrollo, se adopta un modelo desacoplado:
+  1. *Capa 1 — Núcleo Global (Inmutable en ramas de trabajo):* Vive en `.agent/rules/` y `.agent/hooks/`. Define los mínimos comunes no negociables (SAST, Conventional Commits, no secrets). Solo se modifica en `main` y se propaga con `sync-governance.sh`.
+  2. *Capa 2 — Gobernanza Contextual por PBI (Versionada y Mergeable):* Cada funcionalidad define sus directrices, criterios y arquitectura técnica en su propia carpeta `specs/PBI-###-<slug>/` (`spec.md`, `plan.md`, `tasks.md`). Forma parte del incremento, se somete a revisión y se integra limpiamente en `develop`.
+  3. *Capa 3 — Overrides y Gobernanza Local del Desarrollador (Aislamiento Total anti-Merge):*
+     - Si un desarrollador necesita reglas de IA particulares para su máquina, configuraciones efímeras o hooks locales, se alojan en `user_data/governance/`, `.agent/local/` o en `.agent/hooks/pre-commit-local.sh`.
+     - Todos estos espacios están **estrictamente ignorados por `.gitignore`** y excluidos en los scripts de propagación y empaquetado.
+     - **Garantía anti-Merge:** Al no ser rastreados por Git, es físicamente imposible que un override o regla particular de un desarrollador se cuele en un Pull Request hacia `develop` o `main`.
 - **Gitignore Retroactivo:**
   - Si se modifica `.gitignore` para añadir nuevas exclusiones sobre archivos previamente versionados, la IA purgará la caché mediante `git rm -r --cached <ruta>` y re-indexará antes de presentar los cambios para evitar "Ghost Tracking".
 

@@ -51,6 +51,22 @@ while read -r LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
         echo "   - Ramas jerárquicas:      ra<XX>/ut<Y>-<nombre>/(main|dev|fix|release/v<X.Y.Z>)"
         echo "   (Para personalizar este regex, define BRANCH_NAMING_REGEX en .agent/hooks/branch_convention.env)."
     fi
+
+    # 3. Bloqueo de fuga de configuraciones locales privadas hacia develop o main
+    if [ "$BRANCH_NAME" = "main" ] || [ "$BRANCH_NAME" = "develop" ]; then
+        if [ -n "$REMOTE_SHA" ] && [ "$REMOTE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            REVS="$REMOTE_SHA..$LOCAL_SHA"
+        else
+            REVS="$LOCAL_SHA"
+        fi
+        LEAKED_FILES=$(git diff --name-only "$REVS" -- "user_data/" ".agent/local/" 2>/dev/null || true)
+        if [ -n "$LEAKED_FILES" ]; then
+            echo "❌ [ERROR DE GOBERNANZA] Intento de publicar archivos locales privados hacia '$BRANCH_NAME':"
+            echo "$LEAKED_FILES" | sed 's/^/   - /'
+            echo "   Los archivos locales privados no pueden integrarse en develop ni en main."
+            exit 1
+        fi
+    fi
 done
 
 echo "  ✔ [Pre-push] Verificaciones de sincronización remota superadas."

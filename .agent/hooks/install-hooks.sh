@@ -29,17 +29,12 @@ TOKEN_FILE="$SECURITY_DIR/gh_token.txt"
 echo "🔒 Verificando entorno de seguridad local en 'user_data/security/'..."
 
 if [ ! -d "$SECURITY_DIR" ] || [ ! -f "$PATTERNS_FILE" ] || [ ! -f "$TOKEN_FILE" ]; then
-    echo "⚠️  [AVISO SAS] Entorno local de seguridad no configurado completamente."
-    echo "   ════════════════════════════════════════════════════════════════════════════════"
-    echo "   ¿POR QUÉ ES OBLIGATORIA LA CARPETA 'user_data/security/'?"
-    echo "   1. Aislamiento SAS (AGENTS.md §7): user_data/ está estrictamente ignorado"
-    echo "      en Git para que ningún secreto, token o ruta privada llegue al repositorio."
-    echo "   2. forbidden_patterns.txt: Contiene tus rutas locales (\$HOME/) y patrones"
-    echo "      privados de tu máquina para que el escáner SAST bloquee fugas accidentales."
-    echo "   3. gh_token.txt: Guarda tu token personal de GitHub (permisos 600) para"
-    echo "      gestionar issues, PRs y tableros sin exponer tus credenciales."
-    echo "   ════════════════════════════════════════════════════════════════════════════════"
-    echo "   ⚙️  Inicializando automáticamente la estructura segura con permisos 700/600..."
+    echo "ℹ️  Configurando entorno local de seguridad privada (user_data/security/)..."
+    echo "   ────────────────────────────────────────────────────────────────────────────"
+    echo "   • forbidden_patterns.txt: Autogenerado con tu \$HOME/ para escaneo SAST local."
+    echo "   • gh_token.txt:           Opcional (solo si gestionas tableros/issues vía CLI)."
+    echo "   • user_data/ y .agent/local/: Rigurosamente ignorados en Git (cero fugas)."
+    echo "   ────────────────────────────────────────────────────────────────────────────"
 
     mkdir -p "$SECURITY_DIR"
     chmod 700 "$SECURITY_DIR" 2>/dev/null || true
@@ -68,17 +63,14 @@ EOF
 
     if [ ! -f "$TOKEN_FILE" ]; then
         cat << 'EOF' > "$TOKEN_FILE"
-# Token personal de GitHub CLI (gh) — NO versionar
-# Para configurar interactivamente tu token:
+# Token personal de GitHub CLI (gh) — Opcional (solo si gestionas tableros/issues vía CLI)
+# Si solo desarrollas código funcional, este archivo puede dejarse en blanco.
+# Para configurarlo interactivamente:
 #   bash scripts/github/gh-auth-env.sh --login
 EOF
         chmod 600 "$TOKEN_FILE" 2>/dev/null || true
-        echo "   ✔ Plantilla confidencial de token creada: user_data/security/gh_token.txt"
+        echo "   ✔ Plantilla confidencial de token creada: user_data/security/gh_token.txt (opcional)"
     fi
-
-    echo "   Para configurar tu token personal de GitHub de forma interactiva:"
-    echo "     bash scripts/github/gh-auth-env.sh --login"
-    echo "   ════════════════════════════════════════════════════════════════════════════════"
 else
     chmod 700 "$SECURITY_DIR" 2>/dev/null || true
     chmod 600 "$PATTERNS_FILE" 2>/dev/null || true

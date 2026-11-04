@@ -3,6 +3,8 @@
 # ==============================================================================
 # Datos de sesión, perfiles locales y espacio privado del desarrollador
 user_data/
+.agent/local/
+.agent/hooks/pre-commit-local.sh
 *.key
 *.pem
 *.cert
@@ -153,6 +155,5 @@ build/
 
 # Dependencias Node
 node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# Los lockfiles se versionan para garantizar builds reproducibles.
+# No añadir package-lock.json, yarn.lock ni pnpm-lock.yaml aquí.
