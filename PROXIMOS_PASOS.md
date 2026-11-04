@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `8371a96 — *chore(governance): flexibilizar onboarding y habilitar modelo de gobernanza en tres capas*`
-- **Fecha de última sincronización:** 2026-11-04 08:55
+- **Último commit consolidado:** `924bb10 — *docs(global): actualizar README con stack, roadmap de sprint y perfiles*`
+- **Fecha de última sincronización:** 2026-11-04 13:31
 
 ---
 

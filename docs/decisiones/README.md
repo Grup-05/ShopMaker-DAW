@@ -4,7 +4,7 @@ Este directorio registra las decisiones arquitectónicas relevantes del frontend
 
 ## Cuándo crear un ADR
 
-- Elección de stack o shell de escritorio.
+- Elección de stack y formato de entrega (aplicación web SPA).
 - Estrategia de estado, routing o composición de módulos.
 - Contrato de API y política de errores.
 - Estrategia de previsualización y sandbox.
@@ -26,4 +26,5 @@ Una decisión sustituida **no se elimina**: se marca como `Sustituido por ADR-##
 
 | ADR | Título | Estado | Fecha |
 |---|---|---|---|
-| ADR-001 | Elección del shell de escritorio | Pendiente | — |
+| ADR-001 | React y TypeScript como stack del frontend | Aceptado | 2026-11-03 |
+| ADR-002 | Aplicación web en navegador como formato de entrega | Aceptado | 2026-11-03 |
