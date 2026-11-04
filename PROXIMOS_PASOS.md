@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `4336063 — *chore(governance): sincronizar nucleo de gobernanza desde main*`
+- **Último commit consolidado:** `dda0565 — *chore(security): flexibilizar script de inicializacion y hacer opcional el token gh*`
 - **Fecha de última sincronización:** 2026-11-04 08:40
 
 ---

@@ -182,16 +182,26 @@ Reglas clave:
 - No se ejecuta `git commit` ni `git push` sin aprobación humana explícita.
 - Los paquetes de release excluyen activos de gobernanza mediante `.gitattributes`.
 
-Instalación de hooks y verificación de seguridad:
+### Inicio rápido según perfil
 
+#### Para probar o evaluar la aplicación (Clientes / Stakeholders / Evaluadores)
+No requiere instalar hooks ni configurar credenciales locales:
+```bash
+git clone https://github.com/Grup-05/ShopMaker-DAW.git
+cd ShopMaker-DAW
+npm install
+npm run dev
+```
+
+#### Para desarrolladores activos (Entorno de contribución)
 ```bash
 # 1. Instalar hooks de Git y preparar entorno de seguridad:
 bash .agent/hooks/install-hooks.sh
 
-# 2. Verificar o inicializar entorno local de seguridad (user_data/security/):
+# 2. Verificar estado del entorno local (autogenera forbidden_patterns.txt):
 bash scripts/setup/init-user-security.sh --check
 
-# 3. Configurar token personal de GitHub (si se gestionan issues/tableros):
+# 3. (Opcional) Configurar token de GitHub CLI solo si gestionas tableros/issues desde terminal:
 bash scripts/github/gh-auth-env.sh --login
 ```
 

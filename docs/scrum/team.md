@@ -50,6 +50,53 @@ Dado que todos los integrantes son administradores de `Grup-05` y rotarán entre
   ```
   Esto actualiza `active_roles.env` y regenera `.github/CODEOWNERS` automáticamente.
 
+## Perfiles de Colaboración y Onboarding sin Fricción
+
+Para conciliar la máxima seguridad con un flujo de trabajo ágil y flexible, la gobernanza distingue cuatro perfiles de usuario:
+
+| Perfil | Permisos en GitHub | ¿Usa token `gh`? | Configuración Local |
+|---|---|---|---|
+| **Core Admin (PO / SM / Devs activos)** | `Admin` en organización | Sí (`gh_token.txt`) con permisos de Projects/Repo | Hooks completos + token configurado |
+| **Developer Estándar (Colaborador)** | `Write` en repositorio | **No necesario** (usa Git estándar) | Solo `forbidden_patterns.txt` (autogenerado) |
+| **Cliente / Stakeholder / Evaluador** | `Read` (o acceso demo) | **No** | Ninguna (solo clona y ejecuta `npm run dev`) |
+| **Colaborador Externo (Fork)** | Ninguno en el repo base | Sus propias credenciales | PR auditado por CODEOWNERS y CI |
+
+### 1. Desarrollador Estándar (Sin Administración ni Rotación)
+Si se incorpora un desarrollador que solo implementa código y no rota en roles de Scrum:
+- **No necesita token de GitHub en `gh_token.txt`:** Utiliza sus credenciales Git estándar (SSH o HTTPS) para crear ramas `feature/*` y enviar commits.
+- **Protección SAST automática:** `forbidden_patterns.txt` se crea solo al primer commit para evitar fugas de `$HOME/`. Cero configuración manual requerida.
+- **Pull Requests:** Puede abrir y revisar PRs directamente desde la interfaz web de GitHub sin necesidad de la CLI `gh`.
+
+### 2. Cliente o Evaluador (Solo Pruebas y Demos)
+- El cliente **no tiene que instalar hooks ni configurar carpetas de seguridad**.
+- Simplemente clona y arranca la aplicación:
+  ```bash
+  git clone https://github.com/Grup-05/ShopMaker-DAW.git
+  npm install
+  npm run dev
+  ```
+
+### 3. Pull Requests desde un Fork
+- Las contribuciones externas mediante forks se aíslan por diseño:
+  - Los workflows de CI en GitHub se ejecutan con permisos de solo lectura (`read-only`), sin acceso a variables ni secretos de la organización.
+  - La fusión a `develop` está condicionada a la aprobación obligatoria de los miembros de `Grup-05` definidos en `.github/CODEOWNERS`.
+
+## Gobernanza Flexible en Tres Capas (Anti-Fugas y Anti-Rigidez)
+
+Para permitir que cada desarrollador experimente, configure o adapte reglas en su rama sin romper la estabilidad global ni contaminar `develop`:
+
+1. **Capa 1 — Núcleo Global (Inmutable en ramas de trabajo):**
+   - Vive en `.agent/rules/` y `.agent/hooks/`.
+   - Garantiza los mínimos comunes: SAST, Conventional Commits y telemetría de `PROXIMOS_PASOS.md`.
+   - Solo se modifica en `main` por el Administrador de Gobernanza y se propaga con `sync-governance.sh`.
+2. **Capa 2 — Gobernanza Contextual de la Feature (`specs/PBI-###/`):**
+   - Reglas, criterios y decisiones técnicas específicas de una funcionalidad se documentan en `specs/PBI-###-<slug>/` (`spec.md`, `plan.md`, `tasks.md`).
+   - Se versiona en la rama de la feature y se fusiona en `develop` como documentación técnica viva sin colisionar con otros módulos.
+3. **Capa 3 — Overrides y Gobernanza Local Privada (Aislamiento Total anti-Merge):**
+   - Reglas locales de IA para la máquina del desarrollador (`user_data/governance/`, `.agent/local/`).
+   - Hooks locales opcionales (`.agent/hooks/pre-commit-local.sh`).
+   - **Garantía anti-Merge:** Todos estos directorios y archivos están **estrictamente excluidos en `.gitignore`**. Es imposible que se envíen en un commit o se fusionen en un PR hacia `develop` o `main`. Además, el hook `pre-push` bloquea cualquier intento de empujar archivos locales a ramas principales.
+
 ## Onboarding y Entorno de Seguridad Obligatorio (`user_data/security/`)
 
 Para garantizar que ningún desarrollador filtre accidentalmente rutas locales ni credenciales, y para posibilitar el uso de la CLI de GitHub bajo la identidad de cada miembro, **la carpeta `user_data/security/` es obligatoria en la estación de trabajo de cada integrante**.
