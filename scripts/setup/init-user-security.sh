@@ -28,18 +28,20 @@ explain_security_purpose() {
 💡 ¿POR QUÉ ES OBLIGATORIA LA CARPETA 'user_data/security/'?
 
 1. AISLAMIENTO SAS (Constitución AGENTS.md §7):
-   La carpeta 'user_data/' está estrictamente excluida en .gitignore.
+   La carpeta 'user_data/' y '.agent/local/' están estrictamente excluidas en .gitignore.
    Todo lo que se almacene aquí NUNCA llegará a los commits ni al repositorio remoto.
 
-2. PREVENCIÓN DE FUGAS LOCALES (forbidden_patterns.txt):
-   Cada miembro del equipo trabaja en una estación de trabajo con rutas y usuarios
+2. PREVENCIÓN DE FUGAS LOCALES (forbidden_patterns.txt - OBLIGATORIO):
+   Cada desarrollador trabaja en una estación de trabajo con rutas y usuarios
    propios (ej: '$HOME/'). Este archivo registra tus rutas locales para que el
    escáner SAST de 'pre-commit' bloquee cualquier commit accidental que las contenga.
+   Se autogenera automáticamente sin requerir esfuerzo manual.
 
-3. AUTENTICACIÓN MULTIUSUARIO SEGURA (gh_token.txt):
-   En Scrum rotamos roles (PO, Scrum Master, Developer). Cada miembro debe operar
-   con su propio token personal de GitHub con permisos 600 (solo lectura por tu usuario),
-   sin compartir claves en claro ni depender de sesiones globales desprotegidas.
+3. AUTENTICACIÓN MULTIUSUARIO (gh_token.txt - OPCIONAL SEGÚN PERFIL):
+   - Developer Estándar: NO LO NECESITA. Desarrolla y commitea con Git habitual.
+   - Core Admin / Gestor Scrum: Lo utiliza si gestiona issues, PRs o tableros
+     Projects v2 desde terminal mediante scripts de automatización.
+   - Cliente / Tester: No requiere instalar hooks ni configurar este entorno.
 ════════════════════════════════════════════════════════════════════════════════
 EOF
 }
@@ -57,23 +59,20 @@ check_security_env() {
     fi
 
     if [ -f "$PATTERNS_FILE" ]; then
-        echo "  ✔ Archivo 'forbidden_patterns.txt' existe."
+        echo "  ✔ Archivo 'forbidden_patterns.txt' existe (SAST preventivo)."
     else
         echo "  ❌ FALTA: 'user_data/security/forbidden_patterns.txt' no existe."
         status=1
     fi
 
     if [ -f "$TOKEN_FILE" ]; then
-        echo "  ✔ Archivo 'gh_token.txt' existe."
-        # Verificar si tiene token o si es plantilla
         if grep -q "ghp_\|github_pat_" "$TOKEN_FILE" 2>/dev/null; then
-            echo "  ✔ Token personal de GitHub configurado."
+            echo "  ✔ Token personal de GitHub configurado (para gestión CLI)."
         else
-            echo "  ⚠️  Token en 'gh_token.txt' está en blanco o con comentarios plantilla."
+            echo "  ℹ️  Token en 'gh_token.txt' no configurado (opcional: solo para gestión CLI)."
         fi
     else
-        echo "  ❌ FALTA: 'user_data/security/gh_token.txt' no existe."
-        status=1
+        echo "  ℹ️  'gh_token.txt' no presente (opcional: solo necesario para scripts CLI de GitHub)."
     fi
 
     # Comprobación de permisos UNIX si aplica

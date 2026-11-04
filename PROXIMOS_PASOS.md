@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `d2fa902 — *docs(security): documentar requisito obligatorio y guiado de user_data/security*`
-- **Fecha de última sincronización:** 2026-11-04 08:38
+- **Último commit consolidado:** `4336063 — *chore(governance): sincronizar nucleo de gobernanza desde main*`
+- **Fecha de última sincronización:** 2026-11-04 08:40
 
 ---
 
@@ -25,6 +25,8 @@
 - [x] `.gitattributes` para empaquetado limpio de releases.
 - [x] Archivo local de seguridad en `user_data/security/forbidden_patterns.txt` (gitignored).
 - [x] Verificación mandatoria y guiado interactivo de `user_data/security/` (`scripts/setup/init-user-security.sh`, `install-hooks.sh` y `pre-commit`).
+- [x] Modelo de gobernanza flexible en tres capas (Núcleo inmutable, Contexto de PBI en `specs/`, Overrides privados gitignored en `user_data/governance/` y `.agent/local/`).
+- [x] Onboarding diferenciado por perfiles sin fricción (Core Admin, Dev Estándar, Cliente/Evaluador y Fork PR).
 
 ### 🧱 Stack y formato de entrega
 
