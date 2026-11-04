@@ -1,0 +1,91 @@
+name: PBI
+description: Alta o refinamiento de un Product Backlog Item
+title: "[PBI-###] "
+labels: ["type:pbi"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Usa esta plantilla para un PBI del Product Backlog. Las tareas hijas se crean con la plantilla **Tarea**.
+
+  - type: input
+    id: pbi
+    attributes:
+      label: ID del PBI
+      description: Formato PBI-###.
+      placeholder: PBI-001
+    validations:
+      required: true
+
+  - type: input
+    id: sprint
+    attributes:
+      label: Sprint
+      description: Sprint asignado, si ya está comprometido.
+      placeholder: S01
+
+  - type: textarea
+    id: historia
+    attributes:
+      label: Historia de usuario
+      description: Como <rol>, quiero <capacidad>, para <beneficio>.
+      placeholder: Como Developer, quiero disponer de una aplicación web mínima...
+    validations:
+      required: true
+
+  - type: textarea
+    id: valor
+    attributes:
+      label: Valor de negocio
+      description: Por qué importa y a quién desbloquea.
+    validations:
+      required: true
+
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Criterios de aceptación
+      description: Uno por línea, preferentemente en formato Dado / Cuando / Entonces.
+      placeholder: |
+        - [ ] Dado ..., cuando ..., entonces ...
+        - [ ] Dado ..., cuando ..., entonces ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: nfr
+    attributes:
+      label: Requisitos no funcionales aplicables
+      description: Accesibilidad, rendimiento, seguridad, compatibilidad.
+      placeholder: WCAG 2.1 AA, viewport 1024x720, sin acceso a Node...
+
+  - type: input
+    id: estimacion
+    attributes:
+      label: Estimación
+      description: Horas o story points acordados en el Planning.
+      placeholder: 8 h
+
+  - type: textarea
+    id: dependencias
+    attributes:
+      label: Dependencias y riesgos
+      description: PBIs, issues, decisiones o APIs externas de las que depende.
+
+  - type: input
+    id: spec
+    attributes:
+      label: Ruta de la spec
+      description: Directorio SDD del PBI.
+      placeholder: specs/PBI-001-aplicacion-web/
+
+  - type: checkboxes
+    id: dor
+    attributes:
+      label: Definition of Ready
+      options:
+        - label: Historia, valor y criterios verificables definidos.
+        - label: Estimación acordada por el equipo.
+        - label: Dependencias y riesgos identificados.
+        - label: Spec, plan y tareas planificados o redactados.
+        - label: Estrategia de pruebas y matriz spec-test identificadas.

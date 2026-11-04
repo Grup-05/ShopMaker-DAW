@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `8ececf2 — *docs(global): actualizar README con stack, roadmap de sprint y perfiles*`
-- **Fecha de última sincronización:** 2026-11-04 13:31
+- **Último commit consolidado:** `100ca8f — *docs(scrum): actualizar reparto de roles y concordancia de aplicacion web*`
+- **Fecha de última sincronización:** 2026-11-04 13:46
 
 ---
 
@@ -24,10 +24,23 @@
 - [x] Perfil frontend UI/UX adaptado al CMS ShopMaker.
 - [x] `.gitattributes` para empaquetado limpio de releases.
 - [x] Archivo local de seguridad en `user_data/security/forbidden_patterns.txt` (gitignored).
+- [x] Verificación mandatoria y guiado interactivo de `user_data/security/` (`scripts/setup/init-user-security.sh`, `install-hooks.sh` y `pre-commit`).
+- [x] Modelo de gobernanza flexible en tres capas (Núcleo inmutable, Contexto de PBI en `specs/`, Overrides privados gitignored en `user_data/governance/` y `.agent/local/`).
+- [x] Onboarding diferenciado por perfiles sin fricción (Core Admin, Dev Estándar, Cliente/Evaluador y Fork PR).
+
+### 🧱 Stack y formato de entrega
+
+- [x] React + TypeScript + Vite como stack del frontend (ADR-001).
+- [x] Aplicación web SPA desktop-first en navegador, sin shell nativo (ADR-002).
+- [ ] Lockfile versionado y dependencias auditadas (PBI-001). Exclusión retirada de `.gitignore` (confirmado en `f283524`); pendiente de generar lockfile con el scaffold.
 
 ### 🏃 Sprint S01 — Sprint 0: Fundaciones
 
-**Sprint Goal:** dejar preparado un entorno verificable —shell de escritorio, sistema visual accesible, contrato de API con mock y arnés de pruebas— para construir el primer PBI funcional con SDD y TDD.
+**Sprint Goal:** dejar preparado el núcleo fundacional verificable —aplicación web base, tokens semánticos con tema claro/oscuro y arnés de pruebas con hook local— para construir el primer PBI funcional con SDD y TDD.
+
+**Fechas confirmadas:** 2026-11-03 → 2026-11-08 (4 días laborables) · **Capacidad comprometida:** 3 developers, 80 h planificadas en 17 tareas (64 h / 15 tareas pospuestas a S02).
+
+**Reparto:** Dev B `@Tarrant15` (`PBI-001 T01–T06`, 30 h), Dev A `@FSolaje` (`PBI-004 T01–T05`, 25 h), Dev C `@Fernis23228` (`PBI-002 T01–T05` 21 h + `INFRA-01` 4 h = 25 h). `PBI-003` pasa a S02.
 
 Artefactos:
 
@@ -39,18 +52,26 @@ Artefactos:
 - [x] Sprint Goal, Sprint Backlog, Review y Retrospective de S01.
 - [x] Plantillas SDD/TDD en `specs/`.
 - [x] ADR template en `docs/decisiones/`.
+- [x] Plantillas de GitHub Issues/PR (`.github/`) y scripts de automatización y autenticación segura (`scripts/github/`).
+- [x] 17 labels, milestone `S01` e issues organizados para el Sprint S01 (`#2`, `#3`, `#5` PBIs; `#6`–`#21` tareas; `#22` INFRA-01).
+- [x] Tarea de infraestructura `#22` (`INFRA-01`) creada y vinculada en el Project `#1` para protección de ramas, CODEOWNERS y roles dinámicos.
+- [x] Tablero GitHub Projects v2 creado (`#1 — ShopMaker — S01`) con los 8 campos Scrum y todos los issues vinculados.
+- [x] Gobernanza de token multiusuario en `user_data/security/gh_token.txt` (permisos `600`) validada mediante `scripts/github/gh-auth-env.sh`.
+- [x] Asignación dinámica de roles en `docs/scrum/active_roles.env`, `.github/CODEOWNERS` y script `scripts/scrum/rotate-roles.sh`.
+- [x] Bypass controlado para el Administrador de Gobernanza implementado en `.agent/hooks/pre-commit` y constitucionalizado en `AGENTS.md`.
 
-PBIs del Sprint:
+PBIs del Sprint S01:
 
-- [ ] **PBI-001** — Shell de escritorio y estructura base.
-- [ ] **PBI-002** — Tokens, tema claro/oscuro y accesibilidad base.
-- [ ] **PBI-003** — Contrato de API y adaptador mock.
-- [ ] **PBI-004** — Arnés de pruebas y hook local de calidad.
+- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`).
+- [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
+- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
+- [ ] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
+- [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
 ### 🧪 Pruebas
 
 - [ ] Runner y comando único de suite definidos.
-- [ ] Test de humo del shell.
+- [ ] Test de humo de la aplicación web.
 - [ ] Matriz spec-test inicial completada.
 - [ ] Hook `.agent/hooks/pre-commit-local.sh` operativo.
 
@@ -58,17 +79,18 @@ PBIs del Sprint:
 
 - [x] `README.md` con metodología, roles, ramas, commits y DoD.
 - [x] `CHANGELOG.md` inicializado.
-- [ ] Especificaciones `specs/PBI-001..004/` redactadas.
-- [ ] ADR-001 de elección de stack.
+- [ ] Especificaciones `specs/PBI-001/`, `specs/PBI-002/` y `specs/PBI-004/` redactadas.
+- [x] ADR-001 (React/TS/Vite) y ADR-002 (aplicación web) aceptados.
 
 ---
 
 ## 🎯 Próximo Paso Inmediato
 
-1. Confirmar el **stack del shell de escritorio** y registrarlo como ADR-001.
-2. Redactar `spec.md`, `plan.md` y `tasks.md` del **PBI-001**.
-3. Aprobar la spec y confirmar `docs(spec): ...` (requiere orden humana).
-4. Iniciar el ciclo TDD con el primer test rojo del shell.
+1. **Reunión de equipo (04-nov):** Decidir si se activan las protecciones de rama de GitHub (`INFRA-01` / issue `#22`) con `bash scripts/github/protect-branches.sh` antes de comenzar a integrar los PBIs en `develop`.
+2. **Iniciar el trabajo SDD/TDD del Sprint S01:**
+   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (`#6`–`#8`), `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
+   - Aprobar las specs y confirmar `docs(spec): ...` (requiere orden humana).
+   - Iniciar el ciclo TDD con el arnés de pruebas (`PBI-004`) y el primer test rojo de la aplicación web (`PBI-001`).
 
 ---
 
@@ -76,7 +98,11 @@ PBIs del Sprint:
 
 | Fecha | Bloqueo | Responsable | Estado |
 |---|---|---|---|
-| — | Decisión de stack pendiente (Electron, Tauri o web instalable) | Developers + PO | Abierto |
+| 2026-11-03 | Decisión de stack: React + TypeScript + Vite (ADR-001) y aplicación web en navegador (ADR-002) | Developers + PO | Resuelto |
+| 2026-11-03 | Ajuste de fechas (`3–8 nov`) y alcance (`76 h` / 16 tareas; `PBI-003` a S02) | PO + Developers | Resuelto (`b6766c8`) |
+| 2026-11-03 | Creación de labels, milestone `S01`, 20 issues (`#2`–`#21`) y tablero GitHub Projects v2 (`#1`) | SM / Dev A | Resuelto |
+| 2026-11-03 | `.agent/hooks/pre-commit-local.sh` bloqueado por inmutabilidad del núcleo | Dev C + SM | Resuelto en `main` (`f29cb46`, `b41ba5f`) y propagado a todas las ramas |
+| 2026-11-03 | Lockfiles ignorados en `.gitignore` | Dev A | Resuelto (`f283524`) |
 
 ---
 

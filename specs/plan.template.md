@@ -29,7 +29,7 @@
 - **Presentación:** <componentes y páginas afectadas>
 - **Aplicación/estado:** <casos de uso y estado>
 - **Dominio:** <entidades y reglas>
-- **Infraestructura:** <adaptadores, almacenamiento, IPC>
+- **Infraestructura:** <adaptadores, almacenamiento, APIs del navegador>
 
 ### Dependencias permitidas
 

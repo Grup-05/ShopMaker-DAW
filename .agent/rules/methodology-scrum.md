@@ -222,7 +222,7 @@ Antes del primer Sprint funcional puede existir un **Sprint 0** para:
 - Instalar y validar la gobernanza.
 - Acordar el stack y la arquitectura base.
 - Crear el Product Backlog inicial.
-- Definir tokens, shell de escritorio y contrato de API.
+- Definir tokens, aplicación web y contrato de API.
 - Preparar el tablero y las plantillas.
 
 El Sprint 0 no produce un incremento funcional, pero sí un entorno listo para trabajar.
