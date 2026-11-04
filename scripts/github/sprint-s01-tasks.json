@@ -4,7 +4,7 @@
     "pbi": "PBI-001",
     "type": "Spec",
     "title": "Redactar la spec de la aplicación web",
-    "owner": "A",
+    "owner": "B",
     "estimate": "4 h",
     "priority": "Alta",
     "depends": [],
@@ -24,7 +24,7 @@
     "pbi": "PBI-001",
     "type": "Spec",
     "title": "Redactar el plan técnico y la matriz spec-test",
-    "owner": "A",
+    "owner": "B",
     "estimate": "4 h",
     "priority": "Alta",
     "depends": [
@@ -46,7 +46,7 @@
     "pbi": "PBI-001",
     "type": "Spec",
     "title": "Redactar tasks.md y la lista de tests",
-    "owner": "A",
+    "owner": "B",
     "estimate": "2 h",
     "priority": "Alta",
     "depends": [
@@ -68,12 +68,11 @@
     "pbi": "PBI-001",
     "type": "Test",
     "title": "Test rojo: la aplicación arranca en el navegador",
-    "owner": "A",
+    "owner": "B",
     "estimate": "4 h",
     "priority": "Alta",
     "depends": [
-      "PBI-001-T03",
-      "PBI-004-T03"
+      "PBI-001-T03"
     ],
     "description": "Escribir el smoke test E2E que abre la app, comprueba el título y los landmarks principales. Debe fallar antes del scaffold.",
     "acceptance": [
@@ -91,7 +90,7 @@
     "pbi": "PBI-001",
     "type": "Código",
     "title": "Scaffold Vite + React + TypeScript y estructura por capas",
-    "owner": "A",
+    "owner": "B",
     "estimate": "8 h",
     "priority": "Alta",
     "depends": [
@@ -115,7 +114,7 @@
     "pbi": "PBI-001",
     "type": "Código",
     "title": "Layout base con landmarks y navegación por teclado",
-    "owner": "A",
+    "owner": "B",
     "estimate": "8 h",
     "priority": "Alta",
     "depends": [
@@ -183,7 +182,7 @@
     "pbi": "PBI-002",
     "type": "Spec",
     "title": "Redactar la spec de tokens, tema y accesibilidad",
-    "owner": "B",
+    "owner": "C",
     "estimate": "4 h",
     "priority": "Alta",
     "depends": [],
@@ -203,7 +202,7 @@
     "pbi": "PBI-002",
     "type": "Spec",
     "title": "Redactar el plan técnico y la matriz spec-test",
-    "owner": "B",
+    "owner": "C",
     "estimate": "3 h",
     "priority": "Alta",
     "depends": [
@@ -225,7 +224,7 @@
     "pbi": "PBI-002",
     "type": "Spec",
     "title": "Redactar tasks.md y la lista de tests de accesibilidad",
-    "owner": "B",
+    "owner": "C",
     "estimate": "2 h",
     "priority": "Alta",
     "depends": [
@@ -247,7 +246,7 @@
     "pbi": "PBI-002",
     "type": "Test",
     "title": "Test rojo: tokens semánticos y contraste AA",
-    "owner": "B",
+    "owner": "C",
     "estimate": "4 h",
     "priority": "Alta",
     "depends": [
@@ -270,7 +269,7 @@
     "pbi": "PBI-002",
     "type": "Código",
     "title": "Implementar tokens semánticos y tema claro/oscuro",
-    "owner": "B",
+    "owner": "C",
     "estimate": "8 h",
     "priority": "Alta",
     "depends": [
@@ -541,7 +540,7 @@
     "pbi": "PBI-004",
     "type": "Spec",
     "title": "Redactar spec, plan y tasks del arnés de pruebas",
-    "owner": "C",
+    "owner": "A",
     "estimate": "6 h",
     "priority": "Alta",
     "depends": [],
@@ -561,7 +560,7 @@
     "pbi": "PBI-004",
     "type": "Código",
     "title": "Configurar Vitest, React Testing Library y scripts",
-    "owner": "C",
+    "owner": "A",
     "estimate": "6 h",
     "priority": "Alta",
     "depends": [
@@ -584,7 +583,7 @@
     "pbi": "PBI-004",
     "type": "Código",
     "title": "Configurar Playwright y el smoke test E2E",
-    "owner": "C",
+    "owner": "A",
     "estimate": "6 h",
     "priority": "Alta",
     "depends": [
@@ -606,7 +605,7 @@
     "pbi": "PBI-004",
     "type": "Test",
     "title": "Añadir el test de ejemplo rojo → verde",
-    "owner": "C",
+    "owner": "A",
     "estimate": "3 h",
     "priority": "Alta",
     "depends": [
@@ -628,7 +627,7 @@
     "pbi": "PBI-004",
     "type": "Código",
     "title": "Crear el hook local y resolver la inmutabilidad",
-    "owner": "C",
+    "owner": "A",
     "estimate": "4 h",
     "priority": "Alta",
     "depends": [
@@ -692,5 +691,27 @@
       "[PBI-004][CA-01] suite-ejecutable"
     ],
     "sprint": "S02"
+  },
+  {
+    "key": "INFRA-01",
+    "pbi": "INFRA",
+    "type": "Chore",
+    "title": "Protección de ramas, CODEOWNERS y activación dinámica de roles Scrum",
+    "owner": "C",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Garantizar la protección técnica de main y develop mediante Pull Requests con aprobación de compañeros, respetando la rotación de roles Scrum y CODEOWNERS.",
+    "acceptance": [
+      "Definir el registro dinámico de roles activos por Sprint (docs/scrum/active_roles.env).",
+      "Configurar .github/CODEOWNERS mapeando rutas al rol responsable.",
+      "Implementar scripts/github/protect-branches.sh para configurar branch protection en GitHub.",
+      "Bypass seguro en pre-commit para el Administrador de Gobernanza.",
+      "Script de rotación de roles entre Sprints."
+    ],
+    "tests": [
+      "N/A"
+    ],
+    "sprint": "S01"
   }
 ]

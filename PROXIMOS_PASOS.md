@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `1ead389 — *docs(scrum): documentar perfiles de onboarding y arquitectura de gobernanza en tres capas*`
-- **Fecha de última sincronización:** 2026-11-04 08:57
+- **Último commit consolidado:** `7a6d372 — *docs(global): actualizar README con stack, roadmap de sprint y perfiles*`
+- **Fecha de última sincronización:** 2026-11-04 13:30
 
 ---
 
@@ -38,9 +38,9 @@
 
 **Sprint Goal:** dejar preparado el núcleo fundacional verificable —aplicación web base, tokens semánticos con tema claro/oscuro y arnés de pruebas con hook local— para construir el primer PBI funcional con SDD y TDD.
 
-**Fechas confirmadas:** 2026-11-03 → 2026-11-08 (4 días laborables) · **Capacidad comprometida:** 3 developers, 76 h planificadas en 16 tareas (64 h / 15 tareas pospuestas a S02).
+**Fechas confirmadas:** 2026-11-03 → 2026-11-08 (4 días laborables) · **Capacidad comprometida:** 3 developers, 80 h planificadas en 17 tareas (64 h / 15 tareas pospuestas a S02).
 
-**Reparto:** Dev A `@FSolaje` (`PBI-001 T01–T06`, 30 h), Dev B `@Tarrant15` (`PBI-002 T01–T05`, 21 h), Dev C `@Fernis23228` (`PBI-004 T01–T05`, 25 h). `PBI-003` pasa a S02.
+**Reparto:** Dev B `@Tarrant15` (`PBI-001 T01–T06`, 30 h), Dev A `@FSolaje` (`PBI-004 T01–T05`, 25 h), Dev C `@Fernis23228` (`PBI-002 T01–T05` 21 h + `INFRA-01` 4 h = 25 h). `PBI-003` pasa a S02.
 
 Artefactos:
 
@@ -53,7 +53,7 @@ Artefactos:
 - [x] Plantillas SDD/TDD en `specs/`.
 - [x] ADR template en `docs/decisiones/`.
 - [x] Plantillas de GitHub Issues/PR (`.github/`) y scripts de automatización y autenticación segura (`scripts/github/`).
-- [x] 17 labels, milestone `S01` y 20 issues creados en GitHub (`#2`–`#5` PBIs; `#6`–`#21` tareas asignadas a `@FSolaje`, `@Tarrant15` y `@Fernis23228`).
+- [x] 17 labels, milestone `S01` e issues organizados para el Sprint S01 (`#2`, `#3`, `#5` PBIs; `#6`–`#21` tareas; `#22` INFRA-01).
 - [x] Tarea de infraestructura `#22` (`INFRA-01`) creada y vinculada en el Project `#1` para protección de ramas, CODEOWNERS y roles dinámicos.
 - [x] Tablero GitHub Projects v2 creado (`#1 — ShopMaker — S01`) con los 8 campos Scrum y todos los issues vinculados.
 - [x] Gobernanza de token multiusuario en `user_data/security/gh_token.txt` (permisos `600`) validada mediante `scripts/github/gh-auth-env.sh`.
@@ -62,9 +62,10 @@ Artefactos:
 
 PBIs del Sprint S01:
 
-- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@FSolaje`).
-- [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Tarrant15`).
-- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@Fernis23228`).
+- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`).
+- [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
+- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
+- [ ] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
 - [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
 ### 🧪 Pruebas
