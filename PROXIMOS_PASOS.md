@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `1106c48 — *chore(governance): verificar y guiar la configuracion obligatoria de user_data/security*`
-- **Fecha de última sincronización:** 2026-11-04 08:38
+- **Último commit consolidado:** `8371a96 — *chore(governance): flexibilizar onboarding y habilitar modelo de gobernanza en tres capas*`
+- **Fecha de última sincronización:** 2026-11-04 08:55
 
 ---
 
