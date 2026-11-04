@@ -23,9 +23,9 @@ La primera entrega se ejecuta como **aplicación web desktop-first en el navegad
 
 | Integrante | Usuario GitHub | Rol Scrum | Área de trabajo |
 |---|---|---|---|
-| Francisco Tomas | `@FSolaje` | Product Owner / Developer (Dev A) | Shell y aplicación web (`PBI-001`) |
-| Jesús Hernández | `@Tarrant15` | Scrum Master / Developer (Dev B) | Sistema visual y accesibilidad (`PBI-002`) |
-| Fernando Ruescas | `@Fernis23228` | Developer (Dev C) | Arnés de pruebas y calidad (`PBI-004`) |
+| Jesús Hernández | `@Tarrant15` | Scrum Master / Developer (Dev B) | Shell y aplicación web base (`PBI-001`) |
+| Francisco Tomas | `@FSolaje` | Product Owner / Developer (Dev A) | Arnés de pruebas, calidad y CI (`PBI-004`) |
+| Fernando Ruescas | `@Fernis23228` | Developer (Dev C) | Sistema visual, accesibilidad y protección (`PBI-002` + `INFRA-01`) |
 | Javier Ibañez | — | Cliente / Stakeholder | Feedback funcional en Sprint Review |
 
 Detalle de responsabilidades, acuerdos y rotación dinámica en [`docs/scrum/team.md`](docs/scrum/team.md).

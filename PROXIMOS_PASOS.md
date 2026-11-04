@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `6044f98 — *chore(governance): sincronizar nucleo de gobernanza desde main*`
-- **Fecha de última sincronización:** 2026-11-04 08:56
+- **Último commit consolidado:** `8ececf2 — *docs(global): actualizar README con stack, roadmap de sprint y perfiles*`
+- **Fecha de última sincronización:** 2026-11-04 13:31
 
 ---
 
