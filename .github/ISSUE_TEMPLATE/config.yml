@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentación Scrum y SDD
+    url: https://github.com/Grup-05/ShopMaker-DAW/tree/develop/docs
+    about: Consulta el Product Backlog, el Sprint Backlog y las specs antes de abrir una incidencia.

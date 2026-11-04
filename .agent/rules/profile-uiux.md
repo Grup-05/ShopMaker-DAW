@@ -19,7 +19,7 @@ En caso de conflicto entre este perfil y la Constitución Global, prevalece siem
 - **ShopMaker** es un CMS que permite a los usuarios comprar módulos y construir su propia página web, con alojamiento proporcionado por la plataforma.
 - La arquitectura global del sistema es de **tres capas**: frontend, backend/API y base de datos.
 - **Este repositorio contiene exclusivamente el frontend.** Queda prohibido implementar lógica de backend, acceso directo a base de datos, migraciones, secretos de servidor o reglas de negocio que correspondan a la API.
-- La primera entrega es un **aplicativo de escritorio**. El perfil se aplica con enfoque *desktop-first*, independientemente de que el shell sea nativo (Electron, Tauri u otro) o una aplicación web instalable.
+- La primera entrega es una **aplicación web desktop-first** que se ejecuta en el navegador. No se usa shell nativo ni se asume acceso directo al sistema de archivos.
 - Las **webs generadas por los clientes** sí deben ser responsive y *mobile-first*. La interfaz de administración del CMS, en cambio, se diseña para escritorio.
 
 ### 0.2. Principios rectores
@@ -81,12 +81,12 @@ Los **spikes** son timeboxed, producen hallazgos documentados y su código **no*
 1. **Presentación:** componentes visuales, páginas, layouts y estilos.
 2. **Aplicación/estado:** casos de uso, coordinación de acciones y estado de la interfaz.
 3. **Dominio:** entidades, tipos, reglas de validación y lógica propia del CMS.
-4. **Infraestructura:** adaptadores de API, almacenamiento local, shell de escritorio e IPC.
+4. **Infraestructura:** adaptadores de API, almacenamiento local y APIs del navegador.
 
 Reglas de dependencia:
 
 - La presentación no importa directamente infraestructura.
-- El dominio no depende de frameworks, HTTP ni del shell de escritorio.
+- El dominio no depende de frameworks, HTTP ni del navegador.
 - La infraestructura implementa interfaces o puertos definidos por la aplicación/dominio.
 - Los componentes visuales no contienen reglas de negocio ni llamadas de red directas.
 
@@ -115,7 +115,7 @@ La estructura concreta se definirá en el `plan.md` de cada feature, pero se rec
 
 ```text
 src/
-├── app/                  # Arranque, routing, providers, tema y shell
+├── app/                  # Arranque, routing, providers, tema y layout
 ├── features/
 │   └── <feature>/
 │       ├── components/   # Presentación específica
@@ -147,19 +147,19 @@ Esta estructura es orientativa y debe adaptarse al stack acordado, sin romper la
 - Cada módulo debe declararse mediante un manifiesto con: identificador, versión, permisos, configuración, recursos y puntos de extensión.
 - El núcleo del CMS no debe modificarse para añadir un módulo nuevo.
 - La UI puede mostrar y configurar módulos, pero **la compra, la titularidad y los permisos se validan siempre en el backend**.
-- Los módulos remotos no deben ejecutar código arbitrario en el renderer. Deben aplicarse listas de permitidos, sandboxing y validación de manifiestos.
+- Los módulos remotos no deben ejecutar código arbitrario en el cliente. Deben aplicarse listas de permitidos, sandboxing y validación de manifiestos.
 - Toda integración de módulos debe especificar su comportamiento ante errores, incompatibilidades y permisos insuficientes.
 
-### 2.7. Shell de escritorio
+### 2.7. Aplicación web y límites del navegador
 
-- La ventana debe soportar redimensionado y un tamaño mínimo definido en la spec.
+- La aplicación se distribuye como SPA y se ejecuta en el navegador; no hay shell nativo, IPC ni proceso principal.
+- El layout debe funcionar en un viewport mínimo de 1024×720 y no puede imponer el tamaño de la ventana del navegador.
 - La navegación debe funcionar con teclado y ratón.
-- Si se usa un shell nativo tipo Electron o Tauri:
-  - Aislar el renderer (`contextIsolation`, sin `nodeIntegration`).
-  - Exponer IPC únicamente mediante un preload con canales permitidos.
-  - Validar todos los payloads recibidos desde el renderer.
-  - No almacenar secretos en el proceso de renderizado.
-- Si se distribuye como aplicación web de escritorio, respetar las limitaciones del navegador y no asumir acceso al sistema de archivos.
+- El hosting debe resolver las rutas de la SPA hacia `index.html`. Si no es posible, se usará `HashRouter` o una estrategia equivalente.
+- No se asume acceso directo a Node ni al sistema de archivos. La persistencia local usa `localStorage` o IndexedDB; la importación y exportación usan la File API cuando la feature lo requiera.
+- Se deben definir y probar los navegadores objetivo.
+- La aplicación se sirve con CSP estricta, sin secretos en el cliente y sin `eval` ni ejecución de código remoto no verificado.
+- Si en el futuro se adopta un shell nativo, se documentará en un ADR y se aplicarán las reglas de aislamiento correspondientes.
 
 ---
 
@@ -168,7 +168,7 @@ Esta estructura es orientativa y debe adaptarse al stack acordado, sin romper la
 ### 3.1. Enfoque desktop-first
 
 - Resolución de referencia: **1280×800**.
-- Tamaño mínimo de ventana soportado: **1024×720**, salvo justificación en la spec.
+- Viewport mínimo soportado: **1024×720**, salvo justificación en la spec.
 - Adaptación progresiva a tablet y móvil cuando la feature lo requiera.
 - Las **webs generadas por los clientes** se diseñan *mobile-first*, con puntos de verificación en 360, 768, 1280 y 1440 px.
 - No ocultar acciones críticas detrás de `hover`; deben ser accesibles por teclado y visibles en todo momento.
@@ -225,13 +225,13 @@ Toda pantalla o componente con datos debe contemplar:
 ## 4. Seguridad del frontend CMS
 
 1. **Cero secretos:** prohibido incluir claves, tokens, contraseñas o credenciales en el frontend.
-2. **Autenticación:** el almacenamiento de sesión se define con el backend. Preferir almacenamiento seguro del sistema operativo o cookies `HttpOnly`; evitar tokens de larga duración en `localStorage`.
+2. **Autenticación:** el almacenamiento de sesión se define con el backend. Preferir cookies `HttpOnly`, `Secure` y `SameSite`; evitar tokens de larga duración en `localStorage`.
 3. **XSS y contenido generado:** todo HTML, CSS o JS creado por el usuario debe sanitizarse.
 4. **Previsualización segura:** usar `iframe` con `sandbox`, CSP estricta y, preferiblemente, origen aislado.
 5. **Prohibido `eval`, `new Function` y ejecución de código remoto no verificado.**
 6. **Compras y titularidad:** la UI nunca calcula precios finales ni permisos definitivos; solo refleja lo que confirme el backend.
 7. **Módulos:** validar manifiestos, permisos y compatibilidad antes de activarlos.
-8. **IPC:** canales permitidos, validación de payloads y mínimo privilegio.
+8. **Almacenamiento local:** no guardar tokens de sesión ni datos sensibles en `localStorage`; usar IndexedDB solo para borradores no sensibles cuando la feature lo requiera.
 9. **Dependencias:** lockfiles versionados y auditoría periódica.
 10. **Privacidad:** no registrar datos personales ni secretos en logs, telemetría o mensajes de error.
 
@@ -239,7 +239,7 @@ Toda pantalla o componente con datos debe contemplar:
 
 ## 5. TDD, pruebas y validación
 
-La práctica TDD se define en [methodology-tdd.md](methodology-tdd.md). En este perfil se aplica con enfoque frontend y escritorio.
+La práctica TDD se define en [methodology-tdd.md](methodology-tdd.md). En este perfil se aplica con enfoque frontend y web.
 
 ### 5.1. Niveles de prueba
 
@@ -250,8 +250,8 @@ La práctica TDD se define en [methodology-tdd.md](methodology-tdd.md). En este 
 - **E2E:** flujos críticos como registro, inicio de sesión, catálogo, compra simulada, activación de módulos, edición y publicación de una web, y panel de alojamiento.
 - **Visuales:** componentes críticos y previsualizaciones en los viewports definidos.
 - **Accesibilidad:** comprobaciones automáticas y revisión manual con teclado y lector de pantalla.
-- **Seguridad:** sanitización, sandbox de previsualización, permisos e IPC.
-- **Empaquetado:** prueba de arranque de la aplicación de escritorio en el sistema objetivo.
+- **Seguridad:** sanitización, sandbox de previsualización y permisos.
+- **Despliegue:** prueba de arranque de la aplicación web en el navegador objetivo.
 
 ### 5.2. Reglas
 
@@ -297,7 +297,7 @@ Queda prohibido mezclar `feat` con `fix`, o código funcional con documentación
 
 Ámbitos recomendados para este perfil:
 
-- **Aplicación:** `app`, `shell`, `routing`, `state`, `api`, `forms`
+- **Aplicación:** `app`, `web`, `routing`, `state`, `api`, `forms`
 - **CMS:** `auth`, `catalog`, `modules`, `checkout`, `billing`, `builder`, `editor`, `templates`, `preview`, `hosting`, `dashboard`
 - **UI/UX:** `ui`, `tokens`, `theme`, `layout`, `a11y`, `visual`, `desktop`
 - **Calidad:** `tests`, `docs`, `security`
@@ -337,8 +337,8 @@ Antes de crear un tag o una entrega:
 
 1. `[CHECK 0 - Sprint Review]:` El PO ha aceptado el incremento y el Sprint Goal se ha cumplido o justificado.
 2. `[CHECK 0.1 - Suite]:` Todas las pruebas pasan y la matriz de criterios está completa (100 %).
-3. `[CHECK 1 - Build y empaquetado]:` La aplicación compila y arranca en el sistema objetivo.
-4. `[CHECK 2 - Escritorio]:` Se valida la ventana en 1024×720, 1280×800 y 1440×900, incluyendo redimensionado y navegación por teclado.
+3. `[CHECK 1 - Build y despliegue]:` La aplicación compila y arranca en el navegador objetivo.
+4. `[CHECK 2 - Layout]:` Se valida el layout en 1024×720, 1280×800 y 1440×900, incluyendo zoom al 200 % y navegación por teclado.
 5. `[CHECK 3 - Accesibilidad]:` Contraste, foco, etiquetas, zoom y navegación sin ratón.
 6. `[CHECK 4 - Seguridad CMS]:` Previsualización aislada, contenido sanitizado y ausencia de secretos.
 7. `[CHECK 5 - Contrato API]:` Compatibilidad verificada con la versión del backend acordada.

@@ -142,8 +142,8 @@ Nunca nombres como `test1`, `prueba`, `funciona` o referencias a métodos privad
 | E2E | Flujos críticos completos | Registro, compra simulada, publicación de web |
 | Visual | Apariencia estable de componentes críticos | Tokens, layouts, previsualización |
 | Accesibilidad | Teclado, foco, roles, contraste | Navegación sin ratón, etiquetas |
-| Seguridad | Sanitización, permisos, sandbox, IPC | Contenido generado por usuarios |
-| Empaquetado | Arranque de la app de escritorio | Smoke test en el sistema objetivo |
+| Seguridad | Sanitización, permisos, sandbox | Contenido generado por usuarios |
+| Despliegue | Arranque de la app web y fallback de SPA | Smoke test en el navegador objetivo |
 
 Reglas:
 
@@ -157,14 +157,14 @@ Reglas:
 
 ---
 
-## 5. TDD en UI/UX y escritorio
+## 5. TDD en UI/UX y web
 
 1. **Consultas accesibles:** los tests de componentes deben buscar por rol, etiqueta o texto visible, no por clases CSS ni estructura interna.
 2. **Estados obligatorios:** carga, vacío, error, éxito, deshabilitado, sin permisos y sin conexión.
 3. **Formularios:** validación, mensajes de error, conservación de datos y confirmación de acciones destructivas.
 4. **Editor de webs:** autoguardado, recuperación de borradores, publicación y previsualización aislada.
 5. **Compras y módulos:** la UI refleja permisos y titularidad; los tests usan respuestas simuladas del backend.
-6. **Shell de escritorio:** contratos de IPC, ciclo de vida de ventana, atajos de teclado y tamaño mínimo.
+6. **Aplicación web:** routing, fallback de SPA, carga, viewport mínimo, zoom y atajos de teclado.
 7. **Regresión visual:** solo para componentes estables y previsualizaciones; no convertir cada detalle estético en un snapshot frágil.
 8. **Accesibilidad:** automatizada con herramientas y revisión manual con teclado y lector de pantalla.
 

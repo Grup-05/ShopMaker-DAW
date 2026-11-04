@@ -15,13 +15,15 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 - *Correcciones de errores o bugs solventados (`fix`).*
 
 ### Changed
-- *Cambios en la funcionalidad o arquitectura existente (`refactor`).*
+- Adoptado **React + TypeScript + Vite** como stack del frontend ([ADR-001](docs/decisiones/ADR-001-react-typescript.md)).
+- Definida la primera entrega como **aplicación web SPA en navegador**, desktop-first, sin shell nativo ([ADR-002](docs/decisiones/ADR-002-aplicacion-web.md)).
 
 ### Security
 - *Mejoras de seguridad, políticas SAST o parches criptográficos.*
 
 ### Documentation
-- *Nuevos manuales, páginas técnicas o especificaciones (`docs`).*
+- Actualizados PBI-001, Sprint S01, `README.md` y `PROXIMOS_PASOS.md` para reflejar la entrega web.
+- Añadidos los ADR-001 y ADR-002 al índice de decisiones.
 
 ---
 
