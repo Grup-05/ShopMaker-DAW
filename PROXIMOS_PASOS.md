@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `f4a25d5 — *chore(security): añadir script de inicializacion y verificacion de user_data/security*`
-- **Fecha de última sincronización:** 2026-11-03 23:26
+- **Último commit consolidado:** `d2fa902 — *docs(security): documentar requisito obligatorio y guiado de user_data/security*`
+- **Fecha de última sincronización:** 2026-11-04 08:38
 
 ---
 
