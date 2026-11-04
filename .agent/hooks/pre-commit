@@ -116,18 +116,7 @@ LOCAL_PATTERNS_FILE="$SECURITY_DIR/forbidden_patterns.txt"
 LOCAL_TOKEN_FILE="$SECURITY_DIR/gh_token.txt"
 
 if [ ! -d "$SECURITY_DIR" ] || [ ! -f "$LOCAL_PATTERNS_FILE" ]; then
-    echo "⚠️  [AVISO SAS] Entorno local de seguridad no configurado en: user_data/security/"
-    echo "   ════════════════════════════════════════════════════════════════════════════════"
-    echo "   ¿POR QUÉ ES OBLIGATORIA LA CARPETA 'user_data/security/'?"
-    echo "   1. Aislamiento SAS (AGENTS.md §7): user_data/ está estrictamente ignorado"
-    echo "      en Git para que ningún secreto, token o ruta privada llegue al repositorio."
-    echo "   2. forbidden_patterns.txt: Contiene tus rutas locales ($HOME/) y patrones"
-    echo "      privados de tu máquina para que el escáner SAST bloquee fugas accidentales."
-    echo "   3. gh_token.txt: Guarda tu token personal de GitHub (permisos 600) para"
-    echo "      gestionar issues, PRs y tableros sin exponer tus credenciales."
-    echo "   ════════════════════════════════════════════════════════════════════════════════"
-    echo "   ⚙️  Inicializando automáticamente la estructura segura con permisos 700/600..."
-
+    echo "ℹ️  [Seguridad Local] Inicializando entorno de protección privada en user_data/security/..."
     mkdir -p "$SECURITY_DIR"
     chmod 700 "$SECURITY_DIR" 2>/dev/null || true
 
@@ -151,16 +140,13 @@ EOF
 
     if [ ! -f "$LOCAL_TOKEN_FILE" ]; then
         cat << 'EOF' > "$LOCAL_TOKEN_FILE"
-# Token personal de GitHub CLI (gh) — NO versionar
-# Para configurar automáticamente: bash scripts/github/gh-auth-env.sh --login
+# Token personal de GitHub CLI (gh) — Opcional (solo para gestión CLI de tableros/issues)
+# Si solo desarrollas código funcional, este archivo puede dejarse en blanco.
+# Para configurarlo interactivamente: bash scripts/github/gh-auth-env.sh --login
 EOF
         chmod 600 "$LOCAL_TOKEN_FILE" 2>/dev/null || true
-        echo "   ✔ Plantilla creada: user_data/security/gh_token.txt (permisos 600)."
+        echo "   ✔ Plantilla creada: user_data/security/gh_token.txt (opcional, permisos 600)."
     fi
-
-    echo "   Para completar la configuración de tu token personal de GitHub, ejecuta:"
-    echo "     bash scripts/github/gh-auth-env.sh --login"
-    echo "   ════════════════════════════════════════════════════════════════════════════════"
 else
     # Asegurar permisos restrictivos en instalaciones existentes
     chmod 700 "$SECURITY_DIR" 2>/dev/null || true
