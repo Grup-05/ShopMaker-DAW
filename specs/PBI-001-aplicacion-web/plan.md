@@ -10,7 +10,7 @@
 | Spec | `specs/PBI-001-aplicacion-web/spec.md` |
 | Autor | Jesús Hernández (`@Tarrant15`, Dev B) |
 | Fecha | 2026-11-09 |
-| Estado | Borrador |
+| Estado | En revisión — pendiente aprobación humana |
 
 ## 1. Resumen de la solución
 

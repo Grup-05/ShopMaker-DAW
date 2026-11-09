@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `main`
-- **Último commit consolidado:** `1f85568 — *chore(governance): integrar activos fundacionales, scripts y plantillas de github en main*`
-- **Fecha de última sincronización:** 2026-11-04 13:47
+- **Rama activa:** `feature/PBI-001-aplicacion-web`
+- **Último commit consolidado:** `e6f5e4d — *docs(PBI-001): detail TDD tests and evidence (T03)*`
+- **Fecha de última sincronización:** 2026-11-09 15:51
 
 ---
 
@@ -62,7 +62,7 @@ Artefactos:
 
 PBIs del Sprint S01:
 
-- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`).
+- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`). T01–T03 redactadas y commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); T04 preparada y bloqueada por PBI-004 T03.
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
 - [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
 - [ ] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
@@ -72,14 +72,15 @@ PBIs del Sprint S01:
 
 - [ ] Runner y comando único de suite definidos.
 - [ ] Test de humo de la aplicación web.
-- [ ] Matriz spec-test inicial completada.
+- [x] Matriz spec-test inicial documentada en `specs/PBI-001-aplicacion-web/plan.md` (estados de ejecución pendientes).
 - [ ] Hook `.agent/hooks/pre-commit-local.sh` operativo.
 
 ### 📝 Documentación
 
 - [x] `README.md` con metodología, roles, ramas, commits y DoD.
 - [x] `CHANGELOG.md` inicializado.
-- [ ] Especificaciones `specs/PBI-001/`, `specs/PBI-002/` y `specs/PBI-004/` redactadas.
+- [x] `specs/PBI-001-aplicacion-web/` redactada: `spec.md`, `plan.md` y `tasks.md` (T01–T03, en revisión).
+- [ ] Especificaciones `specs/PBI-002-*/` y `specs/PBI-004-*/` redactadas.
 - [x] ADR-001 (React/TS/Vite) y ADR-002 (aplicación web) aceptados.
 
 ---
@@ -87,10 +88,15 @@ PBIs del Sprint S01:
 ## 🎯 Próximo Paso Inmediato
 
 1. **Reunión de equipo (04-nov):** Decidir si se activan las protecciones de rama de GitHub (`INFRA-01` / issue `#22`) con `bash scripts/github/protect-branches.sh` antes de comenzar a integrar los PBIs en `develop`.
-2. **Iniciar el trabajo SDD/TDD del Sprint S01:**
-   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (`#6`–`#8`), `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
-   - Aprobar las specs y confirmar `docs(spec): ...` (requiere orden humana).
-   - Iniciar el ciclo TDD con el arnés de pruebas (`PBI-004`) y el primer test rojo de la aplicación web (`PBI-001`).
+2. **PBI-001 — cerrar T03 y acometer T04:**
+   - [x] Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (T01–T03; commits `55c0d86`, `3125dc9`, `e6f5e4d`).
+   - [ ] Obtener aprobación humana de los artefactos SDD.
+   - [ ] Confirmar con PBI-004 T03 (#19) el arnés Playwright, la ruta de tests y los comandos E2E.
+   - [ ] Confirmar con PBI-005 las rutas de login/registro (solo bloquea `navigation-destinations`).
+   - [ ] Ejecutar T04: escribir `[PBI-001][CA-01] app-arranque`, verificar rojo válido y registrar evidencia.
+3. **Resto del Sprint S01:**
+   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
+   - Configurar Vitest/RTL y Playwright (PBI-004 T02–T03) antes de continuar T04–T06 de PBI-001.
 
 ---
 
@@ -103,6 +109,8 @@ PBIs del Sprint S01:
 | 2026-11-03 | Creación de labels, milestone `S01`, 20 issues (`#2`–`#21`) y tablero GitHub Projects v2 (`#1`) | SM / Dev A | Resuelto |
 | 2026-11-03 | `.agent/hooks/pre-commit-local.sh` bloqueado por inmutabilidad del núcleo | Dev C + SM | Resuelto en `main` (`f29cb46`, `b41ba5f`) y propagado a todas las ramas |
 | 2026-11-03 | Lockfiles ignorados en `.gitignore` | Dev A | Resuelto (`f283524`) |
+| 2026-11-09 | PBI-004 T03 (#19) sin arnés Playwright/servidor E2E publicado | Dev A (`@FSolaje`) | Abierto; bloquea PBI-001 T04 |
+| 2026-11-09 | PBI-005 sin rutas de login/registro definidas | PBI-005 | Abierto; solo bloquea PBI-001 `navigation-destinations` |
 
 ---
 

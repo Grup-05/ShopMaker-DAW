@@ -10,7 +10,7 @@
 | Sprint | `S01` |
 | Autor | Jesús Hernández (`@Tarrant15`, Dev B) |
 | Fecha | 2026-11-09 |
-| Estado | Borrador |
+| Estado | En revisión — pendiente aprobación humana |
 | Rama | `feature/PBI-001-aplicacion-web` |
 
 ## 1. Contexto y problema

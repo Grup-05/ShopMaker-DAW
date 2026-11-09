@@ -225,7 +225,7 @@ bash scripts/github/gh-auth-env.sh --login
 └── README.md
 ```
 
-La estructura de código (`src/`) se definirá en el `plan.md` del PBI-001 conforme al stack React + TypeScript + Vite.
+La estructura de código (`src/`) está definida en el `plan.md` del PBI-001 conforme al stack React + TypeScript + Vite; el scaffold se crea en T05.
 
 ---
 

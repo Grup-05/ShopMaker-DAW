@@ -24,6 +24,7 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 ### Documentation
 - Actualizados PBI-001, Sprint S01, `README.md` y `PROXIMOS_PASOS.md` para reflejar la entrega web.
 - Añadidos los ADR-001 y ADR-002 al índice de decisiones.
+- Completados T01–T03 de PBI-001: `spec.md`, `plan.md` y `tasks.md` con 17 tests, cuatro ciclos TDD, mapeo CA/RNF → test y plan de acometida de T04.
 
 ---
 

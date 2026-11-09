@@ -33,12 +33,14 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
 |---|---|---|---|---|---|---|---|---|
-| T01 | Redactar la spec de la aplicación web | Spec | Dev B (`@Tarrant15`) | 4 h | — | S01 | Pendiente | `#6` |
-| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev B (`@Tarrant15`) | 4 h | T01 | S01 | Pendiente | `#7` |
-| T03 | Redactar `tasks.md` y la lista de tests | Spec | Dev B (`@Tarrant15`) | 2 h | T02 | S01 | Pendiente | `#8` |
-| T04 | Test rojo: la aplicación arranca en el navegador | Test | Dev B (`@Tarrant15`) | 4 h | T03 | S01 | Pendiente | `#9` |
+| T01 | Redactar la spec de la aplicación web | Spec | Dev B (`@Tarrant15`) | 4 h | — | S01 | En revisión | `#6` |
+| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev B (`@Tarrant15`) | 4 h | T01 | S01 | En revisión | `#7` |
+| T03 | Redactar `tasks.md` y la lista de tests | Spec | Dev B (`@Tarrant15`) | 2 h | T02 | S01 | En revisión | `#8` |
+| T04 | Test rojo: la aplicación arranca en el navegador | Test | Dev B (`@Tarrant15`) | 4 h | T03 | S01 | Bloqueada (PBI-004 T03) | `#9` |
 | T05 | Scaffold Vite + React + TypeScript y estructura por capas | Código | Dev B (`@Tarrant15`) | 8 h | T04 | S01 | Pendiente | `#10` |
 | T06 | Layout base con landmarks y navegación por teclado | Código | Dev B (`@Tarrant15`) | 8 h | T05 | S01 | Pendiente | `#11` |
+
+> T01–T03 redactadas y commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); pendiente de aprobación humana. T04 queda bloqueada hasta que PBI-004 T03 (#19) publique el arnés Playwright y sus comandos.
 
 ### PBI-002 — Tokens, tema y accesibilidad base (`#3` · `@Fernis23228` · 21 h en S01)
 
@@ -92,12 +94,27 @@
 
 ## Lista de tests del Sprint S01
 
+> La lista detallada de PBI-001, con nivel, archivo previsto y dependencias, vive en `specs/PBI-001-aplicacion-web/tasks.md`.
+
 | Test | PBI | RF / Criterio | Estado |
 |---|---|---|---|
-| `[PBI-001][CA-01] app-arranque` | PBI-001 | CA-01 | Pendiente |
-| `[PBI-001][CA-01] layout-base` | PBI-001 | CA-01 | Pendiente |
-| `[PBI-001][RNF-03] sin-acceso-a-node` | PBI-001 | RNF-03 | Pendiente |
-| `[PBI-001][CA-04] navegacion-teclado` | PBI-001 | CA-04 | Pendiente |
+| `[PBI-001][CA-01] app-arranque` | PBI-001 | CA-01, CA-05 | Pendiente (T04) |
+| `[PBI-001][CA-02] layer-boundaries` | PBI-001 | CA-02 | Pendiente (T05) |
+| `[PBI-001][CA-03] client-browser-only` | PBI-001 | CA-03, RNF-03 | Pendiente (T05) |
+| `[PBI-001][CA-01] home-layout` | PBI-001 | CA-01 | Pendiente (T06) |
+| `[PBI-001][CA-01][RF-03] navigation-destinations` | PBI-001 | CA-01, RF-03 | Pendiente (T06; rutas PBI-005) |
+| `[PBI-001][CA-01] empty-pages-message` | PBI-001 | CA-01 | Pendiente (T06) |
+| `[PBI-001][CA-01] preview-instruction` | PBI-001 | CA-01 | Pendiente (T06) |
+| `[PBI-001][CA-01][RNF-02] minimum-viewport` | PBI-001 | CA-01, RNF-02 | Pendiente (T06) |
+| `[PBI-001][CA-04] select-page` | PBI-001 | CA-04 | Pendiente (T06) |
+| `[PBI-001][CA-04] selection-clears-instruction` | PBI-001 | CA-04 | Pendiente (T06) |
+| `[PBI-001][CA-04][RNF-01] keyboard-navigation` | PBI-001 | CA-04, RNF-01 | Pendiente (T06) |
+| `[PBI-001][RNF-01] focus-visible` | PBI-001 | RNF-01 | Pendiente (revisión manual) |
+| `[PBI-001][CA-04] layout-button-does-not-select` | PBI-001 | CA-04 | Pendiente (T06) |
+| `[PBI-001][CA-04] create-button-inert` | PBI-001 | CA-04 | Pendiente (T06) |
+| `[PBI-001][CA-04][RNF-01] inert-controls-focusable` | PBI-001 | CA-04, RNF-01 | Pendiente (T06) |
+| `[PBI-001][CA-06] theme-button-placement` | PBI-001 | CA-06 | Pendiente (T06) |
+| `[PBI-001][RNF-04] zoom-200` | PBI-001 | RNF-04 | Pendiente (revisión manual) |
 | `[PBI-002][CA-01] tokens-contraste-aa` | PBI-002 | CA-01 | Pendiente |
 | `[PBI-002][CA-02] sin-color-exclusivo` | PBI-002 | CA-02 | Pendiente |
 | `[PBI-002][CA-03] tema-persistente` | PBI-002 | CA-03 | Pendiente |
@@ -116,6 +133,8 @@
 | 2026-11-03 | Lockfiles ignorados en `.gitignore`; impide builds reproducibles | Dev A (`@FSolaje`) | Resuelto (`f283524`) |
 | 2026-11-03 | `.agent/hooks/pre-commit-local.sh` bloqueado por la inmutabilidad del núcleo | Dev C + SM | Resuelto en `main` (`f29cb46`, `b41ba5f`) y sincronizado |
 | 2026-11-03 | `gh` sin autenticar y tablero de GitHub Projects sin crear | SM / Dev A | Resuelto (Project `#1` y 20 issues `#2`–`#21` vinculados) |
+| 2026-11-09 | Arnés E2E de PBI-004 T03 (#19) sin publicar: no hay Playwright, servidor E2E ni comandos confirmados | Dev A (`@FSolaje`) | Abierto; bloquea PBI-001 T04 |
+| 2026-11-09 | Rutas de «Iniciar sesión» y «Registrarse» de PBI-005 sin definir | PBI-005 | Abierto; solo bloquea `navigation-destinations` |
 
 ## Evidencia y seguimiento
 
