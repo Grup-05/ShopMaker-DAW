@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `ddde52c — *fix(hooks): ampliar sync-governance para sincronizar la carpeta .github completa y scripts*`
-- **Fecha de última sincronización:** 2026-11-04 22:03
+- **Último commit consolidado:** `fae32c0 — *Merge pull request #23 from Grup-05/chore/INFRA-01-proteccion-ramas*`
+- **Fecha de última sincronización:** 2026-11-09 16:52
 
 ---
 
@@ -59,6 +59,7 @@ Artefactos:
 - [x] Gobernanza de token multiusuario en `user_data/security/gh_token.txt` (permisos `600`) validada mediante `scripts/github/gh-auth-env.sh`.
 - [x] Asignación dinámica de roles en `docs/scrum/active_roles.env`, `.github/CODEOWNERS` y script `scripts/scrum/rotate-roles.sh`.
 - [x] Bypass controlado para el Administrador de Gobernanza implementado en `.agent/hooks/pre-commit` y constitucionalizado en `AGENTS.md`.
+- [x] Blindaje de `main` como rama estricta de producción (cero código/desarrollo a mitad, desarrollo exclusivo en `develop` durante el Sprint, especificación previa de merges a `main` y orden explícita *"Mandar a producción"* / *"Procede con el paso a producción"*).
 
 PBIs del Sprint S01:
 
