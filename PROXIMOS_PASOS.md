@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-004-arnes-pruebas`
-- **Último commit consolidado:** `ea6a89b — *test(harness): añadir pruebas unitarias demostrativas y smoke test e2e*`
-- **Fecha de última sincronización:** 2026-11-10 12:12
+- **Último commit consolidado:** `af10554 — *docs(pbi-004): actualizar matriz de trazabilidad y tareas completadas de pbi-004*`
+- **Fecha de última sincronización:** 2026-11-10 12:33
 
 ---
 
@@ -65,7 +65,7 @@ PBIs del Sprint S01:
 
 - [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (Fase SDD completada `T01–T03` `#6`–`#8`; pendiente TDD `T04–T06` `#9`–`#11`, 18 h — `@Tarrant15`).
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
-- [x] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
+- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje` [En revisión — PR #28]).
 - [x] **INFRA-01** (`#22`) — Protección de ramas (`main`, `develop`, `release`), CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
 - [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
@@ -87,11 +87,12 @@ PBIs del Sprint S01:
 
 ## 🎯 Próximo Paso Inmediato
 
-1. **Integrar `PBI-004` en `develop`:**
-   - Crear Pull Request de `feature/PBI-004-arnes-pruebas` hacia `develop`.
-   - Realizar merge administrativo y actualizar tablero Project `#1` (mover `#5` y `#17`–`#21` a **Hecho**).
+1. **Revisión por pares del PR #28 (`PBI-004`):**
+   - PR #28 (`feature/PBI-004-arnes-pruebas` → `develop`) abierto con la suite 100 % en verde y revisores asignados (`@Tarrant15`, `@Fernis23228`).
+   - En el tablero Project `#1`: `#5` y `#17`–`#21` en la columna **En revisión**.
+   - Una vez aprobado por un compañero, fusionar en `develop` y pasar las tarjetas a **Hecho**.
 2. **Desbloqueo de tareas colaborativas en S01:**
-   - `@Tarrant15` puede ejecutar T04 (`#9`, smoke test de la SPA base de `PBI-001`) sobre el arnés ya disponible.
+   - `@Tarrant15` puede revisar e integrar PR #28 y ejecutar T04 (`#9`, smoke test de la SPA base de `PBI-001`).
    - `@Fernis23228` puede iniciar `PBI-002` (Tokens y temas claro/oscuro con pruebas de contraste accesible).
 
 ---

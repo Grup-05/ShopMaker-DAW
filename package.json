@@ -14,7 +14,7 @@
     "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
-    "postinstall": "bash scripts/setup/create-bin-wrappers.sh"
+    "compat:exfat": "bash scripts/setup/create-bin-wrappers.sh"
   },
   "dependencies": {
     "react": "^18.3.1",
