@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-004-arnes-pruebas`
-- **Último commit consolidado:** `af10554 — *docs(pbi-004): actualizar matriz de trazabilidad y tareas completadas de pbi-004*`
-- **Fecha de última sincronización:** 2026-11-10 12:33
+- **Último commit consolidado:** `3f0dde2 — *refactor(harness): retirar postinstall, añadir compat:exfat opt-in y eliminar baseUrl deprecado*`
+- **Fecha de última sincronización:** 2026-11-10 12:58
 
 ---
 
