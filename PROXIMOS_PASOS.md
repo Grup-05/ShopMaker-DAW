@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `fix/obligar-merge-develop-pre-push`
-- **Último commit consolidado:** `2b83fbc — *Merge pull request #29 from Grup-05/fix/blindar-revision-pares-pr*`
-- **Fecha de última sincronización:** 2026-11-10 13:21
+- **Rama activa:** `feature/PBI-004-arnes-pruebas`
+- **Último commit consolidado:** `9c8fda6 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-10 13:14
 
 ---
 
@@ -63,35 +63,37 @@ Artefactos:
 
 PBIs del Sprint S01:
 
-- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`).
+- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (Fase SDD completada `T01–T03` `#6`–`#8`; pendiente TDD `T04–T06` `#9`–`#11`, 18 h — `@Tarrant15`).
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
-- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
+- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje` [En revisión — PR #28]).
 - [x] **INFRA-01** (`#22`) — Protección de ramas (`main`, `develop`, `release`), CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
 - [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
 ### 🧪 Pruebas
 
-- [ ] Runner y comando único de suite definidos.
-- [ ] Test de humo de la aplicación web.
-- [ ] Matriz spec-test inicial completada.
-- [ ] Hook `.agent/hooks/pre-commit-local.sh` operativo.
+- [x] Runner y comando único de suite definidos (`npm test` con Vitest).
+- [x] Test de humo de la aplicación web (`npm run test:e2e` con Playwright en Chromium/Firefox).
+- [x] Matriz spec-test inicial completada.
+- [x] Hook `.agent/hooks/pre-commit-local.sh` operativo.
 
 ### 📝 Documentación
 
 - [x] `README.md` con metodología, roles, ramas, commits y DoD.
 - [x] `CHANGELOG.md` inicializado.
-- [ ] Especificaciones `specs/PBI-001/`, `specs/PBI-002/` y `specs/PBI-004/` redactadas.
+- [x] Especificaciones `specs/PBI-001/` y `specs/PBI-004/` redactadas.
 - [x] ADR-001 (React/TS/Vite) y ADR-002 (aplicación web) aceptados.
 
 ---
 
 ## 🎯 Próximo Paso Inmediato
 
-1. **Protección de ramas activada (`INFRA-01` / issue `#22`):** `main`, `develop` y `release` protegidas con PR obligatorio, revisión CODEOWNERS y bloqueo a administradores.
-2. **Iniciar el trabajo SDD/TDD del Sprint S01:**
-   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (`#6`–`#8`), `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
-   - Aprobar las specs y confirmar `docs(spec): ...` (requiere orden humana).
-   - Iniciar el ciclo TDD con el arnés de pruebas (`PBI-004`) y el primer test rojo de la aplicación web (`PBI-001`).
+1. **Revisión por pares del PR #28 (`PBI-004`):**
+   - PR #28 (`feature/PBI-004-arnes-pruebas` → `develop`) abierto con la suite 100 % en verde y revisores asignados (`@Tarrant15`, `@Fernis23228`).
+   - En el tablero Project `#1`: `#5` y `#17`–`#21` en la columna **En revisión**.
+   - Una vez aprobado por un compañero, fusionar en `develop` y pasar las tarjetas a **Hecho**.
+2. **Desbloqueo de tareas colaborativas en S01:**
+   - `@Tarrant15` puede revisar e integrar PR #28 y ejecutar T04 (`#9`, smoke test de la SPA base de `PBI-001`).
+   - `@Fernis23228` puede iniciar `PBI-002` (Tokens y temas claro/oscuro con pruebas de contraste accesible).
 
 ---
 
