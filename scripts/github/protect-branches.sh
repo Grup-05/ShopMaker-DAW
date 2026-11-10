@@ -4,7 +4,7 @@
 # ==============================================================================
 # Propósito:
 #   Aplica las directrices de Scrum y AGENTS.md §1 en GitHub:
-#     - Prohíbe push directo a main y develop.
+#     - Prohíbe push directo a main, develop y release.
 #     - Exige Pull Request con mínimo 1 aprobación ajena al autor.
 #     - Aplica revisiones obligatorias basadas en .github/CODEOWNERS.
 #     - Revoca aprobaciones previas al subir nuevos commits.
@@ -12,7 +12,7 @@
 #     - Aplica restricciones incluso a administradores de la organización.
 #
 # Uso:
-#   bash scripts/github/protect-branches.sh [--dry-run] [--branches "main develop"]
+#   bash scripts/github/protect-branches.sh [--dry-run] [--branches "main develop release"]
 # ==============================================================================
 
 set -euo pipefail
@@ -22,6 +22,12 @@ if [ -z "${GH_TOKEN:-}" ] && [ -f "$ROOT_DIR/scripts/github/gh-auth-env.sh" ]; t
   # shellcheck source=/dev/null
   source "$ROOT_DIR/scripts/github/gh-auth-env.sh" --quiet-if-missing
 fi
+
+if [ -f "$ROOT_DIR/docs/scrum/active_roles.env" ]; then
+  # shellcheck source=/dev/null
+  source "$ROOT_DIR/docs/scrum/active_roles.env"
+fi
+GOVERNANCE_ADMIN="${GOVERNANCE_ADMIN:-FSolaje}"
 
 OWNER="${OWNER:-Grup-05}"
 REPO="${REPO:-ShopMaker-DAW}"
@@ -49,7 +55,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-[ -z "$BRANCHES" ] && BRANCHES="main develop"
+[ -z "$BRANCHES" ] && BRANCHES="main develop release"
 
 command -v gh >/dev/null 2>&1 || { echo "❌ gh no está instalado."; exit 1; }
 if [ "$DRY_RUN" != true ]; then
@@ -57,22 +63,31 @@ if [ "$DRY_RUN" != true ]; then
 fi
 
 echo "🛡️  Configurando protección de ramas en $OWNER/$REPO..."
-echo "   Ramas objetivo: $BRANCHES"
+echo "   Ramas objetivo:          $BRANCHES"
+echo "   Administrador Gobernanza: @$GOVERNANCE_ADMIN (bypass nativo para gobernanza)"
 [ "$DRY_RUN" = true ] && echo "   [MODO DRY-RUN ACTIVADO - No se escribirán cambios]"
 
-PROTECTION_PAYLOAD='{
+PROTECTION_PAYLOAD=$(cat << EOF
+{
   "required_status_checks": null,
   "enforce_admins": true,
   "required_pull_request_reviews": {
     "dismiss_stale_reviews": true,
     "require_code_owner_reviews": true,
     "required_approving_review_count": 1,
-    "require_last_push_approval": true
+    "require_last_push_approval": true,
+    "bypass_pull_request_allowances": {
+      "users": ["$GOVERNANCE_ADMIN"],
+      "teams": [],
+      "apps": []
+    }
   },
   "restrictions": null,
   "allow_force_pushes": false,
   "allow_deletions": false
-}'
+}
+EOF
+)
 
 for branch in $BRANCHES; do
   echo "👉 Aplicando protección a rama '$branch'..."

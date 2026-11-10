@@ -35,10 +35,27 @@ while read -r LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
 
     BRANCH_NAME="${REMOTE_REF#refs/heads/}"
 
-    # 1. Advertencia ante push a main
+    # 1. Blindaje de 'main' como rama estricta de producción
     if [ "$BRANCH_NAME" = "main" ]; then
-        echo "  ℹ️  [Aviso Gobernanza] Se está realizando un push a la rama principal 'main'."
-        echo "     Asegúrate de que este despliegue cuenta con revisión y aprobación previa."
+        if [ -n "$REMOTE_SHA" ] && [ "$REMOTE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            MAIN_REVS="$REMOTE_SHA..$LOCAL_SHA"
+        else
+            MAIN_REVS="$LOCAL_SHA"
+        fi
+        NON_GOV_PUSH_MAIN=$(git diff --name-only --diff-filter=ACM "$MAIN_REVS" 2>/dev/null | grep -Ev '^(\.agent/|\.github/|\.gitattributes$|docs/scrum/|docs/decisiones/|PROXIMOS_PASOS\.md$|scripts/|README\.md$|CHANGELOG\.md$)' || true)
+        if [ -n "$NON_GOV_PUSH_MAIN" ] && [ "${PRODUCTION_RELEASE_APPROVED:-false}" != "true" ]; then
+            echo "❌ [ERROR DE GOBERNANZA - BLOQUEO DE PASO A PRODUCCIÓN (main)]"
+            echo "   Se intenta publicar en 'main' desarrollo o archivos de PBI sin autorización de paso a producción:"
+            echo "$NON_GOV_PUSH_MAIN" | sed 's/^/      - /'
+            echo "   La rama 'main' es exclusivamente de producción y nunca puede tener código ni desarrollo a mitad."
+            echo "   Durante el Sprint se desarrolla e integra en 'develop'."
+            echo "   Para publicar un merge a producción al cierre del Sprint:"
+            echo "     1. Especifica formalmente el merge hacia 'main'."
+            echo "     2. Solicita y recibe la orden explícita: 'Mandar a producción' / 'Procede con el paso a producción'."
+            echo "     3. Ejecuta con: PRODUCTION_RELEASE_APPROVED=true git push origin main"
+            exit 1
+        fi
+        echo "  🛡️  [Gobernanza] Push hacia la rama de producción 'main' verificado."
     fi
 
     # 2. Validación de nomenclatura de ramas
@@ -66,6 +83,24 @@ while read -r LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
             echo "   Los archivos locales privados no pueden integrarse en develop ni en main."
             exit 1
         fi
+    fi
+
+    # 4. Obligación de sincronización previa con 'develop' en ramas de trabajo (feature/*, fix/*, dev/*)
+    if [[ "$BRANCH_NAME" =~ ^(feature/|fix/|dev/) ]]; then
+        git fetch "$REMOTE" develop --quiet 2>/dev/null || true
+        if git rev-parse --verify "$REMOTE/develop" >/dev/null 2>&1; then
+            if ! git merge-base --is-ancestor "$REMOTE/develop" "$LOCAL_SHA" 2>/dev/null; then
+                echo "❌ [ERROR DE GOBERNANZA - RAMA DESACTUALIZADA RESPECTO A 'develop']"
+                echo "   La rama '$BRANCH_NAME' no incluye los últimos cambios de '$REMOTE/develop'."
+                echo "   Antes de publicar una rama o abrir una Pull Request es obligatorio"
+                echo "   fusionar el estado actual de 'develop' y verificar que los tests pasen:"
+                echo "     1. git fetch $REMOTE develop && git merge $REMOTE/develop"
+                echo "     2. Resolver cualquier conflicto en tu rama y ejecutar la suite de pruebas."
+                echo "     3. Volver a ejecutar git push."
+                exit 1
+            fi
+        fi
+        echo "  ✔ [Sincronización] La rama '$BRANCH_NAME' está al día con '$REMOTE/develop'."
     fi
 done
 

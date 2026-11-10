@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `e6f5e4d — *docs(PBI-001): detail TDD tests and evidence (T03)*`
-- **Fecha de última sincronización:** 2026-11-09 15:51
+- **Último commit consolidado:** `4d51da6 — *docs(PBI-001): complete T03 checklist and plan T04*`
+- **Fecha de última sincronización:** 2026-11-10 17:33
 
 ---
 
@@ -59,44 +59,41 @@ Artefactos:
 - [x] Gobernanza de token multiusuario en `user_data/security/gh_token.txt` (permisos `600`) validada mediante `scripts/github/gh-auth-env.sh`.
 - [x] Asignación dinámica de roles en `docs/scrum/active_roles.env`, `.github/CODEOWNERS` y script `scripts/scrum/rotate-roles.sh`.
 - [x] Bypass controlado para el Administrador de Gobernanza implementado en `.agent/hooks/pre-commit` y constitucionalizado en `AGENTS.md`.
+- [x] Blindaje de `main` como rama estricta de producción (cero código/desarrollo a mitad, desarrollo exclusivo en `develop` durante el Sprint, especificación previa de merges a `main` y orden explícita *"Mandar a producción"* / *"Procede con el paso a producción"*).
 
 PBIs del Sprint S01:
 
-- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`). T01–T03 redactadas y commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); T04 preparada y bloqueada por PBI-004 T03.
+- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (Fase SDD completada `T01–T03` `#6`–`#8`; pendiente TDD `T04–T06` `#9`–`#11`, 18 h — `@Tarrant15`).
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
-- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
-- [ ] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
+- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje` [En revisión — PR #28]).
+- [x] **INFRA-01** (`#22`) — Protección de ramas (`main`, `develop`, `release`), CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
 - [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
 ### 🧪 Pruebas
 
-- [ ] Runner y comando único de suite definidos.
-- [ ] Test de humo de la aplicación web.
-- [x] Matriz spec-test inicial documentada en `specs/PBI-001-aplicacion-web/plan.md` (estados de ejecución pendientes).
-- [ ] Hook `.agent/hooks/pre-commit-local.sh` operativo.
+- [x] Runner y comando único de suite definidos (`npm test` con Vitest).
+- [x] Test de humo de la aplicación web (`npm run test:e2e` con Playwright en Chromium/Firefox).
+- [x] Matriz spec-test inicial completada.
+- [x] Hook `.agent/hooks/pre-commit-local.sh` operativo.
 
 ### 📝 Documentación
 
 - [x] `README.md` con metodología, roles, ramas, commits y DoD.
 - [x] `CHANGELOG.md` inicializado.
-- [x] `specs/PBI-001-aplicacion-web/` redactada: `spec.md`, `plan.md` y `tasks.md` (T01–T03, en revisión).
-- [ ] Especificaciones `specs/PBI-002-*/` y `specs/PBI-004-*/` redactadas.
+- [x] Especificaciones `specs/PBI-001/` y `specs/PBI-004/` redactadas.
 - [x] ADR-001 (React/TS/Vite) y ADR-002 (aplicación web) aceptados.
 
 ---
 
 ## 🎯 Próximo Paso Inmediato
 
-1. **Reunión de equipo (04-nov):** Decidir si se activan las protecciones de rama de GitHub (`INFRA-01` / issue `#22`) con `bash scripts/github/protect-branches.sh` antes de comenzar a integrar los PBIs en `develop`.
-2. **PBI-001 — cerrar T03 y acometer T04:**
-   - [x] Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (T01–T03; commits `55c0d86`, `3125dc9`, `e6f5e4d`).
-   - [ ] Obtener aprobación humana de los artefactos SDD.
-   - [ ] Confirmar con PBI-004 T03 (#19) el arnés Playwright, la ruta de tests y los comandos E2E.
-   - [ ] Confirmar con PBI-005 las rutas de login/registro (solo bloquea `navigation-destinations`).
-   - [ ] Ejecutar T04: escribir `[PBI-001][CA-01] app-arranque`, verificar rojo válido y registrar evidencia.
-3. **Resto del Sprint S01:**
-   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
-   - Configurar Vitest/RTL y Playwright (PBI-004 T02–T03) antes de continuar T04–T06 de PBI-001.
+1. **Revisión por pares del PR #28 (`PBI-004`):**
+   - PR #28 (`feature/PBI-004-arnes-pruebas` → `develop`) abierto con la suite 100 % en verde y revisores asignados (`@Tarrant15`, `@Fernis23228`).
+   - En el tablero Project `#1`: `#5` y `#17`–`#21` en la columna **En revisión**.
+   - Una vez aprobado por un compañero, fusionar en `develop` y pasar las tarjetas a **Hecho**.
+2. **Desbloqueo de tareas colaborativas en S01:**
+   - `@Tarrant15` puede revisar e integrar PR #28 y ejecutar T04 (`#9`, smoke test de la SPA base de `PBI-001`).
+   - `@Fernis23228` puede iniciar `PBI-002` (Tokens y temas claro/oscuro con pruebas de contraste accesible).
 
 ---
 
@@ -109,8 +106,6 @@ PBIs del Sprint S01:
 | 2026-11-03 | Creación de labels, milestone `S01`, 20 issues (`#2`–`#21`) y tablero GitHub Projects v2 (`#1`) | SM / Dev A | Resuelto |
 | 2026-11-03 | `.agent/hooks/pre-commit-local.sh` bloqueado por inmutabilidad del núcleo | Dev C + SM | Resuelto en `main` (`f29cb46`, `b41ba5f`) y propagado a todas las ramas |
 | 2026-11-03 | Lockfiles ignorados en `.gitignore` | Dev A | Resuelto (`f283524`) |
-| 2026-11-09 | PBI-004 T03 (#19) sin arnés Playwright/servidor E2E publicado | Dev A (`@FSolaje`) | Abierto; bloquea PBI-001 T04 |
-| 2026-11-09 | PBI-005 sin rutas de login/registro definidas | PBI-005 | Abierto; solo bloquea PBI-001 `navigation-destinations` |
 
 ---
 
