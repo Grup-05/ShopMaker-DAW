@@ -84,6 +84,24 @@ while read -r LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
             exit 1
         fi
     fi
+
+    # 4. Obligación de sincronización previa con 'develop' en ramas de trabajo (feature/*, fix/*, dev/*)
+    if [[ "$BRANCH_NAME" =~ ^(feature/|fix/|dev/) ]]; then
+        git fetch "$REMOTE" develop --quiet 2>/dev/null || true
+        if git rev-parse --verify "$REMOTE/develop" >/dev/null 2>&1; then
+            if ! git merge-base --is-ancestor "$REMOTE/develop" "$LOCAL_SHA" 2>/dev/null; then
+                echo "❌ [ERROR DE GOBERNANZA - RAMA DESACTUALIZADA RESPECTO A 'develop']"
+                echo "   La rama '$BRANCH_NAME' no incluye los últimos cambios de '$REMOTE/develop'."
+                echo "   Antes de publicar una rama o abrir una Pull Request es obligatorio"
+                echo "   fusionar el estado actual de 'develop' y verificar que los tests pasen:"
+                echo "     1. git fetch $REMOTE develop && git merge $REMOTE/develop"
+                echo "     2. Resolver cualquier conflicto en tu rama y ejecutar la suite de pruebas."
+                echo "     3. Volver a ejecutar git push."
+                exit 1
+            fi
+        fi
+        echo "  ✔ [Sincronización] La rama '$BRANCH_NAME' está al día con '$REMOTE/develop'."
+    fi
 done
 
 echo "  ✔ [Pre-push] Verificaciones de sincronización remota superadas."

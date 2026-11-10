@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `9f38a01 — *Merge pull request #27 from Grup-05/fix/revert-erroneous-pbi001-main*`
-- **Fecha de última sincronización:** 2026-11-10 12:59
+- **Último commit consolidado:** `0408527 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-10 13:24
 
 ---
 

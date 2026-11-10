@@ -102,6 +102,8 @@ Todos los commits realizados en este repositorio deben seguir **estrictamente** 
 3. **Preservación de Histórico e Integridad:**
    - Queda prohibido el uso de `git rebase` destructivo o `git push --force` sobre ramas compartidas o sobre `main`.
    - Cada entrega debe preservar un historial limpio, atómico y verificable.
+4. **Sincronización Previa Obligatoria con `develop` antes de Push y Pull Request:**
+   - Antes de publicar una rama de trabajo (`feature/*`, `fix/*`, `dev/*`) o abrir/actualizar un Pull Request hacia `develop`, el desarrollador debe obligatoriamente integrar el último estado de `develop` en su rama (`git fetch origin develop && git merge origin/develop`), resolver localmente cualquier conflicto y verificar que la suite completa de pruebas pase en verde.
 
 ---
 
@@ -130,6 +132,7 @@ Se ejecuta de forma automática e imperativa antes de cada commit:
 Se ejecuta de forma automática antes de enviar cambios al repositorio remoto:
 1. **Blindaje de `main` como Rama Estricta de Producción:** Bloquea cualquier `git push` hacia `main` que incorpore código de producto, pruebas o especificaciones de PBIs (`src/`, `specs/PBI-*`, etc.) a menos que cuente con especificación de merge a producción y autorización explícita (`PRODUCTION_RELEASE_APPROVED=true`). Permite únicamente la sincronización de activos puros del núcleo de gobernanza.
 2. **Validación de Convención de Nombres de Ramas:** Comprueba que la rama a publicar cumpla las convenciones establecidas para el proyecto, auditando la jerarquía de subdirectorios para prevenir colisiones internas en Git.
+3. **Verificación de Ancestro con `develop`:** En ramas de trabajo (`feature/*`, `fix/*`, `dev/*`), comprueba que `origin/develop` sea ancestro del commit a publicar (`git merge-base --is-ancestor`). Si `develop` ha avanzado, aborta el push exigiendo hacer `git merge origin/develop` y validar la suite antes de publicar.
 
 ### 4.3. Scripts y Herramientas del Núcleo de Gobernanza
 - **Instalación y Activación de Hooks:**
