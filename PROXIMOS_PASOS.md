@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `1f85568 — *chore(governance): integrar activos fundacionales, scripts y plantillas de github en main*`
-- **Fecha de última sincronización:** 2026-11-04 13:47
+- **Último commit consolidado:** `9f38a01 — *Merge pull request #27 from Grup-05/fix/revert-erroneous-pbi001-main*`
+- **Fecha de última sincronización:** 2026-11-10 12:59
 
 ---
 

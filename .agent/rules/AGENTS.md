@@ -42,6 +42,7 @@ Para garantizar la estabilidad operativa del repositorio sin restar agilidad a l
      3. El commit siga Conventional Commits bajo los tipos `chore(governance)`, `fix(hooks)` o `docs(...)`.
      4. La verificación SAST de seguridad (cero secretos, credenciales o rutas privadas) se mantiene obligatoria e inviolable.
      5. Una vez consolidado el trabajo, los cambios deben integrarse en `main` y propagarse al resto de ramas activas mediante `sync-governance.sh`.
+     6. **Prohibición Terminante de Bypass en PRs de Desarrollo de Producto:** La potestad del Administrador de Gobernanza **jamás** habilita para auto-aprobar, forzar el merge (`--admin`) ni desactivar temporalmente las protecciones de rama en GitHub (`enforce_admins`) sobre Pull Requests de funcionalidades o correcciones del producto (`feature/*`, `fix/*`). Todo PR de producto debe someterse obligatoriamente a la revisión y aprobación de otro miembro del equipo (`CODEOWNERS`).
 
 ### 1.2. Activos Modulares y Flexibles por Proyecto o Rama
 - **Reglas Contextuales (`.agent/rules/*.md`):** Cada proyecto o rama extiende este marco incorporando especificaciones técnicas particulares (diseño visual, arquitectura de datos, topologías de red, endpoints, etc.).
@@ -94,7 +95,11 @@ Todos los commits realizados en este repositorio deben seguir **estrictamente** 
    - Queda obsoleto y prohibido el uso del comando sobrecargado `git checkout`.
    - Para cambiar o crear ramas se usará exclusivamente `git switch` (ej. `git switch <rama>` o `git switch -c <nueva-rama>`).
    - Para descartar cambios o gestionar el área de preparación se usará exclusivamente `git restore` (ej. `git restore <archivo>` o `git restore --staged <archivo>`).
-2. **Preservación de Histórico e Integridad:**
+2. **`main` como Rama Estricta de Producción y `develop` como Rama de Desarrollo:**
+   - **`main` (Producción):** Es exclusivamente la **rama de producción**. Queda **terminantemente prohibido** que `main` contenga código a medias, funcionalidades en desarrollo, especificaciones de PBIs sin implementar (`specs/PBI-*`) o integraciones parciales a mitad de Sprint. En `main` solo residen entregas cerradas de producción y el núcleo de gobernanza global.
+   - **`develop` (Integración de Desarrollo):** Todo el desarrollo de los Sprints (especificaciones de PBIs, código fuente, pruebas, refactorizaciones y tareas técnicas desde ramas `feature/*`, `fix/*` o `chore/*`) se integra **única y exclusivamente en `develop`**.
+   - **Decisión de Paso a Producción al Cierre del Sprint:** Mientras el Sprint está en curso, se trabaja e integra en `develop`. Solo cuando finaliza el Sprint (con el Incremento completo, verificado en verde y aceptado en la *Sprint Review*), el Product Owner y el equipo deciden si se fusiona `develop` (o `release/vX.Y.Z`) hacia `main` (producción).
+3. **Preservación de Histórico e Integridad:**
    - Queda prohibido el uso de `git rebase` destructivo o `git push --force` sobre ramas compartidas o sobre `main`.
    - Cada entrega debe preservar un historial limpio, atómico y verificable.
 
@@ -107,7 +112,9 @@ El repositorio incorpora hooks de Git nativos y versionados en `.agent/hooks/`, 
 ### 4.1. Hook de Pre-commit (`.agent/hooks/pre-commit`)
 Se ejecuta de forma automática e imperativa antes de cada commit:
 1. **Live Tracking y Telemetría Git:** Si existe `PROXIMOS_PASOS.md`, actualiza de forma automática la rama activa, el último commit y la fecha/hora de sincronización, incorporándolo al staging (`git add PROXIMOS_PASOS.md`).
-2. **Blindaje de Inmutabilidad del Núcleo:** En ramas secundarias, aborta el commit si se detectan diferencias no autorizadas respecto a `main` en `.agent/hooks/` o `.agent/rules/AGENTS.md`. Se exceptúa `.agent/hooks/pre-commit-local.sh`, que es el hook local del proyecto.
+2. **Blindaje de Inmutabilidad del Núcleo y Protección de `main` como Producción:**
+   - En ramas secundarias, aborta el commit si se detectan diferencias no autorizadas respecto a `main` en `.agent/hooks/` o `.agent/rules/AGENTS.md`. Se exceptúa `.agent/hooks/pre-commit-local.sh`, que es el hook local del proyecto.
+   - En la rama `main`, bloquea cualquier intento de confirmar o fusionar archivos de desarrollo de producto o PBIs en curso (`src/`, `specs/PBI-*`, etc.) salvo que se trate de un paso a producción formalmente especificado y autorizado (`PRODUCTION_RELEASE_APPROVED=true`).
 3. **Escáner SAST de Seguridad en Staging:**
    - Bloquea cualquier archivo procedente del directorio confidencial `user_data/`.
    - Detecta y aborta ante marcadores de conflicto Git sin resolver (`<<<<<<<`, `=======`, `>>>>>>>`).
@@ -121,7 +128,7 @@ Se ejecuta de forma automática e imperativa antes de cada commit:
 
 ### 4.2. Hook de Pre-push (`.agent/hooks/pre-push`)
 Se ejecuta de forma automática antes de enviar cambios al repositorio remoto:
-1. **Protección de la Rama `main`:** Emite advertencias ante pushes directos a `main`, recordando la necesidad de revisión y autorización previa.
+1. **Blindaje de `main` como Rama Estricta de Producción:** Bloquea cualquier `git push` hacia `main` que incorpore código de producto, pruebas o especificaciones de PBIs (`src/`, `specs/PBI-*`, etc.) a menos que cuente con especificación de merge a producción y autorización explícita (`PRODUCTION_RELEASE_APPROVED=true`). Permite únicamente la sincronización de activos puros del núcleo de gobernanza.
 2. **Validación de Convención de Nombres de Ramas:** Comprueba que la rama a publicar cumpla las convenciones establecidas para el proyecto, auditando la jerarquía de subdirectorios para prevenir colisiones internas en Git.
 
 ### 4.3. Scripts y Herramientas del Núcleo de Gobernanza
@@ -212,6 +219,20 @@ Este proceso realiza automáticamente:
   3. Ejecutar la verificación de seguridad (confirmar que no existen credenciales, tokens ni datos privados).
   4. Mostrar el reporte de validación limpio.
   5. **Esperar la orden y aprobación humana explícita:** *"Procede con el commit"*.
+- **Prohibición Terminante de Crear o Fusionar Pull Requests de Forma Autónoma y de Alterar Protecciones de Rama:**
+  - Queda estrictamente prohibido que la IA cree un Pull Request (`gh pr create`) o ejecute su fusión (`gh pr merge`) sin haber presentado previamente el plan al usuario y recibido su autorización explícita.
+  - Queda **terminantemente prohibido** que la IA o cualquier desarrollador invoque la API de GitHub para desactivar o relajar reglas de protección de ramas (`enforce_admins`, revisiones de `CODEOWNERS`) con el fin de fusionar PRs de desarrollo (`feature/*`, `fix/*`).
+  - Al concluir el desarrollo de un PBI y abrir su PR hacia `develop`, el flujo obligatorio consiste en asignar como revisores a los compañeros de equipo, mover el PBI y sus tareas a la columna **"En revisión"** del tablero Scrum y esperar la aprobación por pares antes de cualquier merge.
+- **Prohibición Terminante de Merge o Paso a `main` (Producción) sin Especificación y Orden Explícita:**
+  - La rama `main` es exclusivamente una **rama de producción**; nunca puede recibir código a medias, ramas de funcionalidad en curso (`feature/*`) ni desarrollo a mitad de Sprint. Todo el desarrollo del Sprint se realiza y se fusiona en `develop`.
+  - Queda **terminantemente prohibido fusionar (`git merge`, PR merge) o promover cambios de producto hacia `main`** sin cumplir obligatoriamente los siguientes pasos:
+    1. **Fin de Sprint y Aceptación del Incremento:** Haber concluido el Sprint en `develop` (o preparado la rama `release/vX.Y.Z`) con la totalidad de la suite de pruebas en verde y la aceptación del Product Owner.
+    2. **Especificación Formal del Merge hacia `main`:** Antes de ejecutar cualquier fusión hacia `main`, se debe especificar y presentar al usuario un informe detallado del merge que incluya:
+       - Origen y destino del merge (ej. `develop -> main` o `release/vX.Y.Z -> main`).
+       - Listado exacto de PBIs cerrados y commits que entran en producción.
+       - Verificación de que **no existe ningún código ni especificación a mitad de desarrollo**.
+       - Estado de las puertas de calidad (build, tests al 100 % en verde, SAST limpio y checklist pre-release).
+    3. **Orden Humana Explícita de Paso a Producción:** Esperar la instrucción literal e inequívoca del usuario que autorice el envío a producción: **"Mandar a producción"** o **"Procede con el paso a producción"** (habilitando `PRODUCTION_RELEASE_APPROVED=true` únicamente para esa operación autorizada).
 
 ---
 
