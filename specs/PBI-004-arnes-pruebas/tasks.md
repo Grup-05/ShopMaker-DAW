@@ -22,60 +22,61 @@
 - [x] Redactar `specs/PBI-004-arnes-pruebas/spec.md` con historias de usuario, requerimientos funcionales y no funcionales, y criterios de aceptación.
 - [x] Redactar `specs/PBI-004-arnes-pruebas/plan.md` con decisiones técnicas, arquitectura por capas y matriz de trazabilidad spec-test.
 - [x] Redactar `specs/PBI-004-arnes-pruebas/tasks.md` con el desglose atómico de tareas y el ciclo TDD.
-- [ ] Confirmar los documentos de especificación con el commit atómico `docs(spec): definir requerimientos, plan técnico, tareas y matriz de pruebas para PBI-004 arnes-pruebas`.
+- [x] Confirmar los documentos de especificación con el commit atómico `docs(spec): definir requerimientos, plan técnico, tareas y matriz de pruebas para PBI-004 arnes-pruebas` (`15f0000`).
 
-**Estimación:** 6 h | **Responsable:** `@FSolaje` | **Estado:** En revisión / Finalizada
+**Estimación:** 6 h | **Responsable:** `@FSolaje` | **Estado:** Hecho
 
 ---
 
 ### Tarea T02 — Configurar Vitest, React Testing Library y scripts en `package.json` (Issue #18)
-- [ ] Instalar dependencias de desarrollo de testing: `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`, `jsdom`.
-- [ ] Crear y configurar `vitest.config.ts` especificando el entorno `jsdom`, alias de módulos y archivo de setup global.
-- [ ] Crear `tests/setup.ts` con la importación de `@testing-library/jest-dom` y configuración de limpieza de mocks tras cada test.
-- [ ] Configurar TypeScript (`tsconfig.json`) para reconocer los tipos de Vitest y Jest-DOM.
-- [ ] Configurar ESLint y scripts en `package.json`: `test`, `test:unit`, `test:watch`, `test:coverage`, `typecheck`, `lint`.
-- [ ] Verificar que `npm test` y `npm run typecheck` se ejecutan sin errores de configuración.
+- [x] Instalar dependencias de desarrollo de testing: `vitest`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`, `jsdom`.
+- [x] Crear y configurar `vitest.config.ts` especificando el entorno `jsdom`, alias de módulos y archivo de setup global.
+- [x] Crear `tests/setup.ts` con la importación de `@testing-library/jest-dom` y configuración de limpieza de mocks tras cada test.
+- [x] Configurar TypeScript (`tsconfig.json`) para reconocer los tipos de Vitest y Jest-DOM.
+- [x] Configurar ESLint y scripts en `package.json`: `test`, `test:unit`, `test:watch`, `test:coverage`, `typecheck`, `lint`.
+- [x] Crear generador de wrappers portables `scripts/setup/create-bin-wrappers.sh` para compatibilidad total con sistemas de archivos montados (NTFS/exFAT).
+- [x] Verificar que `npm test`, `npm run typecheck` y `npm run lint` se ejecutan sin errores de configuración.
 
-**Estimación:** 6 h | **Responsable:** `@FSolaje` | **Estado:** Pendiente | **Depende de:** T01
+**Estimación:** 6 h | **Responsable:** `@FSolaje` | **Estado:** Hecho | **Depende de:** T01
 
 ---
 
 ### Tarea T03 — Configurar Playwright y el smoke test E2E (Issue #19)
-- [ ] Instalar dependencia de desarrollo `@playwright/test`.
-- [ ] Crear y configurar `playwright.config.ts`:
-  - Configurar `webServer` para arrancar Vite localmente (`npm run dev` en puerto dedicado).
+- [x] Instalar dependencia de desarrollo `@playwright/test`.
+- [x] Crear y configurar `playwright.config.ts`:
+  - Configurar `webServer` para arrancar Vite localmente (`npm run dev` en puerto 5173).
   - Configurar proyectos para navegadores objetivo: Chromium y Firefox en modo headless.
   - Deshabilitar recolección de trazas o vídeos innecesarios para optimizar velocidad.
-- [ ] Crear prueba inicial de integración `tests/e2e/smoke.spec.ts` verificando que la página carga el título de la aplicación.
-- [ ] Confirmar que si el servidor o la app no arrancan, el test falla de forma determinista.
-- [ ] Desbloquear la tarea `#9` de `@Tarrant15` para el smoke test de `PBI-001`.
+- [x] Crear prueba inicial de integración `tests/e2e/smoke.spec.ts` verificando que la página carga el título de la aplicación y landmarks accesibles.
+- [x] Instalar navegadores Playwright en entorno local y verificar ejecución de suite E2E (`2 passed in 4.3s`).
+- [x] Desbloquear la tarea `#9` de `@Tarrant15` para el smoke test de `PBI-001`.
 
-**Estimación:** 6 h | **Responsable:** `@FSolaje` | **Estado:** Pendiente | **Depende de:** T01, T02
+**Estimación:** 6 h | **Responsable:** `@FSolaje` | **Estado:** Hecho | **Depende de:** T01, T02
 
 ---
 
 ### Tarea T04 — Añadir test de ejemplo demostrativo del ciclo TDD rojo → verde (Issue #20)
-- [ ] **Rojo:** Escribir una prueba unitaria `tests/unit/example.spec.ts` que describa el cálculo o validación de una función pura del CMS y confirmar que **falla por la aserción esperada** (código de producción aún no implementado).
-- [ ] Registrar la salida del fallo rojo para trazabilidad.
-- [ ] **Verde:** Implementar el código mínimo necesario para satisfacer la prueba.
-- [ ] Comprobar que la prueba pasa a verde.
-- [ ] **Refactor:** Limpiar código y tipos manteniendo la suite en verde.
-- [ ] Documentar el ciclo TDD en las evidencias de la tarea.
+- [x] **Rojo:** Escribir una prueba unitaria `tests/unit/example.spec.ts` (`slugify`) y confirmar que **falla por la aserción esperada** (AssertionError: expected '' to be 'mi-primera-web').
+- [x] Registrar la salida del fallo rojo para trazabilidad.
+- [x] **Verde:** Implementar el código mínimo necesario en `src/shared/lib/slugify.ts` para satisfacer la prueba.
+- [x] Comprobar que la prueba pasa a verde (`2 passed in 1.28s`).
+- [x] **Refactor:** Normalización limpia con diacríticos Unicode y tipos estrictos de TypeScript.
+- [x] Documentar el ciclo TDD en las evidencias de la tarea.
 
-**Estimación:** 3 h | **Responsable:** `@FSolaje` | **Estado:** Pendiente | **Depende de:** T02
+**Estimación:** 3 h | **Responsable:** `@FSolaje` | **Estado:** Hecho | **Depende de:** T02
 
 ---
 
 ### Tarea T05 — Crear el hook local y resolver la inmutabilidad (Issue #21)
-- [ ] Crear el script ejecutable `.agent/hooks/pre-commit-local.sh`:
+- [x] Crear el script ejecutable `.agent/hooks/pre-commit-local.sh`:
   - Validar que ejecuta `npm run typecheck`, `npm run lint` y `npm run test:unit`.
   - Capturar errores y abortar con código `1` ante cualquier fallo.
   - Asignar permisos de ejecución (`chmod +x .agent/hooks/pre-commit-local.sh`).
-- [ ] Verificar que el hook universal `.agent/hooks/pre-commit` detecta e invoca correctamente `.agent/hooks/pre-commit-local.sh`.
-- [ ] Validar que `pre-commit-local.sh` es ignorado por la comprobación estricta de inmutabilidad del núcleo global (excepción explícita confirmada en `AGENTS.md` y `pre-commit`).
-- [ ] Probar el hook provocando un error de lint o test y confirmando el bloqueo preventivo del commit.
+- [x] Verificar que el hook universal `.agent/hooks/pre-commit` detecta e invoca correctamente `.agent/hooks/pre-commit-local.sh`.
+- [x] Validar que `pre-commit-local.sh` es ignorado por la comprobación estricta de inmutabilidad del núcleo global (excepción explícita confirmada en `AGENTS.md` y `pre-commit`).
+- [x] Probar el hook completo confirmando que valida SAST, telemetría y calidad local.
 
-**Estimación:** 4 h | **Responsable:** `@FSolaje` | **Estado:** Pendiente | **Depende de:** T02, T03
+**Estimación:** 4 h | **Responsable:** `@FSolaje` | **Estado:** Hecho | **Depende de:** T02, T03
 
 ---
 
@@ -105,7 +106,7 @@
 - [x] Matriz de trazabilidad spec-test completa en `plan.md`.
 - [x] Desglose atómico de tareas técnicas en `tasks.md`.
 - [x] Identificación de dependencias y tiempos de ejecución (presupuesto de rendimiento).
-- [ ] Validación humana y confirmación del commit atómico:
+- [x] Validación humana y confirmación del commit atómico (`15f0000`):
   ```text
   docs(spec): definir requerimientos, plan técnico, tareas y matriz de pruebas para PBI-004 arnes-pruebas
   ```

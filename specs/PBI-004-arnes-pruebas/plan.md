@@ -89,11 +89,11 @@ ShopMaker-DAW/
 
 | ID Criterio | Requerimiento Cubierto | Tipo de Prueba | Archivo de Prueba / Verificación | Comando de Ejecución | Estado |
 |---|---|---|---|---|---|
-| **CA-01** | Comando único de suite | Integración / Configuración | `package.json` | `npm test` | Planificado |
-| **CA-02** | Aislamiento y determinismo sin red | Unitario / Configuración | `tests/setup.ts`, `vitest.config.ts` | `npm run test:unit` | Planificado |
-| **CA-03** | Arnés E2E con Playwright y arranque de Vite | E2E / Integración | `tests/e2e/smoke.spec.ts` | `npm run test:e2e` | Planificado |
-| **CA-04** | Demostración TDD rojo → verde | Unitario / Demostrativo | `tests/unit/example.spec.ts` | `npm test -- example.spec.ts` | Planificado |
-| **CA-05** | Hook local de pre-commit operativo | Sistema / Git Hook | `.agent/hooks/pre-commit-local.sh` | `bash .agent/hooks/pre-commit-local.sh` | Planificado |
+| **CA-01** | Comando único de suite | Integración / Configuración | `package.json` | `npm test` | Verificado |
+| **CA-02** | Aislamiento y determinismo sin red | Unitario / Configuración | `tests/setup.ts`, `vitest.config.ts` | `npm run test:unit` | Verificado |
+| **CA-03** | Arnés E2E con Playwright y arranque de Vite | E2E / Integración | `tests/e2e/smoke.spec.ts` | `npm run test:e2e` | Verificado |
+| **CA-04** | Demostración TDD rojo → verde | Unitario / Demostrativo | `tests/unit/example.spec.ts` | `npm test -- example.spec.ts` | Verificado |
+| **CA-05** | Hook local de pre-commit operativo | Sistema / Git Hook | `.agent/hooks/pre-commit-local.sh` | `bash .agent/hooks/pre-commit-local.sh` | Verificado |
 
 ---
 
