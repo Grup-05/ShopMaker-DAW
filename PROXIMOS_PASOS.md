@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-004-arnes-pruebas`
-- **Último commit consolidado:** `05304f8 — *Merge pull request #26 from Grup-05/feature/PBI-001-aplicacion-web*`
-- **Fecha de última sincronización:** 2026-11-10 11:53
+- **Último commit consolidado:** `15f0000 — *docs(spec): definir requerimientos, plan técnico, tareas y matriz de pruebas para PBI-004 arnes-pruebas*`
+- **Fecha de última sincronización:** 2026-11-10 12:12
 
 ---
 
@@ -65,40 +65,34 @@ PBIs del Sprint S01:
 
 - [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (Fase SDD completada `T01–T03` `#6`–`#8`; pendiente TDD `T04–T06` `#9`–`#11`, 18 h — `@Tarrant15`).
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
-- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje` [En progreso]).
+- [x] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
 - [x] **INFRA-01** (`#22`) — Protección de ramas (`main`, `develop`, `release`), CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
 - [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
 ### 🧪 Pruebas
 
-- [ ] Runner y comando único de suite definidos.
-- [ ] Test de humo de la aplicación web.
-- [ ] Matriz spec-test inicial completada.
-- [ ] Hook `.agent/hooks/pre-commit-local.sh` operativo.
+- [x] Runner y comando único de suite definidos (`npm test` con Vitest).
+- [x] Test de humo de la aplicación web (`npm run test:e2e` con Playwright en Chromium/Firefox).
+- [x] Matriz spec-test inicial completada.
+- [x] Hook `.agent/hooks/pre-commit-local.sh` operativo.
 
 ### 📝 Documentación
 
 - [x] `README.md` con metodología, roles, ramas, commits y DoD.
 - [x] `CHANGELOG.md` inicializado.
-- [ ] Especificaciones `specs/PBI-001/`, `specs/PBI-002/` y `specs/PBI-004/` redactadas.
+- [x] Especificaciones `specs/PBI-001/` y `specs/PBI-004/` redactadas.
 - [x] ADR-001 (React/TS/Vite) y ADR-002 (aplicación web) aceptados.
 
 ---
 
 ## 🎯 Próximo Paso Inmediato
 
-1. **Higiene GitFlow y tablero completados:**
-   - PR #26 integrado en `develop` (especificación `specs/PBI-001-aplicacion-web/` T01–T03).
-   - PR #27 integrado en `main` (reversión del merge erróneo en producción; `main` 100 % limpio).
-   - Tablero Project `#1` actualizado: `#22`, `#6`, `#7`, `#8` en **Hecho**; `#5` y `#17` en **En progreso**.
-2. **Ejecutar tareas de `@FSolaje` en `PBI-004` (Arnés de pruebas y calidad):**
-   - Crear rama `feature/PBI-004-arnes-pruebas` desde `develop`.
-   - Redactar `specs/PBI-004-arnes-pruebas/{spec.md, plan.md, tasks.md}` (Tarea T01 / `#17`).
-   - Aprobar specs y confirmar `docs(spec): ...`.
-   - Implementar Vitest, testing library y scripts (Tarea T02 / `#18`).
-   - Implementar Playwright y smoke test (Tarea T03 / `#19`, desbloquea `#9` de `@Tarrant15`).
-   - Implementar test de ejemplo rojo -> verde (Tarea T04 / `#20`).
-   - Implementar hook `.agent/hooks/pre-commit-local.sh` (Tarea T05 / `#21`).
+1. **Integrar `PBI-004` en `develop`:**
+   - Crear Pull Request de `feature/PBI-004-arnes-pruebas` hacia `develop`.
+   - Realizar merge administrativo y actualizar tablero Project `#1` (mover `#5` y `#17`–`#21` a **Hecho**).
+2. **Desbloqueo de tareas colaborativas en S01:**
+   - `@Tarrant15` puede ejecutar T04 (`#9`, smoke test de la SPA base de `PBI-001`) sobre el arnés ya disponible.
+   - `@Fernis23228` puede iniciar `PBI-002` (Tokens y temas claro/oscuro con pruebas de contraste accesible).
 
 ---
 

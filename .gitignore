@@ -157,3 +157,10 @@ build/
 node_modules/
 # Los lockfiles se versionan para garantizar builds reproducibles.
 # No añadir package-lock.json, yarn.lock ni pnpm-lock.yaml aquí.
+
+# Artefactos y reportes de pruebas (Vitest, Playwright, Coverage)
+coverage/
+test-results/
+playwright-report/
+blob-report/
+
