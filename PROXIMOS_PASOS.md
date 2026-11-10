@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `develop`
-- **Último commit consolidado:** `fae32c0 — *Merge pull request #23 from Grup-05/chore/INFRA-01-proteccion-ramas*`
-- **Fecha de última sincronización:** 2026-11-09 16:52
+- **Rama activa:** `fix/blindar-revision-pares-pr`
+- **Último commit consolidado:** `00e9470 — *chore(governance): prohibir bypass de protecciones de rama en PRs de producto y exigir revision por pares*`
+- **Fecha de última sincronización:** 2026-11-10 12:51
 
 ---
 

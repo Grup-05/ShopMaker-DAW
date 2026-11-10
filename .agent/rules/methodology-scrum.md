@@ -75,6 +75,8 @@ El agente de IA actúa como asistente técnico de los Developers, bajo supervisi
 - No puede modificar un criterio de aceptación o una aserción sin aprobación humana.
 - Debe preguntar la motivación técnica ante parámetros o decisiones no justificadas.
 - **No puede ejecutar `git commit` ni `git push` sin aprobación humana explícita.**
+- **No puede crear ni fusionar Pull Requests sin presentar antes el plan y obtener aprobación humana explícita.**
+- **No puede desactivar protecciones de rama (`enforce_admins`) ni usar `--admin` para saltarse la revisión por pares en PRs de desarrollo (`feature/*`, `fix/*`).**
 - **No puede fusionar ni promover código o PBIs hacia `main` (producción) sin especificar previamente el merge y recibir la orden humana explícita: *"Mandar a producción"* o *"Procede con el paso a producción"*.**
 - Debe reportar bloqueos, riesgos y dependencias no resueltas.
 
@@ -328,6 +330,7 @@ Las decisiones relevantes se registran en `plan.md`. Si afectan a varias feature
 - **Paso a Producción al Cierre del Sprint:** Solo cuando termina el Sprint y el PO acepta el incremento en la *Sprint Review*, se decide si se fusiona `develop` (o `release/vX.Y.Z`) hacia `main`.
 - **Especificación y Orden Explícita para Merges hacia `main`:** Todo merge hacia `main` debe especificarse formalmente por adelantado (alcance de PBIs cerrados, suite en verde, cero código a medias) y requiere la orden humana explícita: **"Mandar a producción"** o **"Procede con el paso a producción"**.
 - No se confirma directamente en `main` ni en `develop`; se usa Pull Request.
+- **Revisión por Pares Obligatoria (Inviolabilidad de `enforce_admins`):** Todo PR de desarrollo (`feature/*`, `fix/*`) hacia `develop` requiere obligatoriamente la revisión y aprobación de al menos otro miembro del equipo (`CODEOWNERS`) distinto del autor. Al abrir el PR, el PBI pasa al estado **"En revisión"** en el tablero. Queda prohibido desactivar temporalmente `enforce_admins` o usar privilegios de administrador para auto-fusionar código de producto; el bypass del Administrador de Gobernanza se restringe única y exclusivamente a PRs puros de gobernanza.
 - Todo PR debe referenciar su PBI y pasar los hooks locales.
 - No se usa `git rebase` destructivo ni `git push --force` sobre ramas compartidas.
 - El núcleo de gobernanza solo se modifica en `main` (o mediante bypass acotado del Administrador de Gobernanza) y se propaga con `sync-governance.sh`.

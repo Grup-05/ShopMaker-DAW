@@ -42,6 +42,7 @@ Para garantizar la estabilidad operativa del repositorio sin restar agilidad a l
      3. El commit siga Conventional Commits bajo los tipos `chore(governance)`, `fix(hooks)` o `docs(...)`.
      4. La verificación SAST de seguridad (cero secretos, credenciales o rutas privadas) se mantiene obligatoria e inviolable.
      5. Una vez consolidado el trabajo, los cambios deben integrarse en `main` y propagarse al resto de ramas activas mediante `sync-governance.sh`.
+     6. **Prohibición Terminante de Bypass en PRs de Desarrollo de Producto:** La potestad del Administrador de Gobernanza **jamás** habilita para auto-aprobar, forzar el merge (`--admin`) ni desactivar temporalmente las protecciones de rama en GitHub (`enforce_admins`) sobre Pull Requests de funcionalidades o correcciones del producto (`feature/*`, `fix/*`). Todo PR de producto debe someterse obligatoriamente a la revisión y aprobación de otro miembro del equipo (`CODEOWNERS`).
 
 ### 1.2. Activos Modulares y Flexibles por Proyecto o Rama
 - **Reglas Contextuales (`.agent/rules/*.md`):** Cada proyecto o rama extiende este marco incorporando especificaciones técnicas particulares (diseño visual, arquitectura de datos, topologías de red, endpoints, etc.).
@@ -218,6 +219,10 @@ Este proceso realiza automáticamente:
   3. Ejecutar la verificación de seguridad (confirmar que no existen credenciales, tokens ni datos privados).
   4. Mostrar el reporte de validación limpio.
   5. **Esperar la orden y aprobación humana explícita:** *"Procede con el commit"*.
+- **Prohibición Terminante de Crear o Fusionar Pull Requests de Forma Autónoma y de Alterar Protecciones de Rama:**
+  - Queda estrictamente prohibido que la IA cree un Pull Request (`gh pr create`) o ejecute su fusión (`gh pr merge`) sin haber presentado previamente el plan al usuario y recibido su autorización explícita.
+  - Queda **terminantemente prohibido** que la IA o cualquier desarrollador invoque la API de GitHub para desactivar o relajar reglas de protección de ramas (`enforce_admins`, revisiones de `CODEOWNERS`) con el fin de fusionar PRs de desarrollo (`feature/*`, `fix/*`).
+  - Al concluir el desarrollo de un PBI y abrir su PR hacia `develop`, el flujo obligatorio consiste en asignar como revisores a los compañeros de equipo, mover el PBI y sus tareas a la columna **"En revisión"** del tablero Scrum y esperar la aprobación por pares antes de cualquier merge.
 - **Prohibición Terminante de Merge o Paso a `main` (Producción) sin Especificación y Orden Explícita:**
   - La rama `main` es exclusivamente una **rama de producción**; nunca puede recibir código a medias, ramas de funcionalidad en curso (`feature/*`) ni desarrollo a mitad de Sprint. Todo el desarrollo del Sprint se realiza y se fusiona en `develop`.
   - Queda **terminantemente prohibido fusionar (`git merge`, PR merge) o promover cambios de producto hacia `main`** sin cumplir obligatoriamente los siguientes pasos:
