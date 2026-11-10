@@ -112,7 +112,7 @@ for branch in "${ALL_BRANCHES[@]}"; do
     echo -e "👉 Evaluando rama: ${CYAN}$branch${NC}..."
 
     # Comprobar diferencias entre la rama y la fuente en el núcleo y herramientas transversales
-    DIFF_ITEMS=$(git diff --name-only "$branch" "$SOURCE_BRANCH" -- .agent/hooks/ .agent/rules/AGENTS.md .github/ .gitattributes scripts/ 2>/dev/null | grep -v '^\.agent/hooks/pre-commit-local\.sh$' || true)
+    DIFF_ITEMS=$(git diff --name-only "$branch" "$SOURCE_BRANCH" -- .agent/hooks/ .agent/rules/ .github/ .gitattributes scripts/ 2>/dev/null | grep -v '^\.agent/hooks/pre-commit-local\.sh$' || true)
 
     if [ -z "$DIFF_ITEMS" ]; then
         echo -e "   ✔ ${GREEN}Al día:${NC} La rama ya tiene paridad exacta con el núcleo de '$SOURCE_BRANCH'."
@@ -142,7 +142,7 @@ for branch in "${ALL_BRANCHES[@]}"; do
     done <<< "$DIFF_ITEMS"
     chmod +x .agent/hooks/* scripts/github/* scripts/scrum/* scripts/setup/* 2>/dev/null || true
 
-    CHANGES=$(git status --porcelain -- .agent/hooks/ .agent/rules/AGENTS.md .github/ .gitattributes scripts/ 2>/dev/null || true)
+    CHANGES=$(git status --porcelain -- .agent/hooks/ .agent/rules/ .github/ .gitattributes scripts/ 2>/dev/null || true)
     if [ -n "$CHANGES" ]; then
         while IFS= read -r item; do
             [ -n "$item" ] && git add "$item"

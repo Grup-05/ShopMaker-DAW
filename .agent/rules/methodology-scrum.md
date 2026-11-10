@@ -75,6 +75,7 @@ El agente de IA actúa como asistente técnico de los Developers, bajo supervisi
 - No puede modificar un criterio de aceptación o una aserción sin aprobación humana.
 - Debe preguntar la motivación técnica ante parámetros o decisiones no justificadas.
 - **No puede ejecutar `git commit` ni `git push` sin aprobación humana explícita.**
+- **No puede fusionar ni promover código o PBIs hacia `main` (producción) sin especificar previamente el merge y recibir la orden humana explícita: *"Mandar a producción"* o *"Procede con el paso a producción"*.**
 - Debe reportar bloqueos, riesgos y dependencias no resueltas.
 
 En equipos académicos reducidos, los roles pueden combinarse, pero las responsabilidades no deben diluirse. El Cliente actúa como stakeholder.
@@ -311,22 +312,25 @@ Las decisiones relevantes se registran en `plan.md`. Si afectan a varias feature
 
 ### 6.1. Ramas
 
-- `main`: estable, desplegable y protegida.
-- `develop`: integración continua del trabajo terminado.
-- `feature/PBI-###-<slug>`: una feature o PBI, creada desde `develop`.
-- `fix/PBI-###-<slug>`: corrección planificada, creada desde `develop`.
-- `release/vX.Y.Z`: preparación de una versión, creada desde `develop`.
-- `hotfix/<slug>`: corrección urgente, creada desde `main`.
+- `main`: **rama de producción**, estable, desplegable y protegida. Nunca puede contener código a medias, especificaciones de PBIs sin terminar ni desarrollo en mitad de un Sprint.
+- `develop`: **rama de desarrollo e integración continua** durante el Sprint. Todo trabajo de los Sprints (`feature/*`, `fix/*`, `docs(spec)`) se integra aquí.
+- `feature/PBI-###-<slug>`: una feature o PBI, creada desde `develop` e integrada de vuelta en `develop`.
+- `fix/PBI-###-<slug>`: corrección planificada, creada desde `develop` e integrada de vuelta en `develop`.
+- `release/vX.Y.Z`: preparación de una versión de producción al concluir un Sprint, creada desde `develop`.
+- `hotfix/<slug>`: corrección urgente de producción, creada desde `main`.
 
-**El Sprint no es una rama.** No se crea `sprint/S01`; el Sprint es un intervalo temporal que agrupa PBIs y ramas cortas.
+**El Sprint no es una rama.** No se crea `sprint/S01`; el Sprint es un intervalo temporal que agrupa PBIs y ramas cortas integradas en `develop`.
 
 ### 6.2. Reglas
 
-- Las ramas de trabajo son cortas: deben integrarse antes de cerrar el Sprint.
+- Las ramas de trabajo son cortas: deben integrarse en `develop` antes de cerrar el Sprint.
+- **Prohibición de desarrollo a mitad en `main`:** Ningún PR de `feature/*`, `fix/*` o especificación de PBI puede apuntar directamente a `main`. Todo el trabajo del Sprint va hacia `develop`.
+- **Paso a Producción al Cierre del Sprint:** Solo cuando termina el Sprint y el PO acepta el incremento en la *Sprint Review*, se decide si se fusiona `develop` (o `release/vX.Y.Z`) hacia `main`.
+- **Especificación y Orden Explícita para Merges hacia `main`:** Todo merge hacia `main` debe especificarse formalmente por adelantado (alcance de PBIs cerrados, suite en verde, cero código a medias) y requiere la orden humana explícita: **"Mandar a producción"** o **"Procede con el paso a producción"**.
 - No se confirma directamente en `main` ni en `develop`; se usa Pull Request.
 - Todo PR debe referenciar su PBI y pasar los hooks locales.
 - No se usa `git rebase` destructivo ni `git push --force` sobre ramas compartidas.
-- El núcleo de gobernanza solo se modifica en `main` y se propaga con `sync-governance.sh`.
+- El núcleo de gobernanza solo se modifica en `main` (o mediante bypass acotado del Administrador de Gobernanza) y se propaga con `sync-governance.sh`.
 - Las ramas se eliminan después del merge.
 
 ### 6.3. Commits

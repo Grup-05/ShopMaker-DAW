@@ -59,6 +59,7 @@ if [ "$CURRENT_BRANCH" != "main" ] && [ -n "$CURRENT_BRANCH" ]; then
         GOV_ADMIN="$(grep -E '^[[:space:]]*GOVERNANCE_ADMIN=' "$ROLES_ENV" 2>/dev/null | cut -d'=' -f2 | tr -d '\"' | tr -d "'" | tr -d '[:space:]' || true)"
     fi
     [ -z "$GOV_ADMIN" ] && GOV_ADMIN="FSolaje"
+    GOV_ADMIN_NAME="$(grep -F "@$GOV_ADMIN" "$REPO_ROOT/docs/scrum/team.md" 2>/dev/null | head -n1 | cut -d'|' -f2 | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' || true)"
 
     CURRENT_COMMITER="$(gh api user --jq '.login' 2>/dev/null || git config user.name 2>/dev/null || echo '')"
 
@@ -85,7 +86,7 @@ if [ "$CURRENT_BRANCH" != "main" ] && [ -n "$CURRENT_BRANCH" ]; then
                 fi
 
                 IS_GOV_ADMIN=false
-                if [ "$CURRENT_COMMITER" = "$GOV_ADMIN" ] || [ "${ALLOW_GLOBAL_OVERRIDE:-false}" = "true" ] || [ "${GOVERNANCE_BYPASS:-false}" = "true" ]; then
+                if [ "$CURRENT_COMMITER" = "$GOV_ADMIN" ] || [ -n "$GOV_ADMIN_NAME" -a "$CURRENT_COMMITER" = "$GOV_ADMIN_NAME" ] || [ "$GOV_ADMIN" = "FSolaje" -a "$CURRENT_COMMITER" = "Fran Tomás" ] || [ "${ALLOW_GLOBAL_OVERRIDE:-false}" = "true" ] || [ "${GOVERNANCE_BYPASS:-false}" = "true" ]; then
                     IS_GOV_ADMIN=true
                 fi
 
@@ -106,6 +107,23 @@ if [ "$CURRENT_BRANCH" != "main" ] && [ -n "$CURRENT_BRANCH" ]; then
             fi
         fi
     done
+elif [ "$CURRENT_BRANCH" = "main" ]; then
+    # Protección de 'main' como rama estricta de producción:
+    # Bloquea commits o merges en 'main' que introduzcan código de producto o specs de PBIs
+    # sin especificación formal de paso a producción y orden explícita (PRODUCTION_RELEASE_APPROVED=true).
+    NON_GOV_ON_MAIN=$(git diff --cached --name-only --diff-filter=ACM | grep -Ev '^(\.agent/|\.github/|\.gitattributes$|docs/scrum/|docs/decisiones/|PROXIMOS_PASOS\.md$|scripts/|README\.md$|CHANGELOG\.md$)' || true)
+    if [ -n "$NON_GOV_ON_MAIN" ] && [ "${PRODUCTION_RELEASE_APPROVED:-false}" != "true" ]; then
+        echo "❌ [ERROR DE GOBERNANZA - RAMA MAIN ES PRODUCCIÓN]"
+        echo "   Se intentan confirmar o fusionar archivos de desarrollo o PBI directamente en 'main':"
+        echo "$NON_GOV_ON_MAIN" | sed 's/^/      - /'
+        echo "   La rama 'main' es estrictamente de producción y nunca puede contener código ni desarrollo a mitad."
+        echo "   Todo el desarrollo del Sprint debe integrarse en 'develop'."
+        echo "   Para realizar un merge de paso a producción al cierre del Sprint:"
+        echo "     1. Especifica formalmente el merge hacia 'main' (alcance, PBIs cerrados y suite en verde)."
+        echo "     2. Solicita y recibe la orden humana explícita: 'Mandar a producción' / 'Procede con el paso a producción'."
+        echo "     3. Ejecuta la operación con: PRODUCTION_RELEASE_APPROVED=true"
+        exit 1
+    fi
 fi
 
 # ------------------------------------------------------------------------------
