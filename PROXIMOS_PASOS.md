@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-004-arnes-pruebas`
-- **Último commit consolidado:** `3f0dde2 — *refactor(harness): retirar postinstall, añadir compat:exfat opt-in y eliminar baseUrl deprecado*`
-- **Fecha de última sincronización:** 2026-11-10 12:58
+- **Último commit consolidado:** `9c8fda6 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-10 13:14
 
 ---
 
