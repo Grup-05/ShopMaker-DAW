@@ -42,15 +42,10 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 
 **Criterios de aceptación**
 
-- [ ] La aplicación arranca en el navegador y muestra la navegación sobre el título «ShopMaker» en 1280×800; el layout funciona en 1024×720 sin scroll horizontal.
-- [ ] La navegación sobre el título contiene los enlaces «Iniciar sesión» y «Registrarse» y el botón accesible «Cambiar tema». No hay página ni enlace de contactos; las rutas de login y registro se coordinan con PBI-005.
-- [ ] El aside muestra la lista de páginas iniciadas y, si está vacía, el texto «Ninguna Web en Progreso».
-- [ ] La aplicación inicia sin página seleccionada. El área central muestra «Seleccione una web para visualizar»; al seleccionar una página, el mensaje desaparece y no se carga una previsualización.
+- [ ] La aplicación arranca en el navegador y muestra la pantalla base en 1280×800; el layout funciona en 1024×720 sin scroll horizontal.
 - [ ] Existe separación entre presentación, aplicación/estado, dominio e infraestructura.
 - [ ] El código del cliente no accede a Node ni al sistema de archivos; solo usa APIs del navegador.
 - [ ] La navegación básica funciona con teclado y ratón.
-- [ ] PBI-001 implementa la presencia visual del botón de tema; PBI-002 implementa la alternancia claro/oscuro.
-- [ ] Los botones de crear página y maquetar están habilitados y reciben foco, pero no ejecutan acciones en este incremento.
 - [ ] Existe una prueba de humo de arranque en navegador.
 
 **Estimación:** 36 h totales (30 h comprometidas en S01: `T01–T06`; 6 h en S02: `T07–T08`).
