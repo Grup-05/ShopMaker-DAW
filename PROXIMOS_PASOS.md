@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-004-arnes-pruebas`
-- **Último commit consolidado:** `15f0000 — *docs(spec): definir requerimientos, plan técnico, tareas y matriz de pruebas para PBI-004 arnes-pruebas*`
+- **Último commit consolidado:** `8cf780e — *feat(harness): configurar vitest, playwright, scripts npm y wrappers de ejecución*`
 - **Fecha de última sincronización:** 2026-11-10 12:12
 
 ---
