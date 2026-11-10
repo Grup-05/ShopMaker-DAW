@@ -250,7 +250,8 @@ bash scripts/github/gh-auth-env.sh --login
 | Arnés de pruebas | Vitest + React Testing Library + Playwright (oficial de PBI-004, consolidado) |
 | Comando de suite | `npm test` (componente/arquitectura) y `npm run test:e2e` (E2E) |
 | Calidad estática | `npm run typecheck`, `npm run lint` y `npm run build` en verde |
-| Cobertura de criterios de aceptación | 17 tests de PBI-001: CA-01 a CA-06 cubiertos; RNF-04 con proxy de viewport pendiente de zoom nativo |
+| Cobertura de criterios de aceptación | 15 tests automatizados de PBI-001 + 2 revisiones manuales; CA-01 a CA-06 cubiertos, RNF-04 con proxy de viewport pendiente de zoom nativo |
+| Suite total | `npm test`: 17 tests (15 de PBI-001 + 2 demostrativos de PBI-004); `npm run test:e2e`: 8 tests (4 × Chromium y Firefox) |
 | Tests flaky conocidos | Ninguno registrado |
 
 La cobertura se mide por **criterios de aceptación cubiertos**, no por porcentaje de líneas. El objetivo es el 100 % de los criterios comprometidos en cada Sprint.

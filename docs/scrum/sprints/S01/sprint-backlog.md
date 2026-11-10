@@ -40,7 +40,7 @@
 | T05 | Scaffold Vite + React + TypeScript y estructura por capas | Código | Dev B (`@Tarrant15`) | 8 h | T04 | S01 | Hecha (verde) | `#10` |
 | T06 | Layout base con landmarks y navegación por teclado | Código | Dev B (`@Tarrant15`) | 8 h | T05 | S01 | Hecha (verde) | `#11` |
 
-> T01–T03 redactadas y commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); pendiente de aprobación humana. T04–T06 implementadas sin commitear: rojo registrado, arnés oficial de PBI-004 consolidado y suite en verde.
+> T01–T03 redactadas y commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); pendiente de aprobación humana. T04–T06 implementadas y commiteadas en `944dce7` (local, pendiente de push/PR): rojo registrado, arnés oficial de PBI-004 consolidado y suite en verde.
 
 ### PBI-002 — Tokens, tema y accesibilidad base (`#3` · `@Fernis23228` · 21 h en S01)
 

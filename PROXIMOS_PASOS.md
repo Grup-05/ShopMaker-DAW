@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `9a442a3 — *Merge remote-tracking branch 'origin/develop' into feature/PBI-001-aplicacion-web*`
-- **Fecha de última sincronización:** 2026-11-10 17:46
+- **Último commit consolidado:** `944dce7 — *feat(PBI-001): implementar aplicación web base y consolidar arnés*`
+- **Fecha de última sincronización:** 2026-11-10 17:51
 
 ---
 
@@ -32,7 +32,7 @@
 
 - [x] React + TypeScript + Vite como stack del frontend (ADR-001).
 - [x] Aplicación web SPA desktop-first en navegador, sin shell nativo (ADR-002).
-- [x] Lockfile versionado y dependencias auditadas (PBI-001). Exclusión retirada de `.gitignore` (confirmado en `f283524`); `package-lock.json` generado con el scaffold (pendiente de commit).
+- [x] Lockfile versionado y dependencias auditadas (PBI-001). Exclusión retirada de `.gitignore` (confirmado en `f283524`); `package-lock.json` generado y commiteado en `944dce7`.
 - [x] Arnés oficial de pruebas (Vitest + RTL + Playwright) adoptado desde PBI-004 para desbloquear T04–T06.
 
 ### 🏃 Sprint S01 — Sprint 0: Fundaciones
@@ -63,7 +63,7 @@ Artefactos:
 
 PBIs del Sprint S01:
 
-- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`). T01–T03 commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); T04–T06 implementadas y en verde, pendientes de aprobación y commit. Arnés oficial de PBI-004 consolidado; destinos de acceso provisionales hasta PBI-005.
+- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`). T01–T03 commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); T04–T06 implementadas, en verde y commiteadas en `944dce7` (local). Pendiente: push/PR, cierre de issues y rutas definitivas de PBI-005.
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
 - [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
 - [ ] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
@@ -96,7 +96,8 @@ PBIs del Sprint S01:
    - [x] Dejar la suite en verde y documentar evidencia y accesibilidad.
    - [ ] Obtener aprobación humana de los artefactos SDD y de T04–T06.
    - [ ] Confirmar con PBI-005 las rutas de login/registro y sustituir los destinos provisionales.
-   - [ ] Commit de T04–T06 y push/PR con aprobación separada.
+   - [x] Commit de T04–T06 (`944dce7`, local).
+   - [ ] Push y PR con aprobación separada.
 2. **Resto del Sprint S01:**
    - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
    - [x] Arnés de PBI-004 consolidado como configuración única del proyecto.

@@ -233,7 +233,7 @@ Todas las tareas S01 indicadas tienen una estimación de 8 horas o menos; los va
 | T06 — verde | Tests de layout, navegación, estado vacío, selección y botón de tema en verde; foco visible y zoom proxy registrados en `accessibility-checklist.md`. |
 | Comandos | `npm test`, `npm run test:e2e`, `npm run typecheck`, `npm run lint`, `npm run build`. |
 | Resultado de la suite | `npm test`: 4 archivos / 17 tests (15 de PBI-001 + 2 demostrativos de PBI-004); `npm run test:e2e`: 8 tests (4 × Chromium y Firefox, incluido el smoke de PBI-004); typecheck, lint y build OK. Detalle en `evidence.md` §4. |
-| PR | Pendiente de aprobación humana, commit, push y apertura del PR. |
-| Commits | T01 `55c0d86`, T02 `3125dc9`, T03 `e6f5e4d`. Cambios de T04–T06 sin commitear, pendientes de aprobación explícita. |
+| PR | Pendiente de push y apertura del PR; requiere aprobación humana explícita. |
+| Commits | T01 `55c0d86`, T02 `3125dc9`, T03 `e6f5e4d`; T04–T06 en `944dce7` (local, pendiente de push). |
 | Notas de accesibilidad | Foco visible `3px`, contrastes `13,75:1` / `6,7:1` / `6,7:1`, orden de teclado y ausencia de scroll horizontal en `512×360` verificados. Detalle en `accessibility-checklist.md`. |
 | Notas de seguridad | `client-browser-only` verificó ausencia de secretos y APIs de Node/sistema de archivos en `src/`. CSP/hosting fuera de alcance de este PBI. |
