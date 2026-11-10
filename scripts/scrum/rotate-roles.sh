@@ -97,13 +97,15 @@ DEVELOPERS="$DEVELOPERS"
 GOVERNANCE_ADMIN="$GOVERNANCE_ADMIN"
 EOF
 
-# 2. Generar .github/CODEOWNERS
+# 2. Generar .github/CODEOWNERS (Orden de menor a mayor especificidad: en GitHub gana la última regla coincidente)
 cat > "$CODEOWNERS_FILE" << EOF
 # ==============================================================================
 # GitHub CODEOWNERS — Control de Aprobaciones por Responsabilidad de Rol
 # ==============================================================================
 # Este archivo define quién debe revisar y aprobar cambios en Pull Requests
 # según las rutas afectadas, garantizando la separación de poderes Scrum.
+# NOTA: En GitHub CODEOWNERS prevalece la ÚLTIMA regla que coincida. Por ello,
+# la regla comodín '*' va al principio y las rutas específicas van debajo.
 #
 # Generado automáticamente por scripts/scrum/rotate-roles.sh
 # Roles activos actuales (Sprint $SPRINT_ID):
@@ -113,29 +115,31 @@ cat > "$CODEOWNERS_FILE" << EOF
 #   - Administrador Gob.:   @$GOVERNANCE_ADMIN
 # ==============================================================================
 
-# Requisitos del Producto, Historias de Usuario y Backlog (Product Owner)
+# 1. Regla global por defecto (cualquier archivo de código o proyecto general)
+*                               $DEVS_TAGGED
+
+# 2. Código de Producción, UI/UX, Componentes y Pruebas (Developers)
+/src/                           $DEVS_TAGGED
+/tests/                         $DEVS_TAGGED
+/scripts/                       $DEVS_TAGGED
+
+# 3. Requisitos del Producto, Historias de Usuario y Backlog (Product Owner)
 /docs/scrum/product-backlog.md  @$PRODUCT_OWNER
 /specs/                         @$PRODUCT_OWNER
 
-# Proceso Scrum, Definiciones y Retrospectivas (Scrum Master)
+# 4. Proceso Scrum, Definiciones y Retrospectivas (Scrum Master)
 /docs/scrum/definition-*.md     @$SCRUM_MASTER
 /docs/scrum/sprints/            @$SCRUM_MASTER
 /docs/scrum/team.md             @$SCRUM_MASTER
 /docs/scrum/active_roles.env    @$SCRUM_MASTER
 
-# Núcleo de Gobernanza, Hooks y Workflows (Administrador de Gobernanza)
+# 5. Núcleo de Gobernanza, Hooks, Workflows y Telemetría (Administrador de Gobernanza)
 /.agent/                        @$GOVERNANCE_ADMIN
 /.github/                       @$GOVERNANCE_ADMIN
 /.gitattributes                 @$GOVERNANCE_ADMIN
 /scripts/github/                @$GOVERNANCE_ADMIN
-
-# Código de Producción, UI/UX, Componentes y Pruebas (Developers)
-/src/                           $DEVS_TAGGED
-/tests/                         $DEVS_TAGGED
-/scripts/                       $DEVS_TAGGED
-
-# Regla global por defecto para cualquier otro archivo no listado
-*                               $DEVS_TAGGED
+/scripts/scrum/                 @$GOVERNANCE_ADMIN
+/PROXIMOS_PASOS.md              @$GOVERNANCE_ADMIN
 EOF
 
 echo "✔ Roles Scrum actualizados para el Sprint $SPRINT_ID:"

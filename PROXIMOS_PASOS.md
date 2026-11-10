@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `chore/blindar-revision-pares-pr`
-- **Último commit consolidado:** `05304f8 — *Merge pull request #26 from Grup-05/feature/PBI-001-aplicacion-web*`
-- **Fecha de última sincronización:** 2026-11-10 12:41
+- **Rama activa:** `fix/blindar-revision-pares-pr`
+- **Último commit consolidado:** `00e9470 — *chore(governance): prohibir bypass de protecciones de rama en PRs de producto y exigir revision por pares*`
+- **Fecha de última sincronización:** 2026-11-10 12:51
 
 ---
 
