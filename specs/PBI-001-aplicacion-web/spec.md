@@ -10,7 +10,7 @@
 | Sprint | `S01` |
 | Autor | Jesús Hernández (`@Tarrant15`, Dev B) |
 | Fecha | 2026-11-09 |
-| Estado | Borrador |
+| Estado | En revisión — implementado en T04–T06, en verde; pendiente aprobación humana y rutas de PBI-005 |
 | Rama | `feature/PBI-001-aplicacion-web` |
 
 ## 1. Contexto y problema
@@ -79,7 +79,8 @@ Los estados de carga, error, falta de permisos y sin conexión se consideran **n
 - Endpoints, DTO, errores normalizados y adaptador mock: no definidos ni requeridos por los criterios de PBI-001.
 - Dependencias de producto/arquitectura: ADR-001 (React + TypeScript + Vite) y ADR-002 (aplicación web en navegador).
 - Dependencia de tema: PBI-001 muestra el botón de tema en la navegación; PBI-002 proporciona los tokens, modos claro/oscuro y la funcionalidad de alternancia.
-- Dependencia de pruebas: PBI-004 proporciona el arnés de pruebas; la tarea T04 de PBI-001 depende de la configuración E2E de PBI-004 T03 (#19).
+- Dependencia de pruebas: esta rama adopta el arnés oficial integrado en `develop` desde PBI-004 (`tests/setup.ts`, `tests/unit/`, `tests/e2e/`, alias `@`), sin duplicar configuración.
+- Dependencia de rutas: mientras PBI-005 no publique las rutas definitivas, los enlaces de acceso usan destinos provisionales (`#iniciar-sesion` y `#registrarse`) documentados en `src/features/home/application/authRoutes.ts`. No son URLs de producto.
 
 ## 8. Fuera de alcance
 
@@ -107,7 +108,7 @@ No se añaden otros supuestos en este borrador.
 - El área central muestra «Seleccione una web para visualizar» antes de seleccionar; tras seleccionar, el mensaje desaparece y no se muestra una previsualización.
 - El botón de tema se ubica en la navegación; PBI-001 implementa el botón y PBI-002 su funcionalidad.
 - El botón de tema tiene el nombre accesible «Cambiar tema»; su estado y su anuncio cuando cambia son responsabilidad de PBI-002.
-- [ ] `[NEEDS CLARIFICATION]` ¿Qué rutas exactas tendrán los enlaces de inicio de sesión y registro? Coordinar con PBI-005.
+- [ ] `[NEEDS CLARIFICATION]` ¿Qué rutas exactas tendrán los enlaces de inicio de sesión y registro? Coordinar con PBI-005. Mientras tanto, PBI-001 usa destinos provisionales semánticos y `navigation-destinations` verifica presencia y semántica, no URLs de producto.
 
 ## 11. Referencias
 

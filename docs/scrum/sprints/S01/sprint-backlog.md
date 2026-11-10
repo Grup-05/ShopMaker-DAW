@@ -33,12 +33,14 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
 |---|---|---|---|---|---|---|---|---|
-| T01 | Redactar la spec de la aplicación web | Spec | Dev B (`@Tarrant15`) | 4 h | — | S01 | Pendiente | `#6` |
-| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev B (`@Tarrant15`) | 4 h | T01 | S01 | Pendiente | `#7` |
-| T03 | Redactar `tasks.md` y la lista de tests | Spec | Dev B (`@Tarrant15`) | 2 h | T02 | S01 | Pendiente | `#8` |
-| T04 | Test rojo: la aplicación arranca en el navegador | Test | Dev B (`@Tarrant15`) | 4 h | T03 | S01 | Pendiente | `#9` |
-| T05 | Scaffold Vite + React + TypeScript y estructura por capas | Código | Dev B (`@Tarrant15`) | 8 h | T04 | S01 | Pendiente | `#10` |
-| T06 | Layout base con landmarks y navegación por teclado | Código | Dev B (`@Tarrant15`) | 8 h | T05 | S01 | Pendiente | `#11` |
+| T01 | Redactar la spec de la aplicación web | Spec | Dev B (`@Tarrant15`) | 4 h | — | S01 | En revisión | `#6` |
+| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev B (`@Tarrant15`) | 4 h | T01 | S01 | En revisión | `#7` |
+| T03 | Redactar `tasks.md` y la lista de tests | Spec | Dev B (`@Tarrant15`) | 2 h | T02 | S01 | En revisión | `#8` |
+| T04 | Test rojo: la aplicación arranca en el navegador | Test | Dev B (`@Tarrant15`) | 4 h | T03 | S01 | Hecha (rojo registrado) | `#9` |
+| T05 | Scaffold Vite + React + TypeScript y estructura por capas | Código | Dev B (`@Tarrant15`) | 8 h | T04 | S01 | Hecha (verde) | `#10` |
+| T06 | Layout base con landmarks y navegación por teclado | Código | Dev B (`@Tarrant15`) | 8 h | T05 | S01 | Hecha (verde) | `#11` |
+
+> T01–T03 redactadas y commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); pendiente de aprobación humana. T04–T06 implementadas y commiteadas en `944dce7` (local, pendiente de push/PR): rojo registrado, arnés oficial de PBI-004 consolidado y suite en verde.
 
 ### PBI-002 — Tokens, tema y accesibilidad base (`#3` · `@Fernis23228` · 21 h en S01)
 
@@ -92,12 +94,27 @@
 
 ## Lista de tests del Sprint S01
 
+> La lista detallada de PBI-001, con nivel, archivo previsto y dependencias, vive en `specs/PBI-001-aplicacion-web/tasks.md`.
+
 | Test | PBI | RF / Criterio | Estado |
 |---|---|---|---|
-| `[PBI-001][CA-01] app-arranque` | PBI-001 | CA-01 | Pendiente |
-| `[PBI-001][CA-01] layout-base` | PBI-001 | CA-01 | Pendiente |
-| `[PBI-001][RNF-03] sin-acceso-a-node` | PBI-001 | RNF-03 | Pendiente |
-| `[PBI-001][CA-04] navegacion-teclado` | PBI-001 | CA-04 | Pendiente |
+| `[PBI-001][CA-01] app-arranque` | PBI-001 | CA-01, CA-05 | Verde (T04/T05) |
+| `[PBI-001][CA-02] layer-boundaries` | PBI-001 | CA-02 | Verde (T05) |
+| `[PBI-001][CA-03] client-browser-only` | PBI-001 | CA-03, RNF-03 | Verde (T05) |
+| `[PBI-001][CA-01] home-layout` | PBI-001 | CA-01 | Verde (T06) |
+| `[PBI-001][CA-01][RF-03] navigation-destinations` | PBI-001 | CA-01, RF-03 | Verde (T06; destinos provisionales de PBI-005) |
+| `[PBI-001][CA-01] empty-pages-message` | PBI-001 | CA-01 | Verde (T06) |
+| `[PBI-001][CA-01] preview-instruction` | PBI-001 | CA-01 | Verde (T06) |
+| `[PBI-001][CA-01][RNF-02] minimum-viewport` | PBI-001 | CA-01, RNF-02 | Verde (T06) |
+| `[PBI-001][CA-04] select-page` | PBI-001 | CA-04 | Verde (T06) |
+| `[PBI-001][CA-04] selection-clears-instruction` | PBI-001 | CA-04 | Verde (T06) |
+| `[PBI-001][CA-04][RNF-01] keyboard-navigation` | PBI-001 | CA-04, RNF-01 | Verde (T06) |
+| `[PBI-001][RNF-01] focus-visible` | PBI-001 | RNF-01 | Verde (revisión manual) |
+| `[PBI-001][CA-04] layout-button-does-not-select` | PBI-001 | CA-04 | Verde (T06) |
+| `[PBI-001][CA-04] create-button-inert` | PBI-001 | CA-04 | Verde (T06) |
+| `[PBI-001][CA-04][RNF-01] inert-controls-focusable` | PBI-001 | CA-04, RNF-01 | Verde (T06) |
+| `[PBI-001][CA-06] theme-button-placement` | PBI-001 | CA-06 | Verde (T06) |
+| `[PBI-001][RNF-04] zoom-200` | PBI-001 | RNF-04 | Parcial (proxy de viewport; falta zoom nativo) |
 | `[PBI-002][CA-01] tokens-contraste-aa` | PBI-002 | CA-01 | Pendiente |
 | `[PBI-002][CA-02] sin-color-exclusivo` | PBI-002 | CA-02 | Pendiente |
 | `[PBI-002][CA-03] tema-persistente` | PBI-002 | CA-03 | Pendiente |
@@ -116,11 +133,13 @@
 | 2026-11-03 | Lockfiles ignorados en `.gitignore`; impide builds reproducibles | Dev A (`@FSolaje`) | Resuelto (`f283524`) |
 | 2026-11-03 | `.agent/hooks/pre-commit-local.sh` bloqueado por la inmutabilidad del núcleo | Dev C + SM | Resuelto en `main` (`f29cb46`, `b41ba5f`) y sincronizado |
 | 2026-11-03 | `gh` sin autenticar y tablero de GitHub Projects sin crear | SM / Dev A | Resuelto (Project `#1` y 20 issues `#2`–`#21` vinculados) |
+| 2026-11-09 | Arnés E2E de PBI-004 T03 (#19) sin publicar: no había Playwright, servidor E2E ni comandos confirmados | Dev A (`@FSolaje`) | Resuelto: arnés oficial integrado en `develop` y adoptado por la rama de PBI-001 |
+| 2026-11-09 | Rutas de «Iniciar sesión» y «Registrarse» de PBI-005 sin definir | PBI-005 | Abierto; solo afecta a los destinos exactos de `navigation-destinations` (se usan provisionales documentados) |
 
 ## Evidencia y seguimiento
 
-- Commits: gobernanza y planificación de `S01` confirmadas.
+- Commits: gobernanza y planificación de `S01` confirmadas; T01–T03 de PBI-001 en `55c0d86`, `3125dc9`, `e6f5e4d`. T04–T06 pendientes de aprobación y commit.
 - PR: pendientes.
 - Demo: pendiente.
-- Suite: pendiente de configurar.
+- Suite: `npm test` (4 archivos / 17 casos) y `npm run test:e2e` (8 casos) en verde; typecheck, lint y build OK. Evidencia en `specs/PBI-001-aplicacion-web/evidence.md`.
 - Tablero: creado en GitHub Projects v2 (`#1 — ShopMaker — S01`) con 4 PBIs (`#2`–`#5`) y 16 tareas (`#6`–`#21`) vinculadas.
