@@ -152,6 +152,10 @@ build/
 .nuxt/
 .svelte-kit/
 .astro/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
 
 # Dependencias Node
 node_modules/

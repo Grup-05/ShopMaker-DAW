@@ -219,13 +219,15 @@ bash scripts/github/gh-auth-env.sh --login
 │   └── decisiones/       # Registro de decisiones arquitectónicas (ADR)
 ├── scripts/              # Herramientas de automatización de tablero, roles y setup
 ├── specs/                # Especificaciones por PBI y plantillas SDD
+├── src/                  # Aplicación React + TypeScript por capas
+├── tests/                # Arnés oficial: setup, unit/ y e2e/
 ├── draft-specs/          # Borradores informales (no fuente de verdad)
 ├── CHANGELOG.md
 ├── PROXIMOS_PASOS.md
 └── README.md
 ```
 
-La estructura de código (`src/`) está definida en el `plan.md` del PBI-001 conforme al stack React + TypeScript + Vite; el scaffold se crea en T05.
+`src/` sigue la estructura por capas descrita en `specs/PBI-001-aplicacion-web/plan.md`: `app/` (composición), `features/home/{presentation,application,domain,infrastructure}` y `shared/`. Las pruebas viven en el arnés oficial `tests/` (`setup.ts`, `unit/` y `e2e/`), con alias `@` hacia `src/`.
 
 ---
 
@@ -245,9 +247,24 @@ La estructura de código (`src/`) está definida en el `plan.md` del PBI-001 con
 
 | Elemento | Estado |
 |---|---|
-| Arnés de pruebas | Pendiente (PBI-004) |
-| Comando de suite | Pendiente |
-| Cobertura de criterios de aceptación | Pendiente |
+| Arnés de pruebas | Vitest + React Testing Library + Playwright (oficial de PBI-004, consolidado) |
+| Comando de suite | `npm test` (componente/arquitectura) y `npm run test:e2e` (E2E) |
+| Calidad estática | `npm run typecheck`, `npm run lint` y `npm run build` en verde |
+| Cobertura de criterios de aceptación | 17 tests de PBI-001: CA-01 a CA-06 cubiertos; RNF-04 con proxy de viewport pendiente de zoom nativo |
 | Tests flaky conocidos | Ninguno registrado |
 
 La cobertura se mide por **criterios de aceptación cubiertos**, no por porcentaje de líneas. El objetivo es el 100 % de los criterios comprometidos en cada Sprint.
+
+### Comandos de desarrollo y pruebas
+
+```bash
+npm install            # instalar dependencias
+npm run dev            # servidor de desarrollo Vite
+npm test               # suite de componente y arquitectura (Vitest)
+npm run test:e2e       # suite E2E (Playwright, Chromium y Firefox)
+npm run typecheck      # comprobación de tipos
+npm run lint           # ESLint
+npm run build          # build de producción
+```
+
+La evidencia de los ciclos rojo → verde de PBI-001 está en [`specs/PBI-001-aplicacion-web/evidence.md`](specs/PBI-001-aplicacion-web/evidence.md).

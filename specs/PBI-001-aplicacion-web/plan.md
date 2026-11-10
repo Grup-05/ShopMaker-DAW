@@ -10,7 +10,7 @@
 | Spec | `specs/PBI-001-aplicacion-web/spec.md` |
 | Autor | Jesús Hernández (`@Tarrant15`, Dev B) |
 | Fecha | 2026-11-09 |
-| Estado | En revisión — pendiente aprobación humana |
+| Estado | En revisión — implementado y en verde; pendiente aprobación humana y rutas de PBI-005 |
 
 ## 1. Resumen de la solución
 
@@ -56,9 +56,15 @@ src/
 │       ├── presentation/
 │       ├── application/
 │       ├── domain/
-│       ├── infrastructure/
-│       └── tests/
+│       └── infrastructure/
 └── shared/
+
+tests/
+├── setup.ts
+├── unit/
+│   ├── home/
+│   └── architecture/
+└── e2e/
 ```
 
 | Archivo / módulo | Responsabilidad |
@@ -69,9 +75,10 @@ src/
 | `src/features/home/application/` | Mantener y actualizar la selección de página sin lanzar acciones de maquetación ni previsualización. |
 | `src/features/home/domain/` | Definir el tipo mínimo de página usado por la lista. |
 | `src/features/home/infrastructure/` | Proveer datos en memoria a través de una dependencia sustituible en pruebas. |
-| `src/features/home/tests/` | Pruebas de componente y de límites entre capas para los comportamientos de esta feature. |
+| `tests/unit/` | Pruebas de componente y de límites entre capas, alineadas con el arnés oficial de PBI-004. |
+| `tests/e2e/` | Pruebas E2E de Playwright con el servidor Vite gestionado por `webServer`. |
 
-Los nombres y rutas son una propuesta mínima; se ajustarán si el scaffold de T05 establece convenciones equivalentes.
+Los nombres y rutas se materializaron en T05 sin desviaciones respecto a esta propuesta. Los destinos de autenticación viven en `src/features/home/application/authRoutes.ts` como valores provisionales de PBI-005.
 
 ## 5. Estrategia de pruebas
 
@@ -91,29 +98,29 @@ Los nombres y rutas son una propuesta mínima; se ajustarán si el scaffold de T
 - No crear adaptador de API mock ni contrato de red: corresponden a PBI-003.
 - La lista vacía muestra «Ninguna Web en Progreso». La aplicación inicia sin página seleccionada; los nombres definitivos de páginas no están especificados y no se fijan en pruebas.
 - El área central muestra «Seleccione una web para visualizar» mientras no hay selección; al seleccionar, el mensaje desaparece. No cargar ni renderizar contenido de previsualización.
-- Vitest, React Testing Library y Playwright son el stack previsto por ADR-001/ADR-002; los comandos y la configuración efectiva dependen de PBI-004.
+- Vitest, React Testing Library y Playwright son el stack previsto por ADR-001/ADR-002; esta rama adopta el arnés oficial integrado en `develop` desde PBI-004 (`tests/setup.ts`, `tests/unit/`, `tests/e2e/`, alias `@`). Comandos: `npm test`, `npm run test:e2e`, `npm run typecheck`, `npm run lint` y `npm run build`.
 
 ## 6. Matriz de trazabilidad spec-test
 
-> Cada RF y cada criterio de aceptación tiene al menos una prueba prevista. Las rutas que dependen de PBI-005 se concretarán al coordinar ese PBI.
+> Cada RF y cada criterio de aceptación tiene al menos una prueba implementada. Las rutas que dependen de PBI-005 siguen usando destinos provisionales documentados en `authRoutes.ts`.
 
-| ID | Requerimiento / Criterio | Tipo de prueba | Test previsto | Estado |
+| ID | Requerimiento / Criterio | Tipo de prueba | Test implementado | Estado |
 |---|---|---|---|---|
-| RF-01 | Composición: navegación por encima del título «ShopMaker», enlaces «Iniciar sesión»/«Registrarse», botón «Cambiar tema», aside con lista o estado vacío, área central con el mensaje inicial y layout en viewports objetivo. | E2E / componente | `[PBI-001][CA-01] app-arranque` verifica título y landmarks; `home-layout` verifica la composición; `empty-pages-message` usa una fixture vacía y verifica el texto exacto. | Pendiente |
-| RF-02 | Separación entre presentación, aplicación, dominio e infraestructura. | Arquitectura | `layer-boundaries.test.ts`: comprueba estructura y dependencias permitidas. | Pendiente |
-| RF-03 | Enlaces de login/registro; selección operable; botones futuros habilitados pero inertes; selección sin previsualización. | Componente | `HomePage.test.tsx`: comprueba enlaces acordados con PBI-005, selección por teclado/ratón, desaparición del mensaje, controles futuros focalizables y que activarlos no ejecuta acciones ni selecciona una página. | Pendiente |
-| RF-04 | Smoke test E2E de arranque. | E2E | `[PBI-001][CA-01] app-arranque`: abre la SPA y verifica el heading principal «ShopMaker» y los landmarks `navigation`, `main` y `complementary`. | Pendiente |
-| RF-05 | Botón accesible «Cambiar tema» ubicado en la navegación; alternancia a cargo de PBI-002. | Componente | `theme-button-placement`: comprueba que el botón está dentro de la navegación y tiene nombre accesible «Cambiar tema»; el cambio de tema se prueba en PBI-002. | Pendiente |
-| RNF-01 | Foco visible y operación por teclado en controles aplicables. | Componente / revisión manual | `HomePage.test.tsx`: recorrido por teclado y foco; revisión manual de foco visible y contraste. | Pendiente |
-| RNF-02 | Compatibilidad y layout objetivo. | E2E | `home-screen.spec.ts`: Chromium y Firefox; viewports 1280×800 y 1024×720 sin overflow horizontal. | Pendiente |
-| RNF-03 | Cliente limitado a APIs del navegador y sin secretos. | Arquitectura / revisión estática | `client-boundary.test.ts`: sin imports de Node/sistema de archivos; revisar configuración de CSP como fuera de alcance. | Pendiente |
-| RNF-04 | Contenido y funcionalidad disponibles con zoom al 200 %. | Revisión manual | `accessibility-checklist`: inspeccionar navegación, lista y controles a zoom 200 %. | Pendiente |
-| CA-01 | Navegación sobre el título con enlaces «Iniciar sesión»/«Registrarse» y botón «Cambiar tema», lista con estado vacío, mensaje central inicial, pantalla a 1280×800 y sin scroll horizontal a 1024×720; sin contacto. | E2E / componente | `home-screen.spec.ts` verifica posición, enlaces, botón, mensaje central, landmarks y `document.documentElement.scrollWidth <= window.innerWidth`; una prueba con fixture vacía verifica «Ninguna Web en Progreso». | Pendiente |
-| CA-02 | Capas distinguibles en el código. | Arquitectura | `layer-boundaries.test.ts`: verifica estructura y reglas de importación. | Pendiente |
-| CA-03 | No hay APIs de Node ni del sistema de archivos en el código cliente. | Arquitectura | `client-boundary.test.ts`: busca imports y globales prohibidos en el código de cliente. | Pendiente |
-| CA-04 | Selección con teclado/ratón separada de botones habilitados e inertes; quitar mensaje y no mostrar preview. | Componente | `HomePage.test.tsx`: verifica que los botones futuros reciben foco, su activación no tiene efecto, el botón de maquetación no selecciona la página y el control de selección quita el mensaje sin renderizar preview. | Pendiente |
-| CA-05 | Smoke test E2E de arranque, heading principal y landmarks. | E2E | `[PBI-001][CA-01] app-arranque`: verifica heading «ShopMaker» y roles `navigation`, `main` y `complementary`; también cubre CA-01 en lo referente a arranque/estructura básica. | Pendiente |
-| CA-06 | Botón accesible «Cambiar tema» en la navegación; el cambio corresponde a PBI-002. | Componente / integración posterior | `theme-button-placement` verifica presencia, ubicación y nombre; PBI-002 verifica alternancia y anuncio del estado. | Pendiente |
+| RF-01 | Composición: navegación por encima del título «ShopMaker», enlaces «Iniciar sesión»/«Registrarse», botón «Cambiar tema», aside con lista o estado vacío, área central con el mensaje inicial y layout en viewports objetivo. | E2E / componente | `[PBI-001][CA-01] app-arranque` verifica título y landmarks; `home-layout` verifica la composición; `empty-pages-message` usa una fixture vacía y verifica el texto exacto. | Verde |
+| RF-02 | Separación entre presentación, aplicación, dominio e infraestructura. | Arquitectura | `layer-boundaries.test.ts`: comprueba estructura y dependencias permitidas. | Verde |
+| RF-03 | Enlaces de login/registro; selección operable; botones futuros habilitados pero inertes; selección sin previsualización. | Componente | `HomePage.test.tsx`: comprueba enlaces semánticos (destinos provisionales de PBI-005), selección por teclado/ratón, desaparición del mensaje, controles futuros focalizables y que activarlos no ejecuta acciones ni selecciona una página. | Verde |
+| RF-04 | Smoke test E2E de arranque. | E2E | `[PBI-001][CA-01] app-arranque`: abre la SPA y verifica el heading principal «ShopMaker» y los landmarks `navigation`, `main` y `complementary`. | Verde |
+| RF-05 | Botón accesible «Cambiar tema» ubicado en la navegación; alternancia a cargo de PBI-002. | Componente | `theme-button-placement`: comprueba que el botón está dentro de la navegación, es visible, está habilitado y tiene nombre accesible «Cambiar tema»; el cambio de tema se prueba en PBI-002. | Verde |
+| RNF-01 | Foco visible y operación por teclado en controles aplicables. | Componente / revisión manual | `HomePage.test.tsx`: recorrido por teclado y foco; revisión manual de foco visible (`3px`) y contrastes (`13,75:1`, `6,7:1`, `6,7:1`) en Chromium y Firefox. | Verde |
+| RNF-02 | Compatibilidad y layout objetivo. | E2E | `home-screen.spec.ts`: Chromium y Firefox; viewports 1280×800 y 1024×720 sin overflow horizontal. | Verde |
+| RNF-03 | Cliente limitado a APIs del navegador y sin secretos. | Arquitectura / revisión estática | `client-boundary.test.ts`: sin imports de Node/sistema de archivos ni secretos evidentes; CSP queda fuera de alcance. | Verde |
+| RNF-04 | Contenido y funcionalidad disponibles con zoom al 200 %. | Revisión manual | `accessibility-checklist.md`: proxy de viewport `512×360` sin scroll horizontal y con landmarks visibles. Queda pendiente la validación con zoom nativo. | Parcial |
+| CA-01 | Navegación sobre el título con enlaces «Iniciar sesión»/«Registrarse» y botón «Cambiar tema», lista con estado vacío, mensaje central inicial, pantalla a 1280×800 y sin scroll horizontal a 1024×720; sin contacto. | E2E / componente | `home-screen.spec.ts` verifica posición, enlaces, botón, mensaje central, landmarks y ausencia de scroll horizontal; una prueba con fixture vacía verifica «Ninguna Web en Progreso». | Verde |
+| CA-02 | Capas distinguibles en el código. | Arquitectura | `layer-boundaries.test.ts`: verifica estructura y reglas de importación. | Verde |
+| CA-03 | No hay APIs de Node ni del sistema de archivos en el código cliente. | Arquitectura | `client-boundary.test.ts`: busca imports y globales prohibidos en el código de cliente. | Verde |
+| CA-04 | Selección con teclado/ratón separada de botones habilitados e inertes; quitar mensaje y no mostrar preview. | Componente | `HomePage.test.tsx`: verifica que los botones futuros reciben foco, su activación no tiene efecto, el botón de maquetación no selecciona la página y el control de selección quita el mensaje sin renderizar preview. | Verde |
+| CA-05 | Smoke test E2E de arranque, heading principal y landmarks. | E2E | `[PBI-001][CA-01] app-arranque`: verifica heading «ShopMaker» y roles `navigation`, `main` y `complementary`; también cubre CA-01 en lo referente a arranque/estructura básica. | Verde |
+| CA-06 | Botón accesible «Cambiar tema» en la navegación; el cambio corresponde a PBI-002. | Componente / integración posterior | `theme-button-placement` verifica presencia, ubicación y nombre; PBI-002 verificará alternancia y anuncio del estado. | Verde |
 
 ## 7. Plan TDD por incrementos
 
@@ -131,7 +138,7 @@ Los nombres y rutas son una propuesta mínima; se ajustarán si el scaffold de T
 | Las rutas de login y registro aún no están acordadas. | Media | Alto | Coordinar rutas con PBI-005 antes de cerrar las pruebas de navegación. |
 | Los botones de futuro se confunden con controles funcionales. | Media | Medio | Etiquetarlos de forma clara, evitar acciones y verificar que no cambian la selección. |
 | La estructura por capas se sobredimensiona para una pantalla mínima. | Media | Medio | Añadir solo módulos mínimos exigidos por RF-02; no introducir router, estado global ni API. |
-| Los comandos de pruebas E2E aún dependen de la configuración de PBI-004. | Media | Medio | Coordinar T04 con PBI-004 T03 (#19); mantener la prueba definida sin duplicar la configuración del arnés. |
+| Los comandos de pruebas E2E dependían de la configuración de PBI-004. | Resuelto | — | Arnés oficial integrado en `develop` y adoptado por esta rama; no se duplica configuración. |
 | El botón de tema podría duplicar lógica o no coincidir con la funcionalidad de PBI-002. | Media | Medio | PBI-001 implementa solo el control visual en la navegación; PBI-002 aporta la funcionalidad y el estado, sin duplicarlos. |
 
 ## 9. Checklist de aprobación del plan
