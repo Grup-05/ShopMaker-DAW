@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `develop`
-- **Último commit consolidado:** `fae32c0 — *Merge pull request #23 from Grup-05/chore/INFRA-01-proteccion-ramas*`
-- **Fecha de última sincronización:** 2026-11-09 16:52
+- **Rama activa:** `feature/PBI-004-arnes-pruebas`
+- **Último commit consolidado:** `05304f8 — *Merge pull request #26 from Grup-05/feature/PBI-001-aplicacion-web*`
+- **Fecha de última sincronización:** 2026-11-10 11:53
 
 ---
 
@@ -63,9 +63,9 @@ Artefactos:
 
 PBIs del Sprint S01:
 
-- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`).
+- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (Fase SDD completada `T01–T03` `#6`–`#8`; pendiente TDD `T04–T06` `#9`–`#11`, 18 h — `@Tarrant15`).
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
-- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
+- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje` [En progreso]).
 - [x] **INFRA-01** (`#22`) — Protección de ramas (`main`, `develop`, `release`), CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
 - [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
@@ -87,11 +87,18 @@ PBIs del Sprint S01:
 
 ## 🎯 Próximo Paso Inmediato
 
-1. **Protección de ramas activada (`INFRA-01` / issue `#22`):** `main`, `develop` y `release` protegidas con PR obligatorio, revisión CODEOWNERS y bloqueo a administradores.
-2. **Iniciar el trabajo SDD/TDD del Sprint S01:**
-   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (`#6`–`#8`), `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
-   - Aprobar las specs y confirmar `docs(spec): ...` (requiere orden humana).
-   - Iniciar el ciclo TDD con el arnés de pruebas (`PBI-004`) y el primer test rojo de la aplicación web (`PBI-001`).
+1. **Higiene GitFlow y tablero completados:**
+   - PR #26 integrado en `develop` (especificación `specs/PBI-001-aplicacion-web/` T01–T03).
+   - PR #27 integrado en `main` (reversión del merge erróneo en producción; `main` 100 % limpio).
+   - Tablero Project `#1` actualizado: `#22`, `#6`, `#7`, `#8` en **Hecho**; `#5` y `#17` en **En progreso**.
+2. **Ejecutar tareas de `@FSolaje` en `PBI-004` (Arnés de pruebas y calidad):**
+   - Crear rama `feature/PBI-004-arnes-pruebas` desde `develop`.
+   - Redactar `specs/PBI-004-arnes-pruebas/{spec.md, plan.md, tasks.md}` (Tarea T01 / `#17`).
+   - Aprobar specs y confirmar `docs(spec): ...`.
+   - Implementar Vitest, testing library y scripts (Tarea T02 / `#18`).
+   - Implementar Playwright y smoke test (Tarea T03 / `#19`, desbloquea `#9` de `@Tarrant15`).
+   - Implementar test de ejemplo rojo -> verde (Tarea T04 / `#20`).
+   - Implementar hook `.agent/hooks/pre-commit-local.sh` (Tarea T05 / `#21`).
 
 ---
 
