@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `feature/PBI-001-aplicacion-web`
-- **Último commit consolidado:** `944dce7 — *feat(PBI-001): implementar aplicación web base y consolidar arnés*`
-- **Fecha de última sincronización:** 2026-11-10 17:51
+- **Rama activa:** `feature/borrador-sprint-02`
+- **Último commit consolidado:** `53ea199 — *Merge pull request #31 from Grup-05/feature/PBI-001-aplicacion-web*`
+- **Fecha de última sincronización:** 2026-11-12 13:07
 
 ---
 
