@@ -93,16 +93,16 @@ src/
 
 | ID | Requerimiento / Criterio | Tipo de prueba | Test previsto | Estado |
 |---|---|---|---|---|
-| RF-01 | Tokens primitivos y semánticos en dos niveles | Unitaria | `[PBI-002][RF-01] tokens-structure-valid` | Pendiente |
-| RF-02 | Conmutación de tema mediante `data-theme` | Componente / Hook | `[PBI-002][RF-02] theme-toggle-updates-dom` | Pendiente |
-| RF-03 | Persistencia en `localStorage` | Unitaria / Integración | `[PBI-002][RF-03] theme-persists-in-localstorage` | Pendiente |
-| RF-04 | Detección de `prefers-color-scheme` del sistema | Unitaria | `[PBI-002][RF-04] theme-detects-system-preference` | Pendiente |
-| RF-05 | Botón de tema accesible con `aria-label` | Componente | `[PBI-002][RF-05] theme-button-accessible-label` | Pendiente |
-| CA-01 | Ratios de contraste WCAG AA (≥ 4.5:1 texto, ≥ 3:1 controles) | Unitaria (Algorítmica) | `[PBI-002][CA-01] tokens-contraste-aa` | Pendiente |
-| CA-02 | Ausencia de colores hardcodeados en componentes | Unitaria (Linter/RegExp) | `[PBI-002][CA-02] sin-color-exclusivo` | Pendiente |
-| CA-03 | Alternancia y persistencia entre recargas | Integración | `[PBI-002][CA-03] tema-persistente` | Pendiente |
-| CA-04 | Fallback a preferencia del sistema operativo | Unitaria | `[PBI-002][CA-04] tema-fallback-sistema` | Pendiente |
-| CA-05 | Foco visible por teclado en controles interactivos | Componente | `[PBI-002][CA-05] foco-visible-teclado` | Pendiente |
+| RF-01 | Tokens primitivos y semánticos en dos niveles | Unitaria | `[PBI-002][RF-01] tokens-structure-valid` | Verde |
+| RF-02 | Conmutación de tema mediante `data-theme` | Componente / Hook | `[PBI-002][RF-02] theme-toggle-updates-dom` | Verde |
+| RF-03 | Persistencia en `localStorage` | Unitaria / Integración | `[PBI-002][RF-03] theme-persists-in-localstorage` | Verde |
+| RF-04 | Detección de `prefers-color-scheme` del sistema | Unitaria | `[PBI-002][RF-04] theme-detects-system-preference` | Verde |
+| RF-05 | Botón de tema accesible con `aria-label` | Componente | `[PBI-002][RF-05] theme-button-accessible-label` | Verde |
+| CA-01 | Ratios de contraste WCAG AA (≥ 4.5:1 texto, ≥ 3:1 controles) | Unitaria (Algorítmica) | `[PBI-002][CA-01] tokens-contraste-aa` | Verde |
+| CA-02 | Ausencia de colores hardcodeados en componentes | Unitaria (Linter/RegExp) | `[PBI-002][CA-02] sin-color-exclusivo` | Verde |
+| CA-03 | Alternancia y persistencia entre recargas | Integración | `[PBI-002][CA-03] tema-persistente` | Verde |
+| CA-04 | Fallback a preferencia del sistema operativo | Unitaria | `[PBI-002][CA-04] tema-fallback-sistema` | Verde |
+| CA-05 | Foco visible por teclado en controles interactivos | Componente | `[PBI-002][CA-05] foco-visible-teclado` | Verde |
 
 ---
 
