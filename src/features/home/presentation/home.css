@@ -94,7 +94,7 @@
 
 .home__page-select[aria-pressed='true'] {
   border-color: var(--color-primary);
-  background-color: #dbeafe;
+  background-color: var(--color-primary-highlight);
   font-weight: 700;
 }
 
