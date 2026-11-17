@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `fix/script-preview-auto-build`
-- **Último commit consolidado:** `53ea199 — *Merge pull request #31 from Grup-05/feature/PBI-001-aplicacion-web*`
-- **Fecha de última sincronización:** 2026-11-12 13:06
+- **Último commit consolidado:** `5ad0000 — *fix(scripts): asegurar compilacion previa automatica en npm run preview*`
+- **Fecha de última sincronización:** 2026-11-17 17:41
 
 ---
 
