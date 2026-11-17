@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `fix/script-preview-auto-build`
-- **Último commit consolidado:** `5ad0000 — *fix(scripts): asegurar compilacion previa automatica en npm run preview*`
-- **Fecha de última sincronización:** 2026-11-17 17:41
+- **Último commit consolidado:** `b17032c — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-17 17:49
 
 ---
 
@@ -63,27 +63,28 @@ Artefactos:
 
 PBIs del Sprint S01:
 
-- [ ] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`). T01–T03 commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); T04–T06 implementadas, en verde y commiteadas en `944dce7` (local). Pendiente: push/PR, cierre de issues y rutas definitivas de PBI-005.
+- [x] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`). Completado e integrado en `develop` (PR `#26` y PR `#31`).
 - [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
-- [ ] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`).
-- [ ] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228`).
+- [x] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`). Completado e integrado en `develop` (PR `#28`).
+- [x] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228` / `@FSolaje`). Completado e integrado en `develop` y `main` (PR `#23`, `#25`, `#29`, `#30`).
 - [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
 
 ### 🧪 Pruebas
 
 - [x] Runner y comando único de suite definidos: `npm test` y `npm run test:e2e`.
 - [x] Test de humo de la aplicación web (`app-arranque`, `home-layout`, `minimum-viewport`).
-- [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md` con estados de ejecución.
-- [ ] Hook `.agent/hooks/pre-commit-local.sh` operativo.
-- [x] Suite PBI-001 en verde: 17 tests unitarios/de componente/arquitectura y 8 E2E (incluidos los de PBI-004); evidencia en `specs/PBI-001-aplicacion-web/evidence.md`.
+- [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md` y `specs/PBI-004-arnes-pruebas/plan.md` con estados de ejecución.
+- [x] Hook `.agent/hooks/pre-commit-local.sh` operativo e integrado en `develop` (PR `#28`).
+- [x] Suite PBI-001 y PBI-004 en verde: 17 tests unitarios/de componente/arquitectura y 8 E2E; evidencia en `specs/PBI-001-aplicacion-web/evidence.md`.
 
 ### 📝 Documentación
 
 - [x] `README.md` con metodología, roles, ramas, commits y DoD.
 - [x] `CHANGELOG.md` inicializado.
-- [x] `specs/PBI-001-aplicacion-web/` redactada e implementada: `spec.md`, `plan.md`, `tasks.md`, `evidence.md` y `accessibility-checklist.md` (T01–T06, en revisión).
-- [ ] Especificaciones `specs/PBI-002-*/` y `specs/PBI-004-*/` redactadas.
+- [x] `specs/PBI-001-aplicacion-web/` y `specs/PBI-004-arnes-pruebas/` redactadas e implementadas en `develop`.
+- [ ] Especificación `specs/PBI-002-*/` pendiente (`@Fernis23228`).
 - [x] ADR-001 (React/TS/Vite) y ADR-002 (aplicación web) aceptados.
+- [x] Sincronización automática de Issues y Tablón Scrum al fusionar PRs en `develop` (`.github/workflows/scrum-board-sync.yml` y `scripts/github/sync-pr-issues.sh`).
 
 ---
 
