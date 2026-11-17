@@ -33,14 +33,14 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
 |---|---|---|---|---|---|---|---|---|
-| T01 | Redactar la spec de la aplicación web | Spec | Dev B (`@Tarrant15`) | 4 h | — | S01 | En revisión | `#6` |
-| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev B (`@Tarrant15`) | 4 h | T01 | S01 | En revisión | `#7` |
-| T03 | Redactar `tasks.md` y la lista de tests | Spec | Dev B (`@Tarrant15`) | 2 h | T02 | S01 | En revisión | `#8` |
-| T04 | Test rojo: la aplicación arranca en el navegador | Test | Dev B (`@Tarrant15`) | 4 h | T03 | S01 | Hecha (rojo registrado) | `#9` |
-| T05 | Scaffold Vite + React + TypeScript y estructura por capas | Código | Dev B (`@Tarrant15`) | 8 h | T04 | S01 | Hecha (verde) | `#10` |
-| T06 | Layout base con landmarks y navegación por teclado | Código | Dev B (`@Tarrant15`) | 8 h | T05 | S01 | Hecha (verde) | `#11` |
+| T01 | Redactar la spec de la aplicación web | Spec | Dev B (`@Tarrant15`) | 4 h | — | S01 | Hecho (PR `#26`) | `#6` |
+| T02 | Redactar el plan técnico y la matriz spec-test | Spec | Dev B (`@Tarrant15`) | 4 h | T01 | S01 | Hecho (PR `#26`) | `#7` |
+| T03 | Redactar `tasks.md` y la lista de tests | Spec | Dev B (`@Tarrant15`) | 2 h | T02 | S01 | Hecho (PR `#26`) | `#8` |
+| T04 | Test rojo: la aplicación arranca en el navegador | Test | Dev B (`@Tarrant15`) | 4 h | T03 | S01 | Hecho (PR `#31`) | `#9` |
+| T05 | Scaffold Vite + React + TypeScript y estructura por capas | Código | Dev B (`@Tarrant15`) | 8 h | T04 | S01 | Hecho (PR `#31`) | `#10` |
+| T06 | Layout base con landmarks y navegación por teclado | Código | Dev B (`@Tarrant15`) | 8 h | T05 | S01 | Hecho (PR `#31`) | `#11` |
 
-> T01–T03 redactadas y commiteadas (`55c0d86`, `3125dc9`, `e6f5e4d`); pendiente de aprobación humana. T04–T06 implementadas y commiteadas en `944dce7` (local, pendiente de push/PR): rojo registrado, arnés oficial de PBI-004 consolidado y suite en verde.
+> T01–T06 completadas e integradas en `develop` (PR `#26` y PR `#31`), con issues `#2` y `#6`–`#11` cerradas y en columna `Hecho`.
 
 ### PBI-002 — Tokens, tema y accesibilidad base (`#3` · `@Fernis23228` · 21 h en S01)
 
@@ -56,17 +56,17 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
 |---|---|---|---|---|---|---|---|---|
-| T01 | Redactar spec, plan y tasks del arnés de pruebas | Spec | Dev A (`@FSolaje`) | 6 h | — | S01 | Pendiente | `#17` |
-| T02 | Configurar Vitest, React Testing Library y scripts | Código | Dev A (`@FSolaje`) | 6 h | T01 | S01 | Pendiente | `#18` |
-| T03 | Configurar Playwright y el smoke test E2E | Código | Dev A (`@FSolaje`) | 6 h | T01 | S01 | Pendiente | `#19` |
-| T04 | Añadir el test de ejemplo rojo → verde | Test | Dev A (`@FSolaje`) | 3 h | T02 | S01 | Pendiente | `#20` |
-| T05 | Crear el hook local y resolver la inmutabilidad | Código | Dev A (`@FSolaje`) | 4 h | T02, T03 | S01 | Pendiente | `#21` |
+| T01 | Redactar spec, plan y tasks del arnés de pruebas | Spec | Dev A (`@FSolaje`) | 6 h | — | S01 | Hecho (PR `#28`) | `#17` |
+| T02 | Configurar Vitest, React Testing Library y scripts | Código | Dev A (`@FSolaje`) | 6 h | T01 | S01 | Hecho (PR `#28`) | `#18` |
+| T03 | Configurar Playwright y el smoke test E2E | Código | Dev A (`@FSolaje`) | 6 h | T01 | S01 | Hecho (PR `#28`) | `#19` |
+| T04 | Añadir el test de ejemplo rojo → verde | Test | Dev A (`@FSolaje`) | 3 h | T02 | S01 | Hecho (PR `#28`) | `#20` |
+| T05 | Crear el hook local y resolver la inmutabilidad | Código | Dev A (`@FSolaje`) | 4 h | T02, T03 | S01 | Hecho (PR `#28`) | `#21` |
 
 ### Tareas Transversales de Infraestructura y Gobernanza (S01)
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Sprint | Estado | Issue |
 |---|---|---|---|---|---|---|---|---|
-| INFRA-01 | Protección de ramas, CODEOWNERS y activación dinámica de roles Scrum | Chore | Dev C (`@Fernis23228`) | 4 h | — | S01 | En progreso | `#22` |
+| INFRA-01 | Protección de ramas, CODEOWNERS y activación dinámica de roles Scrum | Chore | Dev C (`@Fernis23228`) | 4 h | — | S01 | Hecho (PR `#23`, `#25`, `#29`, `#30`) | `#22` |
 
 ---
 
@@ -118,11 +118,11 @@
 | `[PBI-002][CA-01] tokens-contraste-aa` | PBI-002 | CA-01 | Pendiente |
 | `[PBI-002][CA-02] sin-color-exclusivo` | PBI-002 | CA-02 | Pendiente |
 | `[PBI-002][CA-03] tema-persistente` | PBI-002 | CA-03 | Pendiente |
-| `[PBI-004][CA-01] suite-ejecutable` | PBI-004 | CA-01 | Pendiente |
-| `[PBI-004][CA-02] sin-red-real` | PBI-004 | CA-02 | Pendiente |
-| `[PBI-004][CA-03] e2e-arranque` | PBI-004 | CA-03 | Pendiente |
-| `[PBI-004][CA-04] ejemplo-rojo-verde` | PBI-004 | CA-04 | Pendiente |
-| `[PBI-004][CA-05] hook-local` | PBI-004 | CA-05 | Pendiente |
+| `[PBI-004][CA-01] suite-ejecutable` | PBI-004 | CA-01 | Verde (PR `#28`) |
+| `[PBI-004][CA-02] sin-red-real` | PBI-004 | CA-02 | Verde (PR `#28`) |
+| `[PBI-004][CA-03] e2e-arranque` | PBI-004 | CA-03 | Verde (PR `#28`) |
+| `[PBI-004][CA-04] ejemplo-rojo-verde` | PBI-004 | CA-04 | Verde (PR `#28`) |
+| `[PBI-004][CA-05] hook-local` | PBI-004 | CA-05 | Verde (PR `#28`) |
 
 ## Bloqueos e impedimentos
 
