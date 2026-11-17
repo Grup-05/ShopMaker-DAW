@@ -1,4 +1,5 @@
 import { useReducer } from 'react';
+import { useTheme } from '../../../shared/hooks/useTheme';
 import { AUTH_ROUTES } from '../application/authRoutes';
 import {
   findSelectedPage,
@@ -15,6 +16,7 @@ interface HomePageProps {
 export function HomePage({ pages }: HomePageProps) {
   const [state, dispatch] = useReducer(homePageReducer, initialHomePageState);
   const selectedPage = findSelectedPage(pages, state);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="home">
@@ -26,7 +28,12 @@ export function HomePage({ pages }: HomePageProps) {
           <a className="home__nav-link" href={AUTH_ROUTES.register}>
             Registrarse
           </a>
-          <button className="home__theme-button" type="button">
+          <button
+            className="home__theme-button"
+            type="button"
+            onClick={toggleTheme}
+            aria-pressed={theme === 'dark'}
+          >
             Cambiar tema
           </button>
         </nav>
