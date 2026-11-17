@@ -15,12 +15,12 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 
 | ID | Título | Prioridad | Estimación | Estado | Sprint | Issue | Spec |
 |---|---|---|---|---|---|---|---|
-| PBI-001 | Inicializar la aplicación web y la estructura base | Alta | 36 h (30 h en S01) | En Sprint | S01 | `#2` | Pendiente |
-| PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Alta | 36 h (21 h en S01) | En Sprint | S01 | `#3` | Pendiente |
-| PBI-003 | Definir el contrato de API y el adaptador mock | Alta | 38 h | Refinado | S02 | `#4` | Pendiente |
-| PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | 30 h (25 h en S01) | En Sprint | S01 | `#5` | Pendiente |
-| PBI-005 | Registro e inicio de sesión de usuarios | Alta | — | Nuevo | — | — | Pendiente |
-| PBI-006 | Catálogo de módulos comprables con búsqueda y filtros | Alta | — | Nuevo | — | — | Pendiente |
+| PBI-001 | Inicializar la aplicación web y la estructura base | Alta | 36 h (30 h en S01) | Terminado | S01 | `#2` | `specs/PBI-001-aplicacion-web/` |
+| PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Alta | 36 h (21 h en S01) | Terminado | S01 | `#3` | `specs/PBI-002-tokens-accesibilidad/` |
+| PBI-003 | Definir el contrato de API y el adaptador mock persistente | Alta | 26 h | En Sprint | S02 | `#4` | `specs/PBI-003-contrato-api-mock/` |
+| PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | 30 h (25 h en S01) | Terminado | S01 | `#5` | `specs/PBI-004-arnes-pruebas/` |
+| PBI-005 | Registro e inicio de sesión de usuarios y rutas protegidas | Alta | 28 h | En Sprint | S02 | — | `specs/PBI-005-registro-login-rutas/` |
+| PBI-006 | Dashboard de administración y catálogo preliminar de módulos | Alta | 26 h | En Sprint | S02 | — | `specs/PBI-006-dashboard-catalogo/` |
 | PBI-007 | Detalle de módulo y compra simulada | Alta | — | Nuevo | — | — | Pendiente |
 | PBI-008 | Editor de webs con autoguardado y borradores | Alta | — | Nuevo | — | — | Pendiente |
 | PBI-009 | Previsualización aislada y segura de la web | Alta | — | Nuevo | — | — | Pendiente |
@@ -103,6 +103,56 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 
 **Estimación:** 30 h totales (25 h comprometidas en S01: `T01–T05`; 5 h en S02: `T06–T07`).
 **Spec:** `specs/PBI-004-arnes-pruebas/` (pendiente).
+
+---
+
+## Detalle de los PBIs del Sprint S02
+
+### PBI-003 — Definir el contrato de API y el adaptador mock persistente
+
+**Como** Developer, **quiero** un contrato de API documentado (`domain/ports/`) y un adaptador mock con persistencia local (`infrastructure/api/mock/`), **para** desarrollar el frontend sin depender del backend y probar de forma determinista con simulación de red y errores.
+
+**Valor:** Desbloquea la integración de datos y la persistencia de usuarios y sitios sin backend real.
+
+**Criterios de aceptación:**
+- [ ] Define interfaces de puertos para Auth (`AuthApiPort`), Sitios (`SitesApiPort`) y Módulos (`ModulesApiPort`).
+- [ ] Implementa almacenamiento local (`localStorage`/`IndexedDB`) para que datos creados no desaparezcan al recargar.
+- [ ] Simulación de latencia configurable (200–500 ms).
+- [ ] Simulación determinista de errores HTTP (401 credenciales incorrectas, 409 duplicado, 500 red).
+- [ ] Cobertura de tests de contrato al 100 %.
+
+**Estimación:** 26 h | **Responsable:** Dev A (`@FSolaje`)  
+**Spec:** `specs/PBI-003-contrato-api-mock/`
+
+### PBI-005 — Registro e inicio de sesión de usuarios y rutas protegidas
+
+**Como** usuario, **quiero** registrarme e iniciar sesión con validaciones accesibles, **para** acceder de forma segura a la administración de mis sitios web.
+
+**Valor:** Seguridad, control de identidad y personalización de la experiencia de CMS.
+
+**Criterios de aceptación:**
+- [ ] Formulario de registro (`/register`) con medidor accesible de fortaleza de contraseña (`aria-live="polite"`).
+- [ ] Formulario de login (`/login`) con autocompletado accesible, recordatorio y recuperación de contraseña.
+- [ ] Gestión de sesión mediante `useAuth()` y protección de rutas mediante `GuardedRoute` (redirección a `/login?redirect=...`).
+- [ ] Cabecera dinámica que muestra avatar y nombre del usuario autenticado con botón de cerrar sesión.
+
+**Estimación:** 28 h | **Responsable:** Dev B (`@Tarrant15`, PO)  
+**Spec:** `specs/PBI-005-registro-login-rutas/`
+
+### PBI-006 — Dashboard de administración y catálogo preliminar de módulos (Fase 1)
+
+**Como** usuario autenticado, **quiero** un panel de control con mis sitios y catálogo de aplicaciones, **para** gestionar mis páginas web como en un CMS profesional.
+
+**Valor:** Experiencia central del CMS y gestión multi-sitio.
+
+**Criterios de aceptación:**
+- [ ] Panel de control `/dashboard` con navegación lateral («Mis Sitios», «Catálogo de Módulos», «Configuración»).
+- [ ] Listado visual de «Mis Sitios Web» (tarjetas, subdominio simulado, estados borrador/publicado).
+- [ ] Modal accesible «Crear Nueva Web» con formulario asistido.
+- [ ] Escaparate de módulos con buscador en tiempo real y selector de categorías.
+
+**Estimación:** 26 h | **Responsable:** Dev C (`@Fernis23228`, SM)  
+**Spec:** `specs/PBI-006-dashboard-catalogo/`
 
 ---
 
