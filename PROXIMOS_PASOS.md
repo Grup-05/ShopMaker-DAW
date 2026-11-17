@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `chore/sprint-02-kickoff`
-- **Último commit consolidado:** `5a5e316 — *docs(scrum): kick-off sprint S02, rotacion de roles y contratos base*`
-- **Fecha de última sincronización:** 2026-11-17 23:30
+- **Último commit consolidado:** `c7d99b3 — *docs(scrum): planificar desglose de issues y tareas del sprint S02*`
+- **Fecha de última sincronización:** 2026-11-17 23:39
 
 ---
 

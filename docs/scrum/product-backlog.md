@@ -19,8 +19,8 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 | PBI-002 | Definir tokens de diseño, tema claro/oscuro y accesibilidad base | Alta | 36 h (21 h en S01) | Terminado | S01 | `#3` | `specs/PBI-002-tokens-accesibilidad/` |
 | PBI-003 | Definir el contrato de API y el adaptador mock persistente | Alta | 26 h | En Sprint | S02 | `#4` | `specs/PBI-003-contrato-api-mock/` |
 | PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | 30 h (25 h en S01) | Terminado | S01 | `#5` | `specs/PBI-004-arnes-pruebas/` |
-| PBI-005 | Registro e inicio de sesión de usuarios y rutas protegidas | Alta | 28 h | En Sprint | S02 | — | `specs/PBI-005-registro-login-rutas/` |
-| PBI-006 | Dashboard de administración y catálogo preliminar de módulos | Alta | 26 h | En Sprint | S02 | — | `specs/PBI-006-dashboard-catalogo/` |
+| PBI-005 | Registro e inicio de sesión de usuarios y rutas protegidas | Alta | 28 h | En Sprint | S02 | `#36` | `specs/PBI-005-registro-login-rutas/` |
+| PBI-006 | Dashboard de administración y catálogo preliminar de módulos | Alta | 26 h | En Sprint | S02 | `#37` | `specs/PBI-006-dashboard-catalogo/` |
 | PBI-007 | Detalle de módulo y compra simulada | Alta | — | Nuevo | — | — | Pendiente |
 | PBI-008 | Editor de webs con autoguardado y borradores | Alta | — | Nuevo | — | — | Pendiente |
 | PBI-009 | Previsualización aislada y segura de la web | Alta | — | Nuevo | — | — | Pendiente |
