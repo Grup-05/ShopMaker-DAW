@@ -34,33 +34,34 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Estado |
 |---|---|---|---|---|---|---|
-| `PBI-003-T01` | Redactar spec, plan técnico y contratos de interfaces (`AuthApiPort`, `SitesApiPort`, `ModulesApiPort`) | Spec | Dev A (`@FSolaje`) | 6 h | — | Por hacer |
-| `PBI-003-T02` | Test rojo: validación de contratos y DTOs de frontera | Test | Dev A (`@FSolaje`) | 4 h | `PBI-003-T01` | Por hacer |
-| `PBI-003-T03` | Implementar adaptador mock con persistencia en `localStorage`/`IndexedDB` | Código | Dev A (`@FSolaje`) | 8 h | `PBI-003-T02` | Por hacer |
-| `PBI-003-T04` | Simulación determinista de latencia de red (200-500 ms) y errores HTTP (401, 409, 500) | Código | Dev A (`@FSolaje`) | 5 h | `PBI-003-T03` | Por hacer |
-| `PBI-003-T05` | Documentación de endpoints simulados y fixtures iniciales de datos | Docs | Dev A (`@FSolaje`) | 3 h | `PBI-003-T04` | Por hacer |
+| `PBI-003-T01` | Redactar spec, plan y matriz de contratos de API | Spec | Dev A (`@FSolaje`) | 4 h | — | Por hacer |
+| `PBI-003-T02` | Definir puertos e interfaces TypeScript de frontera | Spec | Dev A (`@FSolaje`) | 4 h | `PBI-003-T01` | Por hacer |
+| `PBI-003-T03` | Test rojo: validación de contratos y DTOs de frontera | Test | Dev A (`@FSolaje`) | 4 h | `PBI-003-T02` | Por hacer |
+| `PBI-003-T04` | Implementar adaptador mock con persistencia local | Código | Dev A (`@FSolaje`) | 6 h | `PBI-003-T03` | Por hacer |
+| `PBI-003-T05` | Simular latencia de red y códigos de error HTTP | Código | Dev A (`@FSolaje`) | 5 h | `PBI-003-T04` | Por hacer |
+| `PBI-003-T06` | Documentación del mock y fixtures iniciales de prueba | Docs | Dev A (`@FSolaje`) | 3 h | `PBI-003-T05` | Por hacer |
 
 ### PBI-005 — Registro, Inicio de Sesión y Rutas Protegidas (`@Tarrant15` · 28 h)
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Estado |
 |---|---|---|---|---|---|---|
-| `PBI-005-T01` | Redactar spec funcional, plan técnico y matriz spec-test para autenticación | Spec | Dev B (`@Tarrant15`) | 5 h | — | Por hacer |
-| `PBI-005-T02` | Test rojo: formulario de registro (`/register`) y medidor accesible de contraseña | Test | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T01` | Por hacer |
-| `PBI-005-T03` | Implementar componente de registro, medidor visual/accesible y validación de términos | Código | Dev B (`@Tarrant15`) | 6 h | `PBI-005-T02` | Por hacer |
-| `PBI-005-T04` | Test rojo: formulario de login (`/login`) y autocompletado accesible | Test | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T01` | Por hacer |
-| `PBI-005-T05` | Implementar formulario de login, botón recordarme y enlace recuperar contraseña | Código | Dev B (`@Tarrant15`) | 5 h | `PBI-005-T04` | Por hacer |
-| `PBI-005-T06` | Implementar estado `useAuth()`, guardas `GuardedRoute` y cabecera de usuario con avatar | Código | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T03`, `PBI-005-T05` | Por hacer |
+| `PBI-005-T01` | Redactar spec funcional, plan técnico y matriz de autenticación | Spec | Dev B (`@Tarrant15`) | 4 h | — | Por hacer |
+| `PBI-005-T02` | Test rojo: formulario de registro y medidor accesible de contraseña | Test | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T01` | Por hacer |
+| `PBI-005-T03` | Implementar página de registro y medidor de contraseña | Código | Dev B (`@Tarrant15`) | 6 h | `PBI-005-T02` | Por hacer |
+| `PBI-005-T04` | Test rojo: formulario de login y autocompletado estándar | Test | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T01` | Por hacer |
+| `PBI-005-T05` | Implementar página de inicio de sesión accesible | Código | Dev B (`@Tarrant15`) | 5 h | `PBI-005-T04` | Por hacer |
+| `PBI-005-T06` | Implementar estado useAuth, guardas GuardedRoute y UserMenu | Código | Dev B (`@Tarrant15`) | 5 h | `PBI-005-T03`, `PBI-005-T05` | Por hacer |
 
 ### PBI-006 — Dashboard de Administración y Catálogo Base (`@Fernis23228` · 26 h)
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Estado |
 |---|---|---|---|---|---|---|
-| `PBI-006-T01` | Redactar spec funcional, plan técnico y layout de administración | Spec | Dev C (`@Fernis23228`) | 5 h | — | Por hacer |
-| `PBI-006-T02` | Test rojo: estructura del dashboard (`/dashboard`) y menú lateral de navegación | Test | Dev C (`@Fernis23228`) | 4 h | `PBI-006-T01` | Por hacer |
-| `PBI-006-T03` | Implementar layout del dashboard, saludo al usuario y barra de navegación lateral | Código | Dev C (`@Fernis23228`) | 5 h | `PBI-006-T02` | Por hacer |
-| `PBI-006-T04` | Implementar vista «Mis Sitios Web» (cuadrícula, estados, subdominio simulado) | Código | Dev C (`@Fernis23228`) | 5 h | `PBI-006-T03` | Por hacer |
-| `PBI-006-T05` | Implementar modal accesible «Crear Nueva Web» con formulario asistido | Código | Dev C (`@Fernis23228`) | 4 h | `PBI-006-T04` | Por hacer |
-| `PBI-006-T06` | Implementar escaparate de módulos con búsqueda y filtros por categoría | Código | Dev C (`@Fernis23228`) | 3 h | `PBI-006-T03` | Por hacer |
+| `PBI-006-T01` | Redactar spec funcional, plan técnico y layout de dashboard | Spec | Dev C (`@Fernis23228`) | 4 h | — | Por hacer |
+| `PBI-006-T02` | Test rojo: estructura del dashboard y menú lateral | Test | Dev C (`@Fernis23228`) | 4 h | `PBI-006-T01` | Por hacer |
+| `PBI-006-T03` | Implementar layout de dashboard y navegación lateral | Código | Dev C (`@Fernis23228`) | 6 h | `PBI-006-T02` | Por hacer |
+| `PBI-006-T04` | Implementar vista «Mis Sitios Web» en tarjetas interactivas | Código | Dev C (`@Fernis23228`) | 5 h | `PBI-006-T03` | Por hacer |
+| `PBI-006-T05` | Implementar modal accesible «Crear Nueva Web» | Código | Dev C (`@Fernis23228`) | 4 h | `PBI-006-T04` | Por hacer |
+| `PBI-006-T06` | Implementar escaparate de módulos con buscador y filtros | Código | Dev C (`@Fernis23228`) | 3 h | `PBI-006-T03` | Por hacer |
 
 ---
 
