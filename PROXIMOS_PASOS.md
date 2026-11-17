@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `fix/automatizar-cierre-issues-develop`
-- **Último commit consolidado:** `2a8d04a — *Merge pull request #32 from Grup-05/feature/borrador-sprint-02*`
-- **Fecha de última sincronización:** 2026-11-17 17:37
+- **Rama activa:** `fix/script-preview-auto-build`
+- **Último commit consolidado:** `b17032c — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-17 17:49
 
 ---
 
