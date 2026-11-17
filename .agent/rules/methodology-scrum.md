@@ -332,7 +332,8 @@ Las decisiones relevantes se registran en `plan.md`. Si afectan a varias feature
 - No se confirma directamente en `main` ni en `develop`; se usa Pull Request.
 - **Revisión por Pares Obligatoria (Inviolabilidad de `enforce_admins`):** Todo PR de desarrollo (`feature/*`, `fix/*`) hacia `develop` requiere obligatoriamente la revisión y aprobación de al menos otro miembro del equipo (`CODEOWNERS`) distinto del autor. Al abrir el PR, el PBI pasa al estado **"En revisión"** en el tablero. Queda prohibido desactivar temporalmente `enforce_admins` o usar privilegios de administrador para auto-fusionar código de producto; el bypass del Administrador de Gobernanza se restringe única y exclusivamente a PRs puros de gobernanza.
 - **Sincronización Previa Obligatoria con `develop`:** Antes de subir una rama o abrir/solicitar revisión de un Pull Request, el desarrollador debe fusionar `develop` en su rama de trabajo (`git fetch origin develop && git merge origin/develop`), resolver conflictos localmente y verificar que toda la suite pase en verde (validado por `pre-push`).
-- Todo PR debe referenciar su PBI y pasar los hooks locales.
+- Todo PR debe referenciar su PBI y sus issues de tarea (`Closes #XX`) y pasar los hooks locales.
+- **Cierre Automático de Issues y Sincronización del Tablón en `develop`:** Dado que GitHub solo procesa nativamente `Closes #XX` en la rama por defecto (`main`), el repositorio incorpora el flujo `.github/workflows/scrum-board-sync.yml` y el script `scripts/github/sync-pr-issues.sh`, que al fusionar un PR en `develop` cierran automáticamente las issues referenciadas con `Closes #XX` y mueven su estado a **"Hecho"** en el tablero de GitHub Projects.
 - No se usa `git rebase` destructivo ni `git push --force` sobre ramas compartidas.
 - El núcleo de gobernanza solo se modifica en `main` (o mediante bypass acotado del Administrador de Gobernanza) y se propaga con `sync-governance.sh`.
 - Las ramas se eliminan después del merge.

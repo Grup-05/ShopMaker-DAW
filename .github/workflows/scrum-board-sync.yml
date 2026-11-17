@@ -1,0 +1,32 @@
+name: Scrum Issues & Board Sync on PR
+
+on:
+  pull_request_target:
+    types: [opened, edited, reopened, closed]
+    branches:
+      - develop
+      - main
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  sync-scrum-issues:
+    name: Sincronizar Issues y Tablón Scrum
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout scripts de gobernanza
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts/github
+
+      - name: Cerrar Issues vinculadas (Closes #XX) y actualizar Tablón Project #1
+        env:
+          GH_TOKEN: ${{ secrets.PROJECT_TOKEN || secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          bash scripts/github/sync-pr-issues.sh --pr "${{ github.event.pull_request.number }}"
