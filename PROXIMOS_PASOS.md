@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `feature/PBI-003-contrato-api-mock`
-- **Último commit consolidado:** `b66ef7c — *chore(governance): sincronizar nucleo de gobernanza desde main*`
-- **Fecha de última sincronización:** 2026-11-23 10:58
+- **Rama activa:** `chore/sprint-02-kickoff`
+- **Último commit consolidado:** `6cd68b7 — *docs: actualizar telemetria de seguimiento en PROXIMOS_PASOS.md*`
+- **Fecha de última sincronización:** 2026-11-23 16:11
 
 ---
 
@@ -64,10 +64,22 @@ Artefactos:
 PBIs del Sprint S01:
 
 - [x] **PBI-001** (`#2`) — Aplicación web y estructura base (`T01–T06` `#6`–`#11`, 30 h — `@Tarrant15`). Completado e integrado en `develop` (PR `#26` y PR `#31`).
-- [ ] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`).
+- [x] **PBI-002** (`#3`) — Tokens, tema claro/oscuro y accesibilidad base (`T01–T05` `#12`–`#16`, 21 h — `@Fernis23228`). Completado e integrado en `develop` (PR `#35`).
 - [x] **PBI-004** (`#5`) — Arnés de pruebas y hook local de calidad (`T01–T05` `#17`–`#21`, 25 h — `@FSolaje`). Completado e integrado en `develop` (PR `#28`).
 - [x] **INFRA-01** (`#22`) — Protección de ramas, CODEOWNERS y roles dinámicos (4 h — `@Fernis23228` / `@FSolaje`). Completado e integrado en `develop` y `main` (PR `#23`, `#25`, `#29`, `#30`).
-- [ ] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (38 h).
+- [x] *(Pospuesto a S02)* **PBI-003** (`#4`) — Contrato de API y adaptador mock (replanificado en S02).
+
+### 🚀 Sprint S02 — Identidad, Contratos Mock y Dashboard CMS
+
+**Sprint Goal:** Dotar a ShopMaker de un ciclo completo de identidad (registro, login y rutas protegidas), respaldado por un contrato de API con mock persistente, y desplegar el panel de administración (Dashboard) con gestión de sitios web y catálogo preliminar de módulos, avanzando hacia la experiencia de un CMS maduro.
+
+**Fechas:** 2026-11-17 → 2026-11-28 · **Capacidad comprometida:** 3 developers, 80 h planificadas en 3 workstreams paralelos.  
+**Roles activos S02:** PO: `@Tarrant15` · SM: `@Fernis23228` · Dev/CI: `@FSolaje` · Admin Gob: `@FSolaje`.
+
+PBIs del Sprint S02:
+- [ ] **PBI-003** (`#4`) — Contrato de API y adaptador mock persistente (26 h — `@FSolaje`).
+- [ ] **PBI-005** — Registro, inicio de sesión y rutas protegidas (28 h — `@Tarrant15`, PO).
+- [ ] **PBI-006** — Dashboard de administración y catálogo preliminar de módulos (26 h — `@Fernis23228`, SM).
 
 ### 🧪 Pruebas
 
@@ -88,21 +100,20 @@ PBIs del Sprint S01:
 
 ---
 
-## 🎯 Próximo Paso Inmediato
+## 🎯 Próximo Paso Inmediato (Sprint S02)
 
-1. **PBI-001 — cerrar T04–T06:**
-   - [x] Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-001` (T01–T03; commits `55c0d86`, `3125dc9`, `e6f5e4d`).
-   - [x] Adoptar el arnés oficial de PBI-004 y registrar el rojo E2E válido.
-   - [x] Implementar T05 (scaffold por capas) y T06 (layout, selección y botón de tema).
-   - [x] Dejar la suite en verde y documentar evidencia y accesibilidad.
-   - [ ] Obtener aprobación humana de los artefactos SDD y de T04–T06.
-   - [ ] Confirmar con PBI-005 las rutas de login/registro y sustituir los destinos provisionales.
-   - [x] Commit de T04–T06 (`944dce7`, local).
-   - [ ] Push y PR con aprobación separada.
-2. **Resto del Sprint S01:**
-   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-002` (`#12`–`#14`) y `PBI-004` (`#17`).
-   - [x] Arnés de PBI-004 consolidado como configuración única del proyecto.
-3. **Revisión humana pendiente:** validar RNF-04 con el zoom nativo del navegador (ya verificado con proxy de viewport).
+1. **Día 1 — Contratos y Puertos (`domain/ports/`):**
+   - Definir interfaces de TypeScript consensuadas: `AuthApiPort`, `SitesApiPort`, `ModulesApiPort`.
+2. **Especificación SDD (`No-Spec-No-Code`):**
+   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-003`, `PBI-005` y `PBI-006`.
+   - Aprobación formal del Product Owner (`@Tarrant15`) con commit `docs(spec)`.
+3. **Creación de ramas de trabajo desde `develop`:**
+   - `feature/PBI-003-contrato-api-mock` (`@FSolaje`)
+   - `feature/PBI-005-registro-login-rutas` (`@Tarrant15`)
+   - `feature/PBI-006-dashboard-catalogo` (`@Fernis23228`)
+4. **Desarrollo paralelo con TDD:**
+   - Dev B y C con stubs locales en memoria.
+   - Dev A con motor mock persistente y tests de contrato.
 
 ---
 
