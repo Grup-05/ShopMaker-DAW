@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `chore/sprint-02-kickoff`
-- **Último commit consolidado:** `f7884d1 — *docs(scrum): vincular numeros de issues de GitHub en el sprint backlog de S02*`
+- **Último commit consolidado:** `910e928 — *chore(github): incorporar scripts de sincronizacion de S02 y herramientas de gestion*`
 - **Fecha de última sincronización:** 2026-11-23 15:57
 
 ---
