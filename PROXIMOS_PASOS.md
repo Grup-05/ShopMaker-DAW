@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-003-contrato-api-mock`
-- **Último commit consolidado:** `fc3d768 — *chore(governance): sincronizar nucleo de gobernanza desde main*`
-- **Fecha de última sincronización:** 2026-11-23 10:56
+- **Último commit consolidado:** `b66ef7c — *chore(governance): sincronizar nucleo de gobernanza desde main*`
+- **Fecha de última sincronización:** 2026-11-23 10:58
 
 ---
 
