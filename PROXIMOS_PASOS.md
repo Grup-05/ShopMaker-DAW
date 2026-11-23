@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `fix/script-preview-auto-build`
-- **Último commit consolidado:** `b17032c — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
-- **Fecha de última sincronización:** 2026-11-17 17:49
+- **Rama activa:** `feature/PBI-003-contrato-api-mock`
+- **Último commit consolidado:** `753bdef — *Merge pull request #35 from Grup-05/feature/PBI-002-tokens-accesibilidad*`
+- **Fecha de última sincronización:** 2026-11-23 09:49
 
 ---
 
