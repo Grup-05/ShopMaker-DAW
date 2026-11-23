@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-003-contrato-api-mock`
-- **Último commit consolidado:** `753bdef — *Merge pull request #35 from Grup-05/feature/PBI-002-tokens-accesibilidad*`
-- **Fecha de última sincronización:** 2026-11-23 09:49
+- **Último commit consolidado:** `38719de — *docs(spec): definir requerimientos, plan técnico, tareas y matriz de pruebas para PBI-003 contrato-api-mock*`
+- **Fecha de última sincronización:** 2026-11-23 10:07
 
 ---
 
