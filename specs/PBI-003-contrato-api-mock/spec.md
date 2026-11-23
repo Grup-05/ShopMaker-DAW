@@ -10,7 +10,7 @@
 | Sprint | `S02` |
 | Autor | Francisco Tomás (`@FSolaje`, Dev A) |
 | Fecha | 2026-11-23 |
-| Estado | En revisión |
+| Estado | Implementada |
 | Rama | `feature/PBI-003-contrato-api-mock` |
 
 ---

@@ -115,13 +115,13 @@ tests/
 
 | ID | Requerimiento / Criterio | Tipo de prueba | Test previsto | Archivo de prueba | Estado |
 |---|---|---|---|---|---|
-| RF-01 / CA-01 | `AuthApiPort`: registro, login, `me`, `recoverPassword` y `logout` cumplen el contrato | Unidad / Contrato | `[PBI-003][CA-01] mock-implements-ports` | `tests/unit/api/api-contracts.test.ts` | Pendiente |
-| RF-02 / CA-01 | `SitesApiPort`: listado, creación con subdominio `.shopmaker.local` y borrado de sitios | Unidad / Contrato | `[PBI-003][CA-01] mock-implements-ports` | `tests/unit/api/api-contracts.test.ts` | Pendiente |
-| RF-03 / CA-01 | `ModulesApiPort`: catálogo inicial e instalación de módulos por sitio | Unidad / Contrato | `[PBI-003][CA-01] mock-implements-ports` | `tests/unit/api/api-contracts.test.ts` | Pendiente |
-| CA-04 | Validación estricta de estructura e inmutabilidad de DTOs de frontera | Contrato | `[PBI-003][CA-04] api-contracts-validation` | `tests/unit/api/api-contracts.test.ts` | Pendiente |
-| RF-01..03 / CA-02 | Persistencia en `localStorage` de usuarios, sesión, sitios y módulos tras recargar instancia | Integración local | `[PBI-003][CA-02] mock-local-persistence` | `tests/unit/api/mock-persistence.test.ts` | Pendiente |
-| RF-04 / CA-03 | Simulación de latencia de red configurable (200–500 ms) | Unidad / Asíncrona | `[PBI-003][CA-03] mock-latency-simulation` | `tests/unit/api/mock-network-simulation.test.ts` | Pendiente |
-| RF-05 / CA-04 | Simulación determinista de errores HTTP (`401`, `404`, `409`, `500`) con `ApiError` | Unidad / Contrato | `[PBI-003][CA-04] mock-error-simulation` | `tests/unit/api/mock-network-simulation.test.ts` | Pendiente |
+| RF-01 / CA-01 | `AuthApiPort`: registro, login, `me`, `recoverPassword` y `logout` cumplen el contrato | Unidad / Contrato | `[PBI-003][CA-01] mock-implements-ports` | `tests/unit/api/api-contracts.test.ts` | Verde |
+| RF-02 / CA-01 | `SitesApiPort`: listado, creación con subdominio `.shopmaker.local` y borrado de sitios | Unidad / Contrato | `[PBI-003][CA-01] mock-implements-ports` | `tests/unit/api/api-contracts.test.ts` | Verde |
+| RF-03 / CA-01 | `ModulesApiPort`: catálogo inicial e instalación de módulos por sitio | Unidad / Contrato | `[PBI-003][CA-01] mock-implements-ports` | `tests/unit/api/api-contracts.test.ts` | Verde |
+| CA-04 | Validación estricta de estructura e inmutabilidad de DTOs de frontera | Contrato | `[PBI-003][CA-04] api-contracts-validation` | `tests/unit/api/api-contracts.test.ts` | Verde |
+| RF-01..03 / CA-02 | Persistencia en `localStorage` de usuarios, sesión, sitios y módulos tras recargar instancia | Integración local | `[PBI-003][CA-02] mock-local-persistence` | `tests/unit/api/mock-persistence.test.ts` | Verde |
+| RF-04 / CA-03 | Simulación de latencia de red configurable (200–500 ms) | Unidad / Asíncrona | `[PBI-003][CA-03] mock-latency-simulation` | `tests/unit/api/mock-network-simulation.test.ts` | Verde |
+| RF-05 / CA-04 | Simulación determinista de errores HTTP (`401`, `404`, `409`, `500`) con `ApiError` | Unidad / Contrato | `[PBI-003][CA-04] mock-error-simulation` | `tests/unit/api/mock-network-simulation.test.ts` | Verde |
 
 ---
 
