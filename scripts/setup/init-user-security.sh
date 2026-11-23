@@ -37,11 +37,12 @@ explain_security_purpose() {
    escáner SAST de 'pre-commit' bloquee cualquier commit accidental que las contenga.
    Se autogenera automáticamente sin requerir esfuerzo manual.
 
-3. AUTENTICACIÓN MULTIUSUARIO (gh_token.txt - OPCIONAL SEGÚN PERFIL):
-   - Developer Estándar: NO LO NECESITA. Desarrolla y commitea con Git habitual.
-   - Core Admin / Gestor Scrum: Lo utiliza si gestiona issues, PRs o tableros
-     Projects v2 desde terminal mediante scripts de automatización.
-   - Cliente / Tester: No requiere instalar hooks ni configurar este entorno.
+3. AUTENTICACIÓN MULTIUSUARIO POR ROL (gh_token.txt - OBLIGATORIO EQUIPO SCRUM):
+   - Equipo Scrum (@FSolaje, @Tarrant15, @Fernis23228): OBLIGATORIO. Dado que los
+     roles rotan en cada Sprint, cada miembro debe disponer de su propio token
+     personal en 'user_data/security/gh_token.txt' con permisos sobre el repo y
+     el Tablón Project #1 (validado por 'pre-pr-gate.sh' y 'pre-push').
+   - Cliente / Evaluador externo: No requiere instalar hooks ni configurar token.
 ════════════════════════════════════════════════════════════════════════════════
 EOF
 }
@@ -66,13 +67,15 @@ check_security_env() {
     fi
 
     if [ -f "$TOKEN_FILE" ]; then
-        if grep -q "ghp_\|github_pat_" "$TOKEN_FILE" 2>/dev/null; then
-            echo "  ✔ Token personal de GitHub configurado (para gestión CLI)."
+        if grep -Eq "gh[pousr]_|github_pat_" "$TOKEN_FILE" 2>/dev/null; then
+            echo "  ✔ Token personal de GitHub configurado en 'user_data/security/gh_token.txt'."
         else
-            echo "  ℹ️  Token en 'gh_token.txt' no configurado (opcional: solo para gestión CLI)."
+            echo "  ❌ FALTA: Token en 'user_data/security/gh_token.txt' vacío o no configurado."
+            status=1
         fi
     else
-        echo "  ℹ️  'gh_token.txt' no presente (opcional: solo necesario para scripts CLI de GitHub)."
+        echo "  ❌ FALTA: 'user_data/security/gh_token.txt' no existe."
+        status=1
     fi
 
     # Comprobación de permisos UNIX si aplica

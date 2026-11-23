@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-003-contrato-api-mock`
-- **Último commit consolidado:** `eeab28b — *feat(api): implementar puertos de dominio y adaptador mock persistente para PBI-003*`
-- **Fecha de última sincronización:** 2026-11-23 10:15
+- **Último commit consolidado:** `ef844a4 — *docs(api): documentar contratos mock, guia de consumo y evidencia para PBI-003*`
+- **Fecha de última sincronización:** 2026-11-23 10:44
 
 ---
 
