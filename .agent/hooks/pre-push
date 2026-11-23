@@ -5,6 +5,7 @@
 # 1. Alerta ante push directo o descuidado a la rama principal 'main'
 # 2. Validación de convención de nombres de rama
 # 3. Comprobación de seguridad previa a la publicación en remoto
+# 4. Ejecución de la puerta estática de 5 controles (scripts/github/pre-pr-gate.sh)
 # ==============================================================================
 
 set -eo pipefail
@@ -85,22 +86,15 @@ while read -r LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
         fi
     fi
 
-    # 4. Obligación de sincronización previa con 'develop' en ramas de trabajo (feature/*, fix/*, dev/*)
+    # 4. Puerta Estática Obligatoria Pre-Push / Pre-PR en ramas de trabajo (feature/*, fix/*, dev/*)
     if [[ "$BRANCH_NAME" =~ ^(feature/|fix/|dev/) ]]; then
-        git fetch "$REMOTE" develop --quiet 2>/dev/null || true
-        if git rev-parse --verify "$REMOTE/develop" >/dev/null 2>&1; then
-            if ! git merge-base --is-ancestor "$REMOTE/develop" "$LOCAL_SHA" 2>/dev/null; then
-                echo "❌ [ERROR DE GOBERNANZA - RAMA DESACTUALIZADA RESPECTO A 'develop']"
-                echo "   La rama '$BRANCH_NAME' no incluye los últimos cambios de '$REMOTE/develop'."
-                echo "   Antes de publicar una rama o abrir una Pull Request es obligatorio"
-                echo "   fusionar el estado actual de 'develop' y verificar que los tests pasen:"
-                echo "     1. git fetch $REMOTE develop && git merge $REMOTE/develop"
-                echo "     2. Resolver cualquier conflicto en tu rama y ejecutar la suite de pruebas."
-                echo "     3. Volver a ejecutar git push."
-                exit 1
-            fi
+        if [ -f "$REPO_ROOT/scripts/github/pre-pr-gate.sh" ]; then
+            bash "$REPO_ROOT/scripts/github/pre-pr-gate.sh" \
+                --pre-push \
+                --branch "$BRANCH_NAME" \
+                --local-sha "$LOCAL_SHA" \
+                --remote "$REMOTE"
         fi
-        echo "  ✔ [Sincronización] La rama '$BRANCH_NAME' está al día con '$REMOTE/develop'."
     fi
 done
 

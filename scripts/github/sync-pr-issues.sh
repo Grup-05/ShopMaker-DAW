@@ -63,7 +63,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ -z "$GH_TOKEN" ]; then
-  echo "❌ Error: No se encontró GH_TOKEN ni GITHUB_TOKEN." >&2
+  echo "❌ Error: No se encontró GH_TOKEN en user_data/security/gh_token.txt." >&2
   exit 1
 fi
 
@@ -94,7 +94,6 @@ api_graphql() {
     -d "$(jq -nc --arg q "$query" '{query: $q}')"
 }
 
-# Extrae números de issue con palabra clave de cierre: Closes #5, Fixes: #17, etc.
 extract_closing_issues() {
   python3 -c '
 import re, sys
@@ -108,7 +107,6 @@ print(" ".join(seen))
 '
 }
 
-# Extrae cualquier referencia a issue (Closes #X o Refs #X)
 extract_all_referenced_issues() {
   python3 -c '
 import re, sys
@@ -171,7 +169,7 @@ BOARD_QUERY="query {
   }
 }"
 
-SNAPSHOT="$(api_graphql "$BOARD_QUERY")"
+SNAPSHOT="$(api_graphql "$BOARD_QUERY" 2>/dev/null || echo '{}')"
 
 PROJECT_ID="$(jq -r '.data.organization.projectV2.id // empty' <<<"$SNAPSHOT")"
 STATUS_FIELD_ID="$(jq -r '.data.organization.projectV2.field.id // empty' <<<"$SNAPSHOT")"
@@ -186,15 +184,15 @@ set_issue_board_status() {
   fi
 
   local item_id current_status
-  item_id="$(jq -r --argjson n "$issue_num" '.data.organization.projectV2.items.nodes[] | select(.content.number == $n) | .id' <<<"$SNAPSHOT" | head -n1)"
+  item_id="$(jq -r --argjson n "$issue_num" '.data.organization.projectV2.items.nodes[]? | select(.content.number == $n) | .id' <<<"$SNAPSHOT" | head -n1)"
   if [ -z "$item_id" ]; then
     return 0
   fi
 
   current_status="$(jq -r --argjson n "$issue_num" '
-    .data.organization.projectV2.items.nodes[]
+    .data.organization.projectV2.items.nodes[]?
     | select(.content.number == $n)
-    | .fieldValues.nodes[]
+    | .fieldValues.nodes[]?
     | select(.field.name == "Estado Scrum")
     | .name
   ' <<<"$SNAPSHOT" | head -n1)"
@@ -225,7 +223,7 @@ set_issue_board_status() {
 close_issue_if_open() {
   local issue_num="$1" pr_num="$2" base_branch="$3"
   local current_state
-  current_state="$(jq -r --argjson n "$issue_num" '.data.organization.projectV2.items.nodes[] | select(.content.number == $n) | .content.state' <<<"$SNAPSHOT" | head -n1)"
+  current_state="$(jq -r --argjson n "$issue_num" '.data.organization.projectV2.items.nodes[]? | select(.content.number == $n) | .content.state' <<<"$SNAPSHOT" | head -n1)"
 
   if [ -z "$current_state" ]; then
     current_state="$(api_rest GET "/repos/$OWNER/$REPO/issues/$issue_num" | jq -r '.state' | tr '[:lower:]' '[:upper:]')"
@@ -281,7 +279,7 @@ if [ "$MODE" = "pr" ]; then
     echo "❌ Error: Debes indicar el número de PR tras --pr." >&2
     exit 1
   fi
-  PR_NODE="$(jq -c --argjson n "$TARGET_PR" '.data.repository.pullRequests.nodes[] | select(.number == $n)' <<<"$SNAPSHOT")"
+  PR_NODE="$(jq -c --argjson n "$TARGET_PR" '.data.repository.pullRequests.nodes[]? | select(.number == $n)' <<<"$SNAPSHOT")"
   if [ -z "$PR_NODE" ]; then
     PR_REST="$(api_rest GET "/repos/$OWNER/$REPO/pulls/$TARGET_PR")"
     PR_NODE="$(jq -c '{number: .number, title: .title, state: (.state | ascii_upcase), merged: .merged, baseRefName: .base.ref, body: .body}' <<<"$PR_REST")"
@@ -293,13 +291,13 @@ else
   while IFS= read -r pr_node; do
     [ -z "$pr_node" ] && continue
     process_pr_node "$pr_node"
-  done < <(jq -c '.data.repository.pullRequests.nodes[]' <<<"$SNAPSHOT")
+  done < <(jq -c '.data.repository.pullRequests.nodes[]?' <<<"$SNAPSHOT")
 
   echo "▶ Verificando coherencia entre Issues CLOSED y columna 'Hecho' en Project #$PROJECT_NUMBER..."
   while IFS= read -r issue_num; do
     [ -z "$issue_num" ] && continue
     set_issue_board_status "$issue_num" "Hecho" "$OPT_HECHO"
-  done < <(jq -r '.data.organization.projectV2.items.nodes[] | select(.content.state == "CLOSED") | .content.number' <<<"$SNAPSHOT")
+  done < <(jq -r '.data.organization.projectV2.items.nodes[]? | select(.content.state == "CLOSED") | .content.number' <<<"$SNAPSHOT")
 fi
 
 echo "✅ [Scrum Sync] Sincronización de Issues y Tablón finalizada."

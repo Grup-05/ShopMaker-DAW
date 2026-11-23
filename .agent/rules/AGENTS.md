@@ -224,6 +224,7 @@ Este proceso realiza automáticamente:
   5. **Esperar la orden y aprobación humana explícita:** *"Procede con el commit"*.
 - **Prohibición Terminante de Crear o Fusionar Pull Requests de Forma Autónoma y de Alterar Protecciones de Rama:**
   - Queda estrictamente prohibido que la IA cree un Pull Request (`gh pr create`) o ejecute su fusión (`gh pr merge`) sin haber presentado previamente el plan al usuario y recibido su autorización explícita.
+  - **Subrutina Estática Obligatoria Pre-PR (`pre-pr-gate.sh`):** Antes de solicitar o ejecutar `git push` o `gh pr create` en cualquier rama de desarrollo, la IA debe invocar en una única llamada el script estático `bash scripts/github/pre-pr-gate.sh --pre-pr` (o `--pre-pr --auto-merge`), que verifica: (1) herramientas y token personal en `user_data/security/gh_token.txt` según el rol activo en `docs/scrum/active_roles.env`, (2) sincronización con `origin/develop` y ausencia de conflictos, (3) paridad con el núcleo de gobernanza global, (4) suite local en verde tras el merge y (5) reconciliación automática de issues (`Closes #XX`) y del Tablón Scrum.
   - Queda **terminantemente prohibido** que la IA o cualquier desarrollador invoque la API de GitHub para desactivar o relajar reglas de protección de ramas (`enforce_admins`, revisiones de `CODEOWNERS`) con el fin de fusionar PRs de desarrollo (`feature/*`, `fix/*`).
   - Al concluir el desarrollo de un PBI y abrir su PR hacia `develop`, el flujo obligatorio consiste en asignar como revisores a los compañeros de equipo, mover el PBI y sus tareas a la columna **"En revisión"** del tablero Scrum y esperar la aprobación por pares antes de cualquier merge.
 - **Prohibición Terminante de Merge o Paso a `main` (Producción) sin Especificación y Orden Explícita:**
@@ -252,11 +253,10 @@ Este proceso realiza automáticamente:
   - Cada desarrollador activo debe disponer en su estación de trabajo local del directorio `user_data/security/` (permisos restrictivos `700` y `600` en archivos).
   - Este espacio es estrictamente privado y aloja:
     1. `forbidden_patterns.txt` (Obligatorio para desarrolladores): Rutas privadas locales (`$HOME/`) y patrones confidenciales de la máquina del desarrollador que el escáner SAST utiliza para bloquear fugas antes de cada commit. Se autogenera de forma transparente y sin fricción.
-    2. `gh_token.txt` (Opcional por perfil): Token personal de GitHub para gestionar issues, PRs y tableros bajo la identidad del rol activo, sin almacenar credenciales en el repositorio.
-  - **Perfiles de Acceso y Fricción Cero:**
-    - *Cliente / Evaluador:* Solo clona y ejecuta (`npm run dev` / tests). No requiere instalar hooks ni configurar `user_data/security/`.
-    - *Desarrollador Estándar:* Solo programa e integra código con Git habitual. `forbidden_patterns.txt` se autogenera; `gh_token.txt` es **completamente opcional** (no bloquea el trabajo).
-    - *Administrador / Gestor Scrum:* Utiliza `gh_token.txt` con permisos de Projects/Issues para automatizar el tablero desde terminal.
+    2. `gh_token.txt` (Obligatorio para miembros del Equipo Scrum en `docs/scrum/active_roles.env`): Token personal de GitHub con permisos sobre el repositorio y sobre el Tablón `Project #1` (`Grup-05`), validado estáticamente por `scripts/github/pre-pr-gate.sh` y `pre-push`, para garantizar que todos los desarrolladores trabajen en igualdad de condiciones al rotar roles sin almacenar tokens personales en GitHub Secrets.
+  - **Perfiles de Acceso:**
+    - *Cliente / Evaluador externo:* Solo clona y ejecuta (`npm run dev` / tests). No requiere instalar hooks ni configurar `user_data/security/`.
+    - *Equipo Scrum (`DEVELOPERS`, `PRODUCT_OWNER`, `SCRUM_MASTER`, `GOVERNANCE_ADMIN`):* Tanto `forbidden_patterns.txt` como `gh_token.txt` son **obligatorios** en `user_data/security/` y se verifican antes de cada `push` y apertura de Pull Request.
   - **Detección, Asistencia y Explicación Automática:** Tanto el instalador de hooks (`install-hooks.sh`) como el hook de `pre-commit` detectan automáticamente si `user_data/security/` no está configurado, explican al desarrollador el motivo y guían interactivamente su configuración (asistida por `scripts/setup/init-user-security.sh`).
 
 - **Arquitectura de Gobernanza Flexible en Tres Capas (Anti-Fricción y Anti-Fugas):**
