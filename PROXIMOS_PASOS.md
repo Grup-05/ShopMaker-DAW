@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-003-contrato-api-mock`
-- **Último commit consolidado:** `38719de — *docs(spec): definir requerimientos, plan técnico, tareas y matriz de pruebas para PBI-003 contrato-api-mock*`
+- **Último commit consolidado:** `53d9fe2 — *test(api): añadir pruebas de contratos, persistencia local y simulación de red para PBI-003*`
 - **Fecha de última sincronización:** 2026-11-23 10:07
 
 ---
