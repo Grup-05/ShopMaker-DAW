@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `chore/sprint-02-kickoff`
-- **Último commit consolidado:** `0ed4910 — *chore(config): normalizar configuracion de compilacion y dependencias del proyecto*`
-- **Fecha de última sincronización:** 2026-11-23 16:01
+- **Último commit consolidado:** `6cd68b7 — *docs: actualizar telemetria de seguimiento en PROXIMOS_PASOS.md*`
+- **Fecha de última sincronización:** 2026-11-23 16:11
 
 ---
 

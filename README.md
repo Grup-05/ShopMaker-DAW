@@ -251,21 +251,41 @@ bash scripts/github/gh-auth-env.sh --login
 | Comando de suite | `npm test` (componente/arquitectura) y `npm run test:e2e` (E2E) |
 | Calidad estática | `npm run typecheck`, `npm run lint` y `npm run build` en verde |
 | Cobertura de criterios de aceptación | 15 tests automatizados de PBI-001 + 2 revisiones manuales; CA-01 a CA-06 cubiertos, RNF-04 con proxy de viewport pendiente de zoom nativo |
-| Suite total | `npm test`: 17 tests (15 de PBI-001 + 2 demostrativos de PBI-004); `npm run test:e2e`: 8 tests (4 × Chromium y Firefox) |
+| Suite total | `npm test`: 44 tests en 10 archivos (PBI-001, PBI-002, PBI-003 y PBI-004); `npm run test:e2e`: 8 tests (4 × Chromium y Firefox) |
 | Tests flaky conocidos | Ninguno registrado |
 
 La cobertura se mide por **criterios de aceptación cubiertos**, no por porcentaje de líneas. El objetivo es el 100 % de los criterios comprometidos en cada Sprint.
+
+### Contrato de API y Adaptador Mock Persistente (`PBI-003`)
+
+El frontend se desacopla del backend mediante los puertos de dominio en [`src/domain/ports/`](src/domain/ports/index.ts) (`AuthApiPort`, `SitesApiPort`, `ModulesApiPort` y el error normalizado `ApiError`) y el adaptador mock persistente en [`src/infrastructure/api/mock/`](src/infrastructure/api/mock/index.ts):
+
+```ts
+import { createMockApiAdapter, InMemoryStorage } from '@/infrastructure/api/mock';
+
+// En navegador (persistencia en localStorage bajo 'shopmaker.mock.state.v1' y latencia 200-500 ms):
+const api = createMockApiAdapter();
+
+// En pruebas unitarias deterministas (sin latencia y en memoria):
+const testApi = createMockApiAdapter({
+  storage: new InMemoryStorage(),
+  minLatencyMs: 0,
+  maxLatencyMs: 0,
+});
+```
+
+La guía completa de consumo, simulación de errores HTTP (`400`, `401`, `404`, `409`, `500`) y fixtures iniciales (`demo@shopmaker.local` y catálogo base de módulos) se documenta en [`specs/PBI-003-contrato-api-mock/evidence.md`](specs/PBI-003-contrato-api-mock/evidence.md).
 
 ### Comandos de desarrollo y pruebas
 
 ```bash
 npm install            # instalar dependencias
 npm run dev            # servidor de desarrollo Vite
-npm test               # suite de componente y arquitectura (Vitest)
+npm test               # suite de componente, contratos y arquitectura (Vitest)
 npm run test:e2e       # suite E2E (Playwright, Chromium y Firefox)
 npm run typecheck      # comprobación de tipos
 npm run lint           # ESLint
 npm run build          # build de producción
 ```
 
-La evidencia de los ciclos rojo → verde de PBI-001 está en [`specs/PBI-001-aplicacion-web/evidence.md`](specs/PBI-001-aplicacion-web/evidence.md).
+La evidencia de los ciclos rojo → verde está en [`specs/PBI-001-aplicacion-web/evidence.md`](specs/PBI-001-aplicacion-web/evidence.md) y [`specs/PBI-003-contrato-api-mock/evidence.md`](specs/PBI-003-contrato-api-mock/evidence.md).
