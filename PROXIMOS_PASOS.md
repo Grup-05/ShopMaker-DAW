@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `d956f1e — *chore(governance): implantar puerta estatica pre-pr-gate, validacion por rol y reconciliacion local de issues*`
-- **Fecha de última sincronización:** 2026-11-23 10:56
+- **Último commit consolidado:** `01b8fdf — *chore(governance): usar ref main y GITHUB_TOKEN nativo en scrum-board-sync.yml*`
+- **Fecha de última sincronización:** 2026-11-24 13:47
 
 ---
 
