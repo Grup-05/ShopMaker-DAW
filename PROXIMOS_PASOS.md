@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `fix/armonizar-scripts-multiplataforma-windows`
-- **Último commit consolidado:** `c2b7611 — *Merge pull request #57 from Grup-05/chore/sprint-02-kickoff*`
-- **Fecha de última sincronización:** 2026-11-24 13:47
+- **Rama activa:** `feature/PBI-006-dashboard-catalogo`
+- **Último commit consolidado:** `174f7be — *feat(dashboard): implementar layout, gestión de sitios, modal accesible y catálogo de módulos*`
+- **Fecha de última sincronización:** 2026-11-24 13:53
 
 ---
 
