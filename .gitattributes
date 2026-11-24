@@ -1,4 +1,10 @@
 # ==============================================================================
+# NORMALIZACIÓN MULTIPLATAFORMA DE SALTOS DE LÍNEA (Windows / macOS / Linux)
+# Evita que entornos Windows con core.autocrlf introduzcan diffs masivos CRLF.
+# ==============================================================================
+* text=auto eol=lf
+
+# ==============================================================================
 # EXCLUSIONES DE EMPAQUETADO PARA RELEASES (git archive / GitHub Source ZIP)
 # Garantiza que los paquetes descargables (.zip / .tar.gz) de las releases
 # contengan únicamente los archivos imprescindibles para ejecutar la aplicación.

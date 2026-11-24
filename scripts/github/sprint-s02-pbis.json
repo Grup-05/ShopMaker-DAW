@@ -1,0 +1,35 @@
+[
+  {
+    "id": "PBI-003",
+    "title": "Definir el contrato de API y el adaptador mock persistente",
+    "priority": "Alta",
+    "spec": "specs/PBI-003-contrato-api-mock/",
+    "estimate": "26 h",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "body": "## Historia de usuario\n\n**Como** Developer, **quiero** un contrato de API documentado (`domain/ports/`) y un adaptador mock con persistencia local (`infrastructure/api/mock/`), **para** desarrollar el frontend sin depender del backend y probar de forma determinista con simulación de red y errores.\n\n**Valor:** Desbloquea la integración de datos y la persistencia de usuarios y sitios sin backend real.\n\n## Criterios de aceptación\n\n- [ ] Define interfaces de puertos para Auth (`AuthApiPort`), Sitios (`SitesApiPort`) y Módulos (`ModulesApiPort`).\n- [ ] Implementa almacenamiento local (`localStorage`/`IndexedDB`) para que datos creados no desaparezcan al recargar.\n- [ ] Simulación de latencia configurable (200–500 ms).\n- [ ] Simulación determinista de errores HTTP (401 credenciales incorrectas, 409 duplicado, 500 red).\n- [ ] Cobertura de tests de contrato al 100 %.\n\n## Requisitos no funcionales\n\n- Sin red real en pruebas.\n- Errores normalizados y tipados estrictos en TypeScript.\n- Sin secretos ni credenciales reales en fixtures.\n\n## Dependencias\n\n- PBI-001 y PBI-004 para el arnés de pruebas.\n\n## Spec\n\n`specs/PBI-003-contrato-api-mock/`.",
+    "sprint": "S02"
+  },
+  {
+    "id": "PBI-005",
+    "title": "Registro e inicio de sesión de usuarios y rutas protegidas",
+    "priority": "Alta",
+    "spec": "specs/PBI-005-registro-login-rutas/",
+    "estimate": "28 h",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "body": "## Historia de usuario\n\n**Como** usuario, **quiero** registrarme e iniciar sesión con validaciones accesibles, **para** acceder de forma segura a la administración de mis sitios web.\n\n**Valor:** Seguridad, control de identidad y personalización de la experiencia de CMS.\n\n## Criterios de aceptación\n\n- [ ] Formulario de registro (`/register`) con medidor accesible de fortaleza de contraseña (`aria-live=\"polite\"`).\n- [ ] Formulario de login (`/login`) con autocompletado accesible, recordatorio y recuperación de contraseña.\n- [ ] Gestión de sesión mediante `useAuth()` y protección de rutas mediante `GuardedRoute` (redirección a `/login?redirect=...`).\n- [ ] Cabecera dinámica que muestra avatar y nombre del usuario autenticado con botón de cerrar sesión.\n\n## Requisitos no funcionales\n\n- Cumplimiento WCAG 2.1 AA (foco visible, etiquetas semánticas, contraste ≥ 4.5:1).\n- Validación de campos en tiempo real sin bloquear el hilo principal.\n- Responsive desde 1024×720 hasta 1440×900 sin scroll horizontal.\n\n## Dependencias\n\n- `AuthApiPort` definido en PBI-003 (desarrollado con stubs locales en memoria).\n\n## Spec\n\n`specs/PBI-005-registro-login-rutas/`.",
+    "sprint": "S02"
+  },
+  {
+    "id": "PBI-006",
+    "title": "Dashboard de administración y catálogo preliminar de módulos (Fase 1)",
+    "priority": "Alta",
+    "spec": "specs/PBI-006-dashboard-catalogo/",
+    "estimate": "26 h",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "body": "## Historia de usuario\n\n**Como** usuario autenticado, **quiero** un panel de control con mis sitios y catálogo de aplicaciones, **para** gestionar mis páginas web como en un CMS profesional.\n\n**Valor:** Experiencia central del CMS y gestión multi-sitio.\n\n## Criterios de aceptación\n\n- [ ] Panel de control `/dashboard` con navegación lateral («Mis Sitios», «Catálogo de Módulos», «Configuración»).\n- [ ] Listado visual de «Mis Sitios Web» (tarjetas, subdominio simulado, estados borrador/publicado).\n- [ ] Modal accesible «Crear Nueva Web» con formulario asistido.\n- [ ] Escaparate de módulos con buscador en tiempo real y selector de categorías.\n\n## Requisitos no funcionales\n\n- Accesibilidad WCAG 2.1 AA en navegación lateral y modales con foco atrapado.\n- Renderizado fluido de tarjetas de sitios sin parpadeos.\n\n## Dependencias\n\n- `SitesApiPort` y `ModulesApiPort` definidos en PBI-003.\n- `GuardedRoute` de PBI-005 para acceso autenticado.\n\n## Spec\n\n`specs/PBI-006-dashboard-catalogo/`.",
+    "sprint": "S02"
+  }
+]

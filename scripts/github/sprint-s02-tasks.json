@@ -1,0 +1,353 @@
+[
+  {
+    "key": "PBI-003-T01",
+    "pbi": "PBI-003",
+    "type": "Spec",
+    "title": "Redactar spec, plan y matriz de contratos de API",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `specs/PBI-003-contrato-api-mock/spec.md` y `plan.md` con historias de usuario, requerimientos funcionales y arquitectura de puertos y adaptadores.",
+    "acceptance": [
+      "La spec define puertos AuthApiPort, SitesApiPort y ModulesApiPort.",
+      "La matriz spec-test cubre el 100 % de los contratos DTO.",
+      "Plan aprobado por el Product Owner."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T02",
+    "pbi": "PBI-003",
+    "type": "Spec",
+    "title": "Definir puertos e interfaces TypeScript de frontera",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-003-T01"],
+    "description": "Crear y consensuar en `src/domain/ports/` las interfaces formales y DTOs requeridos para Auth, Sitios y Módulos.",
+    "acceptance": [
+      "Interfaces AuthApiPort, SitesApiPort y ModulesApiPort creadas.",
+      "TypeScript compila sin errores (tsc --noEmit).",
+      "Modelos desacoplados de bibliotecas externas."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T03",
+    "pbi": "PBI-003",
+    "type": "Test",
+    "title": "Test rojo: validación de contratos y DTOs de frontera",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-003-T02"],
+    "description": "Escribir pruebas unitarias y de contrato que verifiquen las llamadas a los puertos y la estructura de los DTOs.",
+    "acceptance": [
+      "Tests fallan inicialmente por ausencia de adaptador mock.",
+      "Aserciones contractuales cubren campos obligatorios y opcionales."
+    ],
+    "tests": ["[PBI-003][CA-04] api-contracts-validation"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T04",
+    "pbi": "PBI-003",
+    "type": "Código",
+    "title": "Implementar adaptador mock con persistencia local",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": ["PBI-003-T03"],
+    "description": "Implementar la clase mock en `infrastructure/api/mock/` con almacenamiento en localStorage/IndexedDB para conservar datos al recargar.",
+    "acceptance": [
+      "Usuarios registrados y sitios creados persisten tras refrescar.",
+      "La suite de tests de contrato pasa a verde."
+    ],
+    "tests": [
+      "[PBI-003][CA-01] mock-implements-ports",
+      "[PBI-003][CA-02] mock-local-persistence"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T05",
+    "pbi": "PBI-003",
+    "type": "Código",
+    "title": "Simular latencia de red y códigos de error HTTP",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "5 h",
+    "priority": "Alta",
+    "depends": ["PBI-003-T04"],
+    "description": "Añadir soporte configurable para simular latencia de red (200-500 ms) y generación determinista de errores 401, 409 y 500.",
+    "acceptance": [
+      "Retardo asíncrono medible en llamadas simuladas.",
+      "Errores HTTP reproducibles mediante credenciales o flags de prueba."
+    ],
+    "tests": [
+      "[PBI-003][CA-03] mock-latency-simulation",
+      "[PBI-003][CA-04] mock-error-simulation"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-003-T06",
+    "pbi": "PBI-003",
+    "type": "Docs",
+    "title": "Documentación del mock y fixtures iniciales de prueba",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "3 h",
+    "priority": "Media",
+    "depends": ["PBI-003-T05"],
+    "description": "Documentar la guía de consumo del adaptador mock, endpoints simulados y crear datos ficticios deterministas para Auth y Módulos.",
+    "acceptance": [
+      "Guía clara en README / docs para conectar el mock.",
+      "Fixtures iniciales sin datos sensibles ni secretos."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-005-T01",
+    "pbi": "PBI-005",
+    "type": "Spec",
+    "title": "Redactar spec funcional, plan técnico y matriz de autenticación",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `specs/PBI-005-registro-login-rutas/spec.md`, `plan.md` y `tasks.md` con las historias, decisiones DT-01 a DT-04 y matriz spec-test.",
+    "acceptance": [
+      "Spec cubre registro, login, medidor y rutas protegidas.",
+      "Criterios CA-01 a CA-06 trazados en la matriz de pruebas."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-005-T02",
+    "pbi": "PBI-005",
+    "type": "Test",
+    "title": "Test rojo: formulario de registro y medidor accesible de contraseña",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-005-T01"],
+    "description": "Escribir pruebas unitarias y de componente para `/register` y el medidor accesible con `aria-live=\"polite\"`.",
+    "acceptance": [
+      "Tests fallan por ausencia de componentes de registro.",
+      "Prueba de medidor verifica niveles (débil, medio, fuerte)."
+    ],
+    "tests": [
+      "[PBI-005][CA-01] register-form-submission",
+      "[PBI-005][CA-02] password-strength-live"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-005-T03",
+    "pbi": "PBI-005",
+    "type": "Código",
+    "title": "Implementar página de registro y medidor de contraseña",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": ["PBI-005-T02"],
+    "description": "Crear componentes `RegisterPage` y `PasswordStrengthMeter`, con feedback accesible de errores y validación de términos.",
+    "acceptance": [
+      "Formulario funcional con validación de email y password.",
+      "Medidor anuncia cambios de fuerza por lector de pantalla.",
+      "Tests de registro pasan a verde."
+    ],
+    "tests": [
+      "[PBI-005][CA-01] register-form-submission",
+      "[PBI-005][CA-02] password-strength-live"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-005-T04",
+    "pbi": "PBI-005",
+    "type": "Test",
+    "title": "Test rojo: formulario de login y autocompletado estándar",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-005-T01"],
+    "description": "Escribir pruebas de componente para `/login` verificando inputs accesibles, envío y manejo de error 401.",
+    "acceptance": [
+      "Tests fallan por ausencia de LoginPage.",
+      "Verifica autocompletado y role=\"alert\" en errores."
+    ],
+    "tests": [
+      "[PBI-005][CA-03] login-success",
+      "[PBI-005][CA-04] login-invalid-credentials"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-005-T05",
+    "pbi": "PBI-005",
+    "type": "Código",
+    "title": "Implementar página de inicio de sesión accesible",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "5 h",
+    "priority": "Alta",
+    "depends": ["PBI-005-T04"],
+    "description": "Implementar `LoginPage` con soporte de casilla «Recordarme» y enlace accesible a «Recuperar contraseña».",
+    "acceptance": [
+      "Inicio de sesión exitoso actualiza estado.",
+      "Error accesible 401 no borra el campo de correo.",
+      "Tests de login pasan a verde."
+    ],
+    "tests": [
+      "[PBI-005][CA-03] login-success",
+      "[PBI-005][CA-04] login-invalid-credentials"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-005-T06",
+    "pbi": "PBI-005",
+    "type": "Código",
+    "title": "Implementar estado useAuth, guardas GuardedRoute y UserMenu",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "5 h",
+    "priority": "Alta",
+    "depends": ["PBI-005-T03", "PBI-005-T05"],
+    "description": "Crear `AuthContext`, hook `useAuth()`, componente `GuardedRoute` y cabecera de usuario con avatar y botón de cerrar sesión.",
+    "acceptance": [
+      "Ruta `/dashboard` redirige a `/login?redirect=...` si no está autenticado.",
+      "Usuario autenticado en `/login` es redirigido a `/dashboard`.",
+      "Cabecera muestra avatar y nombre al autenticarse."
+    ],
+    "tests": [
+      "[PBI-005][CA-05] guarded-route-redirect",
+      "[PBI-005][CA-06] user-menu-header"
+    ],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-006-T01",
+    "pbi": "PBI-006",
+    "type": "Spec",
+    "title": "Redactar spec funcional, plan técnico y layout de dashboard",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `specs/PBI-006-dashboard-catalogo/spec.md` y `plan.md` con historias de multi-sitio y catálogo.",
+    "acceptance": [
+      "Spec cubre dashboard, mis sitios y catálogo preliminar.",
+      "Criterios CA-01 a CA-04 trazados en la matriz."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-006-T02",
+    "pbi": "PBI-006",
+    "type": "Test",
+    "title": "Test rojo: estructura del dashboard y menú lateral",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-006-T01"],
+    "description": "Escribir pruebas de componente para `/dashboard` verificando sidebar accesible y saludo al usuario.",
+    "acceptance": [
+      "Tests fallan por ausencia de DashboardPage.",
+      "Verifica landmarks de navegación y área de contenido."
+    ],
+    "tests": ["[PBI-006][CA-01] dashboard-layout-structure"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-006-T03",
+    "pbi": "PBI-006",
+    "type": "Código",
+    "title": "Implementar layout de dashboard y navegación lateral",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": ["PBI-006-T02"],
+    "description": "Crear componente `DashboardLayout` con menú lateral accesible («Mis Sitios», «Catálogo», «Configuración») y saludo al usuario.",
+    "acceptance": [
+      "Sidebar navegable por teclado.",
+      "Saludo reactivo al nombre del usuario autenticado.",
+      "Tests de estructura pasan a verde."
+    ],
+    "tests": ["[PBI-006][CA-01] dashboard-layout-structure"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-006-T04",
+    "pbi": "PBI-006",
+    "type": "Código",
+    "title": "Implementar vista «Mis Sitios Web» en tarjetas interactivas",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "5 h",
+    "priority": "Alta",
+    "depends": ["PBI-006-T03"],
+    "description": "Implementar cuadrícula de sitios creados por el usuario consumiendo `SitesApiPort.getUserSites()`, mostrando subdominio y estados.",
+    "acceptance": [
+      "Tarjetas muestran nombre, subdominio simulado y badge de estado.",
+      "Botón accesible «Editar» presente en cada tarjeta."
+    ],
+    "tests": ["[PBI-006][CA-02] my-sites-grid-render"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-006-T05",
+    "pbi": "PBI-006",
+    "type": "Código",
+    "title": "Implementar modal accesible «Crear Nueva Web»",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-006-T04"],
+    "description": "Crear modal accesible (foco atrapado, ESC para cerrar) con formulario asistido para añadir un nuevo sitio a la lista.",
+    "acceptance": [
+      "Modal cumple WCAG con foco atrapado y aria-modal=\"true\".",
+      "Alta de sitio actualiza la cuadrícula de sitios."
+    ],
+    "tests": ["[PBI-006][CA-03] create-site-modal-accessible"],
+    "sprint": "S02"
+  },
+  {
+    "key": "PBI-006-T06",
+    "pbi": "PBI-006",
+    "type": "Código",
+    "title": "Implementar escaparate de módulos con buscador y filtros",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "3 h",
+    "priority": "Alta",
+    "depends": ["PBI-006-T03"],
+    "description": "Implementar escaparate de módulos consumiendo `ModulesApiPort.getCatalog()` con buscador en tiempo real y selector de categorías.",
+    "acceptance": [
+      "Buscador filtra tarjetas por nombre/descripción al instante.",
+      "Filtros de categoría con estados accesibles aria-pressed."
+    ],
+    "tests": ["[PBI-006][CA-04] module-catalog-search-filter"],
+    "sprint": "S02"
+  }
+]
