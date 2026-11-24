@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `chore/sprint-02-kickoff`
-- **Último commit consolidado:** `6cd68b7 — *docs: actualizar telemetria de seguimiento en PROXIMOS_PASOS.md*`
-- **Fecha de última sincronización:** 2026-11-23 16:11
+- **Rama activa:** `fix/armonizar-scripts-multiplataforma-windows`
+- **Último commit consolidado:** `c2b7611 — *Merge pull request #57 from Grup-05/chore/sprint-02-kickoff*`
+- **Fecha de última sincronización:** 2026-11-24 13:47
 
 ---
 
@@ -77,26 +77,27 @@ PBIs del Sprint S01:
 **Roles activos S02:** PO: `@Tarrant15` · SM: `@Fernis23228` · Dev/CI: `@FSolaje` · Admin Gob: `@FSolaje`.
 
 PBIs del Sprint S02:
-- [ ] **PBI-003** (`#4`) — Contrato de API y adaptador mock persistente (26 h — `@FSolaje`).
-- [ ] **PBI-005** — Registro, inicio de sesión y rutas protegidas (28 h — `@Tarrant15`, PO).
-- [ ] **PBI-006** — Dashboard de administración y catálogo preliminar de módulos (26 h — `@Fernis23228`, SM).
+- [x] **PBI-003** (`#4`) — Contrato de API y adaptador mock persistente (`T01–T06` `#38`–`#43`, 26 h — `@FSolaje`). Completado e integrado en `develop` (PR `#56`).
+- [ ] **PBI-005** (`#36`) — Registro, inicio de sesión y rutas protegidas (`T01–T06` `#44`–`#49`, 28 h — `@Tarrant15`, PO).
+- [ ] **PBI-006** (`#37`) — Dashboard de administración y catálogo preliminar de módulos (`T01–T06` `#50`–`#55`, 26 h — `@Fernis23228`, SM).
 
 ### 🧪 Pruebas
 
 - [x] Runner y comando único de suite definidos: `npm test` y `npm run test:e2e`.
 - [x] Test de humo de la aplicación web (`app-arranque`, `home-layout`, `minimum-viewport`).
-- [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md` y `specs/PBI-004-arnes-pruebas/plan.md` con estados de ejecución.
+- [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md`, `specs/PBI-002-tokens-accesibilidad/plan.md`, `specs/PBI-003-contrato-api-mock/plan.md` y `specs/PBI-004-arnes-pruebas/plan.md`.
 - [x] Hook `.agent/hooks/pre-commit-local.sh` operativo e integrado en `develop` (PR `#28`).
-- [x] Suite PBI-001 y PBI-004 en verde: 17 tests unitarios/de componente/arquitectura y 8 E2E; evidencia en `specs/PBI-001-aplicacion-web/evidence.md`.
+- [x] Suite completa en verde en `develop`: 10 archivos / 44 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
 
 ### 📝 Documentación
 
 - [x] `README.md` con metodología, roles, ramas, commits y DoD.
-- [x] `CHANGELOG.md` inicializado.
-- [x] `specs/PBI-001-aplicacion-web/` y `specs/PBI-004-arnes-pruebas/` redactadas e implementadas en `develop`.
-- [ ] Especificación `specs/PBI-002-*/` pendiente (`@Fernis23228`).
+- [x] `CHANGELOG.md` inicializado y actualizado con `PBI-001`, `PBI-002`, `PBI-003` y `PBI-004`.
+- [x] `specs/PBI-001-aplicacion-web/`, `specs/PBI-002-tokens-accesibilidad/`, `specs/PBI-003-contrato-api-mock/` y `specs/PBI-004-arnes-pruebas/` redactadas e implementadas en `develop`.
+- [x] Especificaciones base de Sprint S02 (`specs/PBI-005-registro-login-rutas/` y `specs/PBI-006-dashboard-catalogo/`) incorporadas en PR `#57`.
 - [x] ADR-001 (React/TS/Vite) y ADR-002 (aplicación web) aceptados.
 - [x] Sincronización automática de Issues y Tablón Scrum al fusionar PRs en `develop` (`.github/workflows/scrum-board-sync.yml` y `scripts/github/sync-pr-issues.sh`).
+- [x] Armonización multiplataforma Windows/Linux para scripts de gestión en Node.js (`scripts/github/lib/gh-auth.cjs` cargando `user_data/security/gh_token.txt` y `.gitattributes` con `* text=auto eol=lf`).
 
 ---
 

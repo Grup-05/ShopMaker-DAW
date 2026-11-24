@@ -34,12 +34,12 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Estado | Issue |
 |---|---|---|---|---|---|---|---|
-| `PBI-003-T01` | Redactar spec, plan y matriz de contratos de API | Spec | Dev A (`@FSolaje`) | 4 h | — | Por hacer | `#38` |
-| `PBI-003-T02` | Definir puertos e interfaces TypeScript de frontera | Spec | Dev A (`@FSolaje`) | 4 h | `PBI-003-T01` | Por hacer | `#39` |
-| `PBI-003-T03` | Test rojo: validación de contratos y DTOs de frontera | Test | Dev A (`@FSolaje`) | 4 h | `PBI-003-T02` | Por hacer | `#40` |
-| `PBI-003-T04` | Implementar adaptador mock con persistencia local | Código | Dev A (`@FSolaje`) | 6 h | `PBI-003-T03` | Por hacer | `#41` |
-| `PBI-003-T05` | Simular latencia de red y códigos de error HTTP | Código | Dev A (`@FSolaje`) | 5 h | `PBI-003-T04` | Por hacer | `#42` |
-| `PBI-003-T06` | Documentación del mock y fixtures iniciales de prueba | Docs | Dev A (`@FSolaje`) | 3 h | `PBI-003-T05` | Por hacer | `#43` |
+| `PBI-003-T01` | Redactar spec, plan y matriz de contratos de API | Spec | Dev A (`@FSolaje`) | 4 h | — | Hecho (PR `#56`) | `#38` |
+| `PBI-003-T02` | Definir puertos e interfaces TypeScript de frontera | Spec | Dev A (`@FSolaje`) | 4 h | `PBI-003-T01` | Hecho (PR `#56`) | `#39` |
+| `PBI-003-T03` | Test rojo: validación de contratos y DTOs de frontera | Test | Dev A (`@FSolaje`) | 4 h | `PBI-003-T02` | Hecho (PR `#56`) | `#40` |
+| `PBI-003-T04` | Implementar adaptador mock con persistencia local | Código | Dev A (`@FSolaje`) | 6 h | `PBI-003-T03` | Hecho (PR `#56`) | `#41` |
+| `PBI-003-T05` | Simular latencia de red y códigos de error HTTP | Código | Dev A (`@FSolaje`) | 5 h | `PBI-003-T04` | Hecho (PR `#56`) | `#42` |
+| `PBI-003-T06` | Documentación del mock y fixtures iniciales de prueba | Docs | Dev A (`@FSolaje`) | 3 h | `PBI-003-T05` | Hecho (PR `#56`) | `#43` |
 
 ### PBI-005 — Registro, Inicio de Sesión y Rutas Protegidas (`#36` · `@Tarrant15` · 28 h)
 
