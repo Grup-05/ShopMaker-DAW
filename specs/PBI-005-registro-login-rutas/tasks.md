@@ -97,7 +97,7 @@
   - error 401 → `role="alert"` conservando el email;
   - estado de carga: botón deshabilitado y texto accesible.
 - [x] Verificar rojo: `npx vitest run tests/unit/auth/LoginPage.test.tsx` falla por ausencia de `LoginPage` (1 suite, 0 tests; solo error de resolución del módulo).
-- [x] Commit `test(auth): anadir pruebas rojas de login accesible`.
+- [x] Commit `test(auth): anadir pruebas rojas de login accesible` — `7c8b76d`.
 
 **Estado T04:** rojo verificado. `npm run typecheck` solo reporta el módulo pendiente de T05.
 
@@ -105,13 +105,16 @@
 
 ### T05 — Ciclo TDD 2, verde: página de inicio de sesión (`#48`, 5 h)
 
-- [ ] Implementar `LoginPage.tsx` + `.css` con etiquetas semánticas, `rememberMe`, enlace a `/recover`, estado de carga y alerta accesible.
-- [ ] Gestionar `ApiError` 401/500 con mensaje comprensible y `role="alert"`.
-- [ ] Navegar a `redirect` interno validado o a `/dashboard`.
-- [ ] Pasar T04 a verde y revisar tabulación/teclado.
-- [ ] Verificar: `npx vitest run tests/unit/auth`.
+- [x] Implementar `LoginPage.tsx` + `.css` con etiquetas semánticas, `rememberMe`, enlace a `/recover`, estado de carga y alerta accesible.
+- [x] Gestionar `ApiError` 401/500 con mensaje comprensible y `role="alert"`.
+- [x] Extraer `resolveSafeRedirect()` a `application/safeRedirect.ts` y reutilizarlo en registro y login.
+- [x] Navegar a `redirect` interno validado o a `/dashboard`.
+- [x] Pasar T04 a verde y revisar tabulación/teclado.
+- [x] Verificar: `npx vitest run tests/unit/auth tests/unit/tokens` → 4 archivos, 35 tests verdes.
+- [x] Verificar suite completa: `npx vitest run` → 17 archivos, 92 tests verdes; `npm run typecheck`, `npm run lint` y `npm run build` en verde.
+- [x] Commit `feat(auth): implementar pagina de inicio de sesion accesible`.
 
-**Commit:** `feat(auth): implementar pagina de inicio de sesion accesible`
+**Estado T05:** verde. CA-03 y CA-04 cubiertos y trazados.
 
 ---
 

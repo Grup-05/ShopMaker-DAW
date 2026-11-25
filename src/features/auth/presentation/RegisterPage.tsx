@@ -6,6 +6,7 @@ import {
   type UserDto,
 } from '../../../domain/ports';
 import { calculatePasswordStrength } from '../application/passwordStrength';
+import { resolveSafeRedirect } from '../application/safeRedirect';
 import { PasswordStrengthMeter } from './PasswordStrengthMeter';
 import './RegisterPage.css';
 
@@ -32,7 +33,6 @@ interface RegisterFormValues {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MIN_PASSWORD_LENGTH = 8;
-const DEFAULT_REDIRECT = '/dashboard';
 
 const ERROR_IDS: Record<RegisterField, string> = {
   name: 'register-name-error',
@@ -67,19 +67,6 @@ function validateRegisterForm(values: RegisterFormValues): RegisterErrors {
   }
 
   return errors;
-}
-
-function resolveRedirect(value: string | null): string {
-  if (
-    !value ||
-    !value.startsWith('/') ||
-    value.startsWith('//') ||
-    value.startsWith('/\\')
-  ) {
-    return DEFAULT_REDIRECT;
-  }
-
-  return value;
 }
 
 export function RegisterPage({ register }: RegisterPageProps) {
@@ -125,7 +112,7 @@ export function RegisterPage({ register }: RegisterPageProps) {
         acceptTerms,
       });
 
-      navigate(resolveRedirect(searchParams.get('redirect')), {
+      navigate(resolveSafeRedirect(searchParams.get('redirect')), {
         replace: true,
       });
     } catch (error) {

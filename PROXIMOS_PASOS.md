@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-005-registro-login-rutas`
-- **Último commit consolidado:** `7839522 — *feat(auth): implementar pagina de registro y medidor accesible*`
-- **Fecha de última sincronización:** 2026-11-25 11:58
+- **Último commit consolidado:** `7c8b76d — *test(auth): anadir pruebas rojas de login accesible*`
+- **Fecha de última sincronización:** 2026-11-25 12:01
 
 ---
 

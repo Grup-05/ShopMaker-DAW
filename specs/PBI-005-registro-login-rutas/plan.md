@@ -158,8 +158,8 @@ Cada criterio se escribe primero en rojo, se implementa hasta verde y se refacto
 |---|---|---|---|---|---|
 | CA-01 | Registro válido, DTO correcto y redirección | Componente | `[PBI-005][CA-01] register-form-submission` | `tests/unit/auth/RegisterPage.test.tsx` | Verde |
 | CA-02 | Medidor visual y accesible de contraseña | Unitario / Componente | `[PBI-005][CA-02] password-strength-live` | `tests/unit/auth/passwordStrength.test.ts` + `RegisterPage.test.tsx` | Verde |
-| CA-03 | Login válido con credenciales correctas | Componente | `[PBI-005][CA-03] login-success` | `tests/unit/auth/LoginPage.test.tsx` | Planificado |
-| CA-04 | Error accesible ante credenciales inválidas | Componente | `[PBI-005][CA-04] login-invalid-credentials` | `tests/unit/auth/LoginPage.test.tsx` | Planificado |
+| CA-03 | Login válido con credenciales correctas | Componente | `[PBI-005][CA-03] login-success` | `tests/unit/auth/LoginPage.test.tsx` | Verde |
+| CA-04 | Error accesible ante credenciales inválidas | Componente | `[PBI-005][CA-04] login-invalid-credentials` | `tests/unit/auth/LoginPage.test.tsx` | Verde |
 | CA-05 | Redirección de invitados y guarda inversa | Integración / Routing | `[PBI-005][CA-05] guarded-route-redirect` | `tests/unit/auth/GuardedRoute.test.tsx` | Planificado |
 | CA-06 | Cabecera dinámica con avatar y logout | Componente | `[PBI-005][CA-06] user-menu-header` | `tests/unit/auth/UserMenu.test.tsx` | Planificado |
 
@@ -185,6 +185,7 @@ Cada criterio se escribe primero en rojo, se implementa hasta verde y se refacto
 | `src/features/auth/application/AuthContext.tsx` | Crear | T06 |
 | `src/features/auth/application/useAuth.ts` | Crear | T06 |
 | `src/features/auth/application/passwordStrength.ts` | Crear | T03 |
+| `src/features/auth/application/safeRedirect.ts` | Crear (sanitización de `redirect`) | T05 |
 | `src/features/auth/presentation/RegisterPage.tsx` + `.css` | Crear | T03 |
 | `src/features/auth/presentation/LoginPage.tsx` + `.css` | Crear | T05 |
 | `src/features/auth/presentation/RecoverPasswordPage.tsx` + `.css` | Crear (informativa) | T06 |
