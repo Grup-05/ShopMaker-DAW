@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-005-registro-login-rutas`
-- **Último commit consolidado:** `a780f71 — *Merge pull request #58 from Grup-05/feature/PBI-006-dashboard-catalogo*`
-- **Fecha de última sincronización:** 2026-11-25 11:33
+- **Último commit consolidado:** `5382eba — *docs(spec): aprobar spec, plan tecnico y trazabilidad de PBI-005 (#44)*`
+- **Fecha de última sincronización:** 2026-11-25 11:41
 
 ---
 

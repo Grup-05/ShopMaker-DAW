@@ -39,7 +39,7 @@
 - [x] Trazar CA-01 a CA-06 a nombre contractual y archivo de test concreto.
 - [x] Verificar `npm run typecheck` y `npm run lint` en verde; `npm test` en verde con Node 22.19 (61 tests).
 - [ ] Alinear el Node local/CI a ≥ 22.19.0 y declararlo en `package.json` (`engines`) o `.nvmrc`.
-- [ ] Commit `docs(spec): aprobar spec, plan tecnico y trazabilidad de PBI-005 (#44)` y cierre de `#44`.
+- [x] Commit `docs(spec): aprobar spec, plan tecnico y trazabilidad de PBI-005 (#44)` — `5382eba`.
 
 **DoD T01:** cero decisiones abiertas; matriz completa; `npm run typecheck`, `npm run lint` y `npm test` verdes con Node ≥ 22.19; issue `#44` cerrada con enlace al commit.
 
@@ -49,13 +49,14 @@
 
 **Paso 0 (prerrequisito):** `npm install react-router-dom@^7` y verificar `npm run typecheck`.
 
-- [ ] `tests/unit/auth/passwordStrength.test.ts`:
+- [x] Instalar `react-router-dom@^7` (`7.18.7`).
+- [x] `tests/unit/auth/passwordStrength.test.ts`:
   - vacío → `empty` / «Sin contraseña»;
   - `'abc'` → `weak`;
   - `'Abcdef12'` → `medium` (3 puntos);
   - `'Abcdef12!'` → `strong` (4 puntos);
   - etiquetas y monotonía del `score` (0–5).
-- [ ] `tests/unit/auth/RegisterPage.test.tsx` (rojo, `MemoryRouter` + adaptador con latencia 0):
+- [x] `tests/unit/auth/RegisterPage.test.tsx` (rojo, `MemoryRouter` + adaptador con latencia 0):
   - etiquetas `<label>` para nombre, email, contraseña, confirmación y términos;
   - `autocomplete="name"`, `autocomplete="email"`, `autocomplete="new-password"`;
   - confirmación distinta → error asociado con `aria-describedby`;
@@ -63,9 +64,10 @@
   - medidor con `aria-live="polite"` que anuncia el nivel;
   - envío válido → `register({ name, email, password, acceptTerms: true })` y navegación a `/dashboard`;
   - error 409 → `role="alert"` sin perder los datos.
-- [ ] Verificar rojo: `npx vitest run tests/unit/auth` falla por ausencia de `passwordStrength.ts`, `PasswordStrengthMeter` y `RegisterPage`.
+- [x] Verificar rojo: `npx vitest run tests/unit/auth` falla por ausencia de `passwordStrength.ts`, `PasswordStrengthMeter` y `RegisterPage` (2 suites, 0 tests; solo errores de resolución de módulos).
+- [x] Commit `test(auth): anadir pruebas rojas de registro y medidor de clave`.
 
-**Commit:** `test(auth): anadir pruebas rojas de registro y medidor de clave`
+**Estado T02:** rojo verificado. `npm run lint` en verde; `npm run typecheck` solo reporta los dos módulos pendientes de T03.
 
 ---
 
