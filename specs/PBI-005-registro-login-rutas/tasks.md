@@ -147,7 +147,7 @@
 **Refactor**
 
 - [x] Revisar parpadeos (`Loading`), foco visible y anuncios accesibles.
-- [x] Verificar: `npx vitest run tests/unit/auth tests/unit/home` → 7 archivos, 60 tests verdes.
+- [x] Verificar: `npx vitest run tests/unit/auth tests/unit/home` → 7 archivos, 56 tests verdes.
 - [x] Verificar suite completa: `npx vitest run` → 20 archivos, 107 tests verdes; `npm run typecheck`, `npm run lint` y `npm run build` en verde.
 - [x] Verificar E2E: `npm run test:e2e` → 8 tests verdes en Chromium y Firefox.
 - [x] Commit `feat(auth): implementar useAuth, GuardedRoute, UserMenu y rutas protegidas`.
@@ -158,12 +158,12 @@
 
 ## 2. Definición de Hecho (DoD) de la feature
 
-- [ ] CA-01 a CA-06 con test automatizado y en verde.
-- [ ] `tests/unit/auth/` cubre registro, login, medidor, sesión, guardas y cabecera.
-- [ ] Contraste WCAG AA verificado, incluido `--color-success` del medidor.
-- [ ] Sin duplicación de DTOs: la UI importa desde `src/domain/ports/`.
-- [ ] Sin acceso directo a `localStorage` desde componentes.
-- [ ] `npm run typecheck`, `npm run lint`, `npm test` y `npm run test:e2e` en verde.
-- [ ] `bash scripts/github/pre-pr-gate.sh --pre-pr` superado.
-- [ ] Matriz de `plan.md` §8 actualizada a «Verde» y `evidence.md` creado con la evidencia de CA.
+- [x] CA-01 a CA-06 con test automatizado y en verde.
+- [x] `tests/unit/auth/` cubre registro, login, medidor, sesión, guardas y cabecera.
+- [x] Contraste WCAG AA verificado, incluido `--color-success` del medidor.
+- [x] Sin duplicación de DTOs: la UI importa desde `src/domain/ports/`.
+- [x] Sin acceso directo a `localStorage` desde componentes.
+- [x] `npm run typecheck`, `npm run lint`, `npm test` y `npm run test:e2e` en verde (Vitest ejecutado con Node 24 por la limitación de `jsdom@31`/`undici@8`; E2E 8/8).
+- [ ] `bash scripts/github/pre-pr-gate.sh --pre-pr` superado (requiere token y sincronización con `origin/develop`).
+- [x] Matriz de `plan.md` §8 actualizada a «Verde» y `evidence.md` creado con la evidencia de CA.
 - [ ] Pull Request hacia `develop` con `Closes #36` y `Closes #44`–`#49`, aprobación de `CODEOWNERS`.

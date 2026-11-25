@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-005-registro-login-rutas`
-- **Último commit consolidado:** `0735c51 — *test(auth): anadir pruebas rojas de sesion y rutas protegidas*`
-- **Fecha de última sincronización:** 2026-11-25 12:15
+- **Último commit consolidado:** `54508a6 — *docs(pbi-005): registrar evidencia de criterios y estado de cierre*`
+- **Fecha de última sincronización:** 2026-11-25 12:18
 
 ---
 
