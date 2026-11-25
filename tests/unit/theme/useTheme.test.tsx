@@ -1,8 +1,23 @@
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, beforeEach } from 'vitest';
+import type { AuthApiPort } from '../../../src/domain/ports';
+import { AuthProvider } from '../../../src/features/auth/application/AuthContext';
 import { useTheme } from '../../../src/shared/hooks/useTheme';
 import { HomePage } from '../../../src/features/home/presentation/HomePage';
+
+function pending<T>(): Promise<T> {
+  return new Promise<T>(() => {});
+}
+
+const pendingAuthApi: AuthApiPort = {
+  login: () => pending(),
+  register: () => pending(),
+  me: () => pending(),
+  recoverPassword: () => pending(),
+  logout: () => pending(),
+};
 
 function TestThemeConsumer() {
   const { theme, toggleTheme } = useTheme();
@@ -43,7 +58,13 @@ describe('useTheme hook & HomePage integration', () => {
   describe('[PBI-002][CA-03] HomePage theme button toggle', () => {
     it('pulsar el botón Cambiar tema en HomePage debe alternar el tema activo', async () => {
       const user = userEvent.setup();
-      render(<HomePage pages={[]} />);
+      render(
+        <MemoryRouter>
+          <AuthProvider authApi={pendingAuthApi}>
+            <HomePage pages={[]} />
+          </AuthProvider>
+        </MemoryRouter>,
+      );
 
       const themeButton = screen.getByRole('button', { name: /cambiar tema/i });
       expect(themeButton).toBeVisible();

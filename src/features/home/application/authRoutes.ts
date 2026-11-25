@@ -1,13 +1,12 @@
 /**
- * Destinos provisionales de los enlaces de acceso.
+ * Rutas públicas de acceso compartidas por la home y las vistas de auth.
  *
- * PBI-005 todavía no ha definido las rutas reales de inicio de sesión y
- * registro. Para no inventar URLs de producto, PBI-001 usa fragmentos
- * internos y el test `navigation-destinations` verifica la presencia y
- * semántica de los enlaces. Cuando PBI-005 publique sus rutas, basta con
- * sustituir estos valores y reforzar el test con las rutas acordadas.
+ * PBI-005 publica las rutas reales de inicio de sesión, registro y
+ * recuperación; la home las consume para que los enlaces de la cabecera
+ * naveguen dentro de la SPA.
  */
 export const AUTH_ROUTES = {
-  login: '#iniciar-sesion',
-  register: '#registrarse',
+  login: '/login',
+  register: '/register',
+  recover: '/recover',
 } as const;

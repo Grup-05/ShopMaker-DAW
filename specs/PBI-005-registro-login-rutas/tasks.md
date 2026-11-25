@@ -136,20 +136,23 @@
 
 **Verde**
 
-- [ ] Implementar `AuthStatus.ts`, `AuthContext.tsx` y `useAuth.ts` con inyección de `AuthApiPort`.
-- [ ] Implementar `GuardedRoute.tsx` con modos `protected` y `guest-only`, `replace` y sanitización de `redirect`.
-- [ ] Implementar `UserMenu.tsx` + `.css` e integrarlo en `HomePage.tsx`.
-- [ ] Implementar `RecoverPasswordPage.tsx` + `.css` (informativa, enlace a `/login`).
-- [ ] Actualizar `authRoutes.ts` a `/login`, `/register`, `/recover`.
-- [ ] Definir `<Routes>` en `App.tsx`, inyectar `LocalStorageMockApiAdapter` y envolver en `BrowserRouter` en `main.tsx`.
-- [ ] Pasar T06 a verde.
+- [x] Implementar `AuthStatus.ts`, `AuthContext.tsx` y `useAuth.ts` con inyección de `AuthApiPort`.
+- [x] Implementar `GuardedRoute.tsx` con modos `protected` y `guest-only`, `replace` y sanitización de `redirect`.
+- [x] Implementar `UserMenu.tsx` + `.css` e integrarlo en `HomePage.tsx`.
+- [x] Implementar `RecoverPasswordPage.tsx` + `.css` (informativa, enlace a `/login`).
+- [x] Actualizar `authRoutes.ts` a `/login`, `/register`, `/recover`.
+- [x] Definir `<Routes>` en `App.tsx`, inyectar `LocalStorageMockApiAdapter` y envolver en `BrowserRouter` en `main.tsx`.
+- [x] Pasar T06 a verde.
 
 **Refactor**
 
-- [ ] Revisar parpadeos (`Loading`), foco visible y anuncios accesibles.
-- [ ] Verificar: `npx vitest run tests/unit/auth tests/unit/home`.
+- [x] Revisar parpadeos (`Loading`), foco visible y anuncios accesibles.
+- [x] Verificar: `npx vitest run tests/unit/auth tests/unit/home` → 7 archivos, 60 tests verdes.
+- [x] Verificar suite completa: `npx vitest run` → 20 archivos, 107 tests verdes; `npm run typecheck`, `npm run lint` y `npm run build` en verde.
+- [x] Verificar E2E: `npm run test:e2e` → 8 tests verdes en Chromium y Firefox.
+- [x] Commit `feat(auth): implementar useAuth, GuardedRoute, UserMenu y rutas protegidas`.
 
-**Commit:** `feat(auth): implementar useAuth, GuardedRoute, UserMenu y rutas protegidas`
+**Estado T06:** verde. CA-05 y CA-06 cubiertos y trazados; T01–T06 completados.
 
 ---
 

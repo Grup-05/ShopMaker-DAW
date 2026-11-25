@@ -160,8 +160,8 @@ Cada criterio se escribe primero en rojo, se implementa hasta verde y se refacto
 | CA-02 | Medidor visual y accesible de contraseña | Unitario / Componente | `[PBI-005][CA-02] password-strength-live` | `tests/unit/auth/passwordStrength.test.ts` + `RegisterPage.test.tsx` | Verde |
 | CA-03 | Login válido con credenciales correctas | Componente | `[PBI-005][CA-03] login-success` | `tests/unit/auth/LoginPage.test.tsx` | Verde |
 | CA-04 | Error accesible ante credenciales inválidas | Componente | `[PBI-005][CA-04] login-invalid-credentials` | `tests/unit/auth/LoginPage.test.tsx` | Verde |
-| CA-05 | Redirección de invitados y guarda inversa | Integración / Routing | `[PBI-005][CA-05] guarded-route-redirect` | `tests/unit/auth/GuardedRoute.test.tsx` | Planificado |
-| CA-06 | Cabecera dinámica con avatar y logout | Componente | `[PBI-005][CA-06] user-menu-header` | `tests/unit/auth/UserMenu.test.tsx` | Planificado |
+| CA-05 | Redirección de invitados y guarda inversa | Integración / Routing | `[PBI-005][CA-05] guarded-route-redirect` | `tests/unit/auth/GuardedRoute.test.tsx` | Verde |
+| CA-06 | Cabecera dinámica con avatar y logout | Componente | `[PBI-005][CA-06] user-menu-header` | `tests/unit/auth/UserMenu.test.tsx` | Verde |
 
 **Pruebas de soporte** (sin CA propio, cubren la infraestructura de sesión): `tests/unit/auth/useAuth.test.tsx` para `me()` al montar, `login`, `register`, `logout` y uso fuera del proveedor.
 

@@ -1,4 +1,7 @@
 import { useReducer } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../auth/application/useAuth';
+import { UserMenu } from '../../auth/presentation/UserMenu';
 import { useTheme } from '../../../shared/hooks/useTheme';
 import { AUTH_ROUTES } from '../application/authRoutes';
 import {
@@ -17,17 +20,25 @@ export function HomePage({ pages }: HomePageProps) {
   const [state, dispatch] = useReducer(homePageReducer, initialHomePageState);
   const selectedPage = findSelectedPage(pages, state);
   const { theme, toggleTheme } = useTheme();
+  const { status, user } = useAuth();
+  const isAuthenticated = status === 'Authenticated' && user !== null;
 
   return (
     <div className="home">
       <header className="home__header">
         <nav className="home__nav" aria-label="Navegación principal">
-          <a className="home__nav-link" href={AUTH_ROUTES.login}>
-            Iniciar sesión
-          </a>
-          <a className="home__nav-link" href={AUTH_ROUTES.register}>
-            Registrarse
-          </a>
+          {isAuthenticated ? (
+            <UserMenu />
+          ) : (
+            <>
+              <Link className="home__nav-link" to={AUTH_ROUTES.login}>
+                Iniciar sesión
+              </Link>
+              <Link className="home__nav-link" to={AUTH_ROUTES.register}>
+                Registrarse
+              </Link>
+            </>
+          )}
           <button
             className="home__theme-button"
             type="button"
