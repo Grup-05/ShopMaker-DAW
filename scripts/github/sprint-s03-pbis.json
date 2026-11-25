@@ -1,0 +1,35 @@
+[
+  {
+    "id": "PBI-008",
+    "title": "Motor de edición visual de webs por bloques, inspector de propiedades y autoguardado de borradores",
+    "priority": "Alta",
+    "spec": "specs/PBI-008-editor-webs-borradores/",
+    "estimate": "30 h",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "body": "## Historia de usuario\n\n**Como** usuario propietario de un sitio web en ShopMaker, **quiero** un editor visual por bloques (`/editor/:siteId`) con paleta de bloques base y módulos instalados, inspector lateral de propiedades editables y autoguardado de borradores, **para** construir y personalizar mi página web sin perder mi progreso al recargar o cerrar la pestaña.\n\n**Valor:** Constituye el núcleo funcional de construcción de páginas web del CMS.\n\n## Criterios de aceptación\n\n- [ ] Extiende los contratos `SitesApiPort` y `ModulesApiPort` (`SiteBlockDto`, `SiteDraftDto`, `ModuleManifestDto`) y el adaptador mock persistente.\n- [ ] El botón «Editar» de las tarjetas del Dashboard abre `/editor/:siteId` con la paleta de bloques estructurales (`hero`, `text`, `features`, `footer`) y los bloques de módulos instalados en ese sitio.\n- [ ] Permite añadir bloques al lienzo, reordenarlos arriba/abajo (con ratón y teclado), duplicarlos y eliminarlos con confirmación si contienen datos.\n- [ ] Al seleccionar un bloque del lienzo, el Inspector Lateral permite editar en tiempo real sus propiedades (títulos, textos, configuración del módulo).\n- [ ] Implementa autoguardado de borradores en `localStorage` con indicador accesible (`aria-live=\"polite\"`) y recuperación automática al recargar o reabrir.\n\n## Requisitos no funcionales\n\n- Accesibilidad WCAG 2.1 AA: operación completa de reordenación e inspección mediante teclado y foco visible.\n- Separación estricta de capas SOLID (dominio, aplicación `useEditor`, presentación e infraestructura mock).\n\n## Dependencias\n\n- `SitesApiPort` y `ModulesApiPort` de PBI-003 y `DashboardPage` de PBI-006.\n\n## Spec\n\n`specs/PBI-008-editor-webs-borradores/`.",
+    "sprint": "S03"
+  },
+  {
+    "id": "PBI-007",
+    "title": "Creación de módulos mediante manifiestos para la tienda, ficha de detalle y compra/activación simulada por sitio",
+    "priority": "Alta",
+    "spec": "specs/PBI-007-detalle-modulo-compra/",
+    "estimate": "26 h",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "body": "## Historia de usuario\n\n**Como** usuario autenticado del CMS, **quiero** registrar nuevos módulos en la tienda mediante manifiestos declarativos validados, consultar la ficha de detalle de cualquier módulo y realizar su compra/activación simulada para uno de mis sitios web, **para** ampliar las capacidades de mis páginas sin modificar el núcleo del CMS.\n\n**Valor:** Materializa el modelo de negocio de módulos comprables y extensibilidad Open/Closed de ShopMaker.\n\n## Criterios de aceptación\n\n- [ ] Validador estático de manifiestos de módulos (`id`, `name`, `version` SemVer, `category`, `price`, lista blanca de `permissions` y `blockTemplate`, sin `eval`).\n- [ ] Modal accesible «+ Añadir Módulo a la Tienda» que valida el manifiesto y registra el nuevo módulo de forma persistente en el catálogo.\n- [ ] Vista o modal de detalle de módulo con descripción completa, versión, precio simulado, permisos requeridos y estado de titularidad.\n- [ ] Flujo de compra/activación simulada permitiendo elegir el sitio web destino y persistiendo la titularidad en `installedModulesBySite[siteId]`.\n\n## Requisitos no funcionales\n\n- Seguridad por diseño (profile-uiux.md §2.6 y §4): prohibido `eval`, `new Function` o ejecución de código arbitrario; validación estricta de manifiestos.\n- Accesibilidad WCAG 2.1 AA en diálogos modales, formularios y anuncios de confirmación de compra.\n\n## Dependencias\n\n- `ModulesApiPort` y `SitesApiPort` de PBI-003 y `CatalogView` de PBI-006.\n\n## Spec\n\n`specs/PBI-007-detalle-modulo-compra/`.",
+    "sprint": "S03"
+  },
+  {
+    "id": "PBI-009",
+    "title": "Motor de renderizado sanitizado mobile-first, previsualización aislada multi-dispositivo (iframe sandbox) y publicación de web",
+    "priority": "Alta",
+    "spec": "specs/PBI-009-previsualizacion-publicacion/",
+    "estimate": "26 h",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "body": "## Historia de usuario\n\n**Como** usuario que edita un sitio web en ShopMaker, **quiero** previsualizar mi web generada en un entorno aislado (`<iframe sandbox>`) alternando entre vistas Móvil (`360px`), Tablet (`768px`) y Escritorio (`1280px`) y poder publicarla (`Borrador` → `Publicado`), **para** verificar con seguridad cómo la verán mis visitantes antes de ponerla en línea.\n\n**Valor:** Cierra el ciclo de entrega de valor al cliente final garantizando seguridad anti-XSS y diseño responsive mobile-first de las webs generadas.\n\n## Criterios de aceptación\n\n- [ ] Sanitizador anti-XSS (`sanitizeSiteContent`) que elimina etiquetas `<script>`, manejadores `on*` y esquemas `javascript:` de cualquier contenido generado por el usuario.\n- [ ] Motor `SiteRenderer` que transforma los bloques y módulos del sitio en un documento HTML/CSS mobile-first adaptable a 360px, 768px y 1280px.\n- [ ] Visor de previsualización aislada mediante `<iframe sandbox=\"\">` con CSP estricta y barra de selección de dispositivo (`360px`, `768px`, `1280px`) accesible con `aria-pressed`.\n- [ ] Acción «Publicar Web» que promociona el sitio de `draft` a `published`, persiste el cambio en el mock y actualiza el badge en el Dashboard.\n\n## Requisitos no funcionales\n\n- Seguridad CMS (profile-uiux.md §4.3 y §4.4): aislamiento estricto de previsualización en `iframe sandbox` sin `allow-same-origin` ni `allow-scripts` innecesarios.\n- Las webs generadas cumplen diseño mobile-first en 360, 768 y 1280 px.\n\n## Dependencias\n\n- `SitesApiPort` de PBI-003, `DashboardPage` de PBI-006 y estructura de bloques de PBI-008.\n\n## Spec\n\n`specs/PBI-009-previsualizacion-publicacion/`.",
+    "sprint": "S03"
+  }
+]

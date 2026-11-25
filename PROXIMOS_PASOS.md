@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `feature/PBI-005-registro-login-rutas`
-- **Último commit consolidado:** `54508a6 — *docs(pbi-005): registrar evidencia de criterios y estado de cierre*`
-- **Fecha de última sincronización:** 2026-11-25 12:18
+- **Rama activa:** `chore/sprint-03-kickoff`
+- **Último commit consolidado:** `580d2ab — *docs(scrum): cerrar Sprint S02 y completar inicializacion de Sprint S03*`
+- **Fecha de última sincronización:** 2026-11-25 13:55
 
 ---
 
@@ -102,43 +102,41 @@ PBIs del Sprint S02:
 
 ---
 
-## 🚀 Sprint S03 — Editor de Webs, Detalle de Módulos y Compra Simulada
+## 🚀 Sprint S03 — Motor de Edición de Webs, Creación/Compra de Módulos y Previsualización Aislada
 
-**Sprint Goal:** Permitir al usuario autenticado acceder al detalle de un módulo, realizar una compra simulada y abrir el editor de webs con autoguardado y recuperación de borradores, completando así el flujo central del CMS desde el catálogo hasta la construcción de la web.
+**Sprint Goal:** Dotar a ShopMaker de un motor de edición visual de páginas web por bloques con inspector de propiedades y autoguardado de borradores (`PBI-008`), un sistema de registro de nuevos módulos mediante manifiestos declarativos y compra/activación simulada por sitio (`PBI-007`), y un visor de previsualización aislada multi-dispositivo (`iframe sandbox`) con sanitización anti-XSS y publicación de sitios (`PBI-009`), entregando el flujo completo de construcción web al cliente.
 
-**Fechas:** 2026-12-01 → 2026-12-12 · **Capacidad comprometida:** 3 developers, ~52 h planificadas en 2 workstreams paralelos.  
+**Fechas:** 2026-12-01 → 2026-12-12 · **Capacidad comprometida:** 3 developers, **82 h planificadas en 3 workstreams paralelos (21 issues `#61`–`#81`)**.  
 **Roles activos S03:** PO: `@Fernis23228` · SM: `@FSolaje` · Dev: `@Tarrant15` · Admin Gob: `@FSolaje`.
 
 PBIs del Sprint S03:
-- [ ] **PBI-007** — Detalle de módulo y compra simulada (~24 h — `@Tarrant15`)
-- [ ] **PBI-008** — Editor de webs con autoguardado y borradores (~28 h — `@Fernis23228`)
+- [ ] **PBI-008** (`#79`) — Motor de edición visual de webs por bloques, inspector de propiedades y autoguardado de borradores (`T01–T06` `#61`–`#66`, 30 h — `@FSolaje`, SM / Admin Gob).
+- [ ] **PBI-007** (`#80`) — Creación de módulos mediante manifiestos para la tienda, ficha de detalle y compra/activación simulada por sitio (`T01–T06` `#67`–`#72`, 26 h — `@Tarrant15`).
+- [ ] **PBI-009** (`#81`) — Motor de renderizado sanitizado mobile-first, previsualización aislada multi-dispositivo (`iframe sandbox`) y publicación de web (`T01–T06` `#73`–`#78`, 26 h — `@Fernis23228`, PO).
 
 **Artefactos S03 creados:**
 - [x] `docs/scrum/sprints/S03/sprint-goal.md`
 - [x] `docs/scrum/sprints/S03/sprint-backlog.md`
 - [x] `docs/scrum/sprints/S03/review.md` (plantilla)
 - [x] `docs/scrum/sprints/S03/retrospective.md` (plantilla)
+- [x] `scripts/github/sprint-s03-pbis.json`, `scripts/github/sprint-s03-tasks.json` y `scripts/github/setup-s03-board-and-issues.cjs`
+- [x] Milestone `S03` (`#3`), etiquetas `sprint:S03`, `pbi:007`, `pbi:008`, `pbi:009` y 21 issues (`#61`–`#81`) vinculadas al Tablón GitHub Projects v2 (`#1`).
 
 ---
 
 ## 🎯 Próximo Paso Inmediato (Sprint S03)
 
-1. **Sprint Planning S03 (2026-12-01):**
-   - Confirmar estimaciones de PBI-007 (~24 h) y PBI-008 (~28 h) con el equipo.
-   - Validar Sprint Goal, reparto de workstreams y rotación de roles (`active_roles.env` / `.github/CODEOWNERS` actualizados a S03).
-   - Crear milestone `S03` e issues de tareas en GitHub.
-2. **Día 1 — Extensión de contratos (`src/domain/ports/`):**
-   - Ampliar `ModulesApiPort` (detalle, precio/metadatos, compra simulada/titularidad) y `SitesApiPort` (lectura/guardado de contenido y borradores del editor).
-3. **Especificación SDD (`No-Spec-No-Code`):**
-   - `specs/PBI-007-detalle-modulo-compra/`: `spec.md`, `plan.md`, `tasks.md` → aprobación del PO (`@Fernis23228`).
-   - `specs/PBI-008-editor-webs-borradores/`: `spec.md`, `plan.md`, `tasks.md` → aprobación del PO (`@Fernis23228`).
-4. **Creación de ramas de trabajo desde `develop`:**
+1. **Día 1 — Extensión de contratos (`src/domain/ports/` en `PBI-008-T01` `#61`):**
+   - Ampliar `SitesApiPort` (`SiteBlockDto`, `SiteDraftDto`, lectura/guardado de bloques y publicación) y `ModulesApiPort` (`ModuleManifestDto`, registro de nuevos módulos y compra simulada por sitio).
+2. **Especificación SDD (`No-Spec-No-Code`):**
+   - `specs/PBI-008-editor-webs-borradores/` (`@FSolaje`, `#61`)
+   - `specs/PBI-007-detalle-modulo-compra/` (`@Tarrant15`, `#67`)
+   - `specs/PBI-009-previsualizacion-publicacion/` (`@Fernis23228`, `#73`)
+3. **Creación de ramas de trabajo desde `develop`:**
+   - `feature/PBI-008-editor-webs-borradores` (`@FSolaje`)
    - `feature/PBI-007-detalle-modulo-compra` (`@Tarrant15`)
-   - `feature/PBI-008-editor-webs-borradores` (`@Fernis23228`)
-5. **Desarrollo paralelo con TDD:**
-   - Dev B: TDD en PBI-007 usando `ModulesApiPort` y el adaptador mock (PBI-003).
-   - Dev C: TDD en PBI-008 usando `SitesApiPort` y `localStorage`/IndexedDB.
-   - Dev A: soporte en extensión del mock, revisión de PRs y calidad transversal.
+   - `feature/PBI-009-previsualizacion-publicacion` (`@Fernis23228`)
+4. **Desarrollo paralelo con TDD y validación estática previa a cada PR (`bash scripts/github/pre-pr-gate.sh --pre-pr`).**
 
 ---
 

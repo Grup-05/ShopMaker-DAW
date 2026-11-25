@@ -21,9 +21,9 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 | PBI-004 | Configurar el arnés de pruebas y el hook local de calidad | Alta | 30 h (25 h en S01) | Terminado | S01 | `#5` | `specs/PBI-004-arnes-pruebas/` |
 | PBI-005 | Registro e inicio de sesión de usuarios y rutas protegidas | Alta | 28 h | Terminado | S02 | `#36` | `specs/PBI-005-registro-login-rutas/` |
 | PBI-006 | Dashboard de administración y catálogo preliminar de módulos | Alta | 26 h | Terminado | S02 | `#37` | `specs/PBI-006-dashboard-catalogo/` |
-| PBI-007 | Detalle de módulo y compra simulada | Alta | ~24 h | En Sprint | S03 | — | Pendiente |
-| PBI-008 | Editor de webs con autoguardado y borradores | Alta | ~28 h | En Sprint | S03 | — | Pendiente |
-| PBI-009 | Previsualización aislada y segura de la web | Alta | — | Nuevo | — | — | Pendiente |
+| PBI-007 | Creación de módulos mediante manifiestos, detalle y compra simulada por sitio | Alta | 26 h | En Sprint | S03 | `#80` | `specs/PBI-007-detalle-modulo-compra/` |
+| PBI-008 | Motor de edición visual de webs por bloques, inspector y autoguardado de borradores | Alta | 30 h | En Sprint | S03 | `#79` | `specs/PBI-008-editor-webs-borradores/` |
+| PBI-009 | Motor de renderizado sanitizado, previsualización aislada (`iframe sandbox`) y publicación | Alta | 26 h | En Sprint | S03 | `#81` | `specs/PBI-009-previsualizacion-publicacion/` |
 | PBI-010 | Publicación de la web y panel de alojamiento | Media | — | Nuevo | — | — | Pendiente |
 | PBI-011 | Gestión de módulos activos y permisos | Media | — | Nuevo | — | — | Pendiente |
 | PBI-012 | Accesibilidad transversal y navegación por teclado | Alta | — | Nuevo | — | — | Pendiente |

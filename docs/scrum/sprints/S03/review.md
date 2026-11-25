@@ -28,8 +28,9 @@ _Justificación: a completar._
 
 | PBI | Criterios cubiertos | Aceptado por PO | Observaciones |
 |---|---|---|---|
-| PBI-007 — Detalle y Compra | — / — | ☐ Sí / ☐ No | — |
-| PBI-008 — Editor y Borradores | — / — | ☐ Sí / ☐ No | — |
+| PBI-008 (`#79`) — Motor Editor y Borradores (`@FSolaje`) | — / — | ☐ Sí / ☐ No | — |
+| PBI-007 (`#80`) — Creación de Módulos y Compra (`@Tarrant15`) | — / — | ☐ Sí / ☐ No | — |
+| PBI-009 (`#81`) — Previsualización Aislada y Publicación (`@Fernis23228`) | — / — | ☐ Sí / ☐ No | — |
 
 ---
 
