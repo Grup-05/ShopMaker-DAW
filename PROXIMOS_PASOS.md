@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `feature/PBI-006-dashboard-catalogo`
-- **Último commit consolidado:** `174f7be — *feat(dashboard): implementar layout, gestión de sitios, modal accesible y catálogo de módulos*`
-- **Fecha de última sincronización:** 2026-11-24 13:53
+- **Rama activa:** `feature/PBI-005-registro-login-rutas`
+- **Último commit consolidado:** `a780f71 — *Merge pull request #58 from Grup-05/feature/PBI-006-dashboard-catalogo*`
+- **Fecha de última sincronización:** 2026-11-25 11:33
 
 ---
 
