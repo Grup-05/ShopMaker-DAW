@@ -75,6 +75,10 @@ describe('[PBI-002][CA-01] tokens-contraste-aa', () => {
     // Foco frente a superficie
     const focusOnSurface = getContrastRatio(lightTokens['--color-focus'], lightTokens['--color-surface']);
     expect(focusOnSurface, `Contraste anillo de foco (${focusOnSurface}:1)`).toBeGreaterThanOrEqual(3.0);
+
+    // Éxito (medidor de contraseña) frente a superficie
+    const successOnSurface = getContrastRatio(lightTokens['--color-success'], lightTokens['--color-surface']);
+    expect(successOnSurface, `Contraste éxito sobre superficie (${successOnSurface}:1)`).toBeGreaterThanOrEqual(4.5);
   });
 
   it('el tema oscuro debe cumplir ratio de contraste WCAG 2.1 AA (≥ 4.5:1 texto, ≥ 3:1 controles)', () => {
@@ -101,6 +105,10 @@ describe('[PBI-002][CA-01] tokens-contraste-aa', () => {
 
     const focusOnSurface = getContrastRatio(darkTokens['--color-focus'], darkTokens['--color-surface']);
     expect(focusOnSurface, `Contraste anillo de foco oscuro (${focusOnSurface}:1)`).toBeGreaterThanOrEqual(3.0);
+
+    // Éxito (medidor de contraseña) frente a superficie oscura
+    const successOnSurface = getContrastRatio(darkTokens['--color-success'], darkTokens['--color-surface']);
+    expect(successOnSurface, `Contraste éxito oscuro sobre superficie (${successOnSurface}:1)`).toBeGreaterThanOrEqual(4.5);
   });
 });
 

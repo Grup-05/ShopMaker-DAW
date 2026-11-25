@@ -156,8 +156,8 @@ Cada criterio se escribe primero en rojo, se implementa hasta verde y se refacto
 
 | ID | Requerimiento / Criterio | Tipo | Test contractual | Archivo | Estado |
 |---|---|---|---|---|---|
-| CA-01 | Registro válido, DTO correcto y redirección | Componente | `[PBI-005][CA-01] register-form-submission` | `tests/unit/auth/RegisterPage.test.tsx` | Planificado |
-| CA-02 | Medidor visual y accesible de contraseña | Unitario / Componente | `[PBI-005][CA-02] password-strength-live` | `tests/unit/auth/passwordStrength.test.ts` + `RegisterPage.test.tsx` | Planificado |
+| CA-01 | Registro válido, DTO correcto y redirección | Componente | `[PBI-005][CA-01] register-form-submission` | `tests/unit/auth/RegisterPage.test.tsx` | Verde |
+| CA-02 | Medidor visual y accesible de contraseña | Unitario / Componente | `[PBI-005][CA-02] password-strength-live` | `tests/unit/auth/passwordStrength.test.ts` + `RegisterPage.test.tsx` | Verde |
 | CA-03 | Login válido con credenciales correctas | Componente | `[PBI-005][CA-03] login-success` | `tests/unit/auth/LoginPage.test.tsx` | Planificado |
 | CA-04 | Error accesible ante credenciales inválidas | Componente | `[PBI-005][CA-04] login-invalid-credentials` | `tests/unit/auth/LoginPage.test.tsx` | Planificado |
 | CA-05 | Redirección de invitados y guarda inversa | Integración / Routing | `[PBI-005][CA-05] guarded-route-redirect` | `tests/unit/auth/GuardedRoute.test.tsx` | Planificado |

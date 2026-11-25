@@ -65,7 +65,7 @@
   - envío válido → `register({ name, email, password, acceptTerms: true })` y navegación a `/dashboard`;
   - error 409 → `role="alert"` sin perder los datos.
 - [x] Verificar rojo: `npx vitest run tests/unit/auth` falla por ausencia de `passwordStrength.ts`, `PasswordStrengthMeter` y `RegisterPage` (2 suites, 0 tests; solo errores de resolución de módulos).
-- [x] Commit `test(auth): anadir pruebas rojas de registro y medidor de clave`.
+- [x] Commit `test(auth): anadir pruebas rojas de registro y medidor de clave` — `87a7e51`.
 
 **Estado T02:** rojo verificado. `npm run lint` en verde; `npm run typecheck` solo reporta los dos módulos pendientes de T03.
 
@@ -73,14 +73,16 @@
 
 ### T03 — Ciclo TDD 1, verde: registro y medidor accesible (`#46`, 6 h)
 
-- [ ] Implementar `src/features/auth/application/passwordStrength.ts` con `calculatePasswordStrength()` y `PasswordStrengthLevel`.
-- [ ] Implementar `PasswordStrengthMeter.tsx` + `.css`: barra con `role="meter"` y un único nodo `aria-live="polite"`.
-- [ ] Añadir primitiva verde y token `--color-success` en `primitives.css`/`tokens.css`; ampliar `tests/unit/tokens/contrast.test.ts` (≥ 4.5:1).
-- [ ] Implementar `RegisterPage.tsx` + `.css` con validación de email, longitud mínima 8, confirmación y términos; estados de carga y error accesibles.
-- [ ] Pasar T02 a verde y refactorizar sin cambiar contratos.
-- [ ] Verificar: `npx vitest run tests/unit/auth tests/unit/tokens`.
+- [x] Implementar `src/features/auth/application/passwordStrength.ts` con `calculatePasswordStrength()` y `PasswordStrengthLevel`.
+- [x] Implementar `PasswordStrengthMeter.tsx` + `.css`: barra con `role="meter"` y un único nodo `aria-live="polite"`.
+- [x] Añadir primitiva verde y token `--color-success` en `primitives.css`/`tokens.css`; ampliar `tests/unit/tokens/contrast.test.ts` (≥ 4.5:1).
+- [x] Implementar `RegisterPage.tsx` + `.css` con validación de email, longitud mínima 8, confirmación y términos; estados de carga y error accesibles.
+- [x] Pasar T02 a verde y refactorizar sin cambiar contratos.
+- [x] Verificar: `npx vitest run tests/unit/auth tests/unit/tokens` → 3 archivos, 25 tests verdes.
+- [x] Verificar suite completa: `npx vitest run` → 16 archivos, 82 tests verdes; `npm run typecheck` y `npm run lint` en verde.
+- [x] Commit `feat(auth): implementar pagina de registro y medidor accesible`.
 
-**Commit:** `feat(auth): implementar pagina de registro y medidor accesible`
+**Estado T03:** verde. CA-01 y CA-02 cubiertos y trazados.
 
 ---
 
