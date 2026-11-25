@@ -1,6 +1,9 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
+import type { AuthApiPort } from '@/domain/ports';
+import { AuthProvider } from '@/features/auth/application/AuthContext';
 import type { StartedPage } from '@/features/home/domain/StartedPage';
 import { HomePage } from '@/features/home/presentation/HomePage';
 
@@ -9,8 +12,26 @@ const pages: readonly StartedPage[] = [
   { id: 'page-2', name: 'Tienda de ejemplo' },
 ];
 
+function pending<T>(): Promise<T> {
+  return new Promise<T>(() => {});
+}
+
+const pendingAuthApi: AuthApiPort = {
+  login: () => pending(),
+  register: () => pending(),
+  me: () => pending(),
+  recoverPassword: () => pending(),
+  logout: () => pending(),
+};
+
 function renderHome(initialPages: readonly StartedPage[] = pages) {
-  return render(<HomePage pages={initialPages} />);
+  return render(
+    <MemoryRouter>
+      <AuthProvider authApi={pendingAuthApi}>
+        <HomePage pages={initialPages} />
+      </AuthProvider>
+    </MemoryRouter>,
+  );
 }
 
 describe('HomePage', () => {

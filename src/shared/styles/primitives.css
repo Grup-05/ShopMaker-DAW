@@ -33,6 +33,10 @@
   --palette-red-700: #b91c1c;
   --palette-red-800: #991b1b;
 
+  /* Paleta verde (Éxito / Fortaleza alta) */
+  --palette-green-400: #4ade80;
+  --palette-green-700: #15803d;
+
   /* Blanco y negro absolutos */
   --palette-white: #ffffff;
   --palette-black: #000000;
