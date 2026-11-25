@@ -81,7 +81,7 @@
 
 | Fecha | Descripción | Responsable de resolución | Estado |
 |---|---|---|---|
-| 2026-11-25 | PR `#58` (PBI-006) pendiente de revisión y merge en `develop` | PO (`@Fernis23228`) + Reviewer | Abierto — bloquea inicio de workstream 2 |
+| 2026-11-25 | PR `#58` (PBI-006) y PR `#59` (PBI-005) integrados en `develop` | Equipo | Resuelto (`a780f71`, `0baef80`) |
 
 ---
 

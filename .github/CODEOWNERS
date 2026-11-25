@@ -7,9 +7,9 @@
 # la regla comodín '*' va al principio y las rutas específicas van debajo.
 #
 # Generado automáticamente por scripts/scrum/rotate-roles.sh
-# Roles activos actuales (Sprint S02):
-#   - Product Owner:        @Tarrant15
-#   - Scrum Master:         @Fernis23228
+# Roles activos actuales (Sprint S03):
+#   - Product Owner:        @Fernis23228
+#   - Scrum Master:         @FSolaje
 #   - Developers:           @FSolaje @Tarrant15 @Fernis23228
 #   - Administrador Gob.:   @FSolaje
 # ==============================================================================
@@ -23,14 +23,14 @@
 /scripts/                       @FSolaje @Tarrant15 @Fernis23228
 
 # 3. Requisitos del Producto, Historias de Usuario y Backlog (Product Owner)
-/docs/scrum/product-backlog.md  @Tarrant15
-/specs/                         @Tarrant15
+/docs/scrum/product-backlog.md  @Fernis23228
+/specs/                         @Fernis23228
 
 # 4. Proceso Scrum, Definiciones y Retrospectivas (Scrum Master)
-/docs/scrum/definition-*.md     @Fernis23228
-/docs/scrum/sprints/            @Fernis23228
-/docs/scrum/team.md             @Fernis23228
-/docs/scrum/active_roles.env    @Fernis23228
+/docs/scrum/definition-*.md     @FSolaje
+/docs/scrum/sprints/            @FSolaje
+/docs/scrum/team.md             @FSolaje
+/docs/scrum/active_roles.env    @FSolaje
 
 # 5. Núcleo de Gobernanza, Hooks, Workflows y Telemetría (Administrador de Gobernanza)
 /.agent/                        @FSolaje

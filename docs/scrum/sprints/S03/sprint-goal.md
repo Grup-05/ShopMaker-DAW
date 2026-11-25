@@ -55,8 +55,7 @@
     *Mitigación:* Implementar solo los tipos de bloque mínimos definidos en la spec (texto, imagen, separador); el sistema debe ser extensible por manifiesto, no hardcodeado.
   - *Riesgo:* Pérdida de borradores al recargar la pestaña.
     *Mitigación:* Autoguardado en `localStorage`/IndexedDB cada 30 s y al perder el foco de la ventana; prueba de regresión obligatoria.
-  - *Riesgo:* PBI-005 (sesión) y PBI-006 (dashboard) deben estar mergeados en `develop` antes del Día 1.
-    *Mitigación:* Verificar que PR `#58` (PBI-006) está mergeado; si no, bloquear el inicio de S03 y escalarlo al PO.
+  - *Dependencia previa (resuelta):* PBI-005 (PR `#59`) y PBI-006 (PR `#58`) ya están integrados en `develop`.
 
 ---
 

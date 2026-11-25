@@ -79,15 +79,16 @@ PBIs del Sprint S01:
 PBIs del Sprint S02:
 - [x] **PBI-003** (`#4`) — Contrato de API y adaptador mock persistente (`T01–T06` `#38`–`#43`, 26 h — `@FSolaje`). Completado e integrado en `develop` (PR `#56`).
 - [x] **PBI-005** (`#36`) — Registro, inicio de sesión y rutas protegidas (`T01–T06` `#44`–`#49`, 28 h — `@Tarrant15`, PO). Completado e integrado en `develop` (PR `#59`).
-- [x] **PBI-006** (`#37`) — Dashboard de administración y catálogo preliminar de módulos (`T01–T06` `#50`–`#55`, 26 h — `@Fernis23228`, SM). PR `#58` abierto — pendiente de revisión y merge.
+- [x] **PBI-006** (`#37`) — Dashboard de administración y catálogo preliminar de módulos (`T01–T06` `#50`–`#55`, 26 h — `@Fernis23228`, SM). Completado e integrado en `develop` (PR `#58`).
+- [x] **Cierre S02:** `docs/scrum/sprints/S02/review.md` y `retrospective.md` registrados; Sprint S02 cerrado el 2026-11-25.
 
 ### 🧪 Pruebas
 
 - [x] Runner y comando único de suite definidos: `npm test` y `npm run test:e2e`.
 - [x] Test de humo de la aplicación web (`app-arranque`, `home-layout`, `minimum-viewport`).
-- [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md`, `specs/PBI-002-tokens-accesibilidad/plan.md`, `specs/PBI-003-contrato-api-mock/plan.md` y `specs/PBI-004-arnes-pruebas/plan.md`.
+- [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md`, `specs/PBI-002-tokens-accesibilidad/plan.md`, `specs/PBI-003-contrato-api-mock/plan.md`, `specs/PBI-004-arnes-pruebas/plan.md`, `specs/PBI-005-registro-login-rutas/plan.md` y `specs/PBI-006-dashboard-catalogo/plan.md`.
 - [x] Hook `.agent/hooks/pre-commit-local.sh` operativo e integrado en `develop` (PR `#28`).
-- [x] Suite completa en verde en `develop`: 10 archivos / 44 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
+- [x] Suite completa en verde en `develop`: 20 archivos / 107 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
 
 ### 📝 Documentación
 
@@ -122,21 +123,22 @@ PBIs del Sprint S03:
 
 ## 🎯 Próximo Paso Inmediato (Sprint S03)
 
-1. **Verificar merge de PR `#58` (PBI-006) en `develop`** — bloquea workstream del editor.
-2. **Sprint Planning S03 (2026-12-01):**
+1. **Sprint Planning S03 (2026-12-01):**
    - Confirmar estimaciones de PBI-007 (~24 h) y PBI-008 (~28 h) con el equipo.
-   - Validar Sprint Goal y reparto de workstreams.
+   - Validar Sprint Goal, reparto de workstreams y rotación de roles (`active_roles.env` / `.github/CODEOWNERS` actualizados a S03).
    - Crear milestone `S03` e issues de tareas en GitHub.
-3. **Especificación SDD (`No-Spec-No-Code`) — Día 1 del Sprint:**
-   - `specs/PBI-007-detalle-modulo-compra/`: spec.md, plan.md, tasks.md → aprobación del PO.
-   - `specs/PBI-008-editor-webs-borradores/`: spec.md, plan.md, tasks.md → aprobación del PO.
+2. **Día 1 — Extensión de contratos (`src/domain/ports/`):**
+   - Ampliar `ModulesApiPort` (detalle, precio/metadatos, compra simulada/titularidad) y `SitesApiPort` (lectura/guardado de contenido y borradores del editor).
+3. **Especificación SDD (`No-Spec-No-Code`):**
+   - `specs/PBI-007-detalle-modulo-compra/`: `spec.md`, `plan.md`, `tasks.md` → aprobación del PO (`@Fernis23228`).
+   - `specs/PBI-008-editor-webs-borradores/`: `spec.md`, `plan.md`, `tasks.md` → aprobación del PO (`@Fernis23228`).
 4. **Creación de ramas de trabajo desde `develop`:**
    - `feature/PBI-007-detalle-modulo-compra` (`@Tarrant15`)
    - `feature/PBI-008-editor-webs-borradores` (`@Fernis23228`)
 5. **Desarrollo paralelo con TDD:**
    - Dev B: TDD en PBI-007 usando `ModulesApiPort` y el adaptador mock (PBI-003).
    - Dev C: TDD en PBI-008 usando `SitesApiPort` y `localStorage`/IndexedDB.
-   - Dev A: revisión de PRs, calidad transversal y soporte de integración.
+   - Dev A: soporte en extensión del mock, revisión de PRs y calidad transversal.
 
 ---
 
