@@ -122,14 +122,17 @@
 
 **Rojo**
 
-- [ ] `tests/unit/auth/useAuth.test.tsx`: `me()` al montar (`Loading` → `Authenticated`/`Guest`), `login`, `register`, `logout` y error al usar el hook fuera del proveedor.
-- [ ] `tests/unit/auth/GuardedRoute.test.tsx`:
+- [x] `tests/unit/auth/useAuth.test.tsx`: `me()` al montar (`Loading` → `Authenticated`/`Guest`), `login`, `register`, `logout` y error al usar el hook fuera del proveedor.
+- [x] `tests/unit/auth/GuardedRoute.test.tsx`:
   - `Guest` en `/dashboard` → `/login?redirect=%2Fdashboard`;
   - `Authenticated` → renderiza el hijo;
   - `Loading` → indicador `role="status"` sin redirección;
   - modo `guest-only`: `Authenticated` en `/login` → `/dashboard`.
-- [ ] `tests/unit/auth/UserMenu.test.tsx`: iniciales/nombre, menú accesible y «Cerrar sesión» que invoca `logout()` y navega a `/`.
-- [ ] Verificar rojo.
+- [x] `tests/unit/auth/UserMenu.test.tsx`: iniciales/nombre, menú accesible, «Cerrar sesión» que invoca `logout()` y navega a `/`, e integración en la cabecera de `HomePage`.
+- [x] Verificar rojo: las 3 suites fallan solo por ausencia de `AuthContext`, `useAuth`, `GuardedRoute` y `UserMenu` (0 tests ejecutados).
+- [x] Commit `test(auth): anadir pruebas rojas de sesion y rutas protegidas`.
+
+**Estado T06 (rojo):** verificado. `npm run typecheck` solo reporta los cuatro módulos pendientes del ciclo verde.
 
 **Verde**
 
