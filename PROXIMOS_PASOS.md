@@ -78,8 +78,8 @@ PBIs del Sprint S01:
 
 PBIs del Sprint S02:
 - [x] **PBI-003** (`#4`) — Contrato de API y adaptador mock persistente (`T01–T06` `#38`–`#43`, 26 h — `@FSolaje`). Completado e integrado en `develop` (PR `#56`).
-- [ ] **PBI-005** (`#36`) — Registro, inicio de sesión y rutas protegidas (`T01–T06` `#44`–`#49`, 28 h — `@Tarrant15`, PO).
-- [ ] **PBI-006** (`#37`) — Dashboard de administración y catálogo preliminar de módulos (`T01–T06` `#50`–`#55`, 26 h — `@Fernis23228`, SM).
+- [x] **PBI-005** (`#36`) — Registro, inicio de sesión y rutas protegidas (`T01–T06` `#44`–`#49`, 28 h — `@Tarrant15`, PO). Completado e integrado en `develop` (PR `#59`).
+- [x] **PBI-006** (`#37`) — Dashboard de administración y catálogo preliminar de módulos (`T01–T06` `#50`–`#55`, 26 h — `@Fernis23228`, SM). PR `#58` abierto — pendiente de revisión y merge.
 
 ### 🧪 Pruebas
 
@@ -101,20 +101,42 @@ PBIs del Sprint S02:
 
 ---
 
-## 🎯 Próximo Paso Inmediato (Sprint S02)
+## 🚀 Sprint S03 — Editor de Webs, Detalle de Módulos y Compra Simulada
 
-1. **Día 1 — Contratos y Puertos (`domain/ports/`):**
-   - Definir interfaces de TypeScript consensuadas: `AuthApiPort`, `SitesApiPort`, `ModulesApiPort`.
-2. **Especificación SDD (`No-Spec-No-Code`):**
-   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-003`, `PBI-005` y `PBI-006`.
-   - Aprobación formal del Product Owner (`@Tarrant15`) con commit `docs(spec)`.
-3. **Creación de ramas de trabajo desde `develop`:**
-   - `feature/PBI-003-contrato-api-mock` (`@FSolaje`)
-   - `feature/PBI-005-registro-login-rutas` (`@Tarrant15`)
-   - `feature/PBI-006-dashboard-catalogo` (`@Fernis23228`)
-4. **Desarrollo paralelo con TDD:**
-   - Dev B y C con stubs locales en memoria.
-   - Dev A con motor mock persistente y tests de contrato.
+**Sprint Goal:** Permitir al usuario autenticado acceder al detalle de un módulo, realizar una compra simulada y abrir el editor de webs con autoguardado y recuperación de borradores, completando así el flujo central del CMS desde el catálogo hasta la construcción de la web.
+
+**Fechas:** 2026-12-01 → 2026-12-12 · **Capacidad comprometida:** 3 developers, ~52 h planificadas en 2 workstreams paralelos.  
+**Roles activos S03:** PO: `@Fernis23228` · SM: `@FSolaje` · Dev: `@Tarrant15` · Admin Gob: `@FSolaje`.
+
+PBIs del Sprint S03:
+- [ ] **PBI-007** — Detalle de módulo y compra simulada (~24 h — `@Tarrant15`)
+- [ ] **PBI-008** — Editor de webs con autoguardado y borradores (~28 h — `@Fernis23228`)
+
+**Artefactos S03 creados:**
+- [x] `docs/scrum/sprints/S03/sprint-goal.md`
+- [x] `docs/scrum/sprints/S03/sprint-backlog.md`
+- [x] `docs/scrum/sprints/S03/review.md` (plantilla)
+- [x] `docs/scrum/sprints/S03/retrospective.md` (plantilla)
+
+---
+
+## 🎯 Próximo Paso Inmediato (Sprint S03)
+
+1. **Verificar merge de PR `#58` (PBI-006) en `develop`** — bloquea workstream del editor.
+2. **Sprint Planning S03 (2026-12-01):**
+   - Confirmar estimaciones de PBI-007 (~24 h) y PBI-008 (~28 h) con el equipo.
+   - Validar Sprint Goal y reparto de workstreams.
+   - Crear milestone `S03` e issues de tareas en GitHub.
+3. **Especificación SDD (`No-Spec-No-Code`) — Día 1 del Sprint:**
+   - `specs/PBI-007-detalle-modulo-compra/`: spec.md, plan.md, tasks.md → aprobación del PO.
+   - `specs/PBI-008-editor-webs-borradores/`: spec.md, plan.md, tasks.md → aprobación del PO.
+4. **Creación de ramas de trabajo desde `develop`:**
+   - `feature/PBI-007-detalle-modulo-compra` (`@Tarrant15`)
+   - `feature/PBI-008-editor-webs-borradores` (`@Fernis23228`)
+5. **Desarrollo paralelo con TDD:**
+   - Dev B: TDD en PBI-007 usando `ModulesApiPort` y el adaptador mock (PBI-003).
+   - Dev C: TDD en PBI-008 usando `SitesApiPort` y `localStorage`/IndexedDB.
+   - Dev A: revisión de PRs, calidad transversal y soporte de integración.
 
 ---
 
