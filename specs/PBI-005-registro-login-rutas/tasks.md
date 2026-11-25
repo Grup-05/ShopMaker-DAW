@@ -88,7 +88,7 @@
 
 ### T04 — Ciclo TDD 2, rojo: login accesible (`#47`, 4 h)
 
-- [ ] `tests/unit/auth/LoginPage.test.tsx` (rojo):
+- [x] `tests/unit/auth/LoginPage.test.tsx` (rojo):
   - `autocomplete="username"` y `autocomplete="current-password"`;
   - casilla «Recordarme» y envío de `rememberMe`;
   - enlace accesible «Recuperar contraseña» con `href="/recover"`;
@@ -96,9 +96,10 @@
   - respeto de `?redirect=%2Fdashboard` y rechazo de destinos externos;
   - error 401 → `role="alert"` conservando el email;
   - estado de carga: botón deshabilitado y texto accesible.
-- [ ] Verificar rojo: `npx vitest run tests/unit/auth/LoginPage.test.tsx` falla por ausencia de `LoginPage`.
+- [x] Verificar rojo: `npx vitest run tests/unit/auth/LoginPage.test.tsx` falla por ausencia de `LoginPage` (1 suite, 0 tests; solo error de resolución del módulo).
+- [x] Commit `test(auth): anadir pruebas rojas de login accesible`.
 
-**Commit:** `test(auth): anadir pruebas rojas de login accesible`
+**Estado T04:** rojo verificado. `npm run typecheck` solo reporta el módulo pendiente de T05.
 
 ---
 
