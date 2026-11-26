@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `a62097d — *Merge pull request #82 from Grup-05/feature/PBI-009-previsualizacion-publicacion*`
+- **Último commit consolidado:** `4bd1282 — *chore(governance): hacer mandatorios el registro de ADR, los tags de Sprint y la guia de pruebas*`
 - **Fecha de última sincronización:** 2026-11-26 23:04
 
 ---

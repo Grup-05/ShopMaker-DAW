@@ -1,6 +1,6 @@
 # ADR-### — <Título de la decisión>
 
-> Plantilla de decisión arquitectónica. Copiar como `ADR-###-<slug>.md`.
+> Plantilla de decisión. Copiar como `ADR-###-<slug>.md` y añadir la fila al índice de `docs/decisiones/README.md`.
 
 ## Metadatos
 
@@ -9,7 +9,9 @@
 | ID | `ADR-###` |
 | Fecha | YYYY-MM-DD |
 | Estado | Propuesto / Aceptado / Sustituido |
+| Sprint / PBI | S## · `PBI-###` (`#issue`) |
 | Decisores | <nombres> |
+| Registro | Original / Retroactivo (fecha y fuentes) |
 | Sustituye a | <ADR-### o —> |
 | Sustituido por | <ADR-### o —> |
 
@@ -37,4 +39,4 @@
 
 ## Referencias
 
-- <Enlaces a specs, issues o documentación.>
+- <Enlaces a specs, issues, PRs o commits.>
