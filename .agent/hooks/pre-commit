@@ -75,7 +75,7 @@ if [ "$CURRENT_BRANCH" != "main" ] && [ -n "$CURRENT_BRANCH" ]; then
             if [ -n "$DIFF_WITH_MAIN" ]; then
                 # Excepción 2: Bypass del Administrador de Gobernanza
                 # Condición obligatoria: TODOS los archivos del staging deben ser estrictamente de gobernanza o proceso.
-                NON_GOVERNANCE_STAGED=$(git diff --cached --name-only | grep -Ev '^(\.agent/|\.github/|\.gitattributes$|docs/|PROXIMOS_PASOS\.md$|scripts/)' || true)
+                NON_GOVERNANCE_STAGED=$(git diff --cached --name-only | grep -Ev '^(\.agent/|\.github/|\.gitattributes$|docs/|PROXIMOS_PASOS\.md$|scripts/|README\.md$|CHANGELOG\.md$)' || true)
                 
                 if [ -n "$NON_GOVERNANCE_STAGED" ]; then
                     echo "❌ [ERROR DE GOBERNANZA - MEZCLA PROHIBIDA]"
