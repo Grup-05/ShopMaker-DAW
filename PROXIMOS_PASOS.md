@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-009-previsualizacion-publicacion`
-- **Último commit consolidado:** `e66f3a9 — *chore(merge): sincronizar feature/PBI-009-previsualizacion-publicacion con origin/develop*`
-- **Fecha de última sincronización:** 2026-11-26 22:10
+- **Último commit consolidado:** `0db5ba0 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-26 22:11
 
 ---
 
