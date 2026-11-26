@@ -211,6 +211,17 @@ Este proceso realiza automáticamente:
 4. **Actualización de `README.md` de `main` (si aplica catálogo):** En repositorios con catálogo central en `main`, actualiza la fila de entrega correspondiente con el nuevo tag y estado.
 5. **Commit Atómico y Tag Anotado Enriquecido:** Genera el commit `docs(release): preparar version <TAG> y actualizar changelog/readme` y crea el tag anotado `<id-proyecto>-vX.Y.Z` con el título `<Nombre Proyecto/Aplicación> <VERSION>` y el cuerpo completo de notas de la versión para su publicación íntegra en GitHub Releases.
 
+### 5.5. Etiquetas anotadas obligatorias por Sprint (`v0.<N>.0-S0<N>`)
+
+1. **Obligatoriedad:** al cierre de **cada Sprint**, tras la aceptación del Product Owner en la *Sprint Review*, se crea un tag anotado con la nomenclatura `v0.<N>.0-S0<N>` (`N` = número de Sprint): `v0.1.0-S01`, `v0.2.0-S02`, `v0.3.0-S03`… (ver `docs/decisiones/ADR-012-tags-de-sprint-y-readme-kickoff.md`).
+2. **Destino:** el último commit de `develop` que integra el incremento del Sprint, con la suite en verde.
+3. **Contenido del tag:** asunto `ShopMaker-DAW v0.<N>.0 (Cierre Sprint S0<N>)` y cuerpo con Sprint Goal, PBIs cerrados y estado de la suite:
+   ```bash
+   git tag -a v0.3.0-S03 <commit> -m "ShopMaker-DAW v0.3.0 (Cierre Sprint S03)" -m "<Sprint Goal, PBIs cerrados y suite>"
+   ```
+4. **Publicación:** `git push origin <tag>` es una operación de publicación y requiere aprobación humana explícita (§6).
+5. **Releases de producción:** `v1.0.0` y posteriores se reservan para entregas a `main` mediante `publish-release.sh` y no se sustituyen por los tags de Sprint. Quedan prohibidos los tags ligeros (§5.2).
+
 ---
 
 ## 6. Gobernanza Git: Prohibición de Operaciones Autónomas
@@ -288,6 +299,7 @@ Este proceso realiza automáticamente:
 1. **Al iniciar cualquier sesión:**
    - Comprobar automáticamente la existencia del archivo `PROXIMOS_PASOS.md` en el espacio de trabajo.
    - Leer su contenido para retomar el contexto exacto antes de realizar cualquier acción.
+   - Consultar el índice de decisiones `docs/decisiones/README.md` (ver §11).
 2. **Al finalizar un hito o sesión:**
    - Actualizar `PROXIMOS_PASOS.md` reflejando las tareas completadas, el estado del proyecto y los pasos inmediatos siguientes.
    - El hook de pre-commit actualizará automáticamente la telemetría Git asociada en el siguiente commit.
@@ -308,4 +320,24 @@ Tras el desarrollo o integración de cada nueva característica o corrección, y
      docs: actualizar manual de usuario, readme y changelog
      ```
    - Queda terminantemente prohibido incluir modificaciones a la documentación pública dentro de commits de tipo `feat(...)` o `fix(...)`.
+5. **Guía Viva de Pruebas Funcionales (`docs/guia-pruebas-funcionales.md`) en cada PR de funcionalidad:**
+   - Toda PR de funcionalidad (`feature/*`) hacia `develop` debe **actualizar la guía dentro de la propia PR** (en el commit `docs(...)` del PBI) con los pasos para probar el cambio como un cliente, usando los textos exactos de la interfaz copiados del código.
+   - Si el PBI no tiene cambios visibles para el cliente, la guía lo declara explícitamente en su sección.
+   - El enlace a la guía debe permanecer visible en la cabecera y en «Inicio rápido» de `README.md`. Control: plantilla de PR, Definition of Done y `scripts/github/pre-pr-gate.sh` (falla en modo `--pre-pr` si una rama `feature/*` no modifica la guía respecto a `origin/develop`).
+
+---
+
+## 11. Registro Mandatorio de Decisiones Relevantes (ADR)
+
+Las decisiones relevantes del proyecto **se registran obligatoriamente** en `docs/decisiones/` con formato ADR (`ADR-###-<slug>.md`, plantilla `ADR-template.md`). Ver `docs/decisiones/ADR-014-registro-mandatorio-de-decisiones.md`.
+
+1. **Qué es una decisión relevante:** arquitectura, capas o contratos de API; estrategia de estado, routing, módulos o previsualización; dependencias o herramientas nuevas; seguridad; modelo de ramas, roles, `CODEOWNERS`, hooks y puertas de calidad; convenciones de versionado y publicación; y toda decisión que afecte a varias features o sea difícil de revertir.
+2. **Cuándo se registra:** las decisiones de producto, en la misma PR que las introduce; las de gobernanza o proceso, en la misma sesión en que se acuerdan. **Una decisión sin ADR no se considera cerrada.**
+3. **Obligaciones del agente de IA:**
+   - Al iniciar sesión, además de `PROXIMOS_PASOS.md`, consultar el índice de `docs/decisiones/README.md`.
+   - Cuando acuerde con el usuario una decisión relevante, redactar o proponer el ADR **antes de dar la tarea por terminada** e indicar el número asignado.
+   - Si detecta una decisión vigente sin ADR, avisar al usuario y proponer su registro (retroactivo si procede).
+4. **Controles:** casilla obligatoria en `.github/pull_request_template.md`, ítem en la Definition of Done, revisión de ADRs pendientes en *Sprint Planning*, *Sprint Review* y *Sprint Retrospective*, y aviso heurístico de `pre-pr-gate.sh` cuando una rama `feature/*` modifica `src/domain/ports/`, `src/app/` o `package.json` sin tocar `docs/decisiones/`.
+5. **Registro retroactivo:** permitido si se marca como tal (campo `Registro`) y el equipo lo valida en la revisión de la PR.
+6. **Inmutabilidad:** un ADR no se elimina; se marca `Sustituido por ADR-###` documentando el motivo (ver §8, *Trazabilidad y Preservación de Decisiones*).
 
