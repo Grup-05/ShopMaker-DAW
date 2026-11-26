@@ -4,9 +4,18 @@ import './SiteCard.css';
 export interface SiteCardProps {
   readonly site: SiteDto;
   readonly onEdit?: (site: SiteDto) => void;
+  readonly onPreview?: (site: SiteDto) => void;
+  readonly onPublish?: (site: SiteDto) => void;
+  readonly isPublishing?: boolean;
 }
 
-export function SiteCard({ site, onEdit }: SiteCardProps) {
+export function SiteCard({
+  site,
+  onEdit,
+  onPreview,
+  onPublish,
+  isPublishing = false,
+}: SiteCardProps) {
   const isPublished = site.status === 'published';
 
   return (
@@ -39,6 +48,29 @@ export function SiteCard({ site, onEdit }: SiteCardProps) {
         >
           Editar
         </button>
+
+        {onPreview && (
+          <button
+            type="button"
+            className="site-card__edit-btn"
+            aria-label={`Previsualizar ${site.name}`}
+            onClick={() => onPreview(site)}
+          >
+            Previsualizar
+          </button>
+        )}
+
+        {onPublish && !isPublished && (
+          <button
+            type="button"
+            className="site-card__edit-btn"
+            aria-label={`Publicar ${site.name}`}
+            disabled={isPublishing}
+            onClick={() => onPublish(site)}
+          >
+            {isPublishing ? 'Publicando...' : 'Publicar Web'}
+          </button>
+        )}
       </div>
     </article>
   );

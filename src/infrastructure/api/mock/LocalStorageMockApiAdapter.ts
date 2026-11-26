@@ -293,6 +293,34 @@ export class LocalStorageMockApiAdapter
     });
   }
 
+  async publishSite(id: string): Promise<SiteDto> {
+    await this.simulateNetworkBoundary();
+
+    const state = this.readState();
+    const target = state.sites.find((site) => site.id === id);
+
+    if (!target) {
+      throw new ApiError({
+        status: 404,
+        code: 'NOT_FOUND',
+        message: `No se encontró el sitio con identificador ${id}.`,
+      });
+    }
+
+    const updatedSite: SiteDto = {
+      ...target,
+      status: 'published',
+      updatedAt: new Date().toISOString(),
+    };
+
+    this.writeState({
+      ...state,
+      sites: state.sites.map((site) => (site.id === id ? updatedSite : site)),
+    });
+
+    return { ...updatedSite };
+  }
+
   async getCatalog(): Promise<readonly ModuleDto[]> {
     await this.simulateNetworkBoundary();
 

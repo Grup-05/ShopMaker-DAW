@@ -3,6 +3,7 @@ import type { SiteDto, SitesApiPort } from '../../../domain/ports';
 import { useSites } from '../application/useSites';
 import { SiteCard } from './SiteCard';
 import { CreateSiteModal } from './CreateSiteModal';
+import { SitePreviewModal } from '../../preview/presentation/SitePreviewModal';
 import './SitesView.css';
 
 export interface SitesViewProps {
@@ -16,14 +17,36 @@ export function SitesView({
   onOpenCreateModal,
   onEditSite,
 }: SitesViewProps) {
-  const { sites, loading, error, reload, createSite } = useSites(sitesApi);
+  const {
+    sites,
+    loading,
+    error,
+    publishError,
+    publishingSiteId,
+    reload,
+    createSite,
+    publishSite,
+    clearPublishError,
+  } = useSites(sitesApi);
   const [internalModalOpen, setInternalModalOpen] = useState(false);
+  const [previewSiteId, setPreviewSiteId] = useState<string | null>(null);
+
+  const previewSite =
+    sites.find((site) => site.id === previewSiteId) ?? null;
 
   const handleOpenModal = () => {
     if (onOpenCreateModal) {
       onOpenCreateModal();
     } else {
       setInternalModalOpen(true);
+    }
+  };
+
+  const handlePublishSite = async (site: SiteDto) => {
+    try {
+      await publishSite(site.id);
+    } catch {
+      // El error queda expuesto en publishError para la alerta accesible
     }
   };
 
@@ -48,6 +71,19 @@ export function SitesView({
             Crear Nueva Web
           </button>
         </div>
+
+        {publishError && (
+          <div className="sites-view__error-alert" role="alert">
+            <span>{publishError}</span>
+            <button
+              type="button"
+              className="sites-view__retry-btn"
+              onClick={clearPublishError}
+            >
+              Cerrar aviso
+            </button>
+          </div>
+        )}
 
         {error && (
           <div className="sites-view__error-alert" role="alert">
@@ -90,7 +126,16 @@ export function SitesView({
         {!loading && !error && sites.length > 0 && (
           <div className="sites-view__grid" role="region" aria-label="Lista de sitios">
             {sites.map((site) => (
-              <SiteCard key={site.id} site={site} onEdit={onEditSite} />
+              <SiteCard
+                key={site.id}
+                site={site}
+                onEdit={onEditSite}
+                onPreview={(target) => setPreviewSiteId(target.id)}
+                onPublish={
+                  sitesApi?.publishSite ? handlePublishSite : undefined
+                }
+                isPublishing={publishingSiteId === site.id}
+              />
             ))}
           </div>
         )}
@@ -100,6 +145,16 @@ export function SitesView({
         isOpen={internalModalOpen}
         onClose={() => setInternalModalOpen(false)}
         onSubmit={createSite}
+      />
+
+      <SitePreviewModal
+        site={previewSite}
+        isOpen={previewSite !== null}
+        onClose={() => setPreviewSiteId(null)}
+        onPublish={sitesApi?.publishSite ? handlePublishSite : undefined}
+        isPublishing={
+          previewSite !== null && publishingSiteId === previewSite.id
+        }
       />
     </>
   );
