@@ -1,4 +1,9 @@
-import type { ModuleDto, SiteDto, UserDto } from '../../../domain/ports';
+import type {
+  ModuleDto,
+  SiteDraftDto,
+  SiteDto,
+  UserDto,
+} from '../../../domain/ports';
 
 export interface MockStoredUser {
   readonly user: UserDto;
@@ -12,6 +17,7 @@ export interface MockDatabaseState {
   readonly sites: readonly SiteDto[];
   readonly modules: readonly ModuleDto[];
   readonly installedModulesBySite: Readonly<Record<string, readonly string[]>>;
+  readonly draftsBySite?: Readonly<Record<string, SiteDraftDto>>;
 }
 
 export const DEFAULT_MOCK_STORAGE_KEY = 'shopmaker.mock.state.v1';
@@ -89,5 +95,6 @@ export function createInitialMockState(): MockDatabaseState {
     sites: INITIAL_MOCK_SITES.map((site) => ({ ...site })),
     modules: INITIAL_MOCK_MODULES.map((mod) => ({ ...mod })),
     installedModulesBySite: {},
+    draftsBySite: {},
   };
 }

@@ -10,7 +10,7 @@ Estado de la guía en `develop`:
 | [2. Cuentas y sesión](#2-cuentas-y-sesión-pbi-005) | `PBI-005` | ✅ Disponible |
 | [3. Panel «Mis Sitios Web» y catálogo](#3-panel-mis-sitios-web-y-catálogo-pbi-006) | `PBI-006` | ✅ Disponible |
 | [4. Previsualización aislada y publicación](#4-previsualización-aislada-y-publicación-pbi-009) | `PBI-009` | ✅ Disponible |
-| 5. Editor visual por bloques | `PBI-008` | ⏳ En revisión (PR `#83`) |
+| [5. Editor visual por bloques](#5-editor-visual-por-bloques-pbi-008) | `PBI-008` | ✅ Disponible en PR `#83` |
 | 6. Módulos por manifiesto y compra simulada | `PBI-007` | ⏳ Pendiente |
 
 ---
@@ -78,6 +78,30 @@ npm run dev            # abre la URL que muestre Vite (normalmente http://localh
 3. Cierra con `Escape` o **Cerrar**.
 4. **Publicar:** pulsa **Publicar Web** (en la tarjeta o dentro del visor). La insignia pasa de **Borrador** a **Publicado** y el botón desaparece; recarga la página y el estado se conserva.
 5. **Seguridad:** el visor usa `sandbox=""`; no debe ejecutarse ningún script del contenido del sitio.
+
+---
+
+## 5. Editor visual por bloques (`PBI-008`)
+
+1. En **Mis Sitios Web**, pulsa el botón **Editar** en cualquier tarjeta de sitio. Se abre la ruta protegida `/editor/:siteId` con la barra superior (`Editor: <nombre del sitio>`) y 3 columnas: **Paleta de bloques**, **Lienzo de bloques** e **Inspector de propiedades**.
+2. **Añadir bloques estructurales:** en la paleta izquierda pulsa **+ Hero / Portada**, **+ Bloque de Texto**, **+ Características** o **+ Pie de Página**. Cada bloque aparece inmediatamente en el lienzo central y queda seleccionado.
+3. **Reordenar, duplicar y eliminar con confirmación:**
+   - Usa **↑ Subir** y **↓ Bajar** en la barra de acciones del bloque para cambiar el orden (puedes hacerlo también navegando con `Tab` y `Enter`).
+   - Pulsa **Duplicar** para clonar el bloque justo debajo con el sufijo `(copia)`.
+   - Pulsa **Eliminar** sobre un bloque con texto: aparece la barra de alerta con **Confirmar eliminación** y **Cancelar** antes de borrarlo.
+4. **Editar en tiempo real (Inspector de propiedades):** selecciona un bloque en el lienzo y edita en el panel derecho **Título del bloque**, **Subtítulo secundario**, **Contenido del bloque** o **Texto del botón CTA**. El lienzo se actualiza al instante.
+5. **Autoguardado y recuperación:**
+   - Comprueba en la barra superior el indicador accesible **Borrador guardado automáticamente**.
+   - **Recarga la página (`F5`)** o pulsa **← Volver al Dashboard** y vuelve a entrar en **Editar**: todos tus bloques y textos se recuperan intactos desde `localStorage`.
+6. **Previsualización desde el editor:** pulsa **Previsualizar Web** arriba a la derecha para abrir el visor aislado `<iframe sandbox="">` con tus bloques actuales y alternar entre **Móvil (360px)**, **Tablet (768px)** y **Escritorio (1280px)**.
+7. *(Opcional — probar bloques de módulos instalados antes de `PBI-007`):* hasta que `PBI-007` conecte el botón «Instalar» del catálogo, puedes simular un módulo instalado en `site-demo-01` ejecutando en la consola (`F12`):
+   ```js
+   const s = JSON.parse(localStorage.getItem('shopmaker.mock.state.v1'));
+   s.installedModulesBySite['site-demo-01'] = ['mod-ecommerce-cart'];
+   localStorage.setItem('shopmaker.mock.state.v1', JSON.stringify(s));
+   location.reload();
+   ```
+   Al recargar `/editor/site-demo-01`, verás **+ Carrito E-commerce** bajo **Módulos instalados** en la paleta izquierda y podrás añadirlo al lienzo.
 
 ---
 

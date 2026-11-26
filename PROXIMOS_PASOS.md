@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `develop`
-- **Último commit consolidado:** `74c6e84 — *docs(adr): registrar retroactivamente ADR-003 a ADR-010 y anadir ADR-012 a ADR-014*`
-- **Fecha de última sincronización:** 2026-11-26 23:05
+- **Rama activa:** `feature/PBI-008-editor-webs-borradores`
+- **Último commit consolidado:** `1ae0fd2 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-26 23:07
 
 ---
 
@@ -88,13 +88,13 @@ PBIs del Sprint S02:
 - [x] Test de humo de la aplicación web (`app-arranque`, `home-layout`, `minimum-viewport`).
 - [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md`, `specs/PBI-002-tokens-accesibilidad/plan.md`, `specs/PBI-003-contrato-api-mock/plan.md`, `specs/PBI-004-arnes-pruebas/plan.md`, `specs/PBI-005-registro-login-rutas/plan.md` y `specs/PBI-006-dashboard-catalogo/plan.md`.
 - [x] Hook `.agent/hooks/pre-commit-local.sh` operativo e integrado en `develop` (PR `#28`).
-- [x] Suite completa en verde en `develop`: 20 archivos / 107 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
+- [x] Suite completa en verde en `develop` / `feature/PBI-008-editor-webs-borradores`: 26 archivos / 129 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
 
 ### 📝 Documentación
 
 - [x] `README.md` actualizado para el Sprint S03 y sincronizado con `main` (regla obligatoria de Kick-off de Sprint en `AGENTS.md`, `methodology-scrum.md`, `rotate-roles.sh` y `sync-governance.sh`).
-- [x] Registro mandatorio de decisiones (`AGENTS.md` §11, `ADR-014`): ADR-003 a ADR-010 registrados retroactivamente y ADR-012 a ADR-014 nuevos. **Pendiente:** ADR-011 (motor de edición/previsualización) se incorpora en la PR `#83`.
-- [x] Guía viva `docs/guia-pruebas-funcionales.md` (`ADR-013`): obligatoria en cada PR `feature/*` (plantilla de PR, DoD y `pre-pr-gate.sh`). **Pendiente:** añadir la sección de `PBI-008` en la PR `#83`.
+- [x] Registro mandatorio de decisiones (`AGENTS.md` §11, `ADR-014`): ADR-003 a ADR-014 registrados (incluyendo `ADR-011` del motor de edición/previsualización en la PR `#83`).
+- [x] Guía viva `docs/guia-pruebas-funcionales.md` (`ADR-013`): obligatoria en cada PR `feature/*` (plantilla de PR, DoD y `pre-pr-gate.sh`), con sección de `PBI-008` incluida en la PR `#83`.
 - [x] Tags de Sprint (`ADR-012`): creados y publicados `v0.1.0-S01` (`753bdef`) y `v0.2.0-S02` (`0baef80`); `v0.3.0-S03` al cerrar el Sprint S03.
 - [x] `CHANGELOG.md` inicializado y actualizado con `PBI-001`, `PBI-002`, `PBI-003` y `PBI-004`.
 - [x] `specs/PBI-001-aplicacion-web/`, `specs/PBI-002-tokens-accesibilidad/`, `specs/PBI-003-contrato-api-mock/` y `specs/PBI-004-arnes-pruebas/` redactadas e implementadas en `develop`.
@@ -113,9 +113,9 @@ PBIs del Sprint S02:
 **Roles activos S03:** PO: `@Fernis23228` · SM: `@FSolaje` · Dev: `@Tarrant15` · Admin Gob: `@FSolaje`.
 
 PBIs del Sprint S03:
-- [ ] **PBI-008** (`#79`) — Motor de edición visual de webs por bloques, inspector de propiedades y autoguardado de borradores (`T01–T06` `#61`–`#66`, 30 h — `@FSolaje`, SM / Admin Gob).
+- [x] **PBI-008** (`#79`) — Motor de edición visual de webs por bloques, inspector de propiedades y autoguardado de borradores (`T01–T06` `#61`–`#66`, 30 h — `@FSolaje`, SM / Admin Gob). Implementado con SDD + TDD en `feature/PBI-008-editor-webs-borradores` (10 nuevos tests, suite 129/129 en verde).
 - [ ] **PBI-007** (`#80`) — Creación de módulos mediante manifiestos para la tienda, ficha de detalle y compra/activación simulada por sitio (`T01–T06` `#67`–`#72`, 26 h — `@Tarrant15`).
-- [ ] **PBI-009** (`#81`) — Motor de renderizado sanitizado mobile-first, previsualización aislada multi-dispositivo (`iframe sandbox`) y publicación de web (`T01–T06` `#73`–`#78`, 26 h — `@Fernis23228`, PO).
+- [x] **PBI-009** (`#81`) — Motor de renderizado sanitizado mobile-first, previsualización aislada multi-dispositivo (`iframe sandbox`) y publicación de web (`T01–T06` `#73`–`#78`, 26 h — `@Fernis23228`, PO). Completado e integrado en `develop` (PR `#82`).
 
 **Artefactos S03 creados:**
 - [x] `docs/scrum/sprints/S03/sprint-goal.md`

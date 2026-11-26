@@ -79,11 +79,24 @@ const MOBILE_FIRST_STYLES = `
 `;
 
 function renderBlock(block: SiteBlock): string {
+  const safeTitle = block.title ? `<h2>${escapeHtml(block.title)}</h2>` : '';
+  const safeSubtitle = block.subtitle
+    ? `<p class="sm-meta">${escapeHtml(block.subtitle)}</p>`
+    : '';
+  const safeCta = block.ctaText
+    ? `<p><strong>${escapeHtml(block.ctaText)}</strong></p>`
+    : '';
+
   switch (block.type) {
+    case 'hero':
+    case 'features':
+    case 'footer':
+    case 'module':
+      return `<section class="sm-block">${safeTitle}${safeSubtitle}${sanitizeHtml(block.content ?? '')}${safeCta}</section>`;
     case 'heading':
-      return `<section class="sm-block"><h2>${escapeHtml(block.content ?? '')}</h2></section>`;
+      return `<section class="sm-block"><h2>${escapeHtml(block.title ?? block.content ?? '')}</h2></section>`;
     case 'text':
-      return `<section class="sm-block">${sanitizeHtml(block.content ?? '')}</section>`;
+      return `<section class="sm-block">${safeTitle}${sanitizeHtml(block.content ?? '')}</section>`;
     case 'image': {
       const safeSrc = sanitizeUrl(block.imageUrl ?? '');
       if (!safeSrc) {

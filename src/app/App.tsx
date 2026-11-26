@@ -8,6 +8,7 @@ import { LoginPage } from '../features/auth/presentation/LoginPage';
 import { RecoverPasswordPage } from '../features/auth/presentation/RecoverPasswordPage';
 import { RegisterPage } from '../features/auth/presentation/RegisterPage';
 import { DashboardPage } from '../features/dashboard/presentation/DashboardPage';
+import { EditorPage } from '../features/editor/presentation/EditorPage';
 import { createInMemoryPageRepository } from '../features/home/infrastructure/inMemoryPageRepository';
 import { startedPages } from '../features/home/infrastructure/startedPages';
 import { HomePage } from '../features/home/presentation/HomePage';
@@ -69,6 +70,17 @@ export function App({ authApi = defaultAuthApi }: AppProps = {}) {
           element={
             <GuardedRoute mode="protected">
               <DashboardPage />
+            </GuardedRoute>
+          }
+        />
+        <Route
+          path="/editor/:siteId"
+          element={
+            <GuardedRoute mode="protected">
+              <EditorPage
+                sitesApi={defaultAuthApi}
+                modulesApi={defaultAuthApi}
+              />
             </GuardedRoute>
           }
         />

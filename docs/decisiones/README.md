@@ -46,7 +46,7 @@ Un ADR **no se elimina**: se marca `Sustituido por ADR-###` y se documenta el mo
 | [ADR-008](ADR-008-gobernanza-tres-capas.md) | Gobernanza en tres capas, núcleo inmutable y `user_data/security/` | Aceptado (retroactivo) | 2026-11-03 | S01 |
 | [ADR-009](ADR-009-roles-rotativos-codeowners.md) | Roles rotativos, `CODEOWNERS` dinámico y revisión cruzada PO + SM | Aceptado (retroactivo) | 2026-11-03 | S01 · S03 |
 | [ADR-010](ADR-010-puerta-pre-pr-sincronizacion-tablon.md) | Puerta `pre-pr-gate.sh`, token personal por rol y sincronización del Tablón | Aceptado (retroactivo) | 2026-11-17 | S01–S02 |
-| ADR-011 | Motor de edición por bloques, previsualización aislada y sanitización | Reservado: se registra en la PR `#83` (`PBI-008`) | — | S03 |
+| [ADR-011](ADR-011-editor-bloques-y-previsualizacion-aislada.md) | Motor de edición inmutable por bloques, previsualización aislada y sanitización | Aceptado | 2026-11-26 | S03 |
 | [ADR-012](ADR-012-tags-de-sprint-y-readme-kickoff.md) | Etiquetas anotadas por Sprint (`v0.N.0-S0N`) y `README.md` de `main` en cada Kick-off | Aceptado | 2026-11-26 | S03 |
 | [ADR-013](ADR-013-guia-viva-pruebas-funcionales.md) | Guía viva de pruebas funcionales actualizada en cada PR a `develop` | Aceptado | 2026-11-26 | S03 |
 | [ADR-014](ADR-014-registro-mandatorio-de-decisiones.md) | Registro mandatorio de decisiones relevantes (ADR) | Aceptado | 2026-11-26 | S03 |

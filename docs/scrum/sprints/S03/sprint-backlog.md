@@ -36,12 +36,12 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Estado | Issue |
 |---|---|---|---|---|---|---|---|
-| `PBI-008-T01` | Redactar spec, plan, tasks y extender contratos de puertos para bloques, borradores y manifiestos | Spec | Dev A (`@FSolaje`) | 5 h | — | Por hacer | `#61` |
-| `PBI-008-T02` | Test rojo: modelo del lienzo de bloques y operaciones (añadir, reordenar, duplicar y eliminar) | Test | Dev A (`@FSolaje`) | 5 h | `PBI-008-T01` | Por hacer | `#62` |
-| `PBI-008-T03` | Implementar caso de uso `useEditor` y gestión inmutable del árbol de bloques | Código | Dev A (`@FSolaje`) | 6 h | `PBI-008-T02` | Por hacer | `#63` |
-| `PBI-008-T04` | Implementar vista `/editor/:siteId` con paleta de bloques, lienzo accesible e inspector de propiedades | Código | Dev A (`@FSolaje`) | 6 h | `PBI-008-T03` | Por hacer | `#64` |
-| `PBI-008-T05` | Test rojo: autoguardado de borradores en `localStorage` y recuperación al reabrir | Test | Dev A (`@FSolaje`) | 4 h | `PBI-008-T01` | Por hacer | `#65` |
-| `PBI-008-T06` | Implementar autoguardado persistente de borradores, indicador de estado y evidencia TDD | Código | Dev A (`@FSolaje`) | 4 h | `PBI-008-T04`, `PBI-008-T05` | Por hacer | `#66` |
+| `PBI-008-T01` | Redactar spec, plan, tasks y extender contratos de puertos para bloques, borradores y manifiestos | Spec | Dev A (`@FSolaje`) | 5 h | — | Hecho | `#61` |
+| `PBI-008-T02` | Test rojo: modelo del lienzo de bloques y operaciones (añadir, reordenar, duplicar y eliminar) | Test | Dev A (`@FSolaje`) | 5 h | `PBI-008-T01` | Hecho | `#62` |
+| `PBI-008-T03` | Implementar caso de uso `useEditor` y gestión inmutable del árbol de bloques | Código | Dev A (`@FSolaje`) | 6 h | `PBI-008-T02` | Hecho | `#63` |
+| `PBI-008-T04` | Implementar vista `/editor/:siteId` con paleta de bloques, lienzo accesible e inspector de propiedades | Código | Dev A (`@FSolaje`) | 6 h | `PBI-008-T03` | Hecho | `#64` |
+| `PBI-008-T05` | Test rojo: autoguardado de borradores en `localStorage` y recuperación al reabrir | Test | Dev A (`@FSolaje`) | 4 h | `PBI-008-T01` | Hecho | `#65` |
+| `PBI-008-T06` | Implementar autoguardado persistente de borradores, indicador de estado y evidencia TDD | Código | Dev A (`@FSolaje`) | 4 h | `PBI-008-T04`, `PBI-008-T05` | Hecho | `#66` |
 
 ### PBI-007 — Creación de Módulos mediante Manifiestos, Detalle y Compra Simulada (`#80` · `@Tarrant15` · 26 h)
 
@@ -62,12 +62,12 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Estado | Issue |
 |---|---|---|---|---|---|---|---|
-| `PBI-009-T01` | Redactar spec funcional, plan técnico y matriz de seguridad para previsualización y publicación | Spec | Dev C (`@Fernis23228`) | 4 h | — | Por hacer | `#73` |
-| `PBI-009-T02` | Test rojo: sanitizador anti-XSS y motor de renderizado HTML/CSS mobile-first (`SiteRenderer`) | Test | Dev C (`@Fernis23228`) | 4 h | `PBI-009-T01` | Por hacer | `#74` |
-| `PBI-009-T03` | Implementar sanitizador anti-XSS y generador `SiteRenderer` mobile-first para bloques y módulos | Código | Dev C (`@Fernis23228`) | 6 h | `PBI-009-T02` | Por hacer | `#75` |
-| `PBI-009-T04` | Test rojo: visor de previsualización aislada (`<iframe sandbox>`) y conmutador de viewports | Test | Dev C (`@Fernis23228`) | 4 h | `PBI-009-T01` | Por hacer | `#76` |
-| `PBI-009-T05` | Implementar visor `SitePreviewModal` con `iframe sandbox` y selector accesible de dispositivos | Código | Dev C (`@Fernis23228`) | 5 h | `PBI-009-T03`, `PBI-009-T04` | Por hacer | `#77` |
-| `PBI-009-T06` | Implementar flujo «Publicar Web» (`Borrador` -> `Publicado`) y registrar evidencia TDD de `PBI-009` | Código | Dev C (`@Fernis23228`) | 3 h | `PBI-009-T05` | Por hacer | `#78` |
+| `PBI-009-T01` | Redactar spec funcional, plan técnico y matriz de seguridad para previsualización y publicación | Spec | Dev C (`@Fernis23228`) | 4 h | — | Hecho (`PR #82`) | `#73` |
+| `PBI-009-T02` | Test rojo: sanitizador anti-XSS y motor de renderizado HTML/CSS mobile-first (`SiteRenderer`) | Test | Dev C (`@Fernis23228`) | 4 h | `PBI-009-T01` | Hecho (`PR #82`) | `#74` |
+| `PBI-009-T03` | Implementar sanitizador anti-XSS y generador `SiteRenderer` mobile-first para bloques y módulos | Código | Dev C (`@Fernis23228`) | 6 h | `PBI-009-T02` | Hecho (`PR #82`) | `#75` |
+| `PBI-009-T04` | Test rojo: visor de previsualización aislada (`<iframe sandbox>`) y conmutador de viewports | Test | Dev C (`@Fernis23228`) | 4 h | `PBI-009-T01` | Hecho (`PR #82`) | `#76` |
+| `PBI-009-T05` | Implementar visor `SitePreviewModal` con `iframe sandbox` y selector accesible de dispositivos | Código | Dev C (`@Fernis23228`) | 5 h | `PBI-009-T03`, `PBI-009-T04` | Hecho (`PR #82`) | `#77` |
+| `PBI-009-T06` | Implementar flujo «Publicar Web» (`Borrador` -> `Publicado`) y registrar evidencia TDD de `PBI-009` | Código | Dev C (`@Fernis23228`) | 3 h | `PBI-009-T05` | Hecho (`PR #82`) | `#78` |
 
 ---
 
@@ -75,17 +75,17 @@
 
 | Test | PBI | Criterio / RF | Estado |
 |---|---|---|---|
-| `[PBI-008][CA-01] editor-block-operations` | PBI-008 | CA-01 | Pendiente |
-| `[PBI-008][CA-02] editor-inspector-properties` | PBI-008 | CA-02 | Pendiente |
-| `[PBI-008][CA-03] editor-autosave-draft-recovery` | PBI-008 | CA-03 | Pendiente |
+| `[PBI-008][CA-01] editor-block-operations` | PBI-008 | CA-01 | Verde |
+| `[PBI-008][CA-02] editor-inspector-properties` | PBI-008 | CA-02 | Verde |
+| `[PBI-008][CA-03] editor-autosave-draft-recovery` | PBI-008 | CA-03 | Verde |
 | `[PBI-007][CA-01] module-manifest-validation` | PBI-007 | CA-01 | Pendiente |
 | `[PBI-007][CA-02] create-store-module-modal` | PBI-007 | CA-02 | Pendiente |
 | `[PBI-007][CA-03] module-detail-view` | PBI-007 | CA-03 | Pendiente |
 | `[PBI-007][CA-04] simulated-module-purchase` | PBI-007 | CA-04 | Pendiente |
-| `[PBI-009][CA-01] xss-content-sanitization` | PBI-009 | CA-01 | Pendiente |
-| `[PBI-009][CA-02] mobile-first-site-renderer` | PBI-009 | CA-02 | Pendiente |
-| `[PBI-009][CA-03] isolated-iframe-preview-viewports` | PBI-009 | CA-03 | Pendiente |
-| `[PBI-009][CA-04] site-publish-flow` | PBI-009 | CA-04 | Pendiente |
+| `[PBI-009][CA-01] xss-content-sanitization` | PBI-009 | CA-01 | Verde (`PR #82`) |
+| `[PBI-009][CA-02] mobile-first-site-renderer` | PBI-009 | CA-02 | Verde (`PR #82`) |
+| `[PBI-009][CA-03] isolated-iframe-preview-viewports` | PBI-009 | CA-03 | Verde (`PR #82`) |
+| `[PBI-009][CA-04] site-publish-flow` | PBI-009 | CA-04 | Verde (`PR #82`) |
 
 ---
 
