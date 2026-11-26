@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `4bd1282 — *chore(governance): hacer mandatorios el registro de ADR, los tags de Sprint y la guia de pruebas*`
-- **Fecha de última sincronización:** 2026-11-26 23:04
+- **Último commit consolidado:** `74c6e84 — *docs(adr): registrar retroactivamente ADR-003 a ADR-010 y anadir ADR-012 a ADR-014*`
+- **Fecha de última sincronización:** 2026-11-26 23:05
 
 ---
 
