@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `4d7d563 — *chore(governance): incorporar normalizacion LF en gitattributes y cargador gh-auth.cjs multiplataforma*`
-- **Fecha de última sincronización:** 2026-11-26 21:32
+- **Último commit consolidado:** `2266328 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-26 22:11
 
 ---
 

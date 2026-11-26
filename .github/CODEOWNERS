@@ -22,20 +22,22 @@
 /tests/                         @FSolaje @Tarrant15 @Fernis23228
 /scripts/                       @FSolaje @Tarrant15 @Fernis23228
 
-# 3. Requisitos del Producto, Historias de Usuario y Backlog (Product Owner)
-/docs/scrum/product-backlog.md  @Fernis23228
-/specs/                         @Fernis23228
+# 3. Requisitos del Producto, Historias de Usuario y Backlog (Product Owner + Scrum Master para revisión cruzada)
+/docs/scrum/product-backlog.md  @Fernis23228 @FSolaje
+/specs/                         @Fernis23228 @FSolaje
 
-# 4. Proceso Scrum, Definiciones y Retrospectivas (Scrum Master)
-/docs/scrum/definition-*.md     @FSolaje
-/docs/scrum/sprints/            @FSolaje
-/docs/scrum/team.md             @FSolaje
-/docs/scrum/active_roles.env    @FSolaje
+# 4. Proceso Scrum, Definiciones y Retrospectivas (Scrum Master + Product Owner para revisión cruzada)
+/docs/scrum/definition-*.md     @FSolaje @Fernis23228
+/docs/scrum/sprints/            @FSolaje @Fernis23228
+/docs/scrum/team.md             @FSolaje @Fernis23228
+/docs/scrum/active_roles.env    @FSolaje @Fernis23228
 
-# 5. Núcleo de Gobernanza, Hooks, Workflows y Telemetría (Administrador de Gobernanza)
-/.agent/                        @FSolaje
-/.github/                       @FSolaje
-/.gitattributes                 @FSolaje
-/scripts/github/                @FSolaje
-/scripts/scrum/                 @FSolaje
-/PROXIMOS_PASOS.md              @FSolaje
+# 5. Telemetría automática de pre-commit (actualizada en cada commit de cualquier Developer)
+/PROXIMOS_PASOS.md              @FSolaje @Tarrant15 @Fernis23228
+
+# 6. Núcleo de Gobernanza, Hooks y Workflows (Administrador de Gobernanza + PO/SM para revisión cruzada)
+/.agent/                        @FSolaje @Fernis23228 @FSolaje
+/.github/                       @FSolaje @Fernis23228 @FSolaje
+/.gitattributes                 @FSolaje @Fernis23228 @FSolaje
+/scripts/github/                @FSolaje @Fernis23228 @FSolaje
+/scripts/scrum/                 @FSolaje @Fernis23228 @FSolaje
