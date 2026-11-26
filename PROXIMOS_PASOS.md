@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `2266328 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
-- **Fecha de última sincronización:** 2026-11-26 22:11
+- **Último commit consolidado:** `ab408af — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-26 23:05
 
 ---
 
