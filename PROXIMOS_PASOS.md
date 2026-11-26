@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-009-previsualizacion-publicacion`
-- **Último commit consolidado:** `ac7edb8 — *docs(spec): registrar evidencia TDD y matriz de criterios de PBI-009*`
-- **Fecha de última sincronización:** 2026-11-26 22:04
+- **Último commit consolidado:** `e66f3a9 — *chore(merge): sincronizar feature/PBI-009-previsualizacion-publicacion con origin/develop*`
+- **Fecha de última sincronización:** 2026-11-26 22:10
 
 ---
 
