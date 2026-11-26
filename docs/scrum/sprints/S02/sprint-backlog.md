@@ -45,23 +45,23 @@
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Estado | Issue |
 |---|---|---|---|---|---|---|---|
-| `PBI-005-T01` | Redactar spec funcional, plan técnico y matriz de autenticación | Spec | Dev B (`@Tarrant15`) | 4 h | — | Por hacer | `#44` |
-| `PBI-005-T02` | Test rojo: formulario de registro y medidor accesible de contraseña | Test | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T01` | Por hacer | `#45` |
-| `PBI-005-T03` | Implementar página de registro y medidor de contraseña | Código | Dev B (`@Tarrant15`) | 6 h | `PBI-005-T02` | Por hacer | `#46` |
-| `PBI-005-T04` | Test rojo: formulario de login y autocompletado estándar | Test | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T01` | Por hacer | `#47` |
-| `PBI-005-T05` | Implementar página de inicio de sesión accesible | Código | Dev B (`@Tarrant15`) | 5 h | `PBI-005-T04` | Por hacer | `#48` |
-| `PBI-005-T06` | Implementar estado useAuth, guardas GuardedRoute y UserMenu | Código | Dev B (`@Tarrant15`) | 5 h | `PBI-005-T03`, `PBI-005-T05` | Por hacer | `#49` |
+| `PBI-005-T01` | Redactar spec funcional, plan técnico y matriz de autenticación | Spec | Dev B (`@Tarrant15`) | 4 h | — | Hecho (PR `#59`) | `#44` |
+| `PBI-005-T02` | Test rojo: formulario de registro y medidor accesible de contraseña | Test | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T01` | Hecho (PR `#59`) | `#45` |
+| `PBI-005-T03` | Implementar página de registro y medidor de contraseña | Código | Dev B (`@Tarrant15`) | 6 h | `PBI-005-T02` | Hecho (PR `#59`) | `#46` |
+| `PBI-005-T04` | Test rojo: formulario de login y autocompletado estándar | Test | Dev B (`@Tarrant15`) | 4 h | `PBI-005-T01` | Hecho (PR `#59`) | `#47` |
+| `PBI-005-T05` | Implementar página de inicio de sesión accesible | Código | Dev B (`@Tarrant15`) | 5 h | `PBI-005-T04` | Hecho (PR `#59`) | `#48` |
+| `PBI-005-T06` | Implementar estado useAuth, guardas GuardedRoute y UserMenu | Código | Dev B (`@Tarrant15`) | 5 h | `PBI-005-T03`, `PBI-005-T05` | Hecho (PR `#59`) | `#49` |
 
 ### PBI-006 — Dashboard de Administración y Catálogo Base (`#37` · `@Fernis23228` · 26 h)
 
 | ID | Tarea | Tipo | Responsable | Estimación | Depende de | Estado | Issue |
 |---|---|---|---|---|---|---|---|
-| `PBI-006-T01` | Redactar spec funcional, plan técnico y layout de dashboard | Spec | Dev C (`@Fernis23228`) | 4 h | — | Por hacer | `#50` |
-| `PBI-006-T02` | Test rojo: estructura del dashboard y menú lateral | Test | Dev C (`@Fernis23228`) | 4 h | `PBI-006-T01` | Por hacer | `#51` |
-| `PBI-006-T03` | Implementar layout de dashboard y navegación lateral | Código | Dev C (`@Fernis23228`) | 6 h | `PBI-006-T02` | Por hacer | `#52` |
-| `PBI-006-T04` | Implementar vista «Mis Sitios Web» en tarjetas interactivas | Código | Dev C (`@Fernis23228`) | 5 h | `PBI-006-T03` | Por hacer | `#53` |
-| `PBI-006-T05` | Implementar modal accesible «Crear Nueva Web» | Código | Dev C (`@Fernis23228`) | 4 h | `PBI-006-T04` | Por hacer | `#54` |
-| `PBI-006-T06` | Implementar escaparate de módulos con buscador y filtros | Código | Dev C (`@Fernis23228`) | 3 h | `PBI-006-T03` | Por hacer | `#55` |
+| `PBI-006-T01` | Redactar spec funcional, plan técnico y layout de dashboard | Spec | Dev C (`@Fernis23228`) | 4 h | — | Hecho (PR `#58`) | `#50` |
+| `PBI-006-T02` | Test rojo: estructura del dashboard y menú lateral | Test | Dev C (`@Fernis23228`) | 4 h | `PBI-006-T01` | Hecho (PR `#58`) | `#51` |
+| `PBI-006-T03` | Implementar layout de dashboard y navegación lateral | Código | Dev C (`@Fernis23228`) | 6 h | `PBI-006-T02` | Hecho (PR `#58`) | `#52` |
+| `PBI-006-T04` | Implementar vista «Mis Sitios Web» en tarjetas interactivas | Código | Dev C (`@Fernis23228`) | 5 h | `PBI-006-T03` | Hecho (PR `#58`) | `#53` |
+| `PBI-006-T05` | Implementar modal accesible «Crear Nueva Web» | Código | Dev C (`@Fernis23228`) | 4 h | `PBI-006-T04` | Hecho (PR `#58`) | `#54` |
+| `PBI-006-T06` | Implementar escaparate de módulos con buscador y filtros | Código | Dev C (`@Fernis23228`) | 3 h | `PBI-006-T03` | Hecho (PR `#58`) | `#55` |
 
 ---
 

@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `feature/PBI-005-registro-login-rutas`
-- **Último commit consolidado:** `54508a6 — *docs(pbi-005): registrar evidencia de criterios y estado de cierre*`
-- **Fecha de última sincronización:** 2026-11-25 12:18
+- **Rama activa:** `chore/sprint-03-kickoff`
+- **Último commit consolidado:** `580d2ab — *docs(scrum): cerrar Sprint S02 y completar inicializacion de Sprint S03*`
+- **Fecha de última sincronización:** 2026-11-25 13:55
 
 ---
 
@@ -78,16 +78,17 @@ PBIs del Sprint S01:
 
 PBIs del Sprint S02:
 - [x] **PBI-003** (`#4`) — Contrato de API y adaptador mock persistente (`T01–T06` `#38`–`#43`, 26 h — `@FSolaje`). Completado e integrado en `develop` (PR `#56`).
-- [ ] **PBI-005** (`#36`) — Registro, inicio de sesión y rutas protegidas (`T01–T06` `#44`–`#49`, 28 h — `@Tarrant15`, PO).
-- [ ] **PBI-006** (`#37`) — Dashboard de administración y catálogo preliminar de módulos (`T01–T06` `#50`–`#55`, 26 h — `@Fernis23228`, SM).
+- [x] **PBI-005** (`#36`) — Registro, inicio de sesión y rutas protegidas (`T01–T06` `#44`–`#49`, 28 h — `@Tarrant15`, PO). Completado e integrado en `develop` (PR `#59`).
+- [x] **PBI-006** (`#37`) — Dashboard de administración y catálogo preliminar de módulos (`T01–T06` `#50`–`#55`, 26 h — `@Fernis23228`, SM). Completado e integrado en `develop` (PR `#58`).
+- [x] **Cierre S02:** `docs/scrum/sprints/S02/review.md` y `retrospective.md` registrados; Sprint S02 cerrado el 2026-11-25.
 
 ### 🧪 Pruebas
 
 - [x] Runner y comando único de suite definidos: `npm test` y `npm run test:e2e`.
 - [x] Test de humo de la aplicación web (`app-arranque`, `home-layout`, `minimum-viewport`).
-- [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md`, `specs/PBI-002-tokens-accesibilidad/plan.md`, `specs/PBI-003-contrato-api-mock/plan.md` y `specs/PBI-004-arnes-pruebas/plan.md`.
+- [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md`, `specs/PBI-002-tokens-accesibilidad/plan.md`, `specs/PBI-003-contrato-api-mock/plan.md`, `specs/PBI-004-arnes-pruebas/plan.md`, `specs/PBI-005-registro-login-rutas/plan.md` y `specs/PBI-006-dashboard-catalogo/plan.md`.
 - [x] Hook `.agent/hooks/pre-commit-local.sh` operativo e integrado en `develop` (PR `#28`).
-- [x] Suite completa en verde en `develop`: 10 archivos / 44 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
+- [x] Suite completa en verde en `develop`: 20 archivos / 107 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
 
 ### 📝 Documentación
 
@@ -101,20 +102,41 @@ PBIs del Sprint S02:
 
 ---
 
-## 🎯 Próximo Paso Inmediato (Sprint S02)
+## 🚀 Sprint S03 — Motor de Edición de Webs, Creación/Compra de Módulos y Previsualización Aislada
 
-1. **Día 1 — Contratos y Puertos (`domain/ports/`):**
-   - Definir interfaces de TypeScript consensuadas: `AuthApiPort`, `SitesApiPort`, `ModulesApiPort`.
+**Sprint Goal:** Dotar a ShopMaker de un motor de edición visual de páginas web por bloques con inspector de propiedades y autoguardado de borradores (`PBI-008`), un sistema de registro de nuevos módulos mediante manifiestos declarativos y compra/activación simulada por sitio (`PBI-007`), y un visor de previsualización aislada multi-dispositivo (`iframe sandbox`) con sanitización anti-XSS y publicación de sitios (`PBI-009`), entregando el flujo completo de construcción web al cliente.
+
+**Fechas:** 2026-12-01 → 2026-12-12 · **Capacidad comprometida:** 3 developers, **82 h planificadas en 3 workstreams paralelos (21 issues `#61`–`#81`)**.  
+**Roles activos S03:** PO: `@Fernis23228` · SM: `@FSolaje` · Dev: `@Tarrant15` · Admin Gob: `@FSolaje`.
+
+PBIs del Sprint S03:
+- [ ] **PBI-008** (`#79`) — Motor de edición visual de webs por bloques, inspector de propiedades y autoguardado de borradores (`T01–T06` `#61`–`#66`, 30 h — `@FSolaje`, SM / Admin Gob).
+- [ ] **PBI-007** (`#80`) — Creación de módulos mediante manifiestos para la tienda, ficha de detalle y compra/activación simulada por sitio (`T01–T06` `#67`–`#72`, 26 h — `@Tarrant15`).
+- [ ] **PBI-009** (`#81`) — Motor de renderizado sanitizado mobile-first, previsualización aislada multi-dispositivo (`iframe sandbox`) y publicación de web (`T01–T06` `#73`–`#78`, 26 h — `@Fernis23228`, PO).
+
+**Artefactos S03 creados:**
+- [x] `docs/scrum/sprints/S03/sprint-goal.md`
+- [x] `docs/scrum/sprints/S03/sprint-backlog.md`
+- [x] `docs/scrum/sprints/S03/review.md` (plantilla)
+- [x] `docs/scrum/sprints/S03/retrospective.md` (plantilla)
+- [x] `scripts/github/sprint-s03-pbis.json`, `scripts/github/sprint-s03-tasks.json` y `scripts/github/setup-s03-board-and-issues.cjs`
+- [x] Milestone `S03` (`#3`), etiquetas `sprint:S03`, `pbi:007`, `pbi:008`, `pbi:009` y 21 issues (`#61`–`#81`) vinculadas al Tablón GitHub Projects v2 (`#1`).
+
+---
+
+## 🎯 Próximo Paso Inmediato (Sprint S03)
+
+1. **Día 1 — Extensión de contratos (`src/domain/ports/` en `PBI-008-T01` `#61`):**
+   - Ampliar `SitesApiPort` (`SiteBlockDto`, `SiteDraftDto`, lectura/guardado de bloques y publicación) y `ModulesApiPort` (`ModuleManifestDto`, registro de nuevos módulos y compra simulada por sitio).
 2. **Especificación SDD (`No-Spec-No-Code`):**
-   - Redactar `spec.md`, `plan.md` y `tasks.md` de `PBI-003`, `PBI-005` y `PBI-006`.
-   - Aprobación formal del Product Owner (`@Tarrant15`) con commit `docs(spec)`.
+   - `specs/PBI-008-editor-webs-borradores/` (`@FSolaje`, `#61`)
+   - `specs/PBI-007-detalle-modulo-compra/` (`@Tarrant15`, `#67`)
+   - `specs/PBI-009-previsualizacion-publicacion/` (`@Fernis23228`, `#73`)
 3. **Creación de ramas de trabajo desde `develop`:**
-   - `feature/PBI-003-contrato-api-mock` (`@FSolaje`)
-   - `feature/PBI-005-registro-login-rutas` (`@Tarrant15`)
-   - `feature/PBI-006-dashboard-catalogo` (`@Fernis23228`)
-4. **Desarrollo paralelo con TDD:**
-   - Dev B y C con stubs locales en memoria.
-   - Dev A con motor mock persistente y tests de contrato.
+   - `feature/PBI-008-editor-webs-borradores` (`@FSolaje`)
+   - `feature/PBI-007-detalle-modulo-compra` (`@Tarrant15`)
+   - `feature/PBI-009-previsualizacion-publicacion` (`@Fernis23228`)
+4. **Desarrollo paralelo con TDD y validación estática previa a cada PR (`bash scripts/github/pre-pr-gate.sh --pre-pr`).**
 
 ---
 
