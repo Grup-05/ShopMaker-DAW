@@ -6,6 +6,9 @@ Este repositorio contiene **exclusivamente el frontend**. La arquitectura del si
 
 La primera entrega se ejecuta como **aplicación web desktop-first en el navegador**. El stack es **React + TypeScript + Vite** ([ADR-001](docs/decisiones/ADR-001-react-typescript.md)) y el formato de entrega es una **SPA** ([ADR-002](docs/decisiones/ADR-002-aplicacion-web.md)); sin shell nativo ni instaladores.
 
+> [!TIP]
+> **🧪 ¿Quieres probar la aplicación como un cliente?** Sigue la **[Guía de pruebas funcionales](docs/guia-pruebas-funcionales.md)**: se actualiza en cada Pull Request hacia `develop`, así que siempre describe cómo probar lo último que se ha integrado.
+
 ---
 
 ## Estado del proyecto y Roadmap
@@ -15,10 +18,12 @@ La primera entrega se ejecuta como **aplicación web desktop-first en el navegad
 - **Hitos completados:**
   - **Sprint S01 (Fundaciones — 100 % completado):** Shell SPA web base (`PBI-001`), sistema visual de tokens semánticos claro/oscuro WCAG 2.1 AA (`PBI-002`), arnés oficial Vitest + Testing Library + Playwright (`PBI-004`) y protección de ramas (`INFRA-01`).
   - **Sprint S02 (Identidad, Contratos Mock y Dashboard CMS — 100 % completado):** Contrato de API y adaptador mock persistente en `localStorage` (`PBI-003`), autenticación simulada, sesión y rutas protegidas (`PBI-005`), y panel Mis Sitios con creación de web e integración con catálogo (`PBI-006`).
-- **Stack:** React 18 + TypeScript 5 + Vite 5 ([ADR-001](docs/decisiones/ADR-001-react-typescript.md)) · SPA web desktop-first ([ADR-002](docs/decisiones/ADR-002-aplicacion-web.md)).
-- **Versión:** `v0.1.0-alpha.1` (rumbo a `v0.2.0-alpha.1` en Sprint S03).
+- **Stack:** React 19 + TypeScript 5 + Vite 7 + React Router 7 ([ADR-001](docs/decisiones/ADR-001-react-typescript.md), [ADR-006](docs/decisiones/ADR-006-sesion-auth-rutas-protegidas.md)) · SPA web desktop-first ([ADR-002](docs/decisiones/ADR-002-aplicacion-web.md)).
+- **Etiquetas de Sprint:** `v0.1.0-S01` y `v0.2.0-S02` (el cierre de S03 será `v0.3.0-S03`); nomenclatura en el [ADR-012](docs/decisiones/ADR-012-tags-de-sprint-y-readme-kickoff.md).
 - **Tablero operativo:** [GitHub Projects #1 — ShopMaker](https://github.com/orgs/Grup-05/projects/1)
 - **Seguimiento en vivo:** [`PROXIMOS_PASOS.md`](PROXIMOS_PASOS.md)
+- **🧪 Guía para probar la aplicación como cliente:** [`docs/guia-pruebas-funcionales.md`](docs/guia-pruebas-funcionales.md) *(actualizada en cada PR hacia `develop`)*
+- **📚 Registro de decisiones (ADR):** [`docs/decisiones/`](docs/decisiones/README.md)
 
 ---
 
@@ -201,6 +206,8 @@ Reglas clave:
 - `user_data/` está siempre excluido y nunca se versiona.
 - No se ejecuta `git commit`, `git push`, creación/merge de PR ni paso a producción (`main`) sin aprobación humana explícita.
 - En cada *Kick-off* de Sprint es obligatorio actualizar `README.md`, `docs/scrum/active_roles.env` y `.github/CODEOWNERS` en `develop` y `main`.
+- Cada PR de funcionalidad actualiza la [guía de pruebas funcionales](docs/guia-pruebas-funcionales.md) y, si introduce una decisión relevante, su [ADR](docs/decisiones/README.md).
+- Al cerrar cada Sprint se crea el tag anotado `v0.<N>.0-S0<N>`.
 - Los paquetes de release excluyen activos de gobernanza mediante `.gitattributes`.
 
 ### Inicio rápido según tu perfil
@@ -213,6 +220,8 @@ cd ShopMaker-DAW
 npm install
 npm run dev
 ```
+
+> 🧪 Una vez arrancada, sigue la **[Guía de pruebas funcionales](docs/guia-pruebas-funcionales.md)** para recorrer cada funcionalidad como un cliente (cuenta demo incluida).
 
 #### Para miembros del Equipo Scrum (Entorno de contribución obligatorio)
 ```bash
@@ -267,7 +276,8 @@ bash scripts/github/pre-pr-gate.sh --pre-pr
 - [Metodología Scrum](.agent/rules/methodology-scrum.md)
 - [Práctica TDD](.agent/rules/methodology-tdd.md)
 - [Especificaciones](specs/README.md)
-- [Decisiones arquitectónicas (ADR)](docs/decisiones/README.md)
+- [Guía de pruebas funcionales (como cliente)](docs/guia-pruebas-funcionales.md)
+- [Registro de decisiones (ADR)](docs/decisiones/README.md)
 - [Registro de cambios](CHANGELOG.md)
 
 ---

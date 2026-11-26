@@ -190,6 +190,7 @@ Salidas obligatorias:
 - Sprint Goal escrito en `sprint-goal.md`.
 - Sprint Backlog creado.
 - **Actualización obligatoria del `README.md` de `main` y `develop` en el Kick-off del Sprint:** Al cierre del Sprint Planning (Kick-off del Sprint), tras ejecutar `scripts/scrum/rotate-roles.sh`, es obligatorio actualizar `README.md` tanto en `develop` como en la rama principal `main` (reflejando el Sprint activo, el Sprint Goal, la rotación de roles del Sprint, el estado del roadmap y las métricas actuales de la suite de pruebas), junto con la sincronización de `docs/scrum/active_roles.env` y `.github/CODEOWNERS`, de modo que la portada del repositorio en GitHub muestre desde el inicio del Sprint los datos actualizados.
+- Revisión de las decisiones pendientes de registrar: toda decisión del Sprint anterior sin `ADR-###` en `docs/decisiones/` se registra (o se planifica) en el Planning.
 - Specs, planes y tareas de los PBIs seleccionados aprobados o planificados antes de la primera línea de código.
 - Riesgos y dependencias identificados.
 - Esfuerzo de pruebas estimado y entorno de pruebas definido.
@@ -210,6 +211,7 @@ Salidas obligatorias:
 - Los stakeholders aportan feedback.
 - El Product Backlog se actualiza con nuevos PBIs o cambios de prioridad.
 - Se registra en `review.md`.
+- **Cierre obligatorio con tag de Sprint:** tras la aceptación del PO se crea (y se publica con aprobación humana) el tag anotado `v0.<N>.0-S0<N>` sobre el último commit de `develop` que integra el incremento (`AGENTS.md` §5.5).
 
 ### 3.5. Sprint Retrospective
 
@@ -217,6 +219,7 @@ Salidas obligatorias:
 - Se revisan las acciones del Sprint anterior.
 - Se revisan tests frágiles, lentos o duplicados y huecos de cobertura.
 - Se definen acciones concretas con responsable y fecha.
+- Se confirma que cada decisión relevante del Sprint tiene su `ADR-###` en `docs/decisiones/` y que la guía `docs/guia-pruebas-funcionales.md` refleja todos los PBIs integrados.
 - Se registra en `retrospective.md`.
 
 ### 3.6. Sprint 0 opcional
@@ -376,8 +379,8 @@ Cada commit contiene un único tipo. Los tests rojos solo viven en la rama de tr
 
 ### 6.4. Releases
 
-- No es obligatorio publicar una release en cada Sprint.
-- Solo se etiqueta cuando el incremento es potencialmente desplegable y el PO lo acepta.
+- **Tag de Sprint obligatorio:** al cierre de cada Sprint se crea el tag anotado `v0.<N>.0-S0<N>` (`v0.1.0-S01`, `v0.2.0-S02`, `v0.3.0-S03`…) tras la aceptación del PO (`AGENTS.md` §5.5 y `ADR-012`).
+- No es obligatorio publicar una *release* de producción en cada Sprint; las releases (`v1.0.0` y posteriores) se etiquetan solo cuando el incremento es potencialmente desplegable, el PO lo acepta y se cumple la regla de paso a producción.
 - `CHANGELOG.md` sigue SemVer y Keep a Changelog.
 - Las notas de Sprint, demo y feedback viven en `docs/scrum/sprints/S##/review.md`.
 - El tag debe ser anotado y seguir la Constitución Global.
@@ -424,6 +427,8 @@ Un PBI puede entrar en un Sprint cuando:
 - [ ] La matriz spec-test está actualizada.
 - [ ] El código ha sido revisado mediante PR.
 - [ ] La documentación y `CHANGELOG.md` están actualizados cuando corresponde.
+- [ ] `docs/guia-pruebas-funcionales.md` incluye el recorrido de prueba del PBI como cliente (actualizada dentro de la propia PR) o declara que no hay cambios visibles.
+- [ ] Toda decisión relevante del PBI está registrada como `ADR-###` en `docs/decisiones/` (o la PR indica que no hay ninguna).
 - [ ] El PBI es demostrable en el Sprint Review.
 
 ### 8.2. DoD del Incremento de Sprint
@@ -436,6 +441,9 @@ Un PBI puede entrar en un Sprint cuando:
 - [ ] No hay tests flaky conocidos sin acción registrada.
 - [ ] El PO ha revisado y aceptado el incremento.
 - [ ] `review.md` y `retrospective.md` están registrados.
+- [ ] Se ha creado el tag anotado de Sprint `v0.<N>.0-S0<N>` sobre el commit de cierre.
+- [ ] Todas las decisiones relevantes del Sprint tienen su `ADR-###` y el índice de `docs/decisiones/README.md` está al día.
+- [ ] `README.md` de `develop` y `main` refleja el Sprint cerrado y el siguiente.
 - [ ] `PROXIMOS_PASOS.md` refleja el estado real.
 - [ ] Las acciones de mejora tienen responsable y fecha.
 - [ ] No existen defectos críticos conocidos sin registrar.

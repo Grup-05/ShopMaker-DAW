@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-008-editor-webs-borradores`
-- **Último commit consolidado:** `9a22166 — *feat(editor): implementar motor de edicion por bloques, inspector y autoguardado persistente*`
-- **Fecha de última sincronización:** 2026-11-26 22:27
+- **Último commit consolidado:** `2d6f7b5 — *docs(editor): registrar evidencia TDD y actualizar changelog y sprint backlog de PBI-008*`
+- **Fecha de última sincronización:** 2026-11-26 23:05
 
 ---
 

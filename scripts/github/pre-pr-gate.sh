@@ -204,6 +204,35 @@ fi
 
 echo "    ✔ Núcleo de gobernanza global íntegro y sincronizado con '$GOV_REF'."
 
+# Documentación obligatoria de PRs de funcionalidad (feature/*): guía de pruebas y ADR
+if [ "$MODE" = "pre-pr" ] && [[ "$BRANCH_NAME" == feature/* ]]; then
+  GUIDE_FILE="docs/guia-pruebas-funcionales.md"
+  if [ ! -f "$REPO_ROOT/$GUIDE_FILE" ]; then
+    echo "❌ [GATE 3 FALLIDO - FALTA LA GUÍA DE PRUEBAS FUNCIONALES]" >&2
+    echo "   No existe $GUIDE_FILE. Integra origin/develop o créala antes de abrir la PR." >&2
+    exit 1
+  fi
+
+  if git rev-parse --verify "$REMOTE/develop" >/dev/null 2>&1; then
+    GUIDE_CHANGED="$(git diff --name-only "$REMOTE/develop...HEAD" -- "$GUIDE_FILE" 2>/dev/null || true)"
+    if [ -z "$GUIDE_CHANGED" ]; then
+      echo "❌ [GATE 3 FALLIDO - GUÍA DE PRUEBAS SIN ACTUALIZAR EN LA RAMA]" >&2
+      echo "   Toda PR de funcionalidad debe actualizar $GUIDE_FILE con cómo probar el cambio como cliente" >&2
+      echo "   (o declarar en su sección que el PBI no tiene cambios visibles). Ver AGENTS.md §10.5 y ADR-013." >&2
+      exit 1
+    fi
+
+    ARCH_TOUCHED="$(git diff --name-only "$REMOTE/develop...HEAD" -- src/domain/ports/ src/app/ package.json 2>/dev/null || true)"
+    ADR_TOUCHED="$(git diff --name-only "$REMOTE/develop...HEAD" -- docs/decisiones/ 2>/dev/null || true)"
+    if [ -n "$ARCH_TOUCHED" ] && [ -z "$ADR_TOUCHED" ]; then
+      echo "⚠️  [AVISO ADR] La rama modifica contratos, composición o dependencias sin tocar docs/decisiones/:" >&2
+      echo "$ARCH_TOUCHED" | sed 's/^/     - /' >&2
+      echo "   Si introduce una decisión relevante, registra su ADR (AGENTS.md §11); si no, indícalo en la PR." >&2
+    fi
+  fi
+  echo "    ✔ Guía de pruebas funcionales actualizada en la rama."
+fi
+
 # ------------------------------------------------------------------------------
 # GATE 4: Suite de Calidad Local Post-Merge (en modo --pre-pr)
 # ------------------------------------------------------------------------------

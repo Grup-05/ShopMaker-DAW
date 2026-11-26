@@ -1,7 +1,7 @@
 ## PBI y Sprint
 
 - **PBI:** PBI-###
-- **Sprint:** S01
+- **Sprint:** S##
 - **Issue:** Closes #
 - **Spec:** `specs/PBI-###-<slug>/`
 
@@ -23,6 +23,21 @@
 - [ ] Suite completa en verde.
 - [ ] Matriz spec-test actualizada.
 - [ ] Tests escritos antes de la implementación (enlaces a commits `test(...)`).
+
+## 🧪 Cómo probar esta funcionalidad como cliente
+
+> Resume aquí los pasos y enlaza la sección de [`docs/guia-pruebas-funcionales.md`](../docs/guia-pruebas-funcionales.md) que has actualizado en esta PR. Quien revise la PR debe poder probarla siguiendo la guía.
+
+1. <Paso 1>
+2. <Paso 2>
+3. <Resultado esperado>
+
+- [ ] `docs/guia-pruebas-funcionales.md` actualizada en esta PR (o declarado en ella que el PBI no tiene cambios visibles para el cliente).
+
+## 📚 Decisiones (ADR)
+
+- [ ] Si esta PR introduce o cambia una decisión relevante (arquitectura, contratos, dependencias, seguridad, proceso), se ha creado o actualizado el `ADR-###` en `docs/decisiones/` y su índice.
+- [ ] Si no hay decisión relevante, se indica aquí: <ninguna / motivo>.
 
 ## Accesibilidad y seguridad
 
