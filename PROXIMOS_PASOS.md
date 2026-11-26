@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `6065f19 — *chore(governance): exigir actualizacion de README en main en cada kickoff de sprint*`
-- **Fecha de última sincronización:** 2026-11-26 21:31
+- **Último commit consolidado:** `9c87d64 — *docs(readme): actualizar estado del proyecto, roles y metricas al Sprint S03*`
+- **Fecha de última sincronización:** 2026-11-26 22:10
 
 ---
 

@@ -123,23 +123,25 @@ cat > "$CODEOWNERS_FILE" << EOF
 /tests/                         $DEVS_TAGGED
 /scripts/                       $DEVS_TAGGED
 
-# 3. Requisitos del Producto, Historias de Usuario y Backlog (Product Owner)
-/docs/scrum/product-backlog.md  @$PRODUCT_OWNER
-/specs/                         @$PRODUCT_OWNER
+# 3. Requisitos del Producto, Historias de Usuario y Backlog (Product Owner + Scrum Master para revisión cruzada)
+/docs/scrum/product-backlog.md  @$PRODUCT_OWNER @$SCRUM_MASTER
+/specs/                         @$PRODUCT_OWNER @$SCRUM_MASTER
 
-# 4. Proceso Scrum, Definiciones y Retrospectivas (Scrum Master)
-/docs/scrum/definition-*.md     @$SCRUM_MASTER
-/docs/scrum/sprints/            @$SCRUM_MASTER
-/docs/scrum/team.md             @$SCRUM_MASTER
-/docs/scrum/active_roles.env    @$SCRUM_MASTER
+# 4. Proceso Scrum, Definiciones y Retrospectivas (Scrum Master + Product Owner para revisión cruzada)
+/docs/scrum/definition-*.md     @$SCRUM_MASTER @$PRODUCT_OWNER
+/docs/scrum/sprints/            @$SCRUM_MASTER @$PRODUCT_OWNER
+/docs/scrum/team.md             @$SCRUM_MASTER @$PRODUCT_OWNER
+/docs/scrum/active_roles.env    @$SCRUM_MASTER @$PRODUCT_OWNER
 
-# 5. Núcleo de Gobernanza, Hooks, Workflows y Telemetría (Administrador de Gobernanza)
-/.agent/                        @$GOVERNANCE_ADMIN
-/.github/                       @$GOVERNANCE_ADMIN
-/.gitattributes                 @$GOVERNANCE_ADMIN
-/scripts/github/                @$GOVERNANCE_ADMIN
-/scripts/scrum/                 @$GOVERNANCE_ADMIN
-/PROXIMOS_PASOS.md              @$GOVERNANCE_ADMIN
+# 5. Telemetría automática de pre-commit (actualizada en cada commit de cualquier Developer)
+/PROXIMOS_PASOS.md              $DEVS_TAGGED
+
+# 6. Núcleo de Gobernanza, Hooks y Workflows (Administrador de Gobernanza + PO/SM para revisión cruzada)
+/.agent/                        @$GOVERNANCE_ADMIN @$PRODUCT_OWNER @$SCRUM_MASTER
+/.github/                       @$GOVERNANCE_ADMIN @$PRODUCT_OWNER @$SCRUM_MASTER
+/.gitattributes                 @$GOVERNANCE_ADMIN @$PRODUCT_OWNER @$SCRUM_MASTER
+/scripts/github/                @$GOVERNANCE_ADMIN @$PRODUCT_OWNER @$SCRUM_MASTER
+/scripts/scrum/                 @$GOVERNANCE_ADMIN @$PRODUCT_OWNER @$SCRUM_MASTER
 EOF
 
 echo "✔ Roles Scrum actualizados para el Sprint $SPRINT_ID:"
