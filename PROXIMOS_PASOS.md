@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `chore/sprint-03-kickoff`
-- **Último commit consolidado:** `580d2ab — *docs(scrum): cerrar Sprint S02 y completar inicializacion de Sprint S03*`
-- **Fecha de última sincronización:** 2026-11-25 13:55
+- **Rama activa:** `develop`
+- **Último commit consolidado:** `10c449a — *Merge pull request #60 from Grup-05/chore/sprint-03-kickoff*`
+- **Fecha de última sincronización:** 2026-11-26 21:31
 
 ---
 
@@ -92,7 +92,7 @@ PBIs del Sprint S02:
 
 ### 📝 Documentación
 
-- [x] `README.md` con metodología, roles, ramas, commits y DoD.
+- [x] `README.md` actualizado para el Sprint S03 y sincronizado con `main` (regla obligatoria de Kick-off de Sprint en `AGENTS.md`, `methodology-scrum.md`, `rotate-roles.sh` y `sync-governance.sh`).
 - [x] `CHANGELOG.md` inicializado y actualizado con `PBI-001`, `PBI-002`, `PBI-003` y `PBI-004`.
 - [x] `specs/PBI-001-aplicacion-web/`, `specs/PBI-002-tokens-accesibilidad/`, `specs/PBI-003-contrato-api-mock/` y `specs/PBI-004-arnes-pruebas/` redactadas e implementadas en `develop`.
 - [x] Especificaciones base de Sprint S02 (`specs/PBI-005-registro-login-rutas/` y `specs/PBI-006-dashboard-catalogo/`) incorporadas en PR `#57`.

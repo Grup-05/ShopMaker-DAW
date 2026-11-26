@@ -296,10 +296,13 @@ Este proceso realiza automáticamente:
 
 ## 10. Mantenimiento Mandatorio de la Documentación Pública
 
-Tras el desarrollo o integración de cada nueva característica o corrección:
-1. **Actualización Obligatoria de `README.md`:** Reflejar cualquier cambio en capacidades principales, configuración o requisitos.
-2. **Actualización Obligatoria de `CHANGELOG.md`:** Registrar los cambios bajo la sección `[Unreleased]` con las categorías correspondientes (`Added`, `Fixed`, `Changed`, `Security`, `Documentation`).
-3. **Commit Atómico Independiente de Documentación (`docs:`):**
+Tras el desarrollo o integración de cada nueva característica o corrección, y al inicio de cada Sprint:
+1. **Actualización Obligatoria de `README.md`:** Reflejar cualquier cambio en capacidades principales, configuración, arquitectura o estado de la suite de pruebas.
+2. **Actualización Obligatoria del `README.md` de `main` en cada Kick-off de Sprint:**
+   - Al iniciar cada nuevo Sprint (como parte obligatoria del *Sprint Kick-off* / cierre del *Sprint Planning* tras rotar roles con `scripts/scrum/rotate-roles.sh`), es obligatorio actualizar `README.md` con el Sprint activo, el *Sprint Goal*, la tabla de rotación de roles, el estado del roadmap y las métricas vigentes de la suite de pruebas, sincronizándolo inmediatamente tanto en `develop` como en la rama principal `main` (junto con `docs/scrum/active_roles.env` y `.github/CODEOWNERS` mediante `bash .agent/hooks/sync-governance.sh`).
+   - Esto garantiza que cualquier visitante, evaluador o desarrollador que acceda a la portada del repositorio en GitHub (`main`) visualice desde el primer día del Sprint la información real y actualizada del proyecto.
+3. **Actualización Obligatoria de `CHANGELOG.md`:** Registrar los cambios bajo la sección `[Unreleased]` con las categorías correspondientes (`Added`, `Fixed`, `Changed`, `Security`, `Documentation`).
+4. **Commit Atómico Independiente de Documentación (`docs:`):**
    - La documentación pública debe comitearse siempre de forma aislada e independiente en un commit posterior al del código funcional o corrección:
      ```bash
      docs: actualizar manual de usuario, readme y changelog
