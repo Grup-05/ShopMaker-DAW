@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-008-editor-webs-borradores`
-- **Último commit consolidado:** `a62097d — *Merge pull request #82 from Grup-05/feature/PBI-009-previsualizacion-publicacion*`
+- **Último commit consolidado:** `9f8eb21 — *docs(spec): definir requerimientos, plan tecnico, tareas y matriz de pruebas para PBI-008*`
 - **Fecha de última sincronización:** 2026-11-26 22:26
 
 ---
