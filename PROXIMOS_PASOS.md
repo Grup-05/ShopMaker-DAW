@@ -9,7 +9,7 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `10c449a — *Merge pull request #60 from Grup-05/chore/sprint-03-kickoff*`
+- **Último commit consolidado:** `6065f19 — *chore(governance): exigir actualizacion de README en main en cada kickoff de sprint*`
 - **Fecha de última sincronización:** 2026-11-26 21:31
 
 ---
