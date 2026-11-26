@@ -23,7 +23,7 @@ ShopMaker es un CMS que permite a los usuarios **comprar módulos y construir su
 | PBI-006 | Dashboard de administración y catálogo preliminar de módulos | Alta | 26 h | En Sprint | S02 | `#37` | `specs/PBI-006-dashboard-catalogo/` |
 | PBI-007 | Detalle de módulo y compra simulada | Alta | — | Nuevo | — | — | Pendiente |
 | PBI-008 | Editor de webs con autoguardado y borradores | Alta | — | Nuevo | — | — | Pendiente |
-| PBI-009 | Previsualización aislada y segura de la web | Alta | — | Nuevo | — | — | Pendiente |
+| PBI-009 | Previsualización aislada y segura de la web | Alta | ~24 h | En Sprint | S03 | `#81` | `specs/PBI-009-previsualizacion-publicacion/` |
 | PBI-010 | Publicación de la web y panel de alojamiento | Media | — | Nuevo | — | — | Pendiente |
 | PBI-011 | Gestión de módulos activos y permisos | Media | — | Nuevo | — | — | Pendiente |
 | PBI-012 | Accesibilidad transversal y navegación por teclado | Alta | — | Nuevo | — | — | Pendiente |
