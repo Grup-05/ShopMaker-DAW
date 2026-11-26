@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `develop`
-- **Último commit consolidado:** `9c87d64 — *docs(readme): actualizar estado del proyecto, roles y metricas al Sprint S03*`
-- **Fecha de última sincronización:** 2026-11-26 22:10
+- **Rama activa:** `feature/PBI-009-previsualizacion-publicacion`
+- **Último commit consolidado:** `0db5ba0 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-26 22:11
 
 ---
 

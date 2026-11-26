@@ -24,4 +24,5 @@ export interface SitesApiPort {
   getUserSites(): Promise<readonly SiteDto[]>;
   createSite(dto: CreateSiteDto): Promise<SiteDto>;
   deleteSite(id: string): Promise<void>;
+  publishSite?(id: string): Promise<SiteDto>;
 }
