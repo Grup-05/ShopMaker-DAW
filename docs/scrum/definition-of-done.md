@@ -18,6 +18,8 @@
 - [ ] La matriz spec-test está actualizada.
 - [ ] El código ha sido revisado mediante Pull Request.
 - [ ] `README.md` y `CHANGELOG.md` están actualizados cuando corresponde.
+- [ ] `docs/guia-pruebas-funcionales.md` incluye el recorrido de prueba del PBI como cliente, actualizado dentro de la propia PR (o declara que no hay cambios visibles).
+- [ ] Toda decisión relevante del PBI está registrada como `ADR-###` en `docs/decisiones/` y en su índice (o la PR indica que no hay ninguna).
 - [ ] El PBI es demostrable en el Sprint Review.
 
 ## DoD del Incremento de Sprint
@@ -30,6 +32,9 @@
 - [ ] No hay tests flaky conocidos sin acción registrada.
 - [ ] El Product Owner ha revisado y aceptado el incremento.
 - [ ] `review.md` y `retrospective.md` están registrados.
+- [ ] Se ha creado el tag anotado de Sprint `v0.<N>.0-S0<N>` sobre el commit de cierre (`AGENTS.md` §5.5).
+- [ ] Todas las decisiones relevantes del Sprint tienen su `ADR-###` y el índice está al día.
+- [ ] `README.md` de `develop` y `main` refleja el Sprint cerrado y el siguiente.
 - [ ] `PROXIMOS_PASOS.md` refleja el estado real.
 - [ ] Las acciones de mejora tienen responsable y fecha.
 - [ ] No existen defectos críticos conocidos sin registrar.
@@ -42,3 +47,5 @@
 4. Matriz spec-test actualizada.
 5. Notas de accesibilidad y de seguridad cuando apliquen.
 6. Confirmación de que no se han incluido secretos ni datos privados.
+7. Sección «Cómo probar esta funcionalidad como cliente» y actualización de `docs/guia-pruebas-funcionales.md` en la propia PR.
+8. Enlace al `ADR-###` creado o actualizado (o indicación expresa de que no hay decisión relevante).

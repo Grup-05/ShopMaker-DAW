@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `feature/PBI-008-editor-webs-borradores`
-- **Último commit consolidado:** `2d6f7b5 — *docs(editor): registrar evidencia TDD y actualizar changelog y sprint backlog de PBI-008*`
-- **Fecha de última sincronización:** 2026-11-26 23:05
+- **Último commit consolidado:** `1ae0fd2 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
+- **Fecha de última sincronización:** 2026-11-26 23:07
 
 ---
 
@@ -93,6 +93,9 @@ PBIs del Sprint S02:
 ### 📝 Documentación
 
 - [x] `README.md` actualizado para el Sprint S03 y sincronizado con `main` (regla obligatoria de Kick-off de Sprint en `AGENTS.md`, `methodology-scrum.md`, `rotate-roles.sh` y `sync-governance.sh`).
+- [x] Registro mandatorio de decisiones (`AGENTS.md` §11, `ADR-014`): ADR-003 a ADR-014 registrados (incluyendo `ADR-011` del motor de edición/previsualización en la PR `#83`).
+- [x] Guía viva `docs/guia-pruebas-funcionales.md` (`ADR-013`): obligatoria en cada PR `feature/*` (plantilla de PR, DoD y `pre-pr-gate.sh`), con sección de `PBI-008` incluida en la PR `#83`.
+- [x] Tags de Sprint (`ADR-012`): creados y publicados `v0.1.0-S01` (`753bdef`) y `v0.2.0-S02` (`0baef80`); `v0.3.0-S03` al cerrar el Sprint S03.
 - [x] `CHANGELOG.md` inicializado y actualizado con `PBI-001`, `PBI-002`, `PBI-003` y `PBI-004`.
 - [x] `specs/PBI-001-aplicacion-web/`, `specs/PBI-002-tokens-accesibilidad/`, `specs/PBI-003-contrato-api-mock/` y `specs/PBI-004-arnes-pruebas/` redactadas e implementadas en `develop`.
 - [x] Especificaciones base de Sprint S02 (`specs/PBI-005-registro-login-rutas/` y `specs/PBI-006-dashboard-catalogo/`) incorporadas en PR `#57`.

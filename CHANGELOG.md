@@ -29,6 +29,10 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 - *Mejoras de seguridad, políticas SAST o parches criptográficos.*
 
 ### Documentation
+- Registro mandatorio de decisiones: ADR-003 a ADR-010 (registro retroactivo) y ADR-012 a ADR-014, índice actualizado en `docs/decisiones/README.md` y regla en `AGENTS.md` §11, `methodology-scrum.md` y Definition of Done.
+- Guía viva de pruebas funcionales `docs/guia-pruebas-funcionales.md`, enlazada en `README.md`, exigida en la plantilla de PR y verificada por `pre-pr-gate.sh` en ramas `feature/*`.
+- Etiquetas anotadas obligatorias por Sprint (`v0.<N>.0-S0<N>`) en `AGENTS.md` §5.5 y `methodology-scrum.md` §6.4.
+- Corregida la versión del stack en `README.md` (React 19, Vite 7, React Router 7).
 - Actualizados PBI-001, Sprint S01, `README.md` y `PROXIMOS_PASOS.md` para reflejar la entrega web.
 - Añadidos los ADR-001 y ADR-002 al índice de decisiones.
 - Completados T01–T03 de PBI-001: `spec.md`, `plan.md` y `tasks.md` con 17 tests, cuatro ciclos TDD, mapeo CA/RNF → test y plan de acometida de T04.
