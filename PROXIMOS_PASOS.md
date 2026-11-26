@@ -8,9 +8,9 @@
 
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
-- **Rama activa:** `feature/PBI-009-previsualizacion-publicacion`
-- **Último commit consolidado:** `0db5ba0 — *chore(governance): sincronizar nucleo de gobernanza desde develop*`
-- **Fecha de última sincronización:** 2026-11-26 22:11
+- **Rama activa:** `feature/PBI-008-editor-webs-borradores`
+- **Último commit consolidado:** `a62097d — *Merge pull request #82 from Grup-05/feature/PBI-009-previsualizacion-publicacion*`
+- **Fecha de última sincronización:** 2026-11-26 22:26
 
 ---
 
@@ -88,7 +88,7 @@ PBIs del Sprint S02:
 - [x] Test de humo de la aplicación web (`app-arranque`, `home-layout`, `minimum-viewport`).
 - [x] Matriz spec-test actualizada en `specs/PBI-001-aplicacion-web/plan.md`, `specs/PBI-002-tokens-accesibilidad/plan.md`, `specs/PBI-003-contrato-api-mock/plan.md`, `specs/PBI-004-arnes-pruebas/plan.md`, `specs/PBI-005-registro-login-rutas/plan.md` y `specs/PBI-006-dashboard-catalogo/plan.md`.
 - [x] Hook `.agent/hooks/pre-commit-local.sh` operativo e integrado en `develop` (PR `#28`).
-- [x] Suite completa en verde en `develop`: 20 archivos / 107 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
+- [x] Suite completa en verde en `develop` / `feature/PBI-008-editor-webs-borradores`: 26 archivos / 129 tests unitarios, de componente, contrato y arquitectura + 8 E2E.
 
 ### 📝 Documentación
 
@@ -110,9 +110,9 @@ PBIs del Sprint S02:
 **Roles activos S03:** PO: `@Fernis23228` · SM: `@FSolaje` · Dev: `@Tarrant15` · Admin Gob: `@FSolaje`.
 
 PBIs del Sprint S03:
-- [ ] **PBI-008** (`#79`) — Motor de edición visual de webs por bloques, inspector de propiedades y autoguardado de borradores (`T01–T06` `#61`–`#66`, 30 h — `@FSolaje`, SM / Admin Gob).
+- [x] **PBI-008** (`#79`) — Motor de edición visual de webs por bloques, inspector de propiedades y autoguardado de borradores (`T01–T06` `#61`–`#66`, 30 h — `@FSolaje`, SM / Admin Gob). Implementado con SDD + TDD en `feature/PBI-008-editor-webs-borradores` (10 nuevos tests, suite 129/129 en verde).
 - [ ] **PBI-007** (`#80`) — Creación de módulos mediante manifiestos para la tienda, ficha de detalle y compra/activación simulada por sitio (`T01–T06` `#67`–`#72`, 26 h — `@Tarrant15`).
-- [ ] **PBI-009** (`#81`) — Motor de renderizado sanitizado mobile-first, previsualización aislada multi-dispositivo (`iframe sandbox`) y publicación de web (`T01–T06` `#73`–`#78`, 26 h — `@Fernis23228`, PO).
+- [x] **PBI-009** (`#81`) — Motor de renderizado sanitizado mobile-first, previsualización aislada multi-dispositivo (`iframe sandbox`) y publicación de web (`T01–T06` `#73`–`#78`, 26 h — `@Fernis23228`, PO). Completado e integrado en `develop` (PR `#82`).
 
 **Artefactos S03 creados:**
 - [x] `docs/scrum/sprints/S03/sprint-goal.md`
