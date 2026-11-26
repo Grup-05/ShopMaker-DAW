@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useInRouterContext, useNavigate } from 'react-router-dom';
 import type {
   AuthApiPort,
   ModulesApiPort,
@@ -11,6 +12,16 @@ import { SitesView } from './SitesView';
 import { CatalogView } from './CatalogView';
 
 const defaultApiAdapter = new LocalStorageMockApiAdapter();
+
+function RoutedSitesView({ sitesApi }: { readonly sitesApi: SitesApiPort }) {
+  const navigate = useNavigate();
+  return (
+    <SitesView
+      sitesApi={sitesApi}
+      onEditSite={(site) => navigate(`/editor/${site.id}`)}
+    />
+  );
+}
 
 export interface DashboardPageProps {
   readonly authApi?: AuthApiPort;
@@ -25,6 +36,7 @@ export function DashboardPage({
 }: DashboardPageProps) {
   const [currentUser, setCurrentUser] = useState<UserDto | null>(null);
   const [activeSection, setActiveSection] = useState<DashboardSection>('sites');
+  const inRouter = useInRouterContext();
 
   useEffect(() => {
     let mounted = true;
@@ -50,7 +62,12 @@ export function DashboardPage({
       activeSection={activeSection}
       onSectionChange={setActiveSection}
     >
-      {activeSection === 'sites' && <SitesView sitesApi={sitesApi} />}
+      {activeSection === 'sites' &&
+        (inRouter ? (
+          <RoutedSitesView sitesApi={sitesApi} />
+        ) : (
+          <SitesView sitesApi={sitesApi} />
+        ))}
       {activeSection === 'catalog' && <CatalogView modulesApi={modulesApi} />}
       {activeSection === 'settings' && (
         <section aria-labelledby="settings-heading">

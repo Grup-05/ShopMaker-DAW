@@ -6,8 +6,11 @@ import {
   type CreateSiteDto,
   type LoginCredentialsDto,
   type ModuleDto,
+  type ModuleManifestDto,
   type ModulesApiPort,
   type RegisterUserDto,
+  type SiteBlockDto,
+  type SiteDraftDto,
   type SiteDto,
   type SitesApiPort,
   type UserDto,
@@ -286,11 +289,92 @@ export class LocalStorageMockApiAdapter
     const remainingInstalled = { ...state.installedModulesBySite };
     delete remainingInstalled[id];
 
+    const remainingDrafts = { ...(state.draftsBySite ?? {}) };
+    delete remainingDrafts[id];
+
     this.writeState({
       ...state,
       sites: state.sites.filter((site) => site.id !== id),
       installedModulesBySite: remainingInstalled,
+      draftsBySite: remainingDrafts,
     });
+  }
+
+  async getSiteDraft(siteId: string): Promise<SiteDraftDto> {
+    await this.simulateNetworkBoundary();
+
+    const state = this.readState();
+    const site = state.sites.find((item) => item.id === siteId);
+
+    if (!site) {
+      throw new ApiError({
+        status: 404,
+        code: 'NOT_FOUND',
+        message: `No se encontró el sitio con identificador ${siteId}.`,
+      });
+    }
+
+    const existing = state.draftsBySite?.[siteId];
+    if (existing) {
+      return {
+        siteId: existing.siteId,
+        blocks: existing.blocks.map((block) => ({ ...block })),
+        updatedAt: existing.updatedAt,
+      };
+    }
+
+    return {
+      siteId,
+      blocks: [],
+      updatedAt: site.updatedAt,
+    };
+  }
+
+  async saveSiteDraft(
+    siteId: string,
+    blocks: readonly SiteBlockDto[],
+  ): Promise<SiteDraftDto> {
+    await this.simulateNetworkBoundary();
+
+    const state = this.readState();
+    const site = state.sites.find((item) => item.id === siteId);
+
+    if (!site) {
+      throw new ApiError({
+        status: 404,
+        code: 'NOT_FOUND',
+        message: `No se encontró el sitio con identificador ${siteId}.`,
+      });
+    }
+
+    const nowIso = new Date().toISOString();
+    const draft: SiteDraftDto = {
+      siteId,
+      blocks: blocks.map((block) => ({ ...block })),
+      updatedAt: nowIso,
+    };
+
+    const updatedSite: SiteDto = {
+      ...site,
+      updatedAt: nowIso,
+    };
+
+    this.writeState({
+      ...state,
+      sites: state.sites.map((item) =>
+        item.id === siteId ? updatedSite : item,
+      ),
+      draftsBySite: {
+        ...(state.draftsBySite ?? {}),
+        [siteId]: draft,
+      },
+    });
+
+    return {
+      siteId: draft.siteId,
+      blocks: draft.blocks.map((block) => ({ ...block })),
+      updatedAt: draft.updatedAt,
+    };
   }
 
   async publishSite(id: string): Promise<SiteDto> {
@@ -360,6 +444,74 @@ export class LocalStorageMockApiAdapter
         [siteId]: nextForSite,
       },
     });
+  }
+
+  async getInstalledModules(siteId: string): Promise<readonly ModuleDto[]> {
+    await this.simulateNetworkBoundary();
+
+    const state = this.readState();
+    const siteExists = state.sites.some((site) => site.id === siteId);
+
+    if (!siteExists) {
+      throw new ApiError({
+        status: 404,
+        code: 'NOT_FOUND',
+        message: `No se encontró el sitio con identificador ${siteId}.`,
+      });
+    }
+
+    const installedIds = state.installedModulesBySite[siteId] ?? [];
+    return state.modules
+      .filter((mod) => installedIds.includes(mod.id))
+      .map((mod) => ({ ...mod, status: 'installed' as const }));
+  }
+
+  async registerModule(manifest: ModuleManifestDto): Promise<ModuleDto> {
+    await this.simulateNetworkBoundary();
+
+    const trimmedId = manifest.id.trim();
+    const trimmedName = manifest.name.trim();
+    const trimmedDescription = manifest.description.trim();
+
+    if (!trimmedId || !trimmedName || !trimmedDescription) {
+      throw new ApiError({
+        status: 400,
+        code: 'VALIDATION_ERROR',
+        message: 'El manifiesto del módulo requiere id, nombre y descripción.',
+      });
+    }
+
+    const state = this.readState();
+    const duplicate = state.modules.some(
+      (mod) => mod.id.toLowerCase() === trimmedId.toLowerCase(),
+    );
+
+    if (duplicate) {
+      throw new ApiError({
+        status: 409,
+        code: 'VALIDATION_ERROR',
+        message: `Ya existe un módulo con identificador ${trimmedId}.`,
+      });
+    }
+
+    const newModule: ModuleDto = {
+      id: trimmedId,
+      name: trimmedName,
+      description: trimmedDescription,
+      category: manifest.category.trim() || 'general',
+      version: manifest.version.trim() || '1.0.0',
+      status: 'available',
+      ...(manifest.icon ? { icon: manifest.icon } : {}),
+      ...(manifest.price !== undefined ? { price: manifest.price } : {}),
+      ...(manifest.permissions ? { permissions: [...manifest.permissions] } : {}),
+    };
+
+    this.writeState({
+      ...state,
+      modules: [...state.modules, newModule],
+    });
+
+    return { ...newModule };
   }
 
   private async simulateNetworkBoundary(): Promise<void> {

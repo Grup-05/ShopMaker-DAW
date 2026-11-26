@@ -1,14 +1,13 @@
-import type { ModuleDto, SiteDto } from '../../../domain/ports';
+import type {
+  ModuleDto,
+  SiteBlockDto,
+  SiteBlockType,
+  SiteDto,
+} from '../../../domain/ports';
 
-export type SiteBlockType = 'heading' | 'text' | 'image' | 'separator';
+export type { SiteBlockType };
 
-export interface SiteBlock {
-  readonly id: string;
-  readonly type: SiteBlockType;
-  readonly content?: string;
-  readonly imageUrl?: string;
-  readonly imageAlt?: string;
-}
+export type SiteBlock = SiteBlockDto;
 
 export interface SiteRenderInput {
   readonly site: SiteDto;
