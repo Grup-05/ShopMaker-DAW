@@ -1,0 +1,355 @@
+[
+  {
+    "key": "PBI-008-T01",
+    "pbi": "PBI-008",
+    "type": "Spec",
+    "title": "Redactar spec, plan, tasks y extender contratos de puertos para bloques, borradores y manifiestos",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "5 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `specs/PBI-008-editor-webs-borradores/{spec,plan,tasks}.md` y ampliar `src/domain/ports/` (`SiteBlockDto`, `SiteDraftDto`, `ModuleManifestDto`) y `LocalStorageMockApiAdapter`.",
+    "acceptance": [
+      "Spec, plan y matriz spec-test de PBI-008 completados.",
+      "Contratos extendidos en src/domain/ports/ compatibles con PBI-007, PBI-008 y PBI-009.",
+      "TypeScript compila sin errores (npm run typecheck)."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-008-T02",
+    "pbi": "PBI-008",
+    "type": "Test",
+    "title": "Test rojo: modelo del lienzo de bloques y operaciones (añadir, reordenar, duplicar y eliminar)",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "5 h",
+    "priority": "Alta",
+    "depends": ["PBI-008-T01"],
+    "description": "Escribir pruebas unitarias y de componente en `tests/unit/editor/` para la paleta de bloques base + módulos instalados, reordenación accesible y edición de propiedades.",
+    "acceptance": [
+      "Tests fallan inicialmente en rojo por ausencia de los módulos del editor.",
+      "Cubre adición de bloques base y de módulos, reordenación arriba/abajo y confirmación de borrado."
+    ],
+    "tests": [
+      "[PBI-008][CA-01] editor-block-operations",
+      "[PBI-008][CA-02] editor-inspector-properties"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-008-T03",
+    "pbi": "PBI-008",
+    "type": "Código",
+    "title": "Implementar caso de uso useEditor y gestión inmutable del árbol de bloques",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": ["PBI-008-T02"],
+    "description": "Implementar en `src/features/editor/application/useEditor.ts` y `domain/EditorBlock.ts` la lógica de carga del sitio, inserción, reordenación, duplicación, borrado y actualización de propiedades.",
+    "acceptance": [
+      "useEditor gestiona bloques nativos y bloques provenientes de módulos instalados en el sitio.",
+      "Las operaciones sobre bloques son puras, deterministas y pasan sus tests a verde."
+    ],
+    "tests": ["[PBI-008][CA-01] editor-block-operations"],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-008-T04",
+    "pbi": "PBI-008",
+    "type": "Código",
+    "title": "Implementar vista /editor/:siteId con paleta de bloques, lienzo accesible e inspector de propiedades",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": ["PBI-008-T03"],
+    "description": "Construir `EditorPage`, `BlockPalette`, `EditorCanvas` e `InspectorPanel` usando tokens semánticos y conectar el botón «Editar» de las tarjetas del Dashboard con `/editor/:siteId`.",
+    "acceptance": [
+      "Navegación desde «Mis Sitios Web» hacia /editor/:siteId operativa.",
+      "Controles de reordenación e inspector accesibles por teclado con foco visible.",
+      "Estilos 100 % basados en tokens semánticos."
+    ],
+    "tests": [
+      "[PBI-008][CA-01] editor-block-operations",
+      "[PBI-008][CA-02] editor-inspector-properties"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-008-T05",
+    "pbi": "PBI-008",
+    "type": "Test",
+    "title": "Test rojo: autoguardado de borradores en localStorage y recuperación al reabrir",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-008-T01"],
+    "description": "Escribir pruebas que verifiquen el autoguardado automático del borrador al modificar bloques, el anuncio accesible del estado de guardado y la restauración al reabrir el editor.",
+    "acceptance": [
+      "Tests fallan inicialmente en rojo antes de conectar la persistencia de borradores.",
+      "Verifica recuperación de borrador tras desmontar y volver a montar EditorPage."
+    ],
+    "tests": ["[PBI-008][CA-03] editor-autosave-draft-recovery"],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-008-T06",
+    "pbi": "PBI-008",
+    "type": "Código",
+    "title": "Implementar autoguardado persistente de borradores, indicador de estado y evidencia TDD",
+    "owner": "A",
+    "assignee": "FSolaje",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-008-T04", "PBI-008-T05"],
+    "description": "Implementar el autoguardado contra `SitesApiPort` / `localStorage`, indicador `role=\"status\"` (`aria-live=\"polite\"`) y registrar `specs/PBI-008-editor-webs-borradores/evidence.md`.",
+    "acceptance": [
+      "Los cambios en bloques se autoguardan y sobreviven a recargas del navegador.",
+      "Suite completa de PBI-008 en verde y evidencia documentada."
+    ],
+    "tests": ["[PBI-008][CA-03] editor-autosave-draft-recovery"],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-007-T01",
+    "pbi": "PBI-007",
+    "type": "Spec",
+    "title": "Redactar spec funcional, plan técnico y matriz de manifiestos y compra simulada",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `specs/PBI-007-detalle-modulo-compra/{spec,plan,tasks}.md` definiendo el esquema de manifiesto declarativo de módulos, reglas de validación y flujo de compra por sitio.",
+    "acceptance": [
+      "Spec cubre creación de módulos por manifiesto, vista de detalle y checkout simulado por sitio.",
+      "Matriz spec-test cubre el 100 % de los criterios CA-01 a CA-04."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-007-T02",
+    "pbi": "PBI-007",
+    "type": "Test",
+    "title": "Test rojo: validador de manifiestos de módulos y modal de creación para la tienda",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-007-T01"],
+    "description": "Escribir pruebas unitarias y de componente en `tests/unit/modules/` para `validateModuleManifest` (SemVer, permisos permitidos, plantillas seguras) y el modal «+ Añadir Módulo a la Tienda».",
+    "acceptance": [
+      "Tests fallan en rojo por ausencia del validador y del modal de creación.",
+      "Verifica rechazo de manifiestos con permisos inválidos o campos vacíos."
+    ],
+    "tests": [
+      "[PBI-007][CA-01] module-manifest-validation",
+      "[PBI-007][CA-02] create-store-module-modal"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-007-T03",
+    "pbi": "PBI-007",
+    "type": "Código",
+    "title": "Implementar validador de manifiestos y asistente accesible «Añadir Módulo a la Tienda»",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "5 h",
+    "priority": "Alta",
+    "depends": ["PBI-007-T02"],
+    "description": "Implementar `validateModuleManifest.ts` y `CreateModuleModal.tsx` con foco atrapado, permitiendo registrar nuevos módulos en `ModulesApiPort` y visualizarlos inmediatamente en el catálogo.",
+    "acceptance": [
+      "Un módulo creado con manifiesto válido aparece en el catálogo y persiste al recargar.",
+      "Cero uso de eval o ejecución de código arbitrario."
+    ],
+    "tests": [
+      "[PBI-007][CA-01] module-manifest-validation",
+      "[PBI-007][CA-02] create-store-module-modal"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-007-T04",
+    "pbi": "PBI-007",
+    "type": "Test",
+    "title": "Test rojo: ficha de detalle de módulo y flujo de compra/activación simulada por sitio",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-007-T01"],
+    "description": "Escribir pruebas para la vista/modal de detalle de un módulo (precio, versión, permisos, selector de sitio web) y el flujo de compra simulada con estados de carga, éxito y error.",
+    "acceptance": [
+      "Tests fallan inicialmente en rojo por ausencia del componente de detalle y checkout.",
+      "Verifica estados de carga, error de red con reintento y actualización a «Instalado»."
+    ],
+    "tests": [
+      "[PBI-007][CA-03] module-detail-view",
+      "[PBI-007][CA-04] simulated-module-purchase"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-007-T05",
+    "pbi": "PBI-007",
+    "type": "Código",
+    "title": "Implementar ficha de detalle, selector de sitio destino y compra simulada con useModulePurchase",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": ["PBI-007-T04"],
+    "description": "Implementar `ModuleDetailModal` / vista de detalle y el hook `useModulePurchase` conectando con `ModulesApiPort.installModule(siteId, moduleId)` para activar el módulo en el sitio elegido.",
+    "acceptance": [
+      "La compra simulada asocia el módulo al sitio seleccionado y persiste en localStorage.",
+      "El módulo instalado queda disponible para usarse como bloque en el editor de ese sitio."
+    ],
+    "tests": [
+      "[PBI-007][CA-03] module-detail-view",
+      "[PBI-007][CA-04] simulated-module-purchase"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-007-T06",
+    "pbi": "PBI-007",
+    "type": "Docs",
+    "title": "Documentar esquema de manifiestos de módulos y registrar evidencia TDD de PBI-007",
+    "owner": "B",
+    "assignee": "Tarrant15",
+    "estimate": "3 h",
+    "priority": "Media",
+    "depends": ["PBI-007-T03", "PBI-007-T05"],
+    "description": "Registrar `specs/PBI-007-detalle-modulo-compra/evidence.md`, actualizar la matriz spec-test a Verde y documentar cómo declarar nuevos módulos mediante manifiesto.",
+    "acceptance": [
+      "Evidencia de ciclos rojo -> verde registrada.",
+      "Suite completa en verde sin errores de typecheck ni lint."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-009-T01",
+    "pbi": "PBI-009",
+    "type": "Spec",
+    "title": "Redactar spec funcional, plan técnico y matriz de seguridad para previsualización y publicación",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": [],
+    "description": "Completar `specs/PBI-009-previsualizacion-publicacion/{spec,plan,tasks}.md` definiendo las reglas de sanitización anti-XSS, política `iframe sandbox`, viewports mobile-first y flujo de publicación.",
+    "acceptance": [
+      "Spec cubre sanitización, renderizado mobile-first (360/768/1280px), iframe sandbox y publicación.",
+      "Matriz spec-test cubre el 100 % de los criterios CA-01 a CA-04."
+    ],
+    "tests": ["N/A"],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-009-T02",
+    "pbi": "PBI-009",
+    "type": "Test",
+    "title": "Test rojo: sanitizador anti-XSS y motor de renderizado HTML/CSS mobile-first (SiteRenderer)",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-009-T01"],
+    "description": "Escribir pruebas unitarias en `tests/unit/preview/` que verifiquen la neutralización de payloads XSS (`<script>`, `onerror=`, `javascript:`) y la generación de HTML/CSS responsive a partir de los bloques del sitio.",
+    "acceptance": [
+      "Tests fallan inicialmente en rojo por ausencia de sanitizeSiteContent y SiteRenderer.",
+      "Verifica que ningún payload malicioso sobrevive en el HTML generado."
+    ],
+    "tests": [
+      "[PBI-009][CA-01] xss-content-sanitization",
+      "[PBI-009][CA-02] mobile-first-site-renderer"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-009-T03",
+    "pbi": "PBI-009",
+    "type": "Código",
+    "title": "Implementar sanitizador anti-XSS y generador SiteRenderer mobile-first para bloques y módulos",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "6 h",
+    "priority": "Alta",
+    "depends": ["PBI-009-T02"],
+    "description": "Implementar `sanitizeSiteContent.ts` y `SiteRenderer.ts` en `src/features/preview/` generando el documento HTML semántico con media queries mobile-first (360px, 768px, 1280px) y CSP embebida.",
+    "acceptance": [
+      "Todo contenido de usuario es sanitizado antes de inyectarse en la plantilla.",
+      "Renderiza tanto bloques base como bloques de módulos instalados."
+    ],
+    "tests": [
+      "[PBI-009][CA-01] xss-content-sanitization",
+      "[PBI-009][CA-02] mobile-first-site-renderer"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-009-T04",
+    "pbi": "PBI-009",
+    "type": "Test",
+    "title": "Test rojo: visor de previsualización aislada (<iframe sandbox>) y conmutador de viewports",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "4 h",
+    "priority": "Alta",
+    "depends": ["PBI-009-T01"],
+    "description": "Escribir pruebas de componente para `SitePreviewModal` verificando presencia de `<iframe sandbox=\"\">`, `srcDoc` sanitizado y botones de cambio de viewport (Móvil 360px, Tablet 768px, Escritorio 1280px) con `aria-pressed`.",
+    "acceptance": [
+      "Tests fallan inicialmente en rojo por ausencia de SitePreviewModal.",
+      "Verifica aislamiento sandbox y cambio de dimensiones por dispositivo."
+    ],
+    "tests": [
+      "[PBI-009][CA-03] isolated-iframe-preview-viewports",
+      "[PBI-009][CA-04] site-publish-flow"
+    ],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-009-T05",
+    "pbi": "PBI-009",
+    "type": "Código",
+    "title": "Implementar visor SitePreviewModal con iframe sandbox y selector accesible de dispositivos",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "5 h",
+    "priority": "Alta",
+    "depends": ["PBI-009-T03", "PBI-009-T04"],
+    "description": "Construir `SitePreviewModal.tsx` y sus estilos usando tokens semánticos, con `<iframe sandbox=\"\">` sin permisos de ejecución de scripts y barra accesible de selección de viewport.",
+    "acceptance": [
+      "El iframe utiliza atributo sandbox estricto y muestra la web renderizada.",
+      "Los controles Móvil (360px), Tablet (768px) y Escritorio (1280px) alternan aria-pressed y ajustan el contenedor."
+    ],
+    "tests": ["[PBI-009][CA-03] isolated-iframe-preview-viewports"],
+    "sprint": "S03"
+  },
+  {
+    "key": "PBI-009-T06",
+    "pbi": "PBI-009",
+    "type": "Código",
+    "title": "Implementar flujo «Publicar Web» (Borrador -> Publicado) y registrar evidencia TDD de PBI-009",
+    "owner": "C",
+    "assignee": "Fernis23228",
+    "estimate": "3 h",
+    "priority": "Alta",
+    "depends": ["PBI-009-T05"],
+    "description": "Implementar la acción de publicación del sitio web actualizando su estado a `published` en `SitesApiPort`, reflejando el badge «Publicado» en el Dashboard y documentando `specs/PBI-009-previsualizacion-publicacion/evidence.md`.",
+    "acceptance": [
+      "Al publicar una web su estado cambia a 'published' y persiste al recargar.",
+      "Suite completa en verde y evidencia documentada."
+    ],
+    "tests": ["[PBI-009][CA-04] site-publish-flow"],
+    "sprint": "S03"
+  }
+]

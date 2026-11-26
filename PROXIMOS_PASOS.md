@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `main`
-- **Último commit consolidado:** `01b8fdf — *chore(governance): usar ref main y GITHUB_TOKEN nativo en scrum-board-sync.yml*`
-- **Fecha de última sincronización:** 2026-11-24 13:47
+- **Último commit consolidado:** `4d7d563 — *chore(governance): incorporar normalizacion LF en gitattributes y cargador gh-auth.cjs multiplataforma*`
+- **Fecha de última sincronización:** 2026-11-26 21:32
 
 ---
 

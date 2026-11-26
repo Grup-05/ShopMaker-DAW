@@ -189,6 +189,7 @@ Salidas obligatorias:
 
 - Sprint Goal escrito en `sprint-goal.md`.
 - Sprint Backlog creado.
+- **Actualización obligatoria del `README.md` de `main` y `develop` en el Kick-off del Sprint:** Al cierre del Sprint Planning (Kick-off del Sprint), tras ejecutar `scripts/scrum/rotate-roles.sh`, es obligatorio actualizar `README.md` tanto en `develop` como en la rama principal `main` (reflejando el Sprint activo, el Sprint Goal, la rotación de roles del Sprint, el estado del roadmap y las métricas actuales de la suite de pruebas), junto con la sincronización de `docs/scrum/active_roles.env` y `.github/CODEOWNERS`, de modo que la portada del repositorio en GitHub muestre desde el inicio del Sprint los datos actualizados.
 - Specs, planes y tareas de los PBIs seleccionados aprobados o planificados antes de la primera línea de código.
 - Riesgos y dependencias identificados.
 - Esfuerzo de pruebas estimado y entorno de pruebas definido.
@@ -336,6 +337,7 @@ Las decisiones relevantes se registran en `plan.md`. Si afectan a varias feature
 - **Cierre Automático de Issues y Sincronización del Tablón en `develop`:** Dado que GitHub solo procesa nativamente `Closes #XX` en la rama por defecto (`main`), la subrutina estática `scripts/github/pre-pr-gate.sh` (invocada en `pre-push` y antes de cada PR usando el token local `user_data/security/gh_token.txt` de cada desarrollador) ejecuta `scripts/github/sync-pr-issues.sh --reconcile`, cerrando automáticamente las issues referenciadas con `Closes #XX` en PRs fusionados en `develop` y moviendo su estado a **"Hecho"** en el tablero de GitHub Projects sin almacenar tokens personales en GitHub Secrets.
 - No se usa `git rebase` destructivo ni `git push --force` sobre ramas compartidas.
 - El núcleo de gobernanza solo se modifica en `main` (o mediante bypass acotado del Administrador de Gobernanza) y se propaga con `sync-governance.sh`.
+- **Sincronización obligatoria de `README.md` en `main` durante el Kick-off del Sprint:** En cada inicio de Sprint, `README.md`, `docs/scrum/active_roles.env` y `.github/CODEOWNERS` deben actualizarse y sincronizarse con `main` (operación documental/gobernanza explícitamente permitida por los hooks `pre-commit` y `pre-push` en `main`, sin introducir código de producto) para mantener actualizada la portada principal del repositorio.
 - Las ramas se eliminan después del merge.
 
 ### 6.3. Commits
