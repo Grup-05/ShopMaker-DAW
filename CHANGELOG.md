@@ -9,7 +9,11 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 ## [Unreleased]
 
 ### Added
-- *Nuevas funcionalidades incorporadas (`feat`).*
+- Contrato de API en `src/domain/ports/` (`AuthApiPort`, `SitesApiPort`, `ModulesApiPort` y modelo normalizado `ApiError`) junto con el adaptador mock persistente `LocalStorageMockApiAdapter` en `src/infrastructure/api/mock/` con fixtures iniciales, latencia configurable (200–500 ms) y simulación determinista de errores HTTP (`400`, `401`, `404`, `409`, `500`) (PBI-003 T01–T06).
+- 13 pruebas unitarias y de contrato para PBI-003 en `tests/unit/api/` (`api-contracts.test.ts`, `mock-persistence.test.ts`, `mock-network-simulation.test.ts`).
+- Aplicación web base de PBI-001 con React + TypeScript + Vite: navegación, título «ShopMaker», aside de páginas, mensaje central, selección local accesible, controles futuros inertes y botón de tema (T04–T06).
+- Arnés de pruebas consolidado sobre la configuración oficial de PBI-004 (`tests/setup.ts`, `tests/unit/`, `tests/e2e/`, alias `@`) con Vitest + React Testing Library + Playwright y servidor Vite.
+- 17 tests contractuales de PBI-001 (3 E2E, 10 de componente, 2 de arquitectura y 2 revisiones manuales) y documentación de evidencia y accesibilidad.
 
 ### Fixed
 - *Correcciones de errores o bugs solventados (`fix`).*
@@ -22,8 +26,15 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 - *Mejoras de seguridad, políticas SAST o parches criptográficos.*
 
 ### Documentation
+- Registro mandatorio de decisiones: ADR-003 a ADR-010 (registro retroactivo) y ADR-012 a ADR-014, índice actualizado en `docs/decisiones/README.md` y regla en `AGENTS.md` §11, `methodology-scrum.md` y Definition of Done.
+- Guía viva de pruebas funcionales `docs/guia-pruebas-funcionales.md`, enlazada en `README.md`, exigida en la plantilla de PR y verificada por `pre-pr-gate.sh` en ramas `feature/*`.
+- Etiquetas anotadas obligatorias por Sprint (`v0.<N>.0-S0<N>`) en `AGENTS.md` §5.5 y `methodology-scrum.md` §6.4.
+- Corregida la versión del stack en `README.md` (React 19, Vite 7, React Router 7).
 - Actualizados PBI-001, Sprint S01, `README.md` y `PROXIMOS_PASOS.md` para reflejar la entrega web.
 - Añadidos los ADR-001 y ADR-002 al índice de decisiones.
+- Completados T01–T03 de PBI-001: `spec.md`, `plan.md` y `tasks.md` con 17 tests, cuatro ciclos TDD, mapeo CA/RNF → test y plan de acometida de T04.
+- Completados T04–T06 de PBI-001: ciclos rojo → verde registrados en `evidence.md` y revisión de accesibilidad en `accessibility-checklist.md`.
+- Actualizados Sprint Backlog S01, `PROXIMOS_PASOS.md` y `README.md` con comandos y resultados reales de la suite.
 
 ---
 

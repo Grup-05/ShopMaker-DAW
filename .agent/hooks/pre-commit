@@ -111,7 +111,7 @@ elif [ "$CURRENT_BRANCH" = "main" ]; then
     # Protección de 'main' como rama estricta de producción:
     # Bloquea commits o merges en 'main' que introduzcan código de producto o specs de PBIs
     # sin especificación formal de paso a producción y orden explícita (PRODUCTION_RELEASE_APPROVED=true).
-    NON_GOV_ON_MAIN=$(git diff --cached --name-only --diff-filter=ACM | grep -Ev '^(\.agent/|\.github/|\.gitattributes$|docs/scrum/|docs/decisiones/|PROXIMOS_PASOS\.md$|scripts/|README\.md$|CHANGELOG\.md$)' || true)
+    NON_GOV_ON_MAIN=$(git diff --cached --name-only --diff-filter=ACM | grep -Ev '^(\.agent/|\.github/|\.gitattributes$|docs/|PROXIMOS_PASOS\.md$|scripts/|README\.md$|CHANGELOG\.md$)' || true)
     if [ -n "$NON_GOV_ON_MAIN" ] && [ "${PRODUCTION_RELEASE_APPROVED:-false}" != "true" ]; then
         echo "❌ [ERROR DE GOBERNANZA - RAMA MAIN ES PRODUCCIÓN]"
         echo "   Se intentan confirmar o fusionar archivos de desarrollo o PBI directamente en 'main':"
