@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `74c6e84 — *docs(adr): registrar retroactivamente ADR-003 a ADR-010 y anadir ADR-012 a ADR-014*`
-- **Fecha de última sincronización:** 2026-11-26 23:05
+- **Último commit consolidado:** `1f39a88 — *docs(guia): crear guia viva de pruebas funcionales y enlazarla en README y CHANGELOG*`
+- **Fecha de última sincronización:** 2026-11-27 11:48
 
 ---
 

@@ -290,14 +290,14 @@ bash scripts/github/pre-pr-gate.sh --pre-pr
 | Comando de suite | `npm test` (unitarias, componente, contrato y arquitectura) y `npm run test:e2e` (E2E) |
 | Calidad estática | `npm run typecheck`, `npm run lint` y `npm run build` en verde |
 | Cobertura de criterios de aceptación | **100 %** de los criterios de aceptación de los Sprints S01 (`PBI-001`, `PBI-002`, `PBI-004`) y S02 (`PBI-003`, `PBI-005`, `PBI-006`) cubiertos por pruebas automatizadas |
-| Suite total consolidada | `npm test`: **107 tests en 20 archivos** (`PBI-001` a `PBI-006`); `npm run test:e2e`: **8 tests E2E** (4 × Chromium y Firefox) |
+| Suite total consolidada | `npm test`: **119 tests en 23 archivos** (`PBI-001` a `PBI-006` y `PBI-009`); `npm run test:e2e`: **8 tests E2E** (4 × Chromium y Firefox) |
 | Tests flaky conocidos | Ninguno registrado (`0 %`) |
 
 La cobertura se mide por **criterios de aceptación cubiertos**, no por porcentaje de líneas. El objetivo es el 100 % de los criterios comprometidos en cada Sprint.
 
 ### Contrato de API y Adaptador Mock Persistente (`PBI-003`)
 
-El frontend se desacopla del backend mediante los puertos de dominio en [`src/domain/ports/`](src/domain/ports/index.ts) (`AuthApiPort`, `SitesApiPort`, `ModulesApiPort` y el error normalizado `ApiError`) y el adaptador mock persistente en [`src/infrastructure/api/mock/`](src/infrastructure/api/mock/index.ts):
+El frontend se desacopla del backend mediante los puertos de dominio en [`src/domain/ports/`](https://github.com/Grup-05/ShopMaker-DAW/blob/develop/src/domain/ports/index.ts) (`AuthApiPort`, `SitesApiPort`, `ModulesApiPort` y el error normalizado `ApiError`) y el adaptador mock persistente en [`src/infrastructure/api/mock/`](https://github.com/Grup-05/ShopMaker-DAW/blob/develop/src/infrastructure/api/mock/index.ts):
 
 ```ts
 import { createMockApiAdapter, InMemoryStorage } from '@/infrastructure/api/mock';
@@ -313,7 +313,7 @@ const testApi = createMockApiAdapter({
 });
 ```
 
-La guía completa de consumo, simulación de errores HTTP (`400`, `401`, `404`, `409`, `500`) y fixtures iniciales (`demo@shopmaker.local` y catálogo base de módulos) se documenta en [`specs/PBI-003-contrato-api-mock/evidence.md`](specs/PBI-003-contrato-api-mock/evidence.md).
+La guía completa de consumo, simulación de errores HTTP (`400`, `401`, `404`, `409`, `500`) y fixtures iniciales (`demo@shopmaker.local` y catálogo base de módulos) se documenta en [`specs/PBI-003-contrato-api-mock/evidence.md`](https://github.com/Grup-05/ShopMaker-DAW/blob/develop/specs/PBI-003-contrato-api-mock/evidence.md).
 
 ### Comandos de desarrollo y pruebas
 
@@ -327,4 +327,4 @@ npm run lint           # ESLint
 npm run build          # build de producción
 ```
 
-La evidencia de los ciclos rojo → verde está en [`specs/PBI-001-aplicacion-web/evidence.md`](specs/PBI-001-aplicacion-web/evidence.md) y [`specs/PBI-003-contrato-api-mock/evidence.md`](specs/PBI-003-contrato-api-mock/evidence.md).
+La evidencia de los ciclos rojo → verde está en [`specs/PBI-001-aplicacion-web/evidence.md`](https://github.com/Grup-05/ShopMaker-DAW/blob/develop/specs/PBI-001-aplicacion-web/evidence.md) y [`specs/PBI-003-contrato-api-mock/evidence.md`](https://github.com/Grup-05/ShopMaker-DAW/blob/develop/specs/PBI-003-contrato-api-mock/evidence.md).
