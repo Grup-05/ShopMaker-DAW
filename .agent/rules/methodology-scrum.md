@@ -143,6 +143,14 @@ Se puede usar GitHub Projects, Kanban o una tabla Markdown. Columnas mínimas:
 
 El tablero es la fuente de verdad operativa. `PROXIMOS_PASOS.md` es solo un resumen de estado.
 
+**Reglas obligatorias de transición en el Tablón (`ADR-015`):**
+
+1. **Prohibido saltar de `Sprint Backlog` (`Todo`) directamente a `Hecho` (`Done`).** Toda tarea trabajada debe pasar por `En progreso` y `En revisión`.
+2. **Al iniciar un PBI o crear su rama `feature/PBI-###-<slug>`:** pasar las issues activas a `En progreso` (`In Progress`) con `node scripts/github/sync-board-status.cjs --in-progress PBI-###` (o `--branch`).
+3. **Antes de abrir una PR (`pre-pr-gate.sh`):** todas las issues abarcadas por la rama/PR deben estar **como mínimo en `En progreso` (`In Progress`)**. El Gate 5 de `scripts/github/pre-pr-gate.sh` lo garantiza automáticamente tanto en `pre-push` como en `--pre-pr`.
+4. **Al abrir la PR hacia `develop`:** mover las issues vinculadas a `En revisión` (`In Progress`) ejecutando `node scripts/github/sync-board-status.cjs --in-review --branch <rama>` (o `bash scripts/github/sync-pr-issues.sh --pr <NUM>`).
+5. **Paridad de campos:** las herramientas mantienen sincronizados `Estado Scrum` (`Sprint Backlog` / `En progreso` / `En revisión` / `Hecho`) y el campo nativo `Status` (`Todo` / `In Progress` / `Done`).
+
 ### 2.6. Trazabilidad obligatoria
 
 | Elemento | Formato |

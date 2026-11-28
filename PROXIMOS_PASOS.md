@@ -9,8 +9,8 @@
 ## 📡 Telemetría Git (Actualizada automáticamente por Pre-commit Hook)
 
 - **Rama activa:** `develop`
-- **Último commit consolidado:** `1f39a88 — *docs(guia): crear guia viva de pruebas funcionales y enlazarla en README y CHANGELOG*`
-- **Fecha de última sincronización:** 2026-11-27 11:48
+- **Último commit consolidado:** `0f46ff9 — *fix(hooks): sincronizar docs/ en main y corregir enlaces relativos de README*`
+- **Fecha de última sincronización:** 2026-11-28 11:02
 
 ---
 

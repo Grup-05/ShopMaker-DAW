@@ -247,11 +247,23 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# GATE 5: Reconciliación Automática de Issues y Tablón Scrum
+# GATE 5: Transición a 'En progreso' del PBI activo y Reconciliación del Tablón
 # ------------------------------------------------------------------------------
-echo "  ▶ [Gate 5/5] Reconciliando Issues cerradas en 'develop' y Tablón Scrum Project #1..."
+echo "  ▶ [Gate 5/5] Asegurando estado 'En progreso' del PBI activo y reconciliando Tablón Scrum Project #1..."
+
+# 5.1 Garantizar que ninguna rama feature/PBI-###-* suba código ni abra PR con tareas aún en 'Sprint Backlog' / 'Todo'
+if [[ "$BRANCH_NAME" =~ PBI-[0-9]{3} ]] && [ -f "$REPO_ROOT/scripts/github/sync-board-status.cjs" ]; then
+  node "$REPO_ROOT/scripts/github/sync-board-status.cjs" --in-progress --branch "$BRANCH_NAME"
+fi
+
+# 5.2 Reconciliar PRs abiertos ('En revisión'), PRs fusionados ('Hecho') y paridad 'Estado Scrum' <-> 'Status'
 if [ -f "$REPO_ROOT/scripts/github/sync-pr-issues.sh" ]; then
   bash "$REPO_ROOT/scripts/github/sync-pr-issues.sh" --reconcile
+fi
+
+if [ "$MODE" = "pre-pr" ] && [[ "$BRANCH_NAME" =~ PBI-[0-9]{3} ]]; then
+  echo "    ℹ️  Recuerda: nada más crear la PR en GitHub, mueve sus issues a 'En revisión' con:"
+  echo "       node scripts/github/sync-board-status.cjs --in-review --branch \"$BRANCH_NAME\""
 fi
 
 echo "✅ [Pre-PR Gate] Las 5 puertas de gobernanza, sincronización y calidad fueron superadas."

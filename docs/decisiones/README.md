@@ -50,6 +50,7 @@ Un ADR **no se elimina**: se marca `Sustituido por ADR-###` y se documenta el mo
 | [ADR-012](ADR-012-tags-de-sprint-y-readme-kickoff.md) | Etiquetas anotadas por Sprint (`v0.N.0-S0N`) y `README.md` de `main` en cada Kick-off | Aceptado | 2026-11-26 | S03 |
 | [ADR-013](ADR-013-guia-viva-pruebas-funcionales.md) | Guía viva de pruebas funcionales actualizada en cada PR a `develop` | Aceptado | 2026-11-26 | S03 |
 | [ADR-014](ADR-014-registro-mandatorio-de-decisiones.md) | Registro mandatorio de decisiones relevantes (ADR) | Aceptado | 2026-11-26 | S03 |
+| [ADR-015](ADR-015-transiciones-obligatorias-tablon-scrum.md) | Transiciones obligatorias del Tablón Scrum (`En progreso` / `En revisión`) y paridad con `Status` | Aceptado | 2026-11-28 | S03 |
 
 > Los ADR marcados «retroactivo» se reconstruyeron el 2026-11-26 desde los `plan.md`, el historial Git y las reglas vigentes; el equipo debe validarlos en la revisión de la PR que los incorpora.
 
