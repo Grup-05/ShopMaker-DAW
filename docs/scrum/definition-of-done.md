@@ -17,6 +17,7 @@
 - [ ] Los tests son deterministas, independientes y no usan datos reales.
 - [ ] La matriz spec-test está actualizada.
 - [ ] El código ha sido revisado mediante Pull Request.
+- [ ] Las issues del PBI reflejaron su ciclo real en el Tablón Scrum (`En progreso` → `En revisión` → `Hecho`, sincronizado con `Status` nativo; `ADR-015`).
 - [ ] `README.md` y `CHANGELOG.md` están actualizados cuando corresponde.
 - [ ] `docs/guia-pruebas-funcionales.md` incluye el recorrido de prueba del PBI como cliente, actualizado dentro de la propia PR (o declara que no hay cambios visibles).
 - [ ] Toda decisión relevante del PBI está registrada como `ADR-###` en `docs/decisiones/` y en su índice (o la PR indica que no hay ninguna).

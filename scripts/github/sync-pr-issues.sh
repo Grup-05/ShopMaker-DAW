@@ -145,6 +145,12 @@ BOARD_QUERY="query {
           options { id name }
         }
       }
+      nativeStatusField: field(name: \"Status\") {
+        ... on ProjectV2SingleSelectField {
+          id
+          options { id name }
+        }
+      }
       items(first: 100) {
         nodes {
           id
@@ -173,8 +179,51 @@ SNAPSHOT="$(api_graphql "$BOARD_QUERY" 2>/dev/null || echo '{}')"
 
 PROJECT_ID="$(jq -r '.data.organization.projectV2.id // empty' <<<"$SNAPSHOT")"
 STATUS_FIELD_ID="$(jq -r '.data.organization.projectV2.field.id // empty' <<<"$SNAPSHOT")"
+OPT_EN_PROGRESO="$(jq -r '.data.organization.projectV2.field.options[]? | select(.name=="En progreso") | .id' <<<"$SNAPSHOT")"
 OPT_EN_REVISION="$(jq -r '.data.organization.projectV2.field.options[]? | select(.name=="En revisión") | .id' <<<"$SNAPSHOT")"
 OPT_HECHO="$(jq -r '.data.organization.projectV2.field.options[]? | select(.name=="Hecho") | .id' <<<"$SNAPSHOT")"
+
+NATIVE_STATUS_FIELD_ID="$(jq -r '.data.organization.projectV2.nativeStatusField.id // empty' <<<"$SNAPSHOT")"
+OPT_NATIVE_IN_PROGRESS="$(jq -r '.data.organization.projectV2.nativeStatusField.options[]? | select(.name=="In Progress") | .id' <<<"$SNAPSHOT")"
+OPT_NATIVE_DONE="$(jq -r '.data.organization.projectV2.nativeStatusField.options[]? | select(.name=="Done") | .id' <<<"$SNAPSHOT")"
+
+set_native_status() {
+  local issue_num="$1" item_id="$2" target_native_name="$3" target_native_opt="$4"
+  if [ -z "$PROJECT_ID" ] || [ -z "$NATIVE_STATUS_FIELD_ID" ] || [ -z "$target_native_opt" ] || [ -z "$item_id" ]; then
+    return 0
+  fi
+
+  local current_native
+  current_native="$(jq -r --argjson n "$issue_num" '
+    .data.organization.projectV2.items.nodes[]?
+    | select(.content.number == $n)
+    | .fieldValues.nodes[]?
+    | select(.field.name == "Status")
+    | .name
+  ' <<<"$SNAPSHOT" | head -n1)"
+
+  if [ "$current_native" = "$target_native_name" ]; then
+    return 0
+  fi
+
+  if [ "$DRY_RUN" = true ]; then
+    echo "   [dry-run] Mover Status nativo de #$issue_num en Project #$PROJECT_NUMBER: '${current_native:-—}' -> '$target_native_name'"
+    return 0
+  fi
+
+  local mutation="mutation {
+    updateProjectV2ItemFieldValue(input: {
+      projectId: \"$PROJECT_ID\",
+      itemId: \"$item_id\",
+      fieldId: \"$NATIVE_STATUS_FIELD_ID\",
+      value: { singleSelectOptionId: \"$target_native_opt\" }
+    }) {
+      projectV2Item { id }
+    }
+  }"
+  api_graphql "$mutation" >/dev/null
+  echo "   ✔ [Tablón] Status nativo de #$issue_num: '${current_native:-—}' -> '$target_native_name'."
+}
 
 set_issue_board_status() {
   local issue_num="$1" target_status_name="$2" target_option_id="$3"
@@ -187,6 +236,13 @@ set_issue_board_status() {
   item_id="$(jq -r --argjson n "$issue_num" '.data.organization.projectV2.items.nodes[]? | select(.content.number == $n) | .id' <<<"$SNAPSHOT" | head -n1)"
   if [ -z "$item_id" ]; then
     return 0
+  fi
+
+  # Sincronizar también el campo nativo 'Status' (In Progress / Done)
+  if [ "$target_status_name" = "Hecho" ]; then
+    set_native_status "$issue_num" "$item_id" "Done" "$OPT_NATIVE_DONE"
+  elif [ "$target_status_name" = "En revisión" ] || [ "$target_status_name" = "En progreso" ]; then
+    set_native_status "$issue_num" "$item_id" "In Progress" "$OPT_NATIVE_IN_PROGRESS"
   fi
 
   current_status="$(jq -r --argjson n "$issue_num" '

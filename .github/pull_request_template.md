@@ -49,6 +49,7 @@
 ## Checklist
 
 - [ ] La spec, el plan y las tareas reflejan la implementación.
+- [ ] Todas las issues abarcadas por esta PR pasaron por `En progreso` (`In Progress`) y quedan en `En revisión` en el Tablón Scrum (ninguna permanece en `Sprint Backlog` / `Todo`).
 - [ ] `CHANGELOG.md` y `README.md` actualizados si corresponde.
 - [ ] No se han debilitado ni omitido tests sin justificación.
 - [ ] El PBI es demostrable en el Sprint Review.
